@@ -6,7 +6,7 @@
 
 #ifndef INC_FRAME
 #define INC_FRAME
-#include "../Frame/Frame.cpp"
+#include "../Frame/Frame.hpp"
 #endif
 
 #ifndef VIDEO_H
