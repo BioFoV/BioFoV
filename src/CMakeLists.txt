@@ -7,6 +7,7 @@ SET(CPP_FILES
 	Video/Video.cpp
 	Feature/Feature.cpp
 	Frame/Frame.cpp
+	Event/Event.cpp
 	Individual/Individual.cpp
 	Snapshot/Snapshot.cpp
 	Video/Video.cpp)
