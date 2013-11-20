@@ -1,3 +1,8 @@
+#ifndef INC_INDIVIDUAL
+#define INC_INDIVIDUAL
+#include "../Individual/Individual.hpp"
+#endif
+
 #ifndef FEAT_H
 #define FEAT_H
 class Individual;
@@ -10,7 +15,7 @@ class Individual;
 class Feature{
 private:
 	// external references
-	Individual ind;
+	Individual *ind;
 	// class data
 	std::string description;
 	

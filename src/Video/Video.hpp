@@ -1,3 +1,14 @@
+// OpenCV
+#ifndef OPENCV_INC
+#define OPENCV_INC
+#include <opencv2/opencv.hpp>
+#endif
+
+#ifndef INC_FRAME
+#define INC_FRAME
+#include "../Frame/Frame.cpp"
+#endif
+
 #ifndef VIDEO_H
 #define VIDEO_H
 class Frame;
