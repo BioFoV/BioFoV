@@ -42,4 +42,3 @@ public:
 	Individual();
 };
 #endif 
-

@@ -24,4 +24,3 @@ public:
 	Feature();
 };
 #endif
-

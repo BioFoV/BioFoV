@@ -21,4 +21,3 @@
 #include "Event/Event.hpp"
 #include "Individual/Individual.hpp"
 #include "Feature/Feature.hpp"
-
