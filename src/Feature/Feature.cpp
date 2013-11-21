@@ -25,3 +25,11 @@ std::string Feature::describe(){
 void Feature::describe(std::string name){
 	description = name;
 }
+
+Individual* Feature::parent(){
+	return ind;
+}
+
+void Feature::parent(Individual* owner){
+	ind = owner;
+}

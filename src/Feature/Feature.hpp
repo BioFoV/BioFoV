@@ -22,12 +22,16 @@ private:
 public:
 	// Constructors
 	Feature();
-	Feature(Individual *owner);
-	Feature(Individual *owner, std::string name);
+	Feature(Individual* owner);
+	Feature(Individual* owner, std::string name);
 	Feature(std::string name);
 	
 	// Description
 	std::string describe();
 	void describe(std::string name);
+	
+	// Individual
+	Individual* parent();
+	void parent(Individual* owner);
 };
 #endif
