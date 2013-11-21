@@ -26,5 +26,6 @@ private:
 public:
 	// Constructor
 	Frame();
+	Frame(Video *source_vid);
 };
 #endif
