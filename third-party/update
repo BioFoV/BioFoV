@@ -1,4 +1,40 @@
 #!/bin/bash
 
-git clone https://github.com/Itseez/opencv.git opencv-srv
+if [ ! -d opencv ]; then
+  mkdir opencv
+fi
+cd opencv
+
+# Get source
+if [ ! -d src ]; then
+  if git clone https://github.com/Itseez/opencv.git src;then
+    echo "cloned"
+  else
+    echo "clone failed"
+    exit
+  fi
+else
+  cd src
+  if git pull; then
+    echo "pulled"
+    cd ..
+  else
+    echo "pull failed"
+    exit
+  fi
+fi
+
+# Build for windows
+mkdir build-windows
+cd build-windows
+cmake ../src/ -DCMAKE_TOOLCHAIN_FILE=../../../build_windows/Toolchain-cross-mingw32-linux.cmake
+make
+cd ..
+
+# Build for linux
+mkdir build-linux
+cd build-linux
+cmake ../src/
+make
+cd ..
 
