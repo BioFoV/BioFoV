@@ -38,7 +38,7 @@ private:
 	std::list<Feature> features;
 	
 public:
-	// Constructor
+	// Constructors
 	Individual();
 };
 #endif 
