@@ -25,5 +25,9 @@ public:
 	Feature(Individual *owner);
 	Feature(Individual *owner, std::string name);
 	Feature(std::string name);
+	
+	// Description
+	std::string describe();
+	void describe(std::string name);
 };
 #endif

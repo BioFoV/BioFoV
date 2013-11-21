@@ -17,3 +17,11 @@ Feature::Feature(std::string name){
 	ind = NULL;
 	description = name;
 }
+
+std::string Feature::describe(){
+	return description;
+}
+
+void Feature::describe(std::string name){
+	description = name;
+}
