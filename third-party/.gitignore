@@ -1,2 +1,4 @@
-# git and compiled opencv
+# git and compiled third-party stuff
 opencv/
+qt/
+
