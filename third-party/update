@@ -33,14 +33,14 @@ fi
 mkdir build-windows
 cd build-windows
 cmake ../src/ -DCMAKE_TOOLCHAIN_FILE=../../../build_windows/Toolchain-cross-mingw32-linux.cmake
-make
+make &
 cd ..
 
 # Build for linux
 mkdir build-linux
 cd build-linux
 cmake -D WITH_CUDA=OFF ../src
-make
+make &
 cd ../..
 
 ################################################################################
