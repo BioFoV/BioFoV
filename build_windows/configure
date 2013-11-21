@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cmake ../src/ -DCMAKE_TOOLCHAIN_FILE=Toolchain-cross-mingw32-linux.cmake
