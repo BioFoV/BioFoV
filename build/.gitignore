@@ -1,0 +1,7 @@
+# ignore everything in this folder!
+*
+
+# Except these files...
+!configure
+!.gitignore
+
