@@ -24,7 +24,7 @@ private:
 	cv::Mat image;
 	
 public:
-	// Constructor
+	// Constructors
 	Frame();
 	Frame(Video *source_vid);
 };
