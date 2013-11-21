@@ -34,7 +34,7 @@ cd ..
 # Build for linux
 mkdir build-linux
 cd build-linux
-cmake ../src/
+cmake -D WITH_CUDA=OFF ../src
 make
 cd ..
 
