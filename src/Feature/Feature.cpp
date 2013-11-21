@@ -1,5 +1,8 @@
 #include "Feature.hpp"
 
+/*******************************************************************************
+ * Constructors
+ ******************************************************************************/
 Feature::Feature(){
 	ind = NULL;
 }
@@ -18,6 +21,9 @@ Feature::Feature(std::string name){
 	description = name;
 }
 
+/*******************************************************************************
+ * Description handling functions
+ ******************************************************************************/
 std::string Feature::describe(){
 	return description;
 }
@@ -26,6 +32,9 @@ void Feature::describe(std::string name){
 	description = name;
 }
 
+/*******************************************************************************
+ * Individual (owner) handling functions
+ ******************************************************************************/
 Individual* Feature::parent(){
 	return ind;
 }

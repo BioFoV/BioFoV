@@ -26,11 +26,11 @@ public:
 	Feature(Individual* owner, std::string name);
 	Feature(std::string name);
 	
-	// Description
+	// Description handling functions
 	std::string describe();
 	void describe(std::string name);
 	
-	// Individual
+	// Individual (owner) handling functions
 	Individual* parent();
 	void parent(Individual* owner);
 };
