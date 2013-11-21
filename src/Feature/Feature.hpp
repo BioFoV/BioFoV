@@ -20,7 +20,10 @@ private:
 	std::string description;
 	
 public:
-	// Constructor
+	// Constructors
 	Feature();
+	Feature(Individual *owner);
+	Feature(Individual *owner, std::string name);
+	Feature(std::string name);
 };
 #endif
