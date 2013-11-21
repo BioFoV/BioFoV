@@ -25,7 +25,8 @@ private:
 	cv::Mat mask;
 	
 public:
-	// Constructor
+	// Constructors
 	Snapshot();
+	Snapshot(Frame *img);
 };
 #endif
