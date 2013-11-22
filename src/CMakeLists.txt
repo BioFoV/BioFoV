@@ -10,7 +10,8 @@ SET(CPP_FILES
 	Event/Event.cpp
 	Individual/Individual.cpp
 	Snapshot/Snapshot.cpp
-	Video/Video.cpp)
+	Video/Video.cpp
+	Video/BackgroundSubtraction.cpp)
 
 add_executable( Framework ${CPP_FILES} )
 target_link_libraries( Framework ${OpenCV_LIBS} )

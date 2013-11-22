@@ -9,6 +9,11 @@
 #include "../Frame/Frame.hpp"
 #endif
 
+#ifndef INC_BGSUB
+#define INC_BGSUB
+#include "BackgroundSubtraction.hpp"
+#endif
+
 #ifndef VIDEO_H
 #define VIDEO_H
 class Frame;
@@ -23,6 +28,9 @@ private:
 	std::string filename;
 	
 public:
+	// Atributes
+	BackgroundSubtractor * bg;
+	
 	// Constructors
 	Video();
 	Video(cv::VideoCapture capture);
@@ -31,5 +39,8 @@ public:
 	// Capture functions
 	bool check_cap();
 	bool get_frame(cv::Mat &frame);
+	
+	// BackgroundSubtraction functions
+	void bgSubInit(int hist, int varThresh, bool bShadowDet);
 };
 #endif

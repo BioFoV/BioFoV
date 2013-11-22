@@ -37,3 +37,7 @@ bool Video::get_frame(cv::Mat &frame){
 		return false;
 	}
 }
+
+void Video::bgSubInit(int hist, int varThresh, bool bShadowDet){
+	bg = new BackgroundSubtractor(hist,varThresh,bShadowDet);
+}
