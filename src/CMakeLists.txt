@@ -17,3 +17,16 @@ target_link_libraries( Framework ${OpenCV_LIBS} )
 
 SET(CMAKE_CXX_FLAGS "-Wall")
 add_definitions(${CMAKE_CXX_FLAGS})
+
+IF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+    # Linux specific code
+    MESSAGE("Building for Linux")
+    SET(OperatingSystem "Linux")
+ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+
+IF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+    # Windows specific code
+    MESSAGE("Building for Windows")
+    SET(OperatingSystem "Windows")
+ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+
