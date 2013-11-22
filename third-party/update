@@ -12,7 +12,7 @@ cd opencv
 
 # Get source
 if [ ! -d src ]; then
-  if git clone https://github.com/Itseez/opencv.git src;then
+  if git clone https://github.com/Itseez/opencv.git -b 2.4 src;then
     echo "cloned"
   else
     echo "clone failed"
@@ -30,17 +30,31 @@ else
 fi
 
 # Build for windows
-mkdir build-windows
-cd build-windows
-cmake ../src/ -DCMAKE_TOOLCHAIN_FILE=../../../build_windows/Toolchain-cross-mingw32-linux.cmake
-make &
+if [ ! -d windows-build ]; then
+  mkdir windows-build
+fi
+cd windows-build
+#cmake ../src/ -DCMAKE_TOOLCHAIN_FILE=../../../build_windows/Toolchain-cross-mingw32-linux.cmake
+cmake -D CMAKE_BUILD_TYPE=RELEASE \
+      -D CMAKE_INSTALL_PREFIX=../windows-install \
+      -D CMAKE_TOOLCHAIN_FILE=../../../build_windows/Toolchain-cross-mingw32-linux.cmake \
+      ../src/
+make
+make install
 cd ..
 
 # Build for linux
-mkdir build-linux
-cd build-linux
-cmake -D WITH_CUDA=OFF ../src
-make &
+if [ ! -d linux-build ]; then
+  mkdir linux-build
+fi
+cd linux-build
+#cmake -D WITH_CUDA=OFF ../src
+cmake -D CMAKE_BUILD_TYPE=RELEASE \
+      -D CMAKE_INSTALL_PREFIX=../linux-install \
+      -D WITH_CUDA=OFF \
+      ../src/
+make
+make install
 cd ../..
 
 ################################################################################
@@ -74,7 +88,9 @@ else
 fi
 
 # Build for linux
-mkdir build-linux
+if [ ! -d build-linux ]; then
+  mkdir build-linux
+fi
 cd build-linux
 #cmake ../src/ -DCMAKE_TOOLCHAIN_FILE=../../../build_windows/Toolchain-cross-mingw32-linux.cmake
 #make
