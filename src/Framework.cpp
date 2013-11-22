@@ -2,8 +2,15 @@
 
 int main(int argc, char ** argv){
 	
+	std::string filename;
 	
-	Video* vid = new Video("/home/miguel/Tese/Code/Cpp/cam1.avi");
+	if (argc > 1){
+		filename = argv[1];
+	}
+	Video* vid = new Video(filename);
+	
+	if (!vid->check_cap())
+		return 0;
 	
 	cv::namedWindow("Frame", WIN_FLAGS);
 	cv::Mat frame;
