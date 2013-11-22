@@ -1,7 +1,11 @@
 #!/bin/bash
 
-read -p "Compile Framework? [yN] " yn
-case $yn in
-  [Yy]* ) cmake ../src/ -DCMAKE_TOOLCHAIN_FILE=Toolchain-cross-mingw32-linux.cmake;;
-esac
+if [ ! -d ../third-party/opencv/windows-build/ ]; then
+  echo "You must first run update script in third party folder"
+  exit
+fi
+
+cmake -D CMAKE_PREFIX_PATH=../third-party/opencv/windows-build/ \
+      -D CMAKE_TOOLCHAIN_FILE=Toolchain-cross-mingw32-linux.cmake \
+      ../src/
 
