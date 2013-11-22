@@ -3,6 +3,9 @@
  * to function.
  */
 
+// Window definitions
+#define WIN_FLAGS CV_WINDOW_KEEPRATIO | CV_WINDOW_NORMAL | CV_GUI_EXPANDED
+
 // OpenCV
 #ifndef OPENCV_INC
 #define OPENCV_INC
@@ -15,6 +18,7 @@
 #include <iostream>
 #endif
 
+// Framework headers
 #include "Video/Video.hpp"
 #include "Frame/Frame.hpp"
 #include "Snapshot/Snapshot.hpp"

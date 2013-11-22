@@ -18,12 +18,18 @@ class Frame;
  */
 class Video {
 private:
-	cv::VideoCapture* cap;
+	cv::VideoCapture cap;
 	std::list<Frame> frames;
+	std::string filename;
 	
 public:
 	// Constructors
 	Video();
-	Video(cv::VideoCapture* capture);
+	Video(cv::VideoCapture capture);
+	Video(std::string filename);
+	
+	// Capture functions
+	bool check_cap();
+	bool get_frame(cv::Mat &frame);
 };
 #endif
