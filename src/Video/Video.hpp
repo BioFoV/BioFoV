@@ -36,11 +36,15 @@ public:
 	Video(cv::VideoCapture capture);
 	Video(std::string filename);
 	
+	// Destructors
+	~Video();
+	
 	// Capture functions
 	bool check_cap();
 	bool get_frame(cv::Mat &frame);
 	
 	// BackgroundSubtraction functions
 	void bgSubInit(int hist, int varThresh, bool bShadowDet);
+	void bgSubDelete();
 };
 #endif

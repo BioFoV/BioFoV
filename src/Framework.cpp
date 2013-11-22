@@ -1,6 +1,8 @@
 #include "Framework.hpp"
 
-int main(){
+int main(int argc, char ** argv){
+	
+	
 	Video* vid = new Video("/home/miguel/Tese/Code/Cpp/cam1.avi");
 	
 	cv::namedWindow("Frame", WIN_FLAGS);
@@ -10,7 +12,6 @@ int main(){
 		cv::imshow("Frame",vid->bg->Contours(frame));
 		cv::waitKey(5);
 	}
-	
 	
 	return 0;
 }
