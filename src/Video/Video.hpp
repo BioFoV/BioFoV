@@ -34,7 +34,7 @@ public:
 	// Constructors
 	Video();
 	Video(cv::VideoCapture capture);
-	Video(std::string filename);
+	Video(std::string name);
 	
 	// Destructors
 	~Video();

@@ -14,10 +14,11 @@ Video::Video(cv::VideoCapture capture){
 	check_cap();
 }
 
-Video::Video(std::string filename){
+Video::Video(std::string name){
 	bg = NULL;
-	cap = cv::VideoCapture(filename);
+	cap = cv::VideoCapture(name);
 	check_cap();
+	filename = name;
 }
 
 /*******************************************************************************
