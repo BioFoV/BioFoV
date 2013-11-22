@@ -11,14 +11,12 @@ Video::Video(){
 Video::Video(cv::VideoCapture capture){
 	bg = NULL;
 	cap = capture;
-	check_cap();
 }
 
 Video::Video(std::string name){
 	bg = NULL;
-	cap = cv::VideoCapture(name);
-	check_cap();
 	filename = name;
+	cap = cv::VideoCapture(name);
 }
 
 /*******************************************************************************
@@ -42,6 +40,9 @@ bool Video::check_cap(){
 }
 
 bool Video::get_frame(cv::Mat &frame){
+	if(!check_cap()){
+		return false;
+	}
 	if(cap.read(frame)){
 		return true;
 	}
