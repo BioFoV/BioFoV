@@ -37,7 +37,7 @@ cd windows-build
 #cmake ../src/ -DCMAKE_TOOLCHAIN_FILE=../../../build_windows/Toolchain-cross-mingw32-linux.cmake
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D CMAKE_INSTALL_PREFIX=../windows-install \
-      -D CMAKE_TOOLCHAIN_FILE=../../../build_windows/Toolchain-cross-mingw32-linux.cmake \
+      -D CMAKE_TOOLCHAIN_FILE=../../../build-windows/Toolchain-cross-mingw32-linux.cmake \
       ../src/
 make install
 cd ..
