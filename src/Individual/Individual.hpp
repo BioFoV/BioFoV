@@ -40,5 +40,8 @@ private:
 public:
 	// Constructors
 	Individual();
+	
+	// Destructor
+	~Individual();
 };
 #endif 

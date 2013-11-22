@@ -6,3 +6,7 @@
 Individual::Individual(){
 	
 }
+
+Individual::~Individual(){
+	features.clear();
+}
