@@ -39,7 +39,6 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D CMAKE_INSTALL_PREFIX=../windows-install \
       -D CMAKE_TOOLCHAIN_FILE=../../../build_windows/Toolchain-cross-mingw32-linux.cmake \
       ../src/
-make
 make install
 cd ..
 
@@ -53,7 +52,6 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D CMAKE_INSTALL_PREFIX=../linux-install \
       -D WITH_CUDA=OFF \
       ../src/
-make
 make install
 cd ../..
 
