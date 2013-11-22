@@ -16,7 +16,7 @@ SET(CPP_FILES
 add_executable( Framework ${CPP_FILES} )
 target_link_libraries( Framework ${OpenCV_LIBS} )
 
-SET(CMAKE_CXX_FLAGS "-Wall")
+SET(CMAKE_CXX_FLAGS "-Wall -static-libgcc -static-libstdc++")
 add_definitions(${CMAKE_CXX_FLAGS})
 
 IF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
