@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# OpenCV and other libs
+cd third-party
+./update
+cd ..
+
+# Linux build
+cd build-linux
+./configure
+make
+cd ..
+
+# MS Windows build 
+cd build-windows
+./configure
+make
+
