@@ -25,3 +25,5 @@
 #include "Event/Event.hpp"
 #include "Individual/Individual.hpp"
 #include "Feature/Feature.hpp"
+
+std::string parseArguments(int argc, char ** argv);
