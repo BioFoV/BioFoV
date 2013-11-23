@@ -6,7 +6,8 @@
 int main(int argc, char ** argv){
 	
 	std::string filename = parseArguments(argc, argv);
-	
+	if (filename.empty())
+		return 0;
 	
 	Video* vid = new Video(filename);
 	
@@ -45,12 +46,12 @@ std::string parseArguments(int argc, char ** argv){
 			std::cout <<
 				"\t Name of the video file to be read"
 				<< std::endl;
-			return 0;
+			break;
 		}
 		else if (!strcmp(argv[i],"-i")){
 			if (argc <= i+1){
 				std::cout << "please specify an input file name" << std::endl;
-				return 0;
+				break;
 			}
 			else{
 				filename = argv[i+1];
