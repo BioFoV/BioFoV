@@ -17,14 +17,21 @@ private:
 	bool bShadowDetection;
 	cv::BackgroundSubtractorMOG2 bgsub;
 	
+	// images of the different stages
+	cv::Mat frame;	// original frame
+	cv::Mat fore;	// foreground mask
+	cv::Mat back;	// background image
+	cv::Mat cont;	// contours after erosion and dilation
+	
 public:
 	// Constructors
 	BackgroundSubtractor();
 	BackgroundSubtractor(int hist, int varThresh, bool bShadowDet);
 	
 	// Get foreground, background and contours functions
-	cv::Mat Foreground(cv::Mat frame);
+	void NewFrame(cv::Mat img, bool f=true, bool b=true, bool c=false);
+	cv::Mat Foreground();
 	cv::Mat Background();
-	cv::Mat Contours(cv::Mat frame);
+	cv::Mat Contours();
 };
 #endif
