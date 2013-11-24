@@ -1,6 +1,23 @@
-# due to qt5 restrictions cmake has to be >= 2.8.9
+#due to qt5 restrictions cmake has to be >= 2.8.9
 cmake_minimum_required(VERSION 2.8.9)
 project( Framework )
+
+IF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+    # Linux specific code
+    MESSAGE("Building for Linux")
+    SET(OperatingSystem "Linux")
+    SET(CMAKE_CXX_FLAGS ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS} )
+    SET(CMAKE_PREFIX_PATH "../third-party/opencv/linux-install/ ../third-party/qt/linux-build/")
+ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+
+IF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+    # Windows specific code
+    MESSAGE("Building for Windows")
+    SET(OperatingSystem "Windows")
+    SET(CMAKE_CXX_FLAGS "-Wall -static-libgcc -static -lstdc++")
+
+ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+
 find_package( OpenCV REQUIRED )
 set(CMAKE_AUTOMOC ON)
 find_package(Qt5Widgets)
@@ -24,20 +41,6 @@ target_link_libraries( Framework ${OpenCV_LIBS} )
 target_link_libraries( Framework ${QT_LIBRARIES} )
 
 qt5_use_modules(Framework Core Gui Widgets)
-
-IF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-    # Linux specific code
-    MESSAGE("Building for Linux")
-    SET(OperatingSystem "Linux")
-    SET(CMAKE_CXX_FLAGS ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS} )
-ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-
-IF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-    # Windows specific code
-    MESSAGE("Building for Windows")
-    SET(OperatingSystem "Windows")
-    SET(CMAKE_CXX_FLAGS "-Wall -static-libgcc -static -lstdc++")
-ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 
 add_definitions(${CMAKE_CXX_FLAGS})
 

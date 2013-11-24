@@ -87,12 +87,17 @@ else
   fi
 fi
 
+cd src
+./init-repository
+
 # Build for linux
 if [ ! -d build-linux ]; then
   mkdir build-linux
 fi
 cd build-linux
-#cmake ../src/ -DCMAKE_TOOLCHAIN_FILE=../../../build_windows/Toolchain-cross-mingw32-linux.cmake
-#make
+
+../src/configure -prefix ../src/qtbase -opensource -nomake tests
+make -j 12
+
 cd ..
 

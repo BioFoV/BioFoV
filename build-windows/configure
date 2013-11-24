@@ -5,8 +5,7 @@ if [ ! -d ../third-party/opencv/windows-build/ ]; then
   exit
 fi
 
-cmake -D CMAKE_PREFIX_PATH=../third-party/opencv/windows-build/ \
-      -D CMAKE_TOOLCHAIN_FILE=Toolchain-cross-mingw32-linux.cmake \
+cmake -D CMAKE_TOOLCHAIN_FILE=Toolchain-cross-mingw32-linux.cmake \
       -D BUILD_SHARED_LIBS=OFF \
       ../src/
 

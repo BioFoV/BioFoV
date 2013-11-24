@@ -5,6 +5,5 @@ if [ ! -d ../third-party/opencv/linux-build/ ]; then
   exit
 fi
 
-cmake -D CMAKE_PREFIX_PATH=../third-party/opencv/linux-build/ \
-      ../src
+cmake ../src
 
