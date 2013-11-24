@@ -1,36 +1,29 @@
-cmake_minimum_required(VERSION 2.8)
+# due to qt5 restrictions cmake has to be >= 2.8.9
+cmake_minimum_required(VERSION 2.8.9)
 project( Framework )
 find_package( OpenCV REQUIRED )
-find_package(Qt5 REQUIRED)
+set(CMAKE_AUTOMOC ON)
 find_package(Qt5Widgets)
-include(${QT_USE_FILE})
+find_package(Qt5Core REQUIRED)
+find_package(Qt5Gui REQUIRED)
 
 #install(TARGETS hello_cmake DESTINATION /usr/bin)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+INCLUDE_DIRECTORIES( ${CMAKE_CURRENT_BINARY_DIR} )
 
 # All files in src will be used, so be careful what you put there...
-SET(SRCS
-	Framework.cpp
-	Video/Video.cpp
-	Feature/Feature.cpp
-	Frame/Frame.cpp
-	Event/Event.cpp
-	Individual/Individual.cpp
-	Snapshot/Snapshot.cpp
-	Video/Video.cpp
-	Video/BackgroundSubtraction.cpp)
+File(GLOB_RECURSE SRCS *.cpp)
 File(GLOB_RECURSE HEADERS *.hpp)
 File(GLOB_RECURSE FORMS *.ui)
-File(GLOB_RECURSE RESOURCES *.qrc)
+#File(GLOB_RECURSE RESOURCES *.qrc)
 
-QT4_WRAP_CPP(HEADERS_MOC GUI/mainwindow.h )
-QT4_WRAP_UI(FORMS_HEADERS ${FORMS} )
-QT4_ADD_RESOURCES(RESOURCES_RCC ${RESOURCES} )
+qt5_wrap_ui(UI_HEADERS ${FORMS})
 
-add_executable( Framework ${SRCS} ${HEADERS_MOC} ${FORMS_HEADERS} 
-${RESOURCES_RCC})
+add_executable( Framework ${SRCS} ${UI_HEADERS} )
 target_link_libraries( Framework ${OpenCV_LIBS} )
 target_link_libraries( Framework ${QT_LIBRARIES} )
-add_definitions(${Qt5Widgets_DEFINITIONS})
+
+qt5_use_modules(Framework Core Gui Widgets)
 
 IF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     # Linux specific code
@@ -47,3 +40,4 @@ IF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 
 add_definitions(${CMAKE_CXX_FLAGS})
+

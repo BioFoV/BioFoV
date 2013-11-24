@@ -1,17 +1,17 @@
 #include "Framework.hpp"
 #include "GUI/mainwindow.h"
-#include <QtCore/QCoreApplication>
-#include <QtCore/QDebug>
+#include <QApplication>
+#include <QDebug>
 
 /*******************************************************************************
  * Main program entry point
  ******************************************************************************/
 int main(int argc, char ** argv){
 	
-	QCoreApplication a(argc, argv);
+	QApplication a(argc, argv);
 	qDebug() << "Hello CMake";
 	MainWindow w;
-    w.show();
+    	w.show();
 	return a.exec();
 	
 	std::string filename = parseArguments(argc, argv);
