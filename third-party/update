@@ -91,10 +91,10 @@ cd src
 ./init-repository
 
 # Build for linux
-if [ ! -d build-linux ]; then
-  mkdir build-linux
+if [ ! -d linux-build ]; then
+  mkdir linux-build
 fi
-cd build-linux
+cd linux-build
 
 ../src/configure -prefix ../src/qtbase -opensource -nomake tests
 make -j 12
