@@ -98,7 +98,7 @@ fi
 cd linux-build
 
 #../src/configure -prefix ../src/qtbase -opensource -nomake tests
-../src/configure -opensource -release -nomake tests -nomake examples -confirm-license --enable-static --disable-shared
+../src/configure -skip qtwebkit -opensource -release -nomake tests -nomake examples -confirm-license --enable-static --disable-shared
 make -j 12
 
 cd ..
