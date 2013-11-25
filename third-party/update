@@ -89,6 +89,7 @@ fi
 
 cd src
 ./init-repository
+cd ..
 
 # Build for linux
 if [ ! -d linux-build ]; then
