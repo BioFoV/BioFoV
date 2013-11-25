@@ -97,9 +97,9 @@ if [ ! -d linux-build ]; then
 fi
 cd linux-build
 
-#../src/configure -prefix ../src/qtbase -opensource -nomake tests
-../src/configure -skip qtwebkit -opensource -release -nomake tests -nomake examples -confirm-license --enable-static --disable-shared
+../src/configure -prefix ../../linux-install/ -opensource -skip qtwebkit -release -nomake tests -nomake examples -confirm-license
 make -j 12
+make install INSTALL_ROOT=../../linux-install
 
 cd ..
 

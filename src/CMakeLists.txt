@@ -7,7 +7,7 @@ IF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     MESSAGE("Building for Linux")
     SET(OperatingSystem "Linux")
     SET(CMAKE_CXX_FLAGS ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS} )
-    SET(CMAKE_PREFIX_PATH "../third-party/opencv/linux-install/" "../third-party/qt/linux-build/qtbase/lib/cmake/")
+    SET(CMAKE_PREFIX_PATH "../third-party/opencv/linux-install/" "../third-party/qt/linux-install/lib/cmake/")
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 IF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
