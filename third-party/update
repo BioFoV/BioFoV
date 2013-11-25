@@ -97,7 +97,8 @@ if [ ! -d linux-build ]; then
 fi
 cd linux-build
 
-../src/configure -prefix ../src/qtbase -opensource -nomake tests
+#../src/configure -prefix ../src/qtbase -opensource -nomake tests
+../src/configure -release -nomake tests -nomake examples -confirm-license --enable-static --disable-shared
 make -j 12
 
 cd ..
