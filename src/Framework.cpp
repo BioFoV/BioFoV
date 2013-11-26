@@ -7,12 +7,13 @@
  * Main program entry point
  ******************************************************************************/
 int main(int argc, char ** argv){
-	
-	QApplication a(argc, argv);
-	qDebug() << "Hello CMake";
-	MainWindow w;
-	w.show();
-	return a.exec();
+	if (argc == 1){
+		QApplication a(argc, argv);
+		qDebug() << "Hello CMake";
+		MainWindow w;
+		w.show();
+		return a.exec();
+	}
 	
 	std::string filename = parseArguments(argc, argv);
 	if (filename.empty())
@@ -43,7 +44,8 @@ std::string parseArguments(int argc, char ** argv){
 	std::string filename;
 	
 	if (argc < 2){
-		// FIXME: RUN IN GUI MODE STRAIGHT AHEAD
+		std::cerr << "If you are reading here something is wrong..." << 
+			std::endl;
 		return NULL;
 	}
 	for (int i=1; i < argc; i++){
