@@ -6,9 +6,31 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+	
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::on_actionAdd_Video_File_triggered()
+{
+    QFileDialog getFileDialog(this);
+    getFileDialog.setDirectory(QDir::homePath());
+    getFileDialog.setFileMode(QFileDialog::ExistingFiles);
+    getFileDialog.setAcceptMode(QFileDialog::AcceptOpen);
+	
+    QStringList fileNames;
+    if(getFileDialog.exec())
+    {
+        fileNames = getFileDialog.selectedFiles();
+        if (fileNames.isEmpty()) {return;} // No file name provided
+        for (int i=0; i<fileNames.length();i++)
+        {
+            ui->videoList->addItem(fileNames.at(i));
+        }
+    }
+    return;
+
 }

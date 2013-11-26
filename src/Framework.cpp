@@ -11,7 +11,7 @@ int main(int argc, char ** argv){
 	QApplication a(argc, argv);
 	qDebug() << "Hello CMake";
 	MainWindow w;
-    	w.show();
+	w.show();
 	return a.exec();
 	
 	std::string filename = parseArguments(argc, argv);
