@@ -14,7 +14,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_actionAdd_Video_File_triggered()
+void MainWindow::Add_Video_File()
 {
     QFileDialog getFileDialog(this);
     getFileDialog.setDirectory(QDir::homePath());

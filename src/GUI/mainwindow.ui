@@ -16,16 +16,16 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <property name="leftMargin">
-     <number>0</number>
+     <number>8</number>
     </property>
     <property name="topMargin">
-     <number>0</number>
+     <number>8</number>
     </property>
     <property name="rightMargin">
-     <number>0</number>
+     <number>8</number>
     </property>
     <property name="bottomMargin">
-     <number>0</number>
+     <number>8</number>
     </property>
     <item>
      <layout class="QVBoxLayout" name="verticalLayoutLeft">
@@ -39,7 +39,7 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>394</width>
+           <width>386</width>
            <height>192</height>
           </rect>
          </property>
@@ -76,7 +76,7 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>394</width>
+           <width>386</width>
            <height>192</height>
           </rect>
          </property>
@@ -113,7 +113,7 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>394</width>
+           <width>386</width>
            <height>192</height>
           </rect>
          </property>
@@ -327,7 +327,8 @@
     </property>
     <addaction name="actionNew"/>
     <addaction name="separator"/>
-    <addaction name="actionAdd_Video_File"/>
+    <addaction name="actionSave_Project"/>
+    <addaction name="actionSave_Project_As"/>
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
@@ -341,7 +342,7 @@
     <property name="title">
      <string>&amp;Video</string>
     </property>
-    <addaction name="actionAdd_Video_File_2"/>
+    <addaction name="actionAdd_Video_File"/>
     <addaction name="action_Remove_From_Project"/>
    </widget>
    <widget class="QMenu" name="menuEvent">
@@ -378,11 +379,6 @@
     <string>&amp;New Project</string>
    </property>
   </action>
-  <action name="actionAdd_Video_File">
-   <property name="text">
-    <string>&amp;Add Video File</string>
-   </property>
-  </action>
   <action name="actionQuit">
    <property name="text">
     <string>&amp;Quit</string>
@@ -416,7 +412,7 @@
     <string>&amp;Delete</string>
    </property>
   </action>
-  <action name="actionAdd_Video_File_2">
+  <action name="actionAdd_Video_File">
    <property name="text">
     <string>&amp;Add Video File</string>
    </property>
@@ -424,6 +420,16 @@
   <action name="action_Remove_From_Project">
    <property name="text">
     <string>&amp;Remove From Project</string>
+   </property>
+  </action>
+  <action name="actionSave_Project">
+   <property name="text">
+    <string>Save Project</string>
+   </property>
+  </action>
+  <action name="actionSave_Project_As">
+   <property name="text">
+    <string>Save Project As</string>
    </property>
   </action>
  </widget>
@@ -450,23 +456,7 @@
    <sender>actionAdd_Video_File</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_actionAdd_Video_File_triggered()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>398</x>
-     <y>253</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionAdd_Video_File_2</sender>
-   <signal>triggered()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>on_actionAdd_Video_File_triggered()</slot>
+   <slot>Add_Video_File()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>

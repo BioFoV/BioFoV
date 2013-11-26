@@ -16,7 +16,7 @@ public:
 	explicit MainWindow(QWidget *parent = 0);
 	~MainWindow();
 public slots:
-	void on_actionAdd_Video_File_triggered();
+	void Add_Video_File();
 private:
 	Ui::MainWindow *ui;
 	
