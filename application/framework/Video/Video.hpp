@@ -1,3 +1,6 @@
+#ifndef VIDEO_H
+#define VIDEO_H
+
 // OpenCV
 #ifndef OPENCV_INC
 #define OPENCV_INC
@@ -14,8 +17,6 @@
 #include "BackgroundSubtraction.hpp"
 #endif
 
-#ifndef VIDEO_H
-#define VIDEO_H
 class Frame;
 
 /*

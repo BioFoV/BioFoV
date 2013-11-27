@@ -1,3 +1,6 @@
+#ifndef INDIV_H
+#define INDIV_H
+
 // OpenCV
 #ifndef OPENCV_INC
 #define OPENCV_INC
@@ -19,10 +22,9 @@
 #include "../Feature/Feature.hpp"
 #endif
 
-#ifndef INDIV_H
-#define INDIV_H
 class Event;
 class Snapshot;
+class Feature;
 
 /*
  * Class that represents an individual, and has associated with it the

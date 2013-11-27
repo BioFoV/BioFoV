@@ -1,5 +1,5 @@
 #include "Framework.hpp"
-#include "GUI/mainwindow.h"
+#include "GUI/mainwindow.hpp"
 #include <QApplication>
 #include <QDebug>
 

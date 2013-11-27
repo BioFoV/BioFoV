@@ -1,11 +1,12 @@
+#ifndef BGSUB_H
+#define BGSUB_H
+
 // OpenCV
 #ifndef OPENCV_INC
 #define OPENCV_INC
 #include <opencv2/opencv.hpp>
 #endif
 
-#ifndef BGSUB_H
-#define BGSUB_H
 /*
  * Class that holds the VideoCapture handler and that provides frames
  */

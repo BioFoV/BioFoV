@@ -1,3 +1,6 @@
+#ifndef FRAME_H
+#define FRAME_H
+
 // OpenCV
 #ifndef OPENCV_INC
 #define OPENCV_INC
@@ -9,8 +12,6 @@
 #include "../Video/Video.hpp"
 #endif
 
-#ifndef FRAME_H
-#define FRAME_H
 class Video;
 
 /*

@@ -1,10 +1,11 @@
+#ifndef FEAT_H
+#define FEAT_H
+
 #ifndef INC_INDIVIDUAL
 #define INC_INDIVIDUAL
 #include "../Individual/Individual.hpp"
 #endif
 
-#ifndef FEAT_H
-#define FEAT_H
 class Individual;
 
 /*

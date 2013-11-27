@@ -1,3 +1,6 @@
+#ifndef EVENT_H
+#define EVENT_H
+
 #ifndef INC_VIDEO
 #define INC_VIDEO
 #include "../Video/Video.hpp"
@@ -13,8 +16,6 @@
 #include "../Individual/Individual.hpp"
 #endif
 
-#ifndef EVENT_H
-#define EVENT_H
 class Frame;
 class Individual;
 

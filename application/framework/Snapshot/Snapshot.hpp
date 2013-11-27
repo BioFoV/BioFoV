@@ -1,3 +1,6 @@
+#ifndef SNAP_H
+#define SNAP_H
+
 // OpenCV
 #ifndef OPENCV_INC
 #define OPENCV_INC
@@ -13,8 +16,6 @@
  * Class that associated with a Frame represents an area of interest in
  * a frame.
  */
-#ifndef SNAP_H
-#define SNAP_H
 class Frame;
 
 class Snapshot{

@@ -3,15 +3,20 @@
 # Project created by QtCreator 2013-11-27T14:19:51
 #
 #-------------------------------------------------
+! include( ../common.pri ) {
+    error( Could not find the common.pri file! )
+}
 
 QT       -= gui
 
-TARGET = framework
-TEMPLATE = lib
-CONFIG += staticlib
+#TARGET = framework
+#TEMPLATE = lib
+#CONFIG += staticlib
 
+unix: CONFIG += link_pkgconfig
+unix: PKGCONFIG += opencv
 
-#DEFINES += FRAMEWORK_LIBRARY
+DEFINES += FRAMEWORK_LIBRARY
 
 SOURCES += \
     Event/Event.cpp \
@@ -20,7 +25,8 @@ SOURCES += \
     Individual/Individual.cpp \
     Snapshot/Snapshot.cpp \
     Video/Video.cpp \
-    Video/BackgroundSubtraction.cpp
+    Video/BackgroundSubtraction.cpp \
+    Event/Event.cpp
 
 HEADERS += \
     Event/Event.hpp \
@@ -29,7 +35,8 @@ HEADERS += \
     Individual/Individual.hpp \
     Snapshot/Snapshot.hpp \
     Video/Video.hpp \
-    Video/BackgroundSubtraction.hpp
+    Video/BackgroundSubtraction.hpp \
+    Event/Event.hpp
 
 unix:!symbian {
     maemo5 {
