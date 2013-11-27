@@ -14,7 +14,7 @@
    <string>Dialog</string>
   </property>
   <property name="modal">
-   <bool>true</bool>
+   <bool>false</bool>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -31,8 +31,6 @@
        </widget>
       </item>
      </layout>
-     <zorder>buttonBox</zorder>
-     <zorder>label</zorder>
     </widget>
    </item>
    <item>
