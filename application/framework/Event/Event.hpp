@@ -16,6 +16,11 @@
 #include "../Individual/Individual.hpp"
 #endif
 
+#ifndef INC_LIST
+#define INC_LIST
+#include <list>
+#endif
+
 class Frame;
 class Individual;
 

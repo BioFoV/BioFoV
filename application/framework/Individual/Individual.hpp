@@ -22,6 +22,11 @@
 #include "../Feature/Feature.hpp"
 #endif
 
+#ifndef INC_LIST
+#define INC_LIST
+#include <list>
+#endif
+
 class Event;
 class Snapshot;
 class Feature;
