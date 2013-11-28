@@ -1,7 +1,9 @@
 #ifndef VIDEOPLAYER_H
 #define VIDEOPLAYER_H
 
-#include <QLabel>
+#include <QWidget>
+#include <QImage>
+#include <QPainter>
 
 #ifndef INC_EVENT
 #define INC_EVENT
@@ -17,7 +19,7 @@ namespace Ui {
 class VideoPlayer;
 }
 
-class VideoPlayer : public QLabel
+class VideoPlayer : public QWidget
 {
     Q_OBJECT
 
@@ -37,6 +39,12 @@ public slots:
 private:
     Ui::VideoPlayer *vp;
     Video* currentVid;
+    QImage _qimage;
+    cv::Mat _tmp;
+
+private slots:
+    void showImage(const cv::Mat& image);
+    void paintEvent(QPaintEvent* /*event*/);
 };
 
 #endif // VIDEOPLAYER_H

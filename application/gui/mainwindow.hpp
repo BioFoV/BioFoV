@@ -40,6 +40,8 @@ private slots:
 
     void on_videoList_itemDoubleClicked(QListWidgetItem *item);
 
+    void on_stepButton_clicked();
+
 private:
 	Ui::MainWindow *ui;
     QList<Video*> videos;

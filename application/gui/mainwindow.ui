@@ -170,20 +170,7 @@
        <number>2</number>
       </property>
       <item>
-       <widget class="VideoPlayer" name="player">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">Background-color: rgb(255, 255, 255);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
+       <widget class="VideoPlayer" name="player" native="true"/>
       </item>
       <item>
        <widget class="QWidget" name="widget_2" native="true">
@@ -441,8 +428,9 @@
  <customwidgets>
   <customwidget>
    <class>VideoPlayer</class>
-   <extends>QLabel</extends>
+   <extends>QWidget</extends>
    <header>videoplayer.hpp</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

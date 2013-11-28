@@ -51,14 +51,6 @@ void MainWindow::openAbout()
     about.exec();
 }
 
-/*
- * Play button handler
- */
-void MainWindow::on_playButton_clicked()
-{
-    ui->player->playOrPause();
-}
-
 void MainWindow::on_videoList_itemDoubleClicked(QListWidgetItem *item)
 {
     std::string filename = item->text().toStdString();
@@ -67,4 +59,17 @@ void MainWindow::on_videoList_itemDoubleClicked(QListWidgetItem *item)
     ui->player->unload();
     ui->player->loadVid(vid);
     qDebug("loaded video %s to player",filename.c_str());
+}
+
+/*
+ * Play button handler
+ */
+void MainWindow::on_playButton_clicked()
+{
+    ui->player->playOrPause();
+}
+
+void MainWindow::on_stepButton_clicked()
+{
+    ui->player->step();
 }
