@@ -58,7 +58,6 @@ void MainWindow::on_videoList_itemDoubleClicked(QListWidgetItem *item)
     ui->player->pause();
     ui->player->unload();
     ui->player->loadVid(vid);
-    qDebug("loaded video %s to player",filename.c_str());
 }
 
 /*
