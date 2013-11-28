@@ -32,6 +32,7 @@ public slots:
     void step();
     void goTo(int nthFrame);
     void loadVid(Video* nextVid);
+    void unload();
 
 private:
     Ui::VideoPlayer *vp;

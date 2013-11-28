@@ -1,6 +1,9 @@
 #include "mainwindow.hpp"
 #include "ui_mainwindow.h"
 
+/*******************************************************************************
+ * Constructors
+ ******************************************************************************/
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -9,11 +12,17 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionAbout, SIGNAL(triggered()), this, SLOT(openAbout()));
 }
 
+/*******************************************************************************
+ * Destructors
+ ******************************************************************************/
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
+/*******************************************************************************
+ * Actions
+ ******************************************************************************/
 void MainWindow::on_actionAdd_Video_File_triggered()
 {
     QFileDialog getFileDialog(this);
@@ -28,6 +37,7 @@ void MainWindow::on_actionAdd_Video_File_triggered()
         if (fileNames.isEmpty()) {return;} // No file name provided
         foreach (QString fileName, fileNames) {
             ui->videoList->addItem(fileName);
+            videos.append(new Video(fileName.toStdString()));
         }
     } else {
         qDebug("Failed to open FileDialog window");
@@ -53,6 +63,8 @@ void MainWindow::on_videoList_itemDoubleClicked(QListWidgetItem *item)
 {
     std::string filename = item->text().toStdString();
     Video * vid = new Video(filename);
+    ui->player->pause();
+    ui->player->unload();
     ui->player->loadVid(vid);
     qDebug("loaded video %s to player",filename.c_str());
 }
