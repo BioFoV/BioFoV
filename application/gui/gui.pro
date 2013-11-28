@@ -27,3 +27,5 @@ HEADERS += \
 FORMS    += $$files(*.ui)
 
 RESOURCES += $$files(*.qrc)
+
+LIBS += -L../framework -lframework

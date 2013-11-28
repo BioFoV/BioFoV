@@ -52,7 +52,7 @@ void MainWindow::on_playButton_clicked()
 void MainWindow::on_videoList_itemDoubleClicked(QListWidgetItem *item)
 {
     std::string filename = item->text().toStdString();
-//    Video * vid = new Video(filename);
-//    ui->player->loadVid(vid);
+    Video * vid = new Video(filename);
+    ui->player->loadVid(vid);
     qDebug("loaded video %s to player",filename.c_str());
 }
