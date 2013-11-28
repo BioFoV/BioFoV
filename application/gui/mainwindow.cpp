@@ -1,6 +1,5 @@
 #include "mainwindow.hpp"
 #include "ui_mainwindow.h"
-#include "about.hpp"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -27,10 +26,11 @@ void MainWindow::on_actionAdd_Video_File_triggered()
     {
         fileNames = getFileDialog.selectedFiles();
         if (fileNames.isEmpty()) {return;} // No file name provided
-        for (int i=0; i<fileNames.length();i++)
-        {
-            ui->videoList->addItem(fileNames.at(i));
+        foreach (QString fileName, fileNames) {
+            ui->videoList->addItem(fileName);
         }
+    } else {
+        qDebug("Failed to open FileDialog window");
     }
     return;
 }
@@ -41,14 +41,18 @@ void MainWindow::openAbout()
     about.exec();
 }
 
-void MainWindow::on_videoList_itemActivated(QListWidgetItem *item){
-
-}
-
 /*
  * Play button handler
  */
 void MainWindow::on_playButton_clicked()
 {
+    ui->player->playOrPause();
+}
 
+void MainWindow::on_videoList_itemDoubleClicked(QListWidgetItem *item)
+{
+    std::string filename = item->text().toStdString();
+//    Video * vid = new Video(filename);
+//    ui->player->loadVid(vid);
+    qDebug("loaded video %s to player",filename.c_str());
 }

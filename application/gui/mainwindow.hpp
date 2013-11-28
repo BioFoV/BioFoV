@@ -5,6 +5,9 @@
 #include <QFileDialog>
 #include <QListWidget>
 
+#include "about.hpp"
+#include <string>
+
 namespace Ui {
 class MainWindow;
 }
@@ -19,14 +22,15 @@ public:
 
 private slots:
     void on_actionAdd_Video_File_triggered();
-    void on_videoList_itemActivated(QListWidgetItem *item);
     void openAbout();
 
     void on_playButton_clicked();
 
+    void on_videoList_itemDoubleClicked(QListWidgetItem *item);
+
 private:
 	Ui::MainWindow *ui;
-	
+    QList<QString> videos;
 };
 
 #endif // MAINWINDOW_H

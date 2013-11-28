@@ -28,3 +28,7 @@ void VideoPlayer::step(){
 void VideoPlayer::goTo(int nthFrame){
 
 }
+
+void VideoPlayer::loadVid(Video* nextVid){
+
+}
