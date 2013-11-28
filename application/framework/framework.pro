@@ -25,8 +25,7 @@ SOURCES += \
     Individual/Individual.cpp \
     Snapshot/Snapshot.cpp \
     Video/Video.cpp \
-    Video/BackgroundSubtraction.cpp \
-    Event/Event.cpp
+    Video/BackgroundSubtraction.cpp
 
 HEADERS += \
     Event/Event.hpp \
