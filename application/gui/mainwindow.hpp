@@ -12,7 +12,7 @@
 
 #ifndef INC_VIDEO
 #define INC_VIDEO
-#include "../framework/Video/Video.hpp"
+#include <framework/Video/Video.hpp>
 #endif
 
 #ifndef INC_STRING
