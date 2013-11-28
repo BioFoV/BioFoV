@@ -6,6 +6,11 @@
 #include "../Individual/Individual.hpp"
 #endif
 
+#ifndef INC_STRING
+#define INC_STRING
+#include <string>
+#endif
+
 class Individual;
 
 /*

@@ -7,6 +7,11 @@
 #include <opencv2/opencv.hpp>
 #endif
 
+#ifndef INC_VECTOR
+#define INC_VECTOR
+#include <vector>
+#endif
+
 /*
  * Class that holds the VideoCapture handler and that provides frames
  */

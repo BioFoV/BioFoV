@@ -28,6 +28,25 @@ Video::~Video(){
 	}
 }
 
+/*
+ * Set and Get
+ **/
+void Video::setFileName(std::string name){
+    filename = name;
+}
+
+std::string Video::getFileName(){
+    return filename;
+}
+
+void Video::setCapture(cv::VideoCapture capture){
+    cap = capture;
+}
+
+cv::VideoCapture Video::getCapture(){
+    return cap;
+}
+
 /*******************************************************************************
  * Capture functions
  ******************************************************************************/

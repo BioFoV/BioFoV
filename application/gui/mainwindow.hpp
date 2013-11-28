@@ -10,7 +10,15 @@
 #include "about.hpp"
 #endif
 
+#ifndef INC_VIDEO
+#define INC_VIDEO
+#include "../framework/Video/Video.hpp"
+#endif
+
+#ifndef INC_STRING
+#define INC_STRING
 #include <string>
+#endif
 
 namespace Ui {
 class MainWindow;
@@ -34,7 +42,7 @@ private slots:
 
 private:
 	Ui::MainWindow *ui;
-    QList<QString> videos;
+    QList<Video*> videos;
 };
 
 #endif // MAINWINDOW_H

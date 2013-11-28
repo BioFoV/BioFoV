@@ -22,6 +22,11 @@
 #include <list>
 #endif
 
+#ifndef INC_STRING
+#define INC_STRING
+#include <string>
+#endif
+
 class Frame;
 
 /*
@@ -29,7 +34,7 @@ class Frame;
  */
 class Video {
 private:
-	cv::VideoCapture cap;
+    cv::VideoCapture cap;
 	std::list<Frame> frames;
 	std::string filename;
 	
@@ -39,11 +44,17 @@ public:
 	
 	// Constructors
 	Video();
-	Video(cv::VideoCapture capture);
+    Video(cv::VideoCapture capture);
 	Video(std::string name);
 	
 	// Destructors
 	~Video();
+
+    // Set and Get
+    void setFileName(std::string);
+    std::string getFileName();
+    void setCapture(cv::VideoCapture capture);
+    cv::VideoCapture getCapture();
 	
 	// Capture functions
 	bool check_cap();
