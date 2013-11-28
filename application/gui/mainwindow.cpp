@@ -44,3 +44,11 @@ void MainWindow::openAbout()
 void MainWindow::on_videoList_itemActivated(QListWidgetItem *item){
 
 }
+
+/*
+ * Play button handler
+ */
+void MainWindow::on_playButton_clicked()
+{
+
+}

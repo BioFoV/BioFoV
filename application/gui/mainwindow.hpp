@@ -19,10 +19,11 @@ public:
 
 private slots:
     void on_actionAdd_Video_File_triggered();
-
     void on_videoList_itemActivated(QListWidgetItem *item);
-
     void openAbout();
+
+    void on_playButton_clicked();
+
 private:
 	Ui::MainWindow *ui;
 	
