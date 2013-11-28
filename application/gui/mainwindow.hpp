@@ -5,7 +5,11 @@
 #include <QFileDialog>
 #include <QListWidget>
 
+#ifndef INC_ABOUT
+#define INC_ABOUT
 #include "about.hpp"
+#endif
+
 #include <string>
 
 namespace Ui {

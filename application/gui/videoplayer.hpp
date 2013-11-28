@@ -3,7 +3,15 @@
 
 #include <QLabel>
 
+#ifndef INC_EVENT
+#define INC_EVENT
 #include "../framework/Event/Event.hpp"
+#endif
+
+#ifndef INC_VIDEO
+#define INC_VIDEO
+#include "../framework/Video/Video.hpp"
+#endif
 
 namespace Ui {
 class VideoPlayer;
