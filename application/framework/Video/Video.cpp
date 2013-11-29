@@ -75,10 +75,14 @@ bool Video::get_frame(cv::Mat &frame){
 /*******************************************************************************
  * Properties
  ******************************************************************************/
+/* Returns the interval between frames (in miliseconds)
+ */
 double Video::getFrameInt(){
-    return 1.0/fps;
+    return 1000.0/fps;
 }
 
+/* Returns the number of frames per second
+ */
 double Video::getFPS(){
     return fps;
 }

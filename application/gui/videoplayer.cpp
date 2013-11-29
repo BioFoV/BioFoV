@@ -61,7 +61,7 @@ void VideoPlayer::loadVid(Video* nextVid){
     currentVid = nextVid;
     step();
     FPS = currentVid->getFPS();
-    frameInt = currentVid->getFrameInt()*1000; // FrameInt is in seconds
+    frameInt = currentVid->getFrameInt();
     qDebug("loaded video to player");
     qDebug("FPS = %f",FPS);
     qDebug("Frame interval = %f",frameInt);
