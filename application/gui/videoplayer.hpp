@@ -5,7 +5,6 @@
 #include <QImage>
 #include <QPainter>
 #include <QTimer>
-#include <QtConcurrent>
 
 #ifndef INC_EVENT
 #define INC_EVENT

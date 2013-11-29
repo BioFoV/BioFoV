@@ -8,7 +8,7 @@
     error( Could not find the common.pri file! )
 }
 
-QT += core gui concurrent
+QT += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
