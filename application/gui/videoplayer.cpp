@@ -46,6 +46,7 @@ void VideoPlayer::goTo(int nthFrame){
 
 void VideoPlayer::loadVid(Video* nextVid){
     currentVid = nextVid;
+    step();
     qDebug("loaded video to player");
 }
 
