@@ -26,7 +26,8 @@ void VideoPlayer::play(){
 }
 
 void VideoPlayer::pause(){
-
+    isplaying = false;
+    timer.stop();
 }
 
 void VideoPlayer::playOrPause(){

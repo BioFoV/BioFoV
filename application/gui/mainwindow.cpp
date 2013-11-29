@@ -70,6 +70,11 @@ void MainWindow::on_videoList_itemDoubleClicked(QListWidgetItem *item)
 /*
  * Play button handler
  */
+void MainWindow::on_pauseButton_clicked()
+{
+    ui->player->pause();
+}
+
 void MainWindow::on_playButton_clicked()
 {
     ui->player->playOrPause();

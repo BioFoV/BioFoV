@@ -42,6 +42,8 @@ private slots:
 
     void on_stepButton_clicked();
 
+    void on_pauseButton_clicked();
+
 private:
 	Ui::MainWindow *ui;
     QList<Video*> videos;
