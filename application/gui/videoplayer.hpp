@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QImage>
 #include <QPainter>
+#include <QTimer>
+#include <QtConcurrent>
 
 #ifndef INC_EVENT
 #define INC_EVENT
@@ -31,7 +33,7 @@ public slots:
     void play();
     void pause();
     void playOrPause();
-    void step();
+    bool step();
     void goTo(int nthFrame);
     void loadVid(Video* nextVid);
     void unload();
@@ -41,6 +43,10 @@ private:
     Video* currentVid;
     QImage _qimage;
     cv::Mat _tmp;
+    bool isplaying; // playing or not
+    double frameInt; // interval between frames
+    double FPS; // frames per second
+    QTimer timer;
 
 private slots:
     void showImage(const cv::Mat& image);

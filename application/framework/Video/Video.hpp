@@ -37,6 +37,7 @@ private:
     cv::VideoCapture cap;
 	std::list<Frame> frames;
 	std::string filename;
+    double fps;
 	
 public:
 	// Atributes
@@ -59,6 +60,10 @@ public:
 	// Capture functions
 	bool check_cap();
 	bool get_frame(cv::Mat &frame);
+
+    // Properties
+    double getFrameInt();
+    double getFPS();
 	
 	// BackgroundSubtraction functions
 	void bgSubInit(int hist, int varThresh, bool bShadowDet);

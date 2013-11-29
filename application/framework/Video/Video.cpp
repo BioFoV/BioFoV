@@ -17,6 +17,7 @@ Video::Video(std::string name){
 	bg = NULL;
 	filename = name;
 	cap = cv::VideoCapture(name);
+    fps = cap.get(CV_CAP_PROP_FPS);
 }
 
 /*******************************************************************************
@@ -69,6 +70,17 @@ bool Video::get_frame(cv::Mat &frame){
 		std::cerr << "Couldn't read frame" << std::endl;
 		return false;
 	}
+}
+
+/*******************************************************************************
+ * Properties
+ ******************************************************************************/
+double Video::getFrameInt(){
+    return 1.0/fps;
+}
+
+double Video::getFPS(){
+    return fps;
 }
 
 /*******************************************************************************

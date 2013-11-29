@@ -6,6 +6,7 @@
 VideoPlayer::VideoPlayer(QWidget *parent) :
     QWidget(parent)
 {
+    connect(&timer, SIGNAL(timeout()), this, SLOT(play()));
 }
 
 /*******************************************************************************
@@ -19,7 +20,9 @@ VideoPlayer::~VideoPlayer(){
  * Actions
  ******************************************************************************/
 void VideoPlayer::play(){
-
+    if(!step()){
+        timer.stop();
+    }
 }
 
 void VideoPlayer::pause(){
@@ -27,16 +30,25 @@ void VideoPlayer::pause(){
 }
 
 void VideoPlayer::playOrPause(){
-
+    if(!isplaying){
+        isplaying = true;
+        //future = QtConcurrent::run(this,&VideoPlayer::play);
+        timer.start();
+    } else {
+        isplaying = false;
+        timer.stop();
+    }
 }
 
-void VideoPlayer::step(){
+bool VideoPlayer::step(){
     cv::Mat _tmp2;
     // Check if there is a next frame
     if(currentVid->get_frame(_tmp2)) {
         showImage(_tmp2);
+        return true;
     } else {
         qDebug("could not get frame");
+        return false;
     }
 }
 
@@ -47,7 +59,12 @@ void VideoPlayer::goTo(int nthFrame){
 void VideoPlayer::loadVid(Video* nextVid){
     currentVid = nextVid;
     step();
+    FPS = currentVid->getFPS();
+    frameInt = currentVid->getFrameInt()*1000; // FrameInt is in seconds
     qDebug("loaded video to player");
+    qDebug("FPS = %f",FPS);
+    qDebug("Frame interval = %f",frameInt);
+    timer.setInterval(frameInt);
 }
 
 void VideoPlayer::unload(){
