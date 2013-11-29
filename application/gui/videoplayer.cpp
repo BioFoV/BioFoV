@@ -32,8 +32,12 @@ void VideoPlayer::playOrPause(){
 
 void VideoPlayer::step(){
     cv::Mat _tmp2;
-    currentVid->get_frame(_tmp2);
-    showImage(_tmp2);
+    // Check if there is a next frame
+    if(currentVid->get_frame(_tmp2)) {
+        showImage(_tmp2);
+    } else {
+        qDebug("could not get frame");
+    }
 }
 
 void VideoPlayer::goTo(int nthFrame){
