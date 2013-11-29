@@ -170,7 +170,14 @@
        <number>2</number>
       </property>
       <item>
-       <widget class="VideoPlayer" name="player" native="true"/>
+       <widget class="VideoPlayer" name="player" native="true">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QWidget" name="widget_2" native="true">
