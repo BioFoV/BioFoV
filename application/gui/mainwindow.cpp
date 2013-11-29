@@ -25,6 +25,7 @@ MainWindow::~MainWindow()
  ******************************************************************************/
 void MainWindow::on_actionAdd_Video_File_triggered()
 {
+    Video * last = NULL;
     QFileDialog getFileDialog(this);
     getFileDialog.setDirectory(QDir::homePath());
     getFileDialog.setFileMode(QFileDialog::ExistingFiles);
@@ -37,7 +38,13 @@ void MainWindow::on_actionAdd_Video_File_triggered()
         if (fileNames.isEmpty()) {return;} // No file name provided
         foreach (QString fileName, fileNames) {
             ui->videoList->addItem(fileName);
-            videos.append(new Video(fileName.toStdString()));
+            last = new Video(fileName.toStdString());
+            videos.append(last);
+        }
+        if(last != NULL) {
+            ui->player->pause();
+            ui->player->unload();
+            ui->player->loadVid(last);
         }
     } else {
         qDebug("Failed to open FileDialog window");
