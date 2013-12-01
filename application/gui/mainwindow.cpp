@@ -70,9 +70,9 @@ void MainWindow::on_videoList_itemDoubleClicked(QListWidgetItem *item)
 /*
  * Play button handler
  */
-void MainWindow::on_pauseButton_clicked()
+void MainWindow::on_rewindButton_clicked()
 {
-    ui->player->pause();
+    ui->player->stepBack();
 }
 
 void MainWindow::on_playButton_clicked()
@@ -82,5 +82,6 @@ void MainWindow::on_playButton_clicked()
 
 void MainWindow::on_stepButton_clicked()
 {
-    ui->player->step();
+    ui->player->stepForward();
 }
+

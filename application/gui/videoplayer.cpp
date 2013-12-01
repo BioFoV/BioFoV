@@ -20,7 +20,7 @@ VideoPlayer::~VideoPlayer(){
  * Actions
  ******************************************************************************/
 void VideoPlayer::play(){
-    if(!step()){
+    if(!stepForward()){
         timer.stop();
     }
 }
@@ -41,7 +41,18 @@ void VideoPlayer::playOrPause(){
     }
 }
 
-bool VideoPlayer::step(){
+bool VideoPlayer::stepBack(){
+    cv::Mat _tmp2;
+    if(currentVid->getPrevFrame(_tmp2)) {
+        showImage(_tmp2);
+        return true;
+    } else {
+        qDebug("could not get frame");
+        return false;
+    }
+}
+
+bool VideoPlayer::stepForward(){
     cv::Mat _tmp2;
     // Check if there is a next frame
     if(currentVid->get_frame(_tmp2)) {
@@ -59,7 +70,7 @@ void VideoPlayer::goTo(int nthFrame){
 
 void VideoPlayer::loadVid(Video* nextVid){
     currentVid = nextVid;
-    step();
+    stepForward();
     FPS = currentVid->getFPS();
     frameInt = currentVid->getFrameInt();
     qDebug("loaded video to player");

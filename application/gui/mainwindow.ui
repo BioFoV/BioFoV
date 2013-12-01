@@ -282,9 +282,9 @@
           <number>4</number>
          </property>
          <item>
-          <widget class="QPushButton" name="pauseButton">
+          <widget class="QPushButton" name="rewindButton">
            <property name="text">
-            <string>Pause</string>
+            <string>Rewind</string>
            </property>
           </widget>
          </item>

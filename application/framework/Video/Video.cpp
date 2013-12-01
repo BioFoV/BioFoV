@@ -59,6 +59,14 @@ bool Video::check_cap(){
 	return false;
 }
 
+double Video::getFramePos(){
+    return cap.get(CV_CAP_PROP_POS_FRAMES);
+}
+
+bool Video::setFramePos(double frameNum){
+    return cap.set(CV_CAP_PROP_POS_FRAMES, frameNum);
+}
+
 bool Video::get_frame(cv::Mat &frame){
 	if(!check_cap()){
 		return false;
@@ -70,6 +78,17 @@ bool Video::get_frame(cv::Mat &frame){
 		std::cerr << "Couldn't read frame" << std::endl;
 		return false;
 	}
+}
+
+bool Video::getPrevFrame(cv::Mat &frame){
+    double tempPos = getFramePos();
+    if (tempPos > 1){
+        setFramePos(tempPos-2);
+        return get_frame(frame);
+    } else {
+        return false;
+    }
+
 }
 
 /*******************************************************************************

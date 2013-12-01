@@ -42,7 +42,7 @@ private slots:
 
     void on_stepButton_clicked();
 
-    void on_pauseButton_clicked();
+    void on_rewindButton_clicked();
 
 private:
 	Ui::MainWindow *ui;

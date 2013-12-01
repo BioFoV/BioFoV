@@ -59,7 +59,10 @@ public:
 	
 	// Capture functions
 	bool check_cap();
+    bool setFramePos(double frameNum);
+    double getFramePos();
 	bool get_frame(cv::Mat &frame);
+    bool getPrevFrame(cv::Mat &frame);
 
     // Properties
     double getFrameInt();
