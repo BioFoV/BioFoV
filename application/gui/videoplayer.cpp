@@ -88,7 +88,7 @@ void VideoPlayer::loadVid(Video* nextVid){
 }
 
 void VideoPlayer::unload(){
-    delete currentVid;
+    //delete currentVid;
     qDebug("unloaded video to player");
 }
 
@@ -116,7 +116,7 @@ void VideoPlayer::showImage(const cv::Mat& image){
 void VideoPlayer::paintEvent(QPaintEvent* /*event*/) {
     // Display the image
     QPainter painter(this);
-    _qimage = _qimage.scaled(this->size().width(),this->size().height(),Qt::KeepAspectRatio);
+    _qimage = _qimage.scaled(ui->player->size().width(),ui->player->size().height(),Qt::KeepAspectRatio);
     painter.drawImage(QPoint(0,0), _qimage);
     painter.end();
 }
