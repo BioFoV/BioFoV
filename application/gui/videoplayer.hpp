@@ -25,7 +25,7 @@ class VideoPlayer : public QWidget
     Q_OBJECT
 
 public:
-    VideoPlayer(QWidget *parent = 0);
+    explicit VideoPlayer(QWidget *parent = 0);
     ~VideoPlayer();
 
 public slots:
@@ -39,7 +39,7 @@ public slots:
     void unload();
 
 private:
-    Ui::VideoPlayer *vp;
+    Ui::VideoPlayer *ui;
     Video* currentVid;
     QImage _qimage;
     cv::Mat _tmp;

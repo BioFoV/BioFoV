@@ -1,11 +1,14 @@
 #include "videoplayer.hpp"
+#include "ui_videoplayer.h"
 
 /*******************************************************************************
  * Constructors
  ******************************************************************************/
 VideoPlayer::VideoPlayer(QWidget *parent) :
-    QWidget(parent)
+    QWidget(parent),
+    ui(new Ui::VideoPlayer)
 {
+    ui->setupUi(this);
     connect(&timer, SIGNAL(timeout()), this, SLOT(play()));
 }
 
@@ -13,7 +16,7 @@ VideoPlayer::VideoPlayer(QWidget *parent) :
  * Destructor
  ******************************************************************************/
 VideoPlayer::~VideoPlayer(){
-
+    delete ui;
 }
 
 /*******************************************************************************
@@ -77,6 +80,7 @@ void VideoPlayer::loadVid(Video* nextVid){
     qDebug("FPS = %f",FPS);
     qDebug("Frame interval = %f",frameInt);
     timer.setInterval(frameInt);
+
 }
 
 void VideoPlayer::unload(){

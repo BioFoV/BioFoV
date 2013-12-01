@@ -67,6 +67,8 @@ public:
     // Properties
     double getFrameInt();
     double getFPS();
+    double getLengthTime();
+    double getLengthFrames();
 	
 	// BackgroundSubtraction functions
 	void bgSubInit(int hist, int varThresh, bool bShadowDet);

@@ -106,6 +106,14 @@ double Video::getFPS(){
     return fps;
 }
 
+double Video::getLengthTime(){
+    return getLengthFrames()/getFPS();
+}
+
+double Video::getLengthFrames(){
+    return cap.get(CV_CAP_PROP_FRAME_COUNT);
+}
+
 /*******************************************************************************
  * Background Subtraction functions
  ******************************************************************************/
