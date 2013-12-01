@@ -270,6 +270,8 @@
     </property>
     <addaction name="actionNewEvent"/>
     <addaction name="actionDeleteEvent"/>
+    <addaction name="separator"/>
+    <addaction name="actionAuto_Detect"/>
    </widget>
    <widget class="QMenu" name="menuIndividual">
     <property name="title">
@@ -277,6 +279,8 @@
     </property>
     <addaction name="actionNewIndividual"/>
     <addaction name="actionDeleteIndividual"/>
+    <addaction name="separator"/>
+    <addaction name="actionAuto_Detect_2"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuVideo"/>
@@ -350,6 +354,16 @@
   <action name="actionSave_Project_As">
    <property name="text">
     <string>Save Project As</string>
+   </property>
+  </action>
+  <action name="actionAuto_Detect">
+   <property name="text">
+    <string>Auto Detect</string>
+   </property>
+  </action>
+  <action name="actionAuto_Detect_2">
+   <property name="text">
+    <string>Auto Detect</string>
    </property>
   </action>
  </widget>
