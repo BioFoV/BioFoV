@@ -1,9 +1,0 @@
-#!/bin/bash
-
-if [ ! -d ../third-party/opencv/linux-build/ ]; then
-  echo "You must first run update script in third party folder"
-  exit
-fi
-
-cmake ../src
-
