@@ -1,8 +1,0 @@
-# ignore everything in this path!
-*
-
-# except these files...
-!configure
-!Toolchain-cross-mingw32-linux.cmake
-!.gitignore
-
