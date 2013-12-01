@@ -26,6 +26,7 @@ void VideoPlayer::play(){
     if(!stepForward()){
         timer.stop();
     }
+    ui->posSlider->setValue(currentVid->getFramePos());
 }
 
 void VideoPlayer::pause(){
@@ -80,7 +81,10 @@ void VideoPlayer::loadVid(Video* nextVid){
     qDebug("FPS = %f",FPS);
     qDebug("Frame interval = %f",frameInt);
     timer.setInterval(frameInt);
-
+    ui->posSlider->setMaximum(currentVid->getLengthFrames());
+    qDebug("length %f", currentVid->getLengthTime());
+    // Using 1/10th of the video as page step
+    ui->posSlider->setPageStep(currentVid->getLengthFrames()/10);
 }
 
 void VideoPlayer::unload(){
@@ -116,3 +120,25 @@ void VideoPlayer::paintEvent(QPaintEvent* /*event*/) {
     painter.drawImage(QPoint(0,0), _qimage);
     painter.end();
 }
+
+void VideoPlayer::on_posSlider_sliderPressed()
+{
+    pause();
+}
+
+void VideoPlayer::on_posSlider_sliderReleased()
+{
+    playOrPause();
+}
+
+void VideoPlayer::on_posSlider_sliderMoved(int position)
+{
+    currentVid->setFramePos(position);
+}
+/* Function slows down video playback
+ *
+void VideoPlayer::on_posSlider_valueChanged(int value)
+{
+    currentVid->setFramePos(value);
+}
+*/
