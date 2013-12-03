@@ -68,8 +68,9 @@ bool VideoPlayer::stepForward(){
     }
 }
 
-void VideoPlayer::goTo(int nthFrame){
-
+void VideoPlayer::goTo(double nthFrame){
+    currentVid->setFramePos(nthFrame);
+    stepForward();
 }
 
 void VideoPlayer::loadVid(Video* nextVid){

@@ -34,7 +34,7 @@ public slots:
     void playOrPause();
     bool stepBack();
     bool stepForward();
-    void goTo(int nthFrame);
+    void goTo(double nthFrame);
     void loadVid(Video* nextVid);
     void unload();
 
