@@ -16,11 +16,6 @@
 #include "videoitem.hpp"
 #endif
 
-#ifndef INC_VIDEO
-#define INC_VIDEO
-#include "../framework/Video/Video.hpp"
-#endif
-
 #ifndef INC_STRING
 #define INC_STRING
 #include <string>
