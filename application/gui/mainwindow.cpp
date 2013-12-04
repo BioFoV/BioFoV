@@ -67,9 +67,9 @@ void MainWindow::on_videoList_itemDoubleClicked(QListWidgetItem *item)
     ui->player->loadVid(vid);
 }
 
-/*
- * Play button handler
- */
+/*******************************************************************************
+ * Playback button hadlers
+ ******************************************************************************/
 void MainWindow::on_rewindButton_clicked()
 {
     ui->player->stepBack();

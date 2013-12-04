@@ -73,6 +73,9 @@ void VideoPlayer::goTo(double nthFrame){
     stepForward();
 }
 
+/*******************************************************************************
+ * Video loading functions
+ ******************************************************************************/
 void VideoPlayer::loadVid(Video* nextVid){
     currentVid = nextVid;
     stepForward();
@@ -93,6 +96,9 @@ void VideoPlayer::unload(){
     qDebug("unloaded video to player");
 }
 
+/*******************************************************************************
+ * Image show
+ ******************************************************************************/
 void VideoPlayer::showImage(const cv::Mat& image){
     // Convert the image to the RGB888 format
     switch (image.type()) {
@@ -122,6 +128,9 @@ void VideoPlayer::paintEvent(QPaintEvent* /*event*/) {
     painter.end();
 }
 
+/*******************************************************************************
+ * Slider functions
+ ******************************************************************************/
 void VideoPlayer::on_posSlider_sliderPressed()
 {
     pause();
@@ -134,7 +143,7 @@ void VideoPlayer::on_posSlider_sliderReleased()
 
 void VideoPlayer::on_posSlider_sliderMoved(int position)
 {
-    currentVid->setFramePos(position);
+    goTo(position);
 }
 /* Function slows down video playback
  *
