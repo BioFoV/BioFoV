@@ -41,8 +41,6 @@ void MainWindow::on_actionAdd_Video_File_triggered()
             ui->videoList->addItem(last);
         }
         if(last != NULL) {
-            ui->player->pause();
-            ui->player->unload();
             ui->player->loadVid(last->getVideo());
         }
     } else {
@@ -60,8 +58,6 @@ void MainWindow::openAbout()
 void MainWindow::on_videoList_itemDoubleClicked(QListWidgetItem *item)
 {
     VideoItem * vitem = (VideoItem *) item;
-    ui->player->pause();
-    ui->player->unload();
     ui->player->loadVid(vitem->getVideo());
 }
 

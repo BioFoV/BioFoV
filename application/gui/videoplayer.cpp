@@ -84,6 +84,8 @@ void VideoPlayer::loadVid(std::string filename){
 }
 
 void VideoPlayer::loadVid(Video* nextVid){
+    pause();
+    unload();
     currentVid = nextVid;
     stepForward();
     FPS = currentVid->getFPS();
