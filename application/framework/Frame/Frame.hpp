@@ -38,5 +38,6 @@ public:
     Frame(Video *source_vid, cv::Mat shot);
     void setImage(cv::Mat shot);
     void setSnapshot(Snapshot *insnap);
+    cv::Mat getImage();
 };
 #endif

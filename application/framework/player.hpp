@@ -7,6 +7,10 @@
 #include <opencv2/opencv.hpp>
 #endif
 
+/*******************************************************************************
+ * Purelly virtual class intended to make a single interface for reading frames
+ *for both Video and Event, and actually anything else that comes after
+ ******************************************************************************/
 class Player
 {
 public:
@@ -14,7 +18,7 @@ public:
     virtual bool check_cap() = 0;
     virtual bool setFramePos(double frameNum) = 0;
     virtual double getFramePos() = 0;
-    virtual bool get_frame(cv::Mat &frame) = 0;
+    virtual bool getFrame(cv::Mat &frame) = 0;
     virtual bool getPrevFrame(cv::Mat &frame) = 0;
 
     // Properties

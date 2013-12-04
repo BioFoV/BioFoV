@@ -29,3 +29,7 @@ void Frame::setImage(cv::Mat shot){
 void Frame::setSnapshot(Snapshot *insnap){
     snap = insnap;
 }
+
+cv::Mat Frame::getImage(){
+    return image;
+}

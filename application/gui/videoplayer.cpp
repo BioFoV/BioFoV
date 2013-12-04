@@ -59,7 +59,7 @@ bool VideoPlayer::stepBack(){
 bool VideoPlayer::stepForward(){
     cv::Mat _tmp2;
     // Check if there is a next frame
-    if(currentPlayer->get_frame(_tmp2)) {
+    if(currentPlayer->getFrame(_tmp2)) {
         showImage(_tmp2);
         return true;
     } else {
@@ -83,7 +83,7 @@ void VideoPlayer::loadVid(std::string filename){
     loadVid(vid);
 }
 
-void VideoPlayer::loadVid(Video* nextVid){
+void VideoPlayer::loadVid(Player* nextVid){
     pause();
     unload();
     currentPlayer = nextVid;

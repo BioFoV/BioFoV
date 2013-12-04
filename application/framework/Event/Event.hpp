@@ -16,11 +16,6 @@
 #include "../Individual/Individual.hpp"
 #endif
 
-#ifndef INC_LIST
-#define INC_LIST
-#include <list>
-#endif
-
 #ifndef INC_PLAYER
 #define INC_PLAYER
 #include "../player.hpp"
@@ -38,19 +33,23 @@ class Event : public Player {
 private:
 	// external references
 	Video* vid;
-    std::list<Frame*> frames;
-    std::list<Individual*> individuals;
+    std::deque<Frame*> frames;
+    std::deque<Individual*> individuals;
 	
+    // player variables
+    double position;
+    double fps;
 public:
 	// Constructor
 	Event();
     void addFrame(Frame* inframe);
+    void setFPS(double infps);
 
     // Capture functions
     bool check_cap();
     bool setFramePos(double frameNum);
     double getFramePos();
-    bool get_frame(cv::Mat &frame);
+    bool getFrame(cv::Mat &frame);
     bool getPrevFrame(cv::Mat &frame);
 
     // Properties

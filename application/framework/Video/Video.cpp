@@ -67,7 +67,7 @@ bool Video::setFramePos(double frameNum){
     return cap.set(CV_CAP_PROP_POS_FRAMES, frameNum);
 }
 
-bool Video::get_frame(cv::Mat &frame){
+bool Video::getFrame(cv::Mat &frame){
 	if(!check_cap()){
 		return false;
 	}
@@ -84,7 +84,7 @@ bool Video::getPrevFrame(cv::Mat &frame){
     double tempPos = getFramePos();
     if (tempPos > 1){
         setFramePos(tempPos-2);
-        return get_frame(frame);
+        return getFrame(frame);
     } else {
         return false;
     }
@@ -128,7 +128,7 @@ void Video::bgSubDelete(){
 /*******************************************************************************
  * Event autoDetection
  ******************************************************************************/
-std::list<Event*> Video::autoDetectEvents(){
+std::deque<Event*> Video::autoDetectEvents(){
     cv::Mat shot;
     Frame *frame;
     Snapshot *snap;
@@ -137,7 +137,7 @@ std::list<Event*> Video::autoDetectEvents(){
     // Initialization of background subtraction
     bgSubInit(1000, 2, 1);
 
-    while(get_frame(shot)){
+    while(getFrame(shot)){
         bg->NewFrame(shot);
 
         // create new frame
@@ -146,6 +146,7 @@ std::list<Event*> Video::autoDetectEvents(){
         frame->setSnapshot(snap);
         frames.push_back(frame);
         event->addFrame(frame);
+        event->setFPS(getFPS());
     }
 
     events.push_back(event);

@@ -61,11 +61,11 @@ void MainWindow::on_videoList_itemDoubleClicked(QListWidgetItem *item)
     ui->player->loadVid(vItem->getVideo());
 }
 
-
 void MainWindow::on_actionAuto_Detect_Events_triggered()
 {
     VideoItem* videoiter;
-    std::list<Event*> events;
+    std::deque<Event*> events;
+    EventItem* newEvent;
     qDebug("Going through all videos");
     for (int i = 0; i < ui->videoList->count(); i++){
         videoiter = (VideoItem*) ui->videoList->item(i);
@@ -74,6 +74,9 @@ void MainWindow::on_actionAuto_Detect_Events_triggered()
         events = videoiter->getVideo()->autoDetectEvents();
         for (unsigned int j = 0; j < events.size(); j++){
             qDebug(" Event %d",j);
+            newEvent = new EventItem();
+            newEvent->setEvent(events.at(j));
+            ui->eventList->addItem(newEvent);
         }
     }
 }
@@ -81,5 +84,5 @@ void MainWindow::on_actionAuto_Detect_Events_triggered()
 void MainWindow::on_eventList_itemDoubleClicked(QListWidgetItem *item)
 {
     EventItem * eItem = (EventItem *) item;
-
+    ui->player->loadVid(eItem->getEvent());
 }

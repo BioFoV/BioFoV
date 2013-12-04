@@ -47,7 +47,7 @@ class Video : public Player {
 private:
     cv::VideoCapture cap;
     std::list<Frame*> frames;
-    std::list<Event*> events;
+    std::deque<Event*> events;
 	std::string filename;
     double fps;
 	
@@ -73,7 +73,7 @@ public:
 	bool check_cap();
     bool setFramePos(double frameNum);
     double getFramePos();
-	bool get_frame(cv::Mat &frame);
+    bool getFrame(cv::Mat &frame);
     bool getPrevFrame(cv::Mat &frame);
 
     // Properties
@@ -87,6 +87,6 @@ public:
 	void bgSubDelete();
 
     // Event autoDetection
-    std::list<Event*> autoDetectEvents();
+    std::deque<Event *> autoDetectEvents();
 };
 #endif
