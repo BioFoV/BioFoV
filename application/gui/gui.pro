@@ -15,6 +15,15 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 unix: CONFIG += link_pkgconfig
 unix: PKGCONFIG += opencv
 
+win32 {
+    #LIBS += -LC:/qt/OpenCV246_bin/install/lib -llopencv_core246 -llopencv_highgui246
+    LIBS += -L C:\Users\miguel\Downloads\opencv\build\install\lib
+    LIBS += -lopencv_core245 -lopencv_highgui245 -lopencv_video245
+    LIBS += -lopencv_imgproc245
+    INCLUDEPATH += C:\Users\miguel\Downloads\opencv\build\install\include
+    LIBS += -L..\framework\release -lframework
+}
+
 # reset sources
 SOURCES += \
     about.cpp \
@@ -36,5 +45,6 @@ HEADERS += \
 FORMS    += $$files(*.ui)
 
 RESOURCES += $$files(*.qrc)
-
-LIBS += -L../framework -lframework
+unix {
+    LIBS += -L../framework -lframework
+}
