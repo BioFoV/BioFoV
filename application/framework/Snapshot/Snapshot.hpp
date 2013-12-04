@@ -29,5 +29,6 @@ public:
 	// Constructors
 	Snapshot();
 	Snapshot(Frame *img);
+    Snapshot(Frame *img, cv::Mat inmask);
 };
 #endif

@@ -41,14 +41,15 @@ class Event;
 class Video {
 private:
     cv::VideoCapture cap;
-	std::list<Frame> frames;
+    std::list<Frame*> frames;
+    std::list<Event*> events;
 	std::string filename;
     double fps;
 	
 public:
 	// Atributes
 	BackgroundSubtractor * bg;
-	
+
 	// Constructors
 	Video();
     Video(cv::VideoCapture capture);
@@ -81,6 +82,6 @@ public:
 	void bgSubDelete();
 
     // Event autoDetection
-    std::list<Event> autoDetectEvents();
+    std::list<Event*> autoDetectEvents();
 };
 #endif

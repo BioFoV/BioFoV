@@ -10,3 +10,8 @@ Snapshot::Snapshot(){
 Snapshot::Snapshot(Frame *img){
 	image = img;
 }
+
+Snapshot::Snapshot(Frame *img, cv::Mat inmask){
+    image = img;
+    mask = inmask;
+}

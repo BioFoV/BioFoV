@@ -12,7 +12,13 @@
 #include "../Video/Video.hpp"
 #endif
 
+#ifndef INC_SNAPSHOT
+#define INC_SNAPSHOT
+#include "../Snapshot/Snapshot.hpp"
+#endif
+
 class Video;
+class Snapshot;
 
 /*
  * Class that represents Frames
@@ -23,10 +29,14 @@ private:
 	Video *vid;
 	// class data
 	cv::Mat image;
+    Snapshot * snap;
 	
 public:
 	// Constructors
 	Frame();
-	Frame(Video *source_vid);
+    Frame(Video *source_vid);
+    Frame(Video *source_vid, cv::Mat shot);
+    void setImage(cv::Mat shot);
+    void setSnapshot(Snapshot *insnap);
 };
 #endif

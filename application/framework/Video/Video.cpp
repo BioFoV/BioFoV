@@ -124,3 +124,26 @@ void Video::bgSubInit(int hist, int varThresh, bool bShadowDet){
 void Video::bgSubDelete(){
 	delete bg;
 }
+
+/*******************************************************************************
+ * Event autoDetection
+ ******************************************************************************/
+std::list<Event*> Video::autoDetectEvents(){
+    cv::Mat shot;
+    Frame *frame;
+    Snapshot *snap;
+
+    // Initialization of background subtraction
+    bgSubInit(1000, 2, 1);
+
+    while(get_frame(shot)){
+        bg->NewFrame(shot);
+
+        // create new frame
+        frame = new Frame(this, shot);
+        snap = new Snapshot(frame, bg->Foreground());
+        frame->setSnapshot(snap);
+        frames.push_back(frame);
+    }
+    return events;
+}
