@@ -35,6 +35,7 @@ public slots:
     bool stepBack();
     bool stepForward();
     void goTo(double nthFrame);
+    void loadVid(std::string filename);
     void loadVid(Video* nextVid);
     void unload();
 

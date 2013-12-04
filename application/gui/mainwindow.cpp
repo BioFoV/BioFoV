@@ -61,10 +61,7 @@ void MainWindow::openAbout()
 void MainWindow::on_videoList_itemDoubleClicked(QListWidgetItem *item)
 {
     std::string filename = item->text().toStdString();
-    Video * vid = new Video(filename);
-    ui->player->pause();
-    ui->player->unload();
-    ui->player->loadVid(vid);
+    ui->player->loadVid(filename);
 }
 
 /*******************************************************************************

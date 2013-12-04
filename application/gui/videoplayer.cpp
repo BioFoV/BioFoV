@@ -76,6 +76,13 @@ void VideoPlayer::goTo(double nthFrame){
 /*******************************************************************************
  * Video loading functions
  ******************************************************************************/
+void VideoPlayer::loadVid(std::string filename){
+    Video * vid = new Video(filename);
+    pause();
+    unload();
+    loadVid(vid);
+}
+
 void VideoPlayer::loadVid(Video* nextVid){
     currentVid = nextVid;
     stepForward();
