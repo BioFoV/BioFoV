@@ -16,6 +16,11 @@
 #include "videoitem.hpp"
 #endif
 
+#ifndef INC_EVENTITEM
+#define INC_EVENTITEM
+#include "eventitem.hpp"
+#endif
+
 #ifndef INC_STRING
 #define INC_STRING
 #include <string>
@@ -39,6 +44,8 @@ private slots:
     void on_videoList_itemDoubleClicked(QListWidgetItem *item);
 
     void on_actionAuto_Detect_Events_triggered();
+
+    void on_eventList_itemDoubleClicked(QListWidgetItem *item);
 
 private:
     Ui::MainWindow *ui;

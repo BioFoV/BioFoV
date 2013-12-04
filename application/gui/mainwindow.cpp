@@ -57,8 +57,8 @@ void MainWindow::openAbout()
 
 void MainWindow::on_videoList_itemDoubleClicked(QListWidgetItem *item)
 {
-    VideoItem * vitem = (VideoItem *) item;
-    ui->player->loadVid(vitem->getVideo());
+    VideoItem * vItem = (VideoItem *) item;
+    ui->player->loadVid(vItem->getVideo());
 }
 
 
@@ -76,4 +76,10 @@ void MainWindow::on_actionAuto_Detect_Events_triggered()
             qDebug(" Event %d",j);
         }
     }
+}
+
+void MainWindow::on_eventList_itemDoubleClicked(QListWidgetItem *item)
+{
+    EventItem * eItem = (EventItem *) item;
+
 }
