@@ -16,13 +16,15 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 SOURCES += \
     about.cpp \
     mainwindow.cpp \
-    videoplayer.cpp
+    videoplayer.cpp \
+    videoitem.cpp
 
 # reset headers
 HEADERS += \
     about.hpp \
     mainwindow.hpp \
-    videoplayer.hpp
+    videoplayer.hpp \
+    videoitem.hpp
 
 FORMS    += $$files(*.ui)
 

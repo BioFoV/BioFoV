@@ -11,6 +11,11 @@
 #include "about.hpp"
 #endif
 
+#ifndef INC_VIDEOITEM
+#define INC_VIDEOITEM
+#include "videoitem.hpp"
+#endif
+
 #ifndef INC_VIDEO
 #define INC_VIDEO
 #include "../framework/Video/Video.hpp"
@@ -40,13 +45,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-};
-
-class VideoItem : public QListWidgetItem
-{
-public:
-    VideoItem(QString filename);
-    Video *vid;
 };
 
 #endif // MAINWINDOW_H

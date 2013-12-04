@@ -43,7 +43,7 @@ void MainWindow::on_actionAdd_Video_File_triggered()
         if(last != NULL) {
             ui->player->pause();
             ui->player->unload();
-            ui->player->loadVid(last->vid);
+            ui->player->loadVid(last->getVideo());
         }
     } else {
         qDebug("Failed to open FileDialog window");
@@ -62,13 +62,6 @@ void MainWindow::on_videoList_itemDoubleClicked(QListWidgetItem *item)
     VideoItem * vitem = (VideoItem *) item;
     ui->player->pause();
     ui->player->unload();
-    ui->player->loadVid(vitem->vid);
+    ui->player->loadVid(vitem->getVideo());
 }
 
-/*******************************************************************************
- * VideoItem functions
- ******************************************************************************/
-VideoItem::VideoItem(QString filename){
-    setText(filename);
-    vid = new Video(filename.toStdString());
-}
