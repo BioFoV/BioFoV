@@ -96,6 +96,8 @@ void VideoPlayer::loadVid(Video* nextVid){
     qDebug("length %f", currentVid->getLengthTime());
     // Using 1/10th of the video as page step
     ui->posSlider->setPageStep(currentVid->getLengthFrames()/10);
+    speed = 1;
+    ui->speedSlider->setValue(speed*10);
 }
 
 void VideoPlayer::unload(){
@@ -163,3 +165,9 @@ void VideoPlayer::on_posSlider_valueChanged(int value)
     currentVid->setFramePos(value);
 }
 */
+
+void VideoPlayer::on_speedSlider_sliderMoved(int position)
+{
+    speed = position/10.0;
+    timer.setInterval(frameInt/speed);
+}

@@ -48,6 +48,7 @@ private:
     double frameInt; // interval between frames
     double FPS; // frames per second
     QTimer timer;
+    float speed;
 
 private slots:
     void showImage(const cv::Mat& image);
@@ -56,6 +57,7 @@ private slots:
     void on_posSlider_sliderReleased();
     void on_posSlider_sliderMoved(int position);
 //    void on_posSlider_valueChanged(int value);
+    void on_speedSlider_sliderMoved(int position);
 };
 
 #endif // VIDEOPLAYER_H
