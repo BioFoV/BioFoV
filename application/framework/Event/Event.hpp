@@ -21,6 +21,11 @@
 #include <list>
 #endif
 
+#ifndef INC_PLAYER
+#define INC_PLAYER
+#include "../player.hpp"
+#endif
+
 class Frame;
 class Individual;
 class Video;
@@ -29,7 +34,7 @@ class Video;
  * Class that represents a contiguous set of frames with something
  * interesting on them.
  */
-class Event{
+class Event : public Player {
 private:
 	// external references
 	Video* vid;
@@ -40,5 +45,18 @@ public:
 	// Constructor
 	Event();
     void addFrame(Frame* inframe);
+
+    // Capture functions
+    bool check_cap();
+    bool setFramePos(double frameNum);
+    double getFramePos();
+    bool get_frame(cv::Mat &frame);
+    bool getPrevFrame(cv::Mat &frame);
+
+    // Properties
+    double getFrameInt();
+    double getFPS();
+    double getLengthTime();
+    double getLengthFrames();
 };
 #endif 

@@ -32,13 +32,18 @@
 #include <string>
 #endif
 
+#ifndef INC_PLAYER
+#define INC_PLAYER
+#include "../player.hpp"
+#endif
+
 class Frame;
 class Event;
 
 /*
  * Class that holds the VideoCapture handler and that provides frames
  */
-class Video {
+class Video : public Player {
 private:
     cv::VideoCapture cap;
     std::list<Frame*> frames;

@@ -41,7 +41,8 @@ public slots:
 
 private:
     Ui::VideoPlayer *ui;
-    Video* currentVid;
+//    Video* currentVid;
+    Player* currentPlayer;
     QImage _qimage;
     cv::Mat _tmp;
     bool isplaying; // playing or not

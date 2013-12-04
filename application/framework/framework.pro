@@ -35,7 +35,8 @@ HEADERS += \
     Snapshot/Snapshot.hpp \
     Video/Video.hpp \
     Video/BackgroundSubtraction.hpp \
-    Event/Event.hpp
+    Event/Event.hpp \
+    player.hpp
 
 #unix:!symbian {
 #    maemo5 {

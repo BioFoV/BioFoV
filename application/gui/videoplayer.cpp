@@ -26,7 +26,7 @@ void VideoPlayer::play(){
     if(!stepForward()){
         timer.stop();
     }
-    ui->posSlider->setValue(currentVid->getFramePos());
+    ui->posSlider->setValue(currentPlayer->getFramePos());
 }
 
 void VideoPlayer::pause(){
@@ -47,7 +47,7 @@ void VideoPlayer::playOrPause(){
 
 bool VideoPlayer::stepBack(){
     cv::Mat _tmp2;
-    if(currentVid->getPrevFrame(_tmp2)) {
+    if(currentPlayer->getPrevFrame(_tmp2)) {
         showImage(_tmp2);
         return true;
     } else {
@@ -59,7 +59,7 @@ bool VideoPlayer::stepBack(){
 bool VideoPlayer::stepForward(){
     cv::Mat _tmp2;
     // Check if there is a next frame
-    if(currentVid->get_frame(_tmp2)) {
+    if(currentPlayer->get_frame(_tmp2)) {
         showImage(_tmp2);
         return true;
     } else {
@@ -69,7 +69,7 @@ bool VideoPlayer::stepForward(){
 }
 
 void VideoPlayer::goTo(double nthFrame){
-    currentVid->setFramePos(nthFrame);
+    currentPlayer->setFramePos(nthFrame);
     stepForward();
 }
 
@@ -86,18 +86,18 @@ void VideoPlayer::loadVid(std::string filename){
 void VideoPlayer::loadVid(Video* nextVid){
     pause();
     unload();
-    currentVid = nextVid;
+    currentPlayer = nextVid;
     stepForward();
-    FPS = currentVid->getFPS();
-    frameInt = currentVid->getFrameInt();
+    FPS = currentPlayer->getFPS();
+    frameInt = currentPlayer->getFrameInt();
     qDebug("loaded video to player");
     qDebug("FPS = %f",FPS);
     qDebug("Frame interval = %f",frameInt);
     timer.setInterval(frameInt);
-    ui->posSlider->setMaximum(currentVid->getLengthFrames());
-    qDebug("length %f", currentVid->getLengthTime());
+    ui->posSlider->setMaximum(currentPlayer->getLengthFrames());
+    qDebug("length %f", currentPlayer->getLengthTime());
     // Using 1/10th of the video as page step
-    ui->posSlider->setPageStep(currentVid->getLengthFrames()/10);
+    ui->posSlider->setPageStep(currentPlayer->getLengthFrames()/10);
     speed = 1;
     ui->speedSlider->setValue(speed*10);
 }
