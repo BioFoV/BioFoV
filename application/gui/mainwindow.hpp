@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QFileDialog>
 #include <QListWidget>
+#include <QListWidgetItem>
 
 #ifndef INC_ABOUT
 #define INC_ABOUT
@@ -35,18 +36,20 @@ public:
 private slots:
     void on_actionAdd_Video_File_triggered();
     void openAbout();
-
     void on_playButton_clicked();
-
     void on_videoList_itemDoubleClicked(QListWidgetItem *item);
-
     void on_stepButton_clicked();
-
     void on_rewindButton_clicked();
 
 private:
-	Ui::MainWindow *ui;
-    QList<Video*> videos;
+    Ui::MainWindow *ui;
+};
+
+class VideoItem : public QListWidgetItem
+{
+public:
+    VideoItem(QString filename);
+    Video *vid;
 };
 
 #endif // MAINWINDOW_H

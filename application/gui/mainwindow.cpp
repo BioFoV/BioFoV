@@ -25,7 +25,7 @@ MainWindow::~MainWindow()
  ******************************************************************************/
 void MainWindow::on_actionAdd_Video_File_triggered()
 {
-    Video * last = NULL;
+    VideoItem * last = NULL;
     QFileDialog getFileDialog(this);
     getFileDialog.setDirectory(QDir::homePath());
     getFileDialog.setFileMode(QFileDialog::ExistingFiles);
@@ -37,14 +37,13 @@ void MainWindow::on_actionAdd_Video_File_triggered()
         fileNames = getFileDialog.selectedFiles();
         if (fileNames.isEmpty()) {return;} // No file name provided
         foreach (QString fileName, fileNames) {
-            ui->videoList->addItem(fileName);
-            last = new Video(fileName.toStdString());
-            videos.append(last);
+            last = new VideoItem(fileName);
+            ui->videoList->addItem(last);
         }
         if(last != NULL) {
             ui->player->pause();
             ui->player->unload();
-            ui->player->loadVid(last);
+            ui->player->loadVid(last->vid);
         }
     } else {
         qDebug("Failed to open FileDialog window");
@@ -60,8 +59,10 @@ void MainWindow::openAbout()
 
 void MainWindow::on_videoList_itemDoubleClicked(QListWidgetItem *item)
 {
-    std::string filename = item->text().toStdString();
-    ui->player->loadVid(filename);
+    VideoItem * vitem = (VideoItem *) item;
+    ui->player->pause();
+    ui->player->unload();
+    ui->player->loadVid(vitem->vid);
 }
 
 /*******************************************************************************
@@ -82,3 +83,10 @@ void MainWindow::on_stepButton_clicked()
     ui->player->stepForward();
 }
 
+/*******************************************************************************
+ * VideoItem functions
+ ******************************************************************************/
+VideoItem::VideoItem(QString filename){
+    setText(filename);
+    vid = new Video(filename.toStdString());
+}
