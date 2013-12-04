@@ -133,12 +133,14 @@ void VideoPlayer::paintEvent(QPaintEvent* /*event*/) {
  ******************************************************************************/
 void VideoPlayer::on_posSlider_sliderPressed()
 {
-    pause();
+    if(isplaying)
+        timer.stop();
 }
 
 void VideoPlayer::on_posSlider_sliderReleased()
 {
-    playOrPause();
+    if(isplaying)
+        timer.start();
 }
 
 void VideoPlayer::on_posSlider_sliderMoved(int position)
