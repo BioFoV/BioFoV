@@ -17,14 +17,16 @@ SOURCES += \
     about.cpp \
     mainwindow.cpp \
     videoplayer.cpp \
-    videoitem.cpp
+    videoitem.cpp \
+    eventitem.cpp
 
 # reset headers
 HEADERS += \
     about.hpp \
     mainwindow.hpp \
     videoplayer.hpp \
-    videoitem.hpp
+    videoitem.hpp \
+    eventitem.hpp
 
 FORMS    += $$files(*.ui)
 
