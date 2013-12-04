@@ -65,10 +65,15 @@ void MainWindow::on_videoList_itemDoubleClicked(QListWidgetItem *item)
 void MainWindow::on_actionAuto_Detect_Events_triggered()
 {
     VideoItem* videoiter;
+    std::list<Event*> events;
     qDebug("Going through all videos");
     for (int i = 0; i < ui->videoList->count(); i++){
         videoiter = (VideoItem*) ui->videoList->item(i);
         qDebug("Video %d",i);
-        videoiter->getVideo()->autoDetectEvents();
+
+        events = videoiter->getVideo()->autoDetectEvents();
+        for (unsigned int j = 0; j < events.size(); j++){
+            qDebug(" Event %d",j);
+        }
     }
 }

@@ -132,6 +132,7 @@ std::list<Event*> Video::autoDetectEvents(){
     cv::Mat shot;
     Frame *frame;
     Snapshot *snap;
+    Event *event = new Event(); // new empty event
 
     // Initialization of background subtraction
     bgSubInit(1000, 2, 1);
@@ -144,6 +145,9 @@ std::list<Event*> Video::autoDetectEvents(){
         snap = new Snapshot(frame, bg->Foreground());
         frame->setSnapshot(snap);
         frames.push_back(frame);
+        event->addFrame(frame);
     }
+
+    events.push_back(event);
     return events;
 }

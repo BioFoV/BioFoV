@@ -33,11 +33,12 @@ class Event{
 private:
 	// external references
 	Video* vid;
-	std::list<Frame> frames;
-	std::list<Individual> individuals;
+    std::list<Frame*> frames;
+    std::list<Individual*> individuals;
 	
 public:
 	// Constructor
 	Event();
+    void addFrame(Frame* inframe);
 };
 #endif 
