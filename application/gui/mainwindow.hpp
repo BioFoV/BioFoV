@@ -38,6 +38,8 @@ private slots:
     void openAbout();
     void on_videoList_itemDoubleClicked(QListWidgetItem *item);
 
+    void on_actionAuto_Detect_Events_triggered();
+
 private:
     Ui::MainWindow *ui;
 };

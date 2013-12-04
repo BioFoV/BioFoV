@@ -23,6 +23,7 @@
 
 class Frame;
 class Individual;
+class Video;
 
 /*
  * Class that represents a contiguous set of frames with something

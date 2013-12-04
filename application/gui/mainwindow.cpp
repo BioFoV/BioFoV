@@ -61,3 +61,8 @@ void MainWindow::on_videoList_itemDoubleClicked(QListWidgetItem *item)
     ui->player->loadVid(vitem->getVideo());
 }
 
+
+void MainWindow::on_actionAuto_Detect_Events_triggered()
+{
+
+}

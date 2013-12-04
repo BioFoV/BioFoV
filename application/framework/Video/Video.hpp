@@ -17,6 +17,11 @@
 #include "BackgroundSubtraction.hpp"
 #endif
 
+#ifndef INC_EVENT
+#define INC_EVENT
+#include "../Event/Event.hpp"
+#endif
+
 #ifndef INC_LIST
 #define INC_LIST
 #include <list>
@@ -28,6 +33,7 @@
 #endif
 
 class Frame;
+class Event;
 
 /*
  * Class that holds the VideoCapture handler and that provides frames
@@ -73,5 +79,8 @@ public:
 	// BackgroundSubtraction functions
 	void bgSubInit(int hist, int varThresh, bool bShadowDet);
 	void bgSubDelete();
+
+    // Event autoDetection
+    std::list<Event> autoDetectEvents();
 };
 #endif
