@@ -171,3 +171,21 @@ void VideoPlayer::on_speedSlider_sliderMoved(int position)
     speed = position/10.0;
     timer.setInterval(frameInt/speed);
 }
+
+/*******************************************************************************
+ * Playback button hadlers
+ ******************************************************************************/
+void VideoPlayer::on_rewindButton_clicked()
+{
+    stepBack();
+}
+
+void VideoPlayer::on_playButton_clicked()
+{
+    playOrPause();
+}
+
+void VideoPlayer::on_stepButton_clicked()
+{
+    stepForward();
+}

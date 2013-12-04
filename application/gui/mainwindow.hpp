@@ -36,10 +36,7 @@ public:
 private slots:
     void on_actionAdd_Video_File_triggered();
     void openAbout();
-    void on_playButton_clicked();
     void on_videoList_itemDoubleClicked(QListWidgetItem *item);
-    void on_stepButton_clicked();
-    void on_rewindButton_clicked();
 
 private:
     Ui::MainWindow *ui;

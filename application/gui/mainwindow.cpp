@@ -66,24 +66,6 @@ void MainWindow::on_videoList_itemDoubleClicked(QListWidgetItem *item)
 }
 
 /*******************************************************************************
- * Playback button hadlers
- ******************************************************************************/
-void MainWindow::on_rewindButton_clicked()
-{
-    ui->player->stepBack();
-}
-
-void MainWindow::on_playButton_clicked()
-{
-    ui->player->playOrPause();
-}
-
-void MainWindow::on_stepButton_clicked()
-{
-    ui->player->stepForward();
-}
-
-/*******************************************************************************
  * VideoItem functions
  ******************************************************************************/
 VideoItem::VideoItem(QString filename){
