@@ -15,7 +15,7 @@ Frame::Frame(Video *source_vid){
 
 Frame::Frame(Video *source_vid, cv::Mat shot){
     vid = source_vid;
-    image = shot;
+    image = shot.clone();
     snap = NULL;
 }
 

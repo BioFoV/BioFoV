@@ -21,6 +21,11 @@
 #include "../player.hpp"
 #endif
 
+#ifndef INC_STDEXCEPT
+#define INC_STDEXCEPT
+#include <stdexcept>
+#endif
+
 class Frame;
 class Individual;
 class Video;

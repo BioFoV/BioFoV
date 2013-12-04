@@ -52,6 +52,7 @@ bool VideoPlayer::stepBack(){
         return true;
     } else {
         qDebug("could not get frame");
+        pause();
         return false;
     }
 }
@@ -64,6 +65,7 @@ bool VideoPlayer::stepForward(){
         return true;
     } else {
         qDebug("could not get frame");
+        pause();
         return false;
     }
 }

@@ -37,7 +37,14 @@ double Event::getFramePos(){
 }
 
 bool Event::getFrame(cv::Mat &frame){
-    Frame *tmpFrame = frames.at(position);
+    Frame *tmpFrame;
+    try {
+        tmpFrame = frames.at(position);
+    }
+    catch (const std::out_of_range& oor) {
+        return false;
+    }
+
     frame = tmpFrame->getImage();
     if (frame.empty())
         return false;
