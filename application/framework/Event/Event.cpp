@@ -37,27 +37,33 @@ void Event::setFPS(double infps){
 std::list<Event*> Event::splitEvent(double threshold, double maxcount){
     double fTotal = getLengthFrames();
     std::list<Event*> events;
-    Event* newEvent;
-    int i=0;
-    int j=1;
+    Event* newEvent = NULL;
+    int j=0;
     int count=0;
     int value;
 
     while(j < fTotal){
         value = cv::countNonZero(snapshots.at(j)->getMask());
+
+        // Detected change
         if ( value > threshold ){
-            count ++;
-            if(count > maxcount){
+            if (newEvent == NULL){
                 newEvent = new Event();
                 newEvent->setFPS(getFPS());
-                for (int k=i; k<j; k++){
-                    newEvent->addFrame(frames.at(k));
-                    newEvent->addSnapshot(snapshots.at(k));
+            }
+            newEvent->addFrame(frames.at(j));
+            newEvent->addSnapshot(snapshots.at(j));
+            count = 0;
+        }
+        // Did not detect change
+        else {
+            if (newEvent != NULL){
+                count ++;
+                if(count > maxcount){
+                    events.push_back(newEvent);
+                    newEvent = NULL;
+                    count = 0;
                 }
-                events.push_back(newEvent);
-                // next event
-                count = 0;
-                i = j;
             }
         }
         j++;

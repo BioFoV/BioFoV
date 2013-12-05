@@ -108,7 +108,7 @@ void MainWindow::on_actionAuto_Split_triggered()
     Event* event;
     foreach(QListWidgetItem* item, ui->eventList->selectedItems()){
         eventIt = (EventItem *) item;
-        events = eventIt->getEvent()->splitEvent(1000,3);
+        events = eventIt->getEvent()->splitEvent(100,3);
         foreach(event, events){
             newEventIt = new EventItem;
             newEventIt->setEvent(event);
