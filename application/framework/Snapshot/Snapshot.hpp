@@ -12,6 +12,8 @@
 #include "../Frame/Frame.hpp"
 #endif
 
+#define SNAP_EXT ".snap.png"
+
 /*
  * Class that associated with a Frame represents an area of interest in
  * a frame.
@@ -23,12 +25,15 @@ private:
 	// external references
 	Frame *image;
 	// class data
-	cv::Mat mask;
+    std::string filename;
 	
 public:
 	// Constructors
 	Snapshot();
 	Snapshot(Frame *img);
     Snapshot(Frame *img, cv::Mat inmask);
+
+    // Functions
+    cv::Mat getMask();
 };
 #endif
