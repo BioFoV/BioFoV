@@ -47,6 +47,11 @@ private:
 public:
 	// Constructor
 	Event();
+
+    // Destructor
+    ~Event();
+
+    // Functions
     void addFrame(Frame* inframe);
     void setFPS(double infps);
 
