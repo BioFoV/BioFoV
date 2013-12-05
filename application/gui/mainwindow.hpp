@@ -49,6 +49,8 @@ private slots:
 
     void on_action_Remove_From_Project_triggered();
 
+    void on_actionDeleteEvent_triggered();
+
 private:
     Ui::MainWindow *ui;
 };

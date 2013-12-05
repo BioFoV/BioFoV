@@ -91,3 +91,8 @@ void MainWindow::on_action_Remove_From_Project_triggered()
 {
     qDeleteAll(ui->videoList->selectedItems());
 }
+
+void MainWindow::on_actionDeleteEvent_triggered()
+{
+    qDeleteAll(ui->eventList->selectedItems());
+}

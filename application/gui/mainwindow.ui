@@ -25,7 +25,7 @@
         <item>
          <widget class="QToolBox" name="itemToolBox">
           <property name="currentIndex">
-           <number>2</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="videoPage">
            <property name="geometry">
@@ -61,7 +61,7 @@
                <enum>QFrame::Plain</enum>
               </property>
               <property name="selectionMode">
-               <enum>QAbstractItemView::MultiSelection</enum>
+               <enum>QAbstractItemView::ExtendedSelection</enum>
               </property>
              </widget>
             </item>
@@ -101,7 +101,7 @@
                <enum>QFrame::Plain</enum>
               </property>
               <property name="selectionMode">
-               <enum>QAbstractItemView::MultiSelection</enum>
+               <enum>QAbstractItemView::ExtendedSelection</enum>
               </property>
              </widget>
             </item>
@@ -141,7 +141,7 @@
                <enum>QFrame::Plain</enum>
               </property>
               <property name="selectionMode">
-               <enum>QAbstractItemView::MultiSelection</enum>
+               <enum>QAbstractItemView::ExtendedSelection</enum>
               </property>
              </widget>
             </item>
