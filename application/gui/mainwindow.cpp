@@ -86,3 +86,8 @@ void MainWindow::on_eventList_itemDoubleClicked(QListWidgetItem *item)
     EventItem * eItem = (EventItem *) item;
     ui->player->loadVid(eItem->getEvent());
 }
+
+void MainWindow::on_action_Remove_From_Project_triggered()
+{
+    qDeleteAll(ui->videoList->selectedItems());
+}

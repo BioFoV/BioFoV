@@ -25,14 +25,14 @@
         <item>
          <widget class="QToolBox" name="itemToolBox">
           <property name="currentIndex">
-           <number>0</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="videoPage">
            <property name="geometry">
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>386</width>
+             <width>767</width>
              <height>192</height>
             </rect>
            </property>
@@ -60,6 +60,9 @@
               <property name="frameShadow">
                <enum>QFrame::Plain</enum>
               </property>
+              <property name="selectionMode">
+               <enum>QAbstractItemView::MultiSelection</enum>
+              </property>
              </widget>
             </item>
            </layout>
@@ -69,7 +72,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>386</width>
+             <width>767</width>
              <height>192</height>
             </rect>
            </property>
@@ -97,6 +100,9 @@
               <property name="frameShadow">
                <enum>QFrame::Plain</enum>
               </property>
+              <property name="selectionMode">
+               <enum>QAbstractItemView::MultiSelection</enum>
+              </property>
              </widget>
             </item>
            </layout>
@@ -106,7 +112,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>386</width>
+             <width>767</width>
              <height>192</height>
             </rect>
            </property>
@@ -133,6 +139,9 @@
               </property>
               <property name="frameShadow">
                <enum>QFrame::Plain</enum>
+              </property>
+              <property name="selectionMode">
+               <enum>QAbstractItemView::MultiSelection</enum>
               </property>
              </widget>
             </item>

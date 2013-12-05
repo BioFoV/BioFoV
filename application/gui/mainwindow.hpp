@@ -47,6 +47,8 @@ private slots:
 
     void on_eventList_itemDoubleClicked(QListWidgetItem *item);
 
+    void on_action_Remove_From_Project_triggered();
+
 private:
     Ui::MainWindow *ui;
 };
