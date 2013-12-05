@@ -30,5 +30,7 @@ public:
 	Snapshot();
 	Snapshot(Frame *img);
     Snapshot(Frame *img, cv::Mat inmask);
+
+    cv::Mat getMask();
 };
 #endif

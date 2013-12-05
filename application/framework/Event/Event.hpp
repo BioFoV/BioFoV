@@ -16,6 +16,11 @@
 #include "../Individual/Individual.hpp"
 #endif
 
+#ifndef INC_SNAPSHOT
+#define INC_SNAPSHOT
+#include "../Snapshot/Snapshot.hpp"
+#endif
+
 #ifndef INC_PLAYER
 #define INC_PLAYER
 #include "../player.hpp"
@@ -26,7 +31,13 @@
 #include <stdexcept>
 #endif
 
+#ifndef INC_LIST
+#define INC_LIST
+#include <list>
+#endif
+
 class Frame;
+class Snapshot;
 class Individual;
 class Video;
 
@@ -40,15 +51,19 @@ private:
 	Video* vid;
     std::deque<Frame*> frames;
     std::deque<Individual*> individuals;
-	
+    std::deque<Snapshot*> snapshots;
+
     // player variables
     double position;
     double fps;
 public:
 	// Constructor
 	Event();
-    void addFrame(Frame* inframe);
+    void addFrame(Frame* inFrame);
+    void addSnapshot(Snapshot* inSnap);
     void setFPS(double infps);
+
+    std::list<Event*> splitEvent(double threshold, double maxcount);
 
     // Capture functions
     bool check_cap();

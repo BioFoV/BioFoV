@@ -99,3 +99,23 @@ void MainWindow::on_actionDeleteEvent_triggered()
 {
     qDeleteAll(ui->eventList->selectedItems());
 }
+
+void MainWindow::on_actionAuto_Split_triggered()
+{
+    EventItem* eventIt;
+    EventItem* newEventIt;
+    std::list<Event*> events;
+    Event* event;
+    foreach(QListWidgetItem* item, ui->eventList->selectedItems()){
+        eventIt = (EventItem *) item;
+        events = eventIt->getEvent()->splitEvent(1000,3);
+        foreach(event, events){
+            newEventIt = new EventItem;
+            newEventIt->setEvent(event);
+            newEventIt->setText(QString("Event %1").arg(nEvent));
+            nEvent ++;
+            ui->eventList->addItem(newEventIt);
+        }
+        ui->eventList->removeItemWidget(item);
+    }
+}

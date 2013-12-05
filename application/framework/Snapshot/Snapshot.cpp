@@ -13,5 +13,9 @@ Snapshot::Snapshot(Frame *img){
 
 Snapshot::Snapshot(Frame *img, cv::Mat inmask){
     image = img;
-    mask = inmask;
+    mask = inmask.clone();
+}
+
+cv::Mat Snapshot::getMask(){
+    return mask;
 }
