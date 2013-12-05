@@ -138,6 +138,7 @@ void VideoPlayer::showImage(const cv::Mat& image){
 void VideoPlayer::paintEvent(QPaintEvent* /*event*/) {
     // Display the image
     QPainter painter(this);
+    _qimage = QImage(_tmp.data, _tmp.cols, _tmp.rows, _tmp.cols*3, QImage::Format_RGB888);
     if (!_qimage.isNull()){
         _qimage = _qimage.scaled(ui->player->size().width(),ui->player->size().height(),Qt::KeepAspectRatio);
         painter.drawImage(QPoint(0,0), _qimage);
