@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->actionAbout, SIGNAL(triggered()), this, SLOT(openAbout()));
+    nEvent = 0;
 }
 
 /*******************************************************************************
@@ -76,6 +77,8 @@ void MainWindow::on_actionAuto_Detect_Events_triggered()
             qDebug(" Event %d",j);
             newEvent = new EventItem();
             newEvent->setEvent(events.at(j));
+            newEvent->setText(QString("Event %1").arg(nEvent));
+            nEvent ++;
             ui->eventList->addItem(newEvent);
         }
     }

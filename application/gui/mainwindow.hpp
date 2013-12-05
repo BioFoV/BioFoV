@@ -53,6 +53,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    int nEvent;
 };
 
 #endif // MAINWINDOW_H
