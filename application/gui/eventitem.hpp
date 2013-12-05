@@ -11,8 +11,14 @@
 class EventItem : public QListWidgetItem
 {
 public:
+    // Constructors
     explicit EventItem(QListWidget *parent = 0);
     EventItem(QString eventname, QListWidget *parent = 0);
+
+    // Destructors
+    ~EventItem();
+
+    // Functions
     Event* getEvent();
     void setEvent(Event* inevent);
 private:

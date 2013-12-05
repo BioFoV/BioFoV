@@ -97,12 +97,5 @@ void MainWindow::on_action_Remove_From_Project_triggered()
 
 void MainWindow::on_actionDeleteEvent_triggered()
 {
-    EventItem* eItem;
-    QListWidgetItem* item;
-    foreach(item, ui->eventList->selectedItems()){
-        eItem = (EventItem*) item;
-        delete eItem->getEvent();
-    }
-
     qDeleteAll(ui->eventList->selectedItems());
 }

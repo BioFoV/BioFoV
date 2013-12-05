@@ -11,8 +11,11 @@
 class VideoItem : public QListWidgetItem
 {
 public:
+    // Constructors
     explicit VideoItem(QListWidget *parent = 0);
     VideoItem(QString filename, QListWidget *parent = 0);
+
+    // Functions
     Video* getVideo();
 
 private:
