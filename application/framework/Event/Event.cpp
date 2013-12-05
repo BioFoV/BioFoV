@@ -22,12 +22,47 @@ Event::~Event(){
 /*******************************************************************************
  * Functions
  ******************************************************************************/
-void Event::addFrame(Frame* inframe){
-    frames.push_back(inframe);
+void Event::addFrame(Frame* inFrame){
+    frames.push_back(inFrame);
+}
+
+void Event::addSnapshot(Snapshot* inSnap){
+    snapshots.push_back(inSnap);
 }
 
 void Event::setFPS(double infps){
     fps = infps;
+}
+
+std::list<Event*> Event::splitEvent(double threshold, double maxcount){
+    double fTotal = getLengthFrames();
+    std::list<Event*> events;
+    Event* newEvent;
+    int i=0;
+    int j=1;
+    int count=0;
+    int value;
+
+    while(j < fTotal){
+        value = cv::countNonZero(snapshots.at(j)->getMask());
+        if ( value > threshold ){
+            count ++;
+            if(count > maxcount){
+                newEvent = new Event();
+                newEvent->setFPS(getFPS());
+                for (int k=i; k<j; k++){
+                    newEvent->addFrame(frames.at(k));
+                    newEvent->addSnapshot(snapshots.at(k));
+                }
+                events.push_back(newEvent);
+                // next event
+                count = 0;
+                i = j;
+            }
+        }
+        j++;
+    }
+    return events;
 }
 
 /*******************************************************************************

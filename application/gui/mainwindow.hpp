@@ -51,6 +51,8 @@ private slots:
 
     void on_actionDeleteEvent_triggered();
 
+    void on_actionAuto_Split_triggered();
+
 private:
     Ui::MainWindow *ui;
     int nEvent;

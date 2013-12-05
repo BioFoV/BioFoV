@@ -72,8 +72,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>86</width>
-             <height>70</height>
+             <width>767</width>
+             <height>192</height>
             </rect>
            </property>
            <attribute name="label">
@@ -112,8 +112,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>86</width>
-             <height>70</height>
+             <width>767</width>
+             <height>192</height>
             </rect>
            </property>
            <attribute name="label">
@@ -228,6 +228,7 @@
     <addaction name="actionDeleteEvent"/>
     <addaction name="separator"/>
     <addaction name="actionAuto_Detect_Events"/>
+    <addaction name="actionAuto_Split"/>
    </widget>
    <widget class="QMenu" name="menuIndividual">
     <property name="title">
@@ -346,6 +347,11 @@
   <action name="actionAuto_Detect_Individuals">
    <property name="text">
     <string>Auto Detect</string>
+   </property>
+  </action>
+  <action name="actionAuto_Split">
+   <property name="text">
+    <string>Auto Split</string>
    </property>
   </action>
  </widget>

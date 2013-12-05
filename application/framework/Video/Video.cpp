@@ -148,6 +148,7 @@ std::deque<Event*> Video::autoDetectEvents(){
         frame->setSnapshot(snap);
         frames.push_back(frame);
         event->addFrame(frame);
+        event->addSnapshot(snap);
         event->setFPS(getFPS());
     }
 

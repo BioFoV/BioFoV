@@ -33,6 +33,6 @@ Snapshot::~Snapshot(){
  * Functions
  ******************************************************************************/
 cv::Mat Snapshot::getMask(){
-    cv::Mat mask = cv::imread(filename);
+    cv::Mat mask = cv::imread(filename, 0);
     return mask;
 }
