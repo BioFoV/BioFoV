@@ -14,8 +14,13 @@ Frame::Frame(Video *source_vid){
 }
 
 Frame::Frame(Video *source_vid, cv::Mat shot){
+    const void * address = static_cast<const void*>(this);
+    std::stringstream ss;
+    ss << address;
+    filename = ss.str() + IMG_EXT;
+
     vid = source_vid;
-    image = shot.clone();
+    cv::imwrite( filename, shot );
     snap = NULL;
 }
 
@@ -23,7 +28,7 @@ Frame::Frame(Video *source_vid, cv::Mat shot){
  * Functions
  ******************************************************************************/
 void Frame::setImage(cv::Mat shot){
-    image = shot;
+    imwrite( filename, shot);
 }
 
 void Frame::setSnapshot(Snapshot *insnap){
@@ -31,5 +36,6 @@ void Frame::setSnapshot(Snapshot *insnap){
 }
 
 cv::Mat Frame::getImage(){
+    cv::Mat image = cv::imread(filename);
     return image;
 }

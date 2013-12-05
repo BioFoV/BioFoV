@@ -17,6 +17,8 @@
 #include "../Snapshot/Snapshot.hpp"
 #endif
 
+#define IMG_EXT ".image.png"
+
 class Video;
 class Snapshot;
 
@@ -28,7 +30,7 @@ private:
 	// external references
 	Video *vid;
 	// class data
-	cv::Mat image;
+    std::string filename;
     Snapshot * snap;
 	
 public:
