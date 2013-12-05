@@ -137,6 +137,8 @@ std::deque<Event*> Video::autoDetectEvents(){
     // Initialization of background subtraction
     bgSubInit(1000, 50, false);
 
+    setFramePos(0);
+
     while(getFrame(shot)){
         bg->NewFrame(shot);
 
