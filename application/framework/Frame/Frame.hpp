@@ -17,6 +17,11 @@
 #include "../Snapshot/Snapshot.hpp"
 #endif
 
+#ifndef INC_STDIO
+#define INC_STDIO
+#include <stdio.h>
+#endif
+
 #define IMG_EXT ".image.png"
 
 class Video;
@@ -38,6 +43,11 @@ public:
 	Frame();
     Frame(Video *source_vid);
     Frame(Video *source_vid, cv::Mat shot);
+
+    // Destructor
+    ~Frame();
+
+    // Functions
     void setImage(cv::Mat shot);
     void setSnapshot(Snapshot *insnap);
     cv::Mat getImage();

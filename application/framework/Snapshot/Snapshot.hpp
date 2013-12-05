@@ -12,6 +12,11 @@
 #include "../Frame/Frame.hpp"
 #endif
 
+#ifndef INC_STDIO
+#define INC_STDIO
+#include <stdio.h>
+#endif
+
 #define SNAP_EXT ".snap.png"
 
 /*
@@ -32,6 +37,7 @@ public:
 	Snapshot();
 	Snapshot(Frame *img);
     Snapshot(Frame *img, cv::Mat inmask);
+    ~Snapshot();
 
     // Functions
     cv::Mat getMask();
