@@ -14,6 +14,7 @@ Frame::Frame(Video *source_vid){
 }
 
 Frame::Frame(Video *source_vid, cv::Mat shot){
+    // use image address as filename to ensure there are no clashes
     const void * address = static_cast<const void*>(this);
     std::stringstream ss;
     ss << address;
