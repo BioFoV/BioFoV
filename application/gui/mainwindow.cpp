@@ -40,6 +40,7 @@ void MainWindow::on_actionAdd_Video_File_triggered()
         foreach (QString fileName, fileNames) {
             last = new VideoItem(fileName);
             last->setText(0,fileName);
+            last->setText(1,TAG_VIDEO);
             ui->videoList->addTopLevelItem(last);
         }
         if(last != NULL) {
@@ -72,9 +73,10 @@ void MainWindow::on_actionAuto_Detect_Events_triggered()
             qDebug(" Event %d",j);
             newEvent = new EventItem();
             newEvent->setEvent(events.at(j));
-            newEvent->setText(0,QString("Event %1").arg(nEvent));
+            newEvent->setText(0,QString("E%1").arg(nEvent));
+            newEvent->setText(1, TAG_EVENT);
             nEvent ++;
-            ui->eventList->addTopLevelItem(newEvent);
+            videoiter->addChild(newEvent);
         }
     }
 }
@@ -86,7 +88,7 @@ void MainWindow::on_action_Remove_From_Project_triggered()
 
 void MainWindow::on_actionDeleteEvent_triggered()
 {
-    qDeleteAll(ui->eventList->selectedItems());
+    qDeleteAll(ui->videoList->selectedItems());
 }
 
 void MainWindow::on_actionAuto_Split_triggered()
@@ -95,17 +97,18 @@ void MainWindow::on_actionAuto_Split_triggered()
     EventItem* newEventIt;
     std::list<Event*> events;
     Event* event;
-    foreach(QTreeWidgetItem* item, ui->eventList->selectedItems()){
+    foreach(QTreeWidgetItem* item, ui->videoList->selectedItems()){
         eventIt = (EventItem *) item;
         events = eventIt->getEvent()->splitEvent(200,3);
         foreach(event, events){
             newEventIt = new EventItem;
             newEventIt->setEvent(event);
-            newEventIt->setText(0, QString("Event %1").arg(nEvent));
+            newEventIt->setText(0, QString("E%1").arg(nEvent));
+            newEventIt->setText(1, TAG_EVENT );
             nEvent ++;
-            ui->eventList->addTopLevelItem(newEventIt);
+            eventIt->parent()->addChild(newEventIt);
         }
-        ui->eventList->removeItemWidget(item,1);
+        ui->videoList->removeItemWidget(item,0);
     }
 }
 

@@ -25,7 +25,7 @@
         <item>
          <widget class="QToolBox" name="itemToolBox">
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="videoPage">
            <property name="geometry">
@@ -54,45 +54,17 @@
             </property>
             <item>
              <widget class="QTreeWidget" name="videoList">
+              <property name="columnCount">
+               <number>2</number>
+              </property>
               <column>
                <property name="text">
-                <string notr="true">1</string>
+                <string>Name</string>
                </property>
               </column>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="eventPage">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>769</width>
-             <height>192</height>
-            </rect>
-           </property>
-           <attribute name="label">
-            <string>Events</string>
-           </attribute>
-           <layout class="QVBoxLayout" name="verticalLayout_2">
-            <property name="leftMargin">
-             <number>0</number>
-            </property>
-            <property name="topMargin">
-             <number>0</number>
-            </property>
-            <property name="rightMargin">
-             <number>0</number>
-            </property>
-            <property name="bottomMargin">
-             <number>0</number>
-            </property>
-            <item>
-             <widget class="QTreeWidget" name="eventList">
               <column>
                <property name="text">
-                <string notr="true">1</string>
+                <string>Type</string>
                </property>
               </column>
              </widget>
