@@ -25,14 +25,14 @@
         <item>
          <widget class="QToolBox" name="itemToolBox">
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="videoPage">
            <property name="geometry">
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>767</width>
+             <width>769</width>
              <height>192</height>
             </rect>
            </property>
@@ -53,16 +53,12 @@
              <number>0</number>
             </property>
             <item>
-             <widget class="QListWidget" name="videoList">
-              <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
-              </property>
-              <property name="frameShadow">
-               <enum>QFrame::Plain</enum>
-              </property>
-              <property name="selectionMode">
-               <enum>QAbstractItemView::ExtendedSelection</enum>
-              </property>
+             <widget class="QTreeWidget" name="videoList">
+              <column>
+               <property name="text">
+                <string notr="true">1</string>
+               </property>
+              </column>
              </widget>
             </item>
            </layout>
@@ -72,7 +68,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>767</width>
+             <width>769</width>
              <height>192</height>
             </rect>
            </property>
@@ -93,16 +89,12 @@
              <number>0</number>
             </property>
             <item>
-             <widget class="QListWidget" name="eventList">
-              <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
-              </property>
-              <property name="frameShadow">
-               <enum>QFrame::Plain</enum>
-              </property>
-              <property name="selectionMode">
-               <enum>QAbstractItemView::ExtendedSelection</enum>
-              </property>
+             <widget class="QTreeWidget" name="eventList">
+              <column>
+               <property name="text">
+                <string notr="true">1</string>
+               </property>
+              </column>
              </widget>
             </item>
            </layout>
@@ -112,7 +104,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>767</width>
+             <width>769</width>
              <height>192</height>
             </rect>
            </property>

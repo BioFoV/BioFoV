@@ -39,7 +39,8 @@ void MainWindow::on_actionAdd_Video_File_triggered()
         if (fileNames.isEmpty()) {return;} // No file name provided
         foreach (QString fileName, fileNames) {
             last = new VideoItem(fileName);
-            ui->videoList->addItem(last);
+            last->setText(0,fileName);
+            ui->videoList->addTopLevelItem(last);
         }
         if(last != NULL) {
             ui->player->loadVid(last->getVideo());
@@ -56,20 +57,14 @@ void MainWindow::openAbout()
     about.exec();
 }
 
-void MainWindow::on_videoList_itemDoubleClicked(QListWidgetItem *item)
-{
-    VideoItem * vItem = (VideoItem *) item;
-    ui->player->loadVid(vItem->getVideo());
-}
-
 void MainWindow::on_actionAuto_Detect_Events_triggered()
 {
     VideoItem* videoiter;
     std::deque<Event*> events;
     EventItem* newEvent;
     qDebug("Going through all videos");
-    for (int i = 0; i < ui->videoList->count(); i++){
-        videoiter = (VideoItem*) ui->videoList->item(i);
+    for (int i = 0; i < ui->videoList->topLevelItemCount(); i++){
+        videoiter = (VideoItem*) ui->videoList->topLevelItem(i);
         qDebug("Video %d",i);
 
         events = videoiter->getVideo()->autoDetectEvents();
@@ -77,17 +72,11 @@ void MainWindow::on_actionAuto_Detect_Events_triggered()
             qDebug(" Event %d",j);
             newEvent = new EventItem();
             newEvent->setEvent(events.at(j));
-            newEvent->setText(QString("Event %1").arg(nEvent));
+            newEvent->setText(0,QString("Event %1").arg(nEvent));
             nEvent ++;
-            ui->eventList->addItem(newEvent);
+            ui->eventList->addTopLevelItem(newEvent);
         }
     }
-}
-
-void MainWindow::on_eventList_itemDoubleClicked(QListWidgetItem *item)
-{
-    EventItem * eItem = (EventItem *) item;
-    ui->player->loadVid(eItem->getEvent());
 }
 
 void MainWindow::on_action_Remove_From_Project_triggered()
@@ -106,16 +95,28 @@ void MainWindow::on_actionAuto_Split_triggered()
     EventItem* newEventIt;
     std::list<Event*> events;
     Event* event;
-    foreach(QListWidgetItem* item, ui->eventList->selectedItems()){
+    foreach(QTreeWidgetItem* item, ui->eventList->selectedItems()){
         eventIt = (EventItem *) item;
-        events = eventIt->getEvent()->splitEvent(100,3);
+        events = eventIt->getEvent()->splitEvent(200,3);
         foreach(event, events){
             newEventIt = new EventItem;
             newEventIt->setEvent(event);
-            newEventIt->setText(QString("Event %1").arg(nEvent));
+            newEventIt->setText(0, QString("Event %1").arg(nEvent));
             nEvent ++;
-            ui->eventList->addItem(newEventIt);
+            ui->eventList->addTopLevelItem(newEventIt);
         }
-        ui->eventList->removeItemWidget(item);
+        ui->eventList->removeItemWidget(item,1);
     }
+}
+
+void MainWindow::on_eventList_itemDoubleClicked(QTreeWidgetItem *item, int column)
+{
+    EventItem * eItem = (EventItem *) item;
+    ui->player->loadVid(eItem->getEvent());
+}
+
+void MainWindow::on_videoList_itemDoubleClicked(QTreeWidgetItem *item, int column)
+{
+    VideoItem * vItem = (VideoItem *) item;
+    ui->player->loadVid(vItem->getVideo());
 }

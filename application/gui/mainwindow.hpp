@@ -41,17 +41,19 @@ public:
 private slots:
     void on_actionAdd_Video_File_triggered();
     void openAbout();
-    void on_videoList_itemDoubleClicked(QListWidgetItem *item);
 
     void on_actionAuto_Detect_Events_triggered();
 
-    void on_eventList_itemDoubleClicked(QListWidgetItem *item);
 
     void on_action_Remove_From_Project_triggered();
 
     void on_actionDeleteEvent_triggered();
 
     void on_actionAuto_Split_triggered();
+
+    void on_eventList_itemDoubleClicked(QTreeWidgetItem *item, int column);
+
+    void on_videoList_itemDoubleClicked(QTreeWidgetItem *item, int column);
 
 private:
     Ui::MainWindow *ui;

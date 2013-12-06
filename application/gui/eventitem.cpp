@@ -3,14 +3,14 @@
 /*******************************************************************************
  * Constructors
  ******************************************************************************/
-EventItem::EventItem(QListWidget *parent) :
-    QListWidgetItem(parent)
+EventItem::EventItem(QTreeWidget *parent) :
+    QTreeWidgetItem(parent)
 {
 
 }
 
-EventItem::EventItem(QString eventname, QListWidget *parent) :
-    QListWidgetItem(eventname, parent)
+EventItem::EventItem(QString eventname, QTreeWidget *parent) :
+    QTreeWidgetItem(parent)
 {
 
 }

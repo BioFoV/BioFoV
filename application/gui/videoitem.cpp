@@ -3,14 +3,14 @@
 /*******************************************************************************
  * Constructors
  ******************************************************************************/
-VideoItem::VideoItem(QListWidget *parent) :
-    QListWidgetItem(parent)
+VideoItem::VideoItem(QTreeWidget *parent) :
+    QTreeWidgetItem(parent)
 {
 
 }
 
-VideoItem::VideoItem(QString filename, QListWidget *parent) :
-    QListWidgetItem(filename, parent)
+VideoItem::VideoItem(QString filename, QTreeWidget *parent) :
+    QTreeWidgetItem(parent)
 {
     vid = new Video(filename.toStdString());
 }
