@@ -8,6 +8,8 @@
 #include "../framework/Video/Video.hpp"
 #endif
 
+#define TAG_VIDEO "Video"
+
 class VideoItem : public QTreeWidgetItem
 {
 public:

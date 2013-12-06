@@ -50,6 +50,7 @@ private:
     std::deque<Event*> events;
 	std::string filename;
     double fps;
+    double resolution[2];
 	
 public:
 	// Atributes

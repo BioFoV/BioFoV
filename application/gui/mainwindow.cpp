@@ -39,8 +39,6 @@ void MainWindow::on_actionAdd_Video_File_triggered()
         if (fileNames.isEmpty()) {return;} // No file name provided
         foreach (QString fileName, fileNames) {
             last = new VideoItem(fileName);
-            last->setText(0,fileName);
-            last->setText(1,TAG_VIDEO);
             ui->videoList->addTopLevelItem(last);
         }
         if(last != NULL) {
@@ -71,10 +69,8 @@ void MainWindow::on_actionAuto_Detect_Events_triggered()
         events = videoiter->getVideo()->autoDetectEvents();
         for (unsigned int j = 0; j < events.size(); j++){
             qDebug(" Event %d",j);
-            newEvent = new EventItem();
+            newEvent = new EventItem(QString("E%1").arg(nEvent));;
             newEvent->setEvent(events.at(j));
-            newEvent->setText(0,QString("E%1").arg(nEvent));
-            newEvent->setText(1, TAG_EVENT);
             nEvent ++;
             videoiter->addChild(newEvent);
         }
@@ -101,10 +97,8 @@ void MainWindow::on_actionAuto_Split_triggered()
         eventIt = (EventItem *) item;
         events = eventIt->getEvent()->splitEvent(200,3);
         foreach(Event* event, events){
-            newEventIt = new EventItem;
+            newEventIt = new EventItem(QString("E%1").arg(nEvent));
             newEventIt->setEvent(event);
-            newEventIt->setText(0, QString("E%1").arg(nEvent));
-            newEventIt->setText(1, TAG_EVENT );
             nEvent ++;
             eventIt->parent()->addChild(newEventIt);
         }

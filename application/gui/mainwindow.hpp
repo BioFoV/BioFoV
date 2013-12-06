@@ -26,9 +26,6 @@
 #include <string>
 #endif
 
-#define TAG_EVENT "Event"
-#define TAG_VIDEO "Video"
-
 namespace Ui {
 class MainWindow;
 }

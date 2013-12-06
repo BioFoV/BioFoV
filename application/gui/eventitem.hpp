@@ -8,6 +8,8 @@
 #include "../framework/Event/Event.hpp"
 #endif
 
+#define TAG_EVENT "Event"
+
 class EventItem : public QTreeWidgetItem
 {
 public:

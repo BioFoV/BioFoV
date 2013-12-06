@@ -12,7 +12,8 @@ EventItem::EventItem(QTreeWidget *parent) :
 EventItem::EventItem(QString eventname, QTreeWidget *parent) :
     QTreeWidgetItem(parent)
 {
-
+    setText(0, eventname);
+    setText(1, TAG_EVENT );
 }
 
 /*******************************************************************************

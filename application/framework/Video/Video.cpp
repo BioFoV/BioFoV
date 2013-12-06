@@ -18,6 +18,8 @@ Video::Video(std::string name){
 	filename = name;
 	cap = cv::VideoCapture(name);
     fps = cap.get(CV_CAP_PROP_FPS);
+    resolution[0] = cap.get(CV_CAP_PROP_FRAME_WIDTH);
+    resolution[1] = cap.get(CV_CAP_PROP_FRAME_HEIGHT);
 }
 
 /*******************************************************************************
