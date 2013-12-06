@@ -46,16 +46,9 @@ private slots:
     void openAbout();
 
     void on_actionAuto_Detect_Events_triggered();
-
-
     void on_action_Remove_From_Project_triggered();
-
     void on_actionDeleteEvent_triggered();
-
     void on_actionAuto_Split_triggered();
-
-    void on_eventList_itemDoubleClicked(QTreeWidgetItem *item, int column);
-
     void on_videoList_itemDoubleClicked(QTreeWidgetItem *item, int column);
 
 private:

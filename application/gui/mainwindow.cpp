@@ -96,11 +96,11 @@ void MainWindow::on_actionAuto_Split_triggered()
     EventItem* eventIt;
     EventItem* newEventIt;
     std::list<Event*> events;
-    Event* event;
+
     foreach(QTreeWidgetItem* item, ui->videoList->selectedItems()){
         eventIt = (EventItem *) item;
         events = eventIt->getEvent()->splitEvent(200,3);
-        foreach(event, events){
+        foreach(Event* event, events){
             newEventIt = new EventItem;
             newEventIt->setEvent(event);
             newEventIt->setText(0, QString("E%1").arg(nEvent));
@@ -110,12 +110,6 @@ void MainWindow::on_actionAuto_Split_triggered()
         }
         ui->videoList->removeItemWidget(item,0);
     }
-}
-
-void MainWindow::on_eventList_itemDoubleClicked(QTreeWidgetItem *item, int column)
-{
-    EventItem * eItem = (EventItem *) item;
-    ui->player->loadVid(eItem->getEvent());
 }
 
 void MainWindow::on_videoList_itemDoubleClicked(QTreeWidgetItem *item, int column)
