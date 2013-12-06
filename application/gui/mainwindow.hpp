@@ -47,6 +47,7 @@ private slots:
     void on_actionDeleteEvent_triggered();
     void on_actionAuto_Split_triggered();
     void on_videoList_itemDoubleClicked(QTreeWidgetItem *item, int column);
+    void showMessage(QString text);
 
 private:
     Ui::MainWindow *ui;

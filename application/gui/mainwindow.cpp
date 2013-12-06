@@ -36,16 +36,21 @@ void MainWindow::on_actionAdd_Video_File_triggered()
     if(getFileDialog.exec())
     {
         fileNames = getFileDialog.selectedFiles();
-        if (fileNames.isEmpty()) {return;} // No file name provided
+        if (fileNames.isEmpty()) {
+            showMessage("No files loaded");
+            return;
+        } // No file name provided
         foreach (QString fileName, fileNames) {
             last = new VideoItem(fileName);
             ui->videoList->addTopLevelItem(last);
+            showMessage(QString("Loaded ") + fileName);
         }
         if(last != NULL) {
             ui->player->loadVid(last->getVideo());
+            showMessage("Finished loading files");
         }
     } else {
-        qDebug("Failed to open FileDialog window");
+        showMessage("No files selected");
     }
     return;
 }
@@ -61,14 +66,14 @@ void MainWindow::on_actionAuto_Detect_Events_triggered()
     VideoItem* videoiter;
     std::deque<Event*> events;
     EventItem* newEvent;
-    qDebug("Going through all videos");
+
     for (int i = 0; i < ui->videoList->topLevelItemCount(); i++){
         videoiter = (VideoItem*) ui->videoList->topLevelItem(i);
-        qDebug("Video %d",i);
+        showMessage(QString("Analyzing Video %1").arg(i));
 
         events = videoiter->getVideo()->autoDetectEvents();
-        for (unsigned int j = 0; j < events.size(); j++){
-            qDebug(" Event %d",j);
+        for (unsigned int j = 0; j < events.size(); j++) {
+            showMessage(QString("Found Event %1").arg(nEvent));
             newEvent = new EventItem(QString("E%1").arg(nEvent));;
             newEvent->setEvent(events.at(j));
             nEvent ++;
@@ -97,6 +102,7 @@ void MainWindow::on_actionAuto_Split_triggered()
         eventIt = (EventItem *) item;
         events = eventIt->getEvent()->splitEvent(200,3);
         foreach(Event* event, events){
+            showMessage(QString("Found Event %1").arg(nEvent));
             newEventIt = new EventItem(QString("E%1").arg(nEvent));
             newEventIt->setEvent(event);
             nEvent ++;
@@ -108,6 +114,19 @@ void MainWindow::on_actionAuto_Split_triggered()
 
 void MainWindow::on_videoList_itemDoubleClicked(QTreeWidgetItem *item, int column)
 {
-    VideoItem * vItem = (VideoItem *) item;
-    ui->player->loadVid(vItem->getVideo());
+    showMessage(QString("Loaded ") + item->text(0));
+    if (item->parent() == NULL){
+        VideoItem * vItem = (VideoItem *) item;
+        ui->player->loadVid(vItem->getVideo());
+    } else {
+        EventItem * vItem = (EventItem *) item;
+        ui->player->loadVid(vItem->getEvent());
+    }
+}
+
+/*******************************************************************************
+ * Display messages on status bar
+ ******************************************************************************/
+void MainWindow::showMessage(QString text){
+    ui->statusBar->showMessage(text);
 }
