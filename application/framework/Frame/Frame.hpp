@@ -50,6 +50,6 @@ public:
     // Functions
     void setImage(cv::Mat shot);
     void setSnapshot(Snapshot *insnap);
-    cv::Mat getImage();
+    cv::Mat* getImage();
 };
 #endif

@@ -20,6 +20,7 @@ Video::Video(std::string name){
     fps = cap.get(CV_CAP_PROP_FPS);
     resolution[0] = cap.get(CV_CAP_PROP_FRAME_WIDTH);
     resolution[1] = cap.get(CV_CAP_PROP_FRAME_HEIGHT);
+    lengthFrames = cap.get(CV_CAP_PROP_FRAME_COUNT);
 }
 
 /*******************************************************************************
@@ -33,9 +34,9 @@ Video::~Video(){
     events.clear();
 }
 
-/*
+/*******************************************************************************
  * Set and Get
- **/
+ ******************************************************************************/
 void Video::setFileName(std::string name){
     filename = name;
 }
@@ -56,7 +57,7 @@ cv::VideoCapture Video::getCapture(){
  * Capture functions
  ******************************************************************************/
 bool Video::check_cap(){
-	if(cap.isOpened()){
+    if(!frames.empty()){
 		return true;
 	}
 	std::cerr << "Couldn't open " << filename << std::endl;
@@ -64,24 +65,23 @@ bool Video::check_cap(){
 }
 
 double Video::getFramePos(){
-    return cap.get(CV_CAP_PROP_POS_FRAMES);
+    return position;
 }
 
 bool Video::setFramePos(double frameNum){
-    return cap.set(CV_CAP_PROP_POS_FRAMES, frameNum);
+    if (frameNum > getLengthFrames()){
+        return false;
+    } else{
+        position = frameNum;
+        return true;
+    }
 }
 
-bool Video::getFrame(cv::Mat &frame){
+cv::Mat* Video::getFrame(){
 	if(!check_cap()){
-		return false;
+        return NULL;
 	}
-	if(cap.read(frame)){
-		return true;
-	}
-	else{
-		std::cerr << "Couldn't read frame" << std::endl;
-		return false;
-	}
+    return frames.at(i)->getImage();
 }
 
 bool Video::getPrevFrame(cv::Mat &frame){
@@ -92,7 +92,6 @@ bool Video::getPrevFrame(cv::Mat &frame){
     } else {
         return false;
     }
-
 }
 
 /*******************************************************************************
@@ -115,7 +114,7 @@ double Video::getLengthTime(){
 }
 
 double Video::getLengthFrames(){
-    return cap.get(CV_CAP_PROP_FRAME_COUNT);
+    return lengthFrames;
 }
 
 /*******************************************************************************

@@ -51,6 +51,8 @@ private:
 	std::string filename;
     double fps;
     double resolution[2];
+    double position;
+    double lengthFrames;
 	
 public:
 	// Atributes
@@ -74,7 +76,7 @@ public:
 	bool check_cap();
     bool setFramePos(double frameNum);
     double getFramePos();
-    bool getFrame(cv::Mat &frame);
+    cv::Mat* getFrame();
     bool getPrevFrame(cv::Mat &frame);
 
     // Properties

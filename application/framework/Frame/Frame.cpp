@@ -44,7 +44,7 @@ void Frame::setSnapshot(Snapshot *insnap){
     snap = insnap;
 }
 
-cv::Mat Frame::getImage(){
+cv::Mat* Frame::getImage(){
     cv::Mat image = cv::imread(filename);
-    return image;
+    return &image;
 }

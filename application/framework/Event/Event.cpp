@@ -83,28 +83,29 @@ double Event::getFramePos(){
     return position;
 }
 
-bool Event::getFrame(cv::Mat &frame){
+cv::Mat* Event::getFrame(){
     Frame *tmpFrame;
+    cv::Mat *frame;
     try {
         tmpFrame = frames.at(position);
     }
     catch (const std::out_of_range& oor) {
-        return false;
+        return NULL;
     }
 
     frame = tmpFrame->getImage();
-    if (frame.empty())
-        return false;
+    if (frame->empty())
+        return NULL;
     else{
         position += 1;
-        return true;
+        return frame;
     }
-    return false;
+    return frame;
 }
 
 bool Event::getPrevFrame(cv::Mat &frame){
     position -= 1;
-    getFrame(frame);
+    frame = getFrame();
     return false;
 }
 
