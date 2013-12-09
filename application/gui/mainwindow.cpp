@@ -100,7 +100,7 @@ void MainWindow::on_actionAuto_Split_triggered()
 
     foreach(QTreeWidgetItem* item, ui->videoList->selectedItems()){
         eventIt = (EventItem *) item;
-        events = eventIt->getEvent()->splitEvent(200,3);
+        events = eventIt->getEvent()->splitEvent(200, 3, 5);
         foreach(Event* event, events){
             showMessage(QString("Found Event %1").arg(nEvent));
             newEventIt = new EventItem(QString("E%1").arg(nEvent));
