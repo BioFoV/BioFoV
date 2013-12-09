@@ -30,9 +30,9 @@ void Event::addSnapshot(Snapshot* inSnap){
     snapshots.push_back(inSnap);
 }
 
-std::list<Event*> Event::splitEvent(double threshold, double maxcount){
+std::deque<Event*> Event::splitEvent(double threshold, double maxcount){
     double fTotal = getLengthFrames();
-    std::list<Event*> events;
+    std::deque<Event*> events;
     Event* newEvent = NULL;
     int j=0;
     int count=0;

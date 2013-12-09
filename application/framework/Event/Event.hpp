@@ -61,7 +61,7 @@ public:
     void addFrame(Frame* inFrame);
     void addSnapshot(Snapshot* inSnap);
 
-    std::list<Event*> splitEvent(double threshold, double maxcount);
+    std::deque<Event*> splitEvent(double threshold, double maxcount);
 
     // Capture functions
     bool check_cap();

@@ -96,7 +96,7 @@ void MainWindow::on_actionAuto_Split_triggered()
 {
     EventItem* eventIt;
     EventItem* newEventIt;
-    std::list<Event*> events;
+    std::deque<Event*> events;
 
     foreach(QTreeWidgetItem* item, ui->videoList->selectedItems()){
         eventIt = (EventItem *) item;
