@@ -21,7 +21,9 @@ Frame::Frame(Video *source_vid, cv::Mat* shot){
     filename = ss.str() + IMG_EXT;
 
     vid = source_vid;
-    setImage(shot);
+    QFuture<void> future = QtConcurrent::run(this, &Frame::setImage, shot);
+    //setImage(shot);
+    future.waitForFinished();
     snap = NULL;
 }
 

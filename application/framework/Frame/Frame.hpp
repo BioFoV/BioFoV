@@ -22,6 +22,11 @@
 #include <stdio.h>
 #endif
 
+#ifndef INC_QTCORE
+#define INC_QTCORE
+#include <QtConcurrent/QtConcurrent>
+#endif
+
 #define IMG_EXT ".image.png"
 
 class Video;
