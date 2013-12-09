@@ -30,12 +30,19 @@ void Event::addSnapshot(Snapshot* inSnap){
     snapshots.push_back(inSnap);
 }
 
-std::deque<Event*> Event::splitEvent(double threshold, double maxcount){
+/* Splits an event into several based on background subtraction
+ * threshold -> pixelcount for background subtraction difference
+ * maxcount -> maximum distance in frames between events for them to be a single
+ *one
+ * mincount -> minimum size of an event in frames
+ */
+std::deque<Event*> Event::splitEvent(double threshold, double maxcount, double mincount){
     double fTotal = getLengthFrames();
     std::deque<Event*> events;
     Event* newEvent = NULL;
     int j=0;
-    int count=0;
+    int emptycount=0;
+    int framecount=0;
     int value;
 
     while(j < fTotal){
@@ -48,16 +55,22 @@ std::deque<Event*> Event::splitEvent(double threshold, double maxcount){
             }
             newEvent->addFrame(frames.at(j));
             newEvent->addSnapshot(snapshots.at(j));
-            count = 0;
+            framecount ++;
+            emptycount = 0;
         }
         // Did not detect change
         else {
             if (newEvent != NULL){
-                count ++;
-                if(count > maxcount){
-                    events.push_back(newEvent);
+                emptycount ++;
+                if(emptycount > maxcount){
+                    if (framecount > mincount){
+                        events.push_back(newEvent);
+                    } else {
+                        delete newEvent;
+                    }
                     newEvent = NULL;
-                    count = 0;
+                    emptycount = 0;
+                    framecount = 0;
                 }
             }
         }

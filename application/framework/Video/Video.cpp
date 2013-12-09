@@ -22,6 +22,7 @@ Video::Video(std::string name){
     resolution[1] = cap.get(CV_CAP_PROP_FRAME_HEIGHT);
     lengthFrames = cap.get(CV_CAP_PROP_FRAME_COUNT);
     readAll();
+    cap.release();
 }
 
 /*******************************************************************************
@@ -174,7 +175,7 @@ std::deque<Event*> Video::autoDetectEvents(){
         event->addSnapshot(snap);
     }
 
-    std::deque<Event*> splited = event->splitEvent(200,3);
+    std::deque<Event*> splited = event->splitEvent(200,3, 5);
     for (iter = 0; iter < splited.size(); iter++){
         events.push_back(splited.at(iter));
     }
