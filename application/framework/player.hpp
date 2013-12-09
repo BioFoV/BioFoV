@@ -19,7 +19,7 @@ public:
     virtual bool setFramePos(double frameNum) = 0;
     virtual double getFramePos() = 0;
     virtual cv::Mat* getFrame() = 0;
-    virtual bool getPrevFrame(cv::Mat &frame) = 0;
+    virtual cv::Mat* getPrevFrame() = 0;
 
     // Properties
     virtual double getFrameInt() = 0;

@@ -21,6 +21,7 @@ Video::Video(std::string name){
     resolution[0] = cap.get(CV_CAP_PROP_FRAME_WIDTH);
     resolution[1] = cap.get(CV_CAP_PROP_FRAME_HEIGHT);
     lengthFrames = cap.get(CV_CAP_PROP_FRAME_COUNT);
+    readAll();
 }
 
 /*******************************************************************************
@@ -56,6 +57,20 @@ cv::VideoCapture Video::getCapture(){
 /*******************************************************************************
  * Capture functions
  ******************************************************************************/
+double Video::readAll(){
+    cv::Mat *image = new cv::Mat;
+    Frame* frame;
+    double framesRead = 0;
+
+    while (cap.read(*image)){
+        framesRead ++;
+        frame = new Frame(this, image);
+        frames.push_back(frame);
+        image = new cv::Mat;
+    }
+    return framesRead;
+}
+
 bool Video::check_cap(){
     if(!frames.empty()){
 		return true;
@@ -81,14 +96,19 @@ cv::Mat* Video::getFrame(){
 	if(!check_cap()){
         return NULL;
 	}
-    return frames.at(i)->getImage();
+    position++;
+    try{
+        return frames.at(position)->getImage();
+    } catch (std::out_of_range){
+        return NULL;
+    }
 }
 
-bool Video::getPrevFrame(cv::Mat &frame){
+cv::Mat* Video::getPrevFrame(){
     double tempPos = getFramePos();
     if (tempPos > 1){
         setFramePos(tempPos-2);
-        return getFrame(frame);
+        return getFrame();
     } else {
         return false;
     }
@@ -132,8 +152,7 @@ void Video::bgSubDelete(){
  * Event autoDetection
  ******************************************************************************/
 std::deque<Event*> Video::autoDetectEvents(){
-    cv::Mat shot;
-    Frame *frame;
+    Frame* frame;
     Snapshot *snap;
     Event *event = new Event(this); // new empty event
 
@@ -142,14 +161,15 @@ std::deque<Event*> Video::autoDetectEvents(){
 
     setFramePos(0);
 
-    while(getFrame(shot)){
-        bg->NewFrame(shot);
+    unsigned int iter;
 
-        // create new frame
-        frame = new Frame(this, shot);
+    for (iter = 0; iter < frames.size(); iter ++){
+        frame = frames.at(iter);
+        bg->NewFrame(frame->getImage());
+
+        // create new snapshot
         snap = new Snapshot(frame, bg->Foreground());
         frame->setSnapshot(snap);
-        frames.push_back(frame);
         event->addFrame(frame);
         event->addSnapshot(snap);
     }

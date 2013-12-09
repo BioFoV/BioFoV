@@ -24,18 +24,18 @@ BackgroundSubtractor::BackgroundSubtractor(int hist, int varThresh,
 /*******************************************************************************
  * Get foreground, background and contours functions
  ******************************************************************************/
-void BackgroundSubtractor::NewFrame(cv::Mat img, bool f/*=true*/,
+void BackgroundSubtractor::NewFrame(cv::Mat* img, bool f/*=true*/,
 									bool b/*=true*/, bool c/*=false*/){
 	// copy image to object
 	frame = img;
 	// calculate foreground
 	if(f)
-		bgsub(img,fore);
+        bgsub(*frame,fore);
 	// calculate background
 	if(b)
 		bgsub.getBackgroundImage(back);
 	if(c){
-		cont = frame.clone();
+        cont = frame->clone();
 		cv::Mat aux = fore.clone();
 		
 		cv::erode(aux,aux,cv::Mat());

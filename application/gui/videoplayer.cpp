@@ -46,9 +46,10 @@ void VideoPlayer::playOrPause(){
 }
 
 bool VideoPlayer::stepBack(){
-    cv::Mat _tmp2;
-    if(currentPlayer->getPrevFrame(_tmp2)) {
-        showImage(_tmp2);
+    cv::Mat* _tmp2;
+    _tmp2 = currentPlayer->getPrevFrame();
+    if(_tmp2 != NULL) {
+        showImage(*_tmp2);
         return true;
     } else {
         qDebug("could not get frame");
@@ -58,10 +59,11 @@ bool VideoPlayer::stepBack(){
 }
 
 bool VideoPlayer::stepForward(){
-    cv::Mat _tmp2;
+    cv::Mat* _tmp2;
     // Check if there is a next frame
-    if(currentPlayer->getFrame(_tmp2)) {
-        showImage(_tmp2);
+    _tmp2 = currentPlayer->getFrame();
+    if(_tmp2 != NULL) {
+        showImage(*_tmp2);
         return true;
     } else {
         qDebug("could not get frame");

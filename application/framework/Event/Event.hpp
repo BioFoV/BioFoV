@@ -68,7 +68,7 @@ public:
     bool setFramePos(double frameNum);
     double getFramePos();
     cv::Mat* getFrame();
-    bool getPrevFrame(cv::Mat &frame);
+    cv::Mat* getPrevFrame();
 
     // Properties
     double getFrameInt();

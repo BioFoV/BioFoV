@@ -103,10 +103,9 @@ cv::Mat* Event::getFrame(){
     return frame;
 }
 
-bool Event::getPrevFrame(cv::Mat &frame){
+cv::Mat* Event::getPrevFrame(){
     position -= 1;
-    frame = getFrame();
-    return false;
+    return getFrame();
 }
 
 /*******************************************************************************

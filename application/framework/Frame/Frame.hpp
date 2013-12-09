@@ -42,13 +42,13 @@ public:
 	// Constructors
 	Frame();
     Frame(Video *source_vid);
-    Frame(Video *source_vid, cv::Mat shot);
+    Frame(Video *source_vid, cv::Mat* shot);
 
     // Destructor
     ~Frame();
 
     // Functions
-    void setImage(cv::Mat shot);
+    void setImage(cv::Mat* shot);
     void setSnapshot(Snapshot *insnap);
     cv::Mat* getImage();
 };
