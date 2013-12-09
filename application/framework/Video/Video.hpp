@@ -46,7 +46,7 @@ class Event;
 class Video : public Player {
 private:
     cv::VideoCapture cap;
-    std::list<Frame*> frames;
+    std::deque<Frame*> frames;
     std::deque<Event*> events;
 	std::string filename;
     double fps;
