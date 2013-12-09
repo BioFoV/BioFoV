@@ -110,7 +110,7 @@ cv::Mat* Video::getPrevFrame(){
         setFramePos(tempPos-2);
         return getFrame();
     } else {
-        return false;
+        return NULL;
     }
 }
 
