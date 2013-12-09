@@ -131,3 +131,20 @@ void MainWindow::on_videoList_itemDoubleClicked(QTreeWidgetItem *item,
 void MainWindow::showMessage(QString text){
     ui->statusBar->showMessage(text);
 }
+
+void MainWindow::on_videoList_itemSelectionChanged()
+{
+    EventItem* eventIt;
+    int selected = 0;
+    double frames = 0;
+    double time = 0;
+    foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
+        eventIt = (EventItem *) item;
+        frames += eventIt->getEvent()->getLengthFrames();
+        time += eventIt->getEvent()->getLengthTime();
+        selected ++;
+    }
+    ui->labelSelected->setText(QString("%1").arg(selected));
+    ui->labelTotalFrames->setText(QString("%1").arg(frames));
+    ui->labelTotalTime->setText(QString("%1 s").arg(time));
+}

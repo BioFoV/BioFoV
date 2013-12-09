@@ -49,6 +49,8 @@ private slots:
     void on_videoList_itemDoubleClicked(QTreeWidgetItem *item, int column);
     void showMessage(QString text);
 
+    void on_videoList_itemSelectionChanged();
+
 private:
     Ui::MainWindow *ui;
     int nEvent;
