@@ -174,6 +174,10 @@ std::deque<Event*> Video::autoDetectEvents(){
         event->addSnapshot(snap);
     }
 
-    events.push_back(event);
+    std::deque<Event*> splited = event->splitEvent(200,3);
+    for (iter = 0; iter < splited.size(); iter++){
+        events.push_back(splited.at(iter));
+    }
+
     return events;
 }
