@@ -36,7 +36,8 @@ void Event::addSnapshot(Snapshot* inSnap){
  *one
  * mincount -> minimum size of an event in frames
  */
-std::deque<Event*> Event::splitEvent(double threshold, double maxcount, double mincount){
+std::deque<Event*> Event::splitEvent(double threshold, double maxcount,
+                                     double mincount){
     double fTotal = getLengthFrames();
     std::deque<Event*> events;
     Event* newEvent = NULL;

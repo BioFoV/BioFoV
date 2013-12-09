@@ -27,9 +27,9 @@ Video::Video(std::string name){
  * Destructors
  ******************************************************************************/
 Video::~Video(){
-	if (bg != NULL){
-		delete bg;
-	}
+    if (bg != NULL){
+        delete bg;
+    }
     frames.clear();
     events.clear();
 }

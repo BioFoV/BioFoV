@@ -112,7 +112,8 @@ void MainWindow::on_actionAuto_Split_triggered()
     }
 }
 
-void MainWindow::on_videoList_itemDoubleClicked(QTreeWidgetItem *item, int column)
+void MainWindow::on_videoList_itemDoubleClicked(QTreeWidgetItem *item,
+                                                int column)
 {
     showMessage(QString("Loaded ") + item->text(0));
     if (item->parent() == NULL){
