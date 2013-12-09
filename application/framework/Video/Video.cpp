@@ -134,7 +134,7 @@ std::deque<Event*> Video::autoDetectEvents(){
     cv::Mat shot;
     Frame *frame;
     Snapshot *snap;
-    Event *event = new Event(); // new empty event
+    Event *event = new Event(this); // new empty event
 
     // Initialization of background subtraction
     bgSubInit(1000, 50, false);
@@ -151,7 +151,6 @@ std::deque<Event*> Video::autoDetectEvents(){
         frames.push_back(frame);
         event->addFrame(frame);
         event->addSnapshot(snap);
-        event->setFPS(getFPS());
     }
 
     events.push_back(event);

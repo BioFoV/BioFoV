@@ -3,9 +3,9 @@
 /*******************************************************************************
  * Constructors
  ******************************************************************************/
-Event::Event(){
+Event::Event(Video* iVid){
     position = 0;
-    fps = 0;
+    vid = iVid;
 }
 
 /*******************************************************************************
@@ -30,10 +30,6 @@ void Event::addSnapshot(Snapshot* inSnap){
     snapshots.push_back(inSnap);
 }
 
-void Event::setFPS(double infps){
-    fps = infps;
-}
-
 std::list<Event*> Event::splitEvent(double threshold, double maxcount){
     double fTotal = getLengthFrames();
     std::list<Event*> events;
@@ -48,8 +44,7 @@ std::list<Event*> Event::splitEvent(double threshold, double maxcount){
         // Detected change
         if ( value > threshold ){
             if (newEvent == NULL){
-                newEvent = new Event();
-                newEvent->setFPS(getFPS());
+                newEvent = new Event(vid);
             }
             newEvent->addFrame(frames.at(j));
             newEvent->addSnapshot(snapshots.at(j));
@@ -117,11 +112,11 @@ bool Event::getPrevFrame(cv::Mat &frame){
  * Properties
  ******************************************************************************/
 double Event::getFrameInt(){
-    return 1000.0/fps;
+    return 1000.0/getFPS();
 }
 
 double Event::getFPS(){
-    return fps;
+    return vid->getFPS();
 }
 
 double Event::getLengthTime(){

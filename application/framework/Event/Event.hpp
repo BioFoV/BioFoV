@@ -50,10 +50,9 @@ private:
 
     // player variables
     double position;
-    double fps;
 public:
 	// Constructor
-	Event();
+    Event(Video* iVid);
 
     // Destructor
     ~Event();
@@ -61,7 +60,6 @@ public:
     // Functions
     void addFrame(Frame* inFrame);
     void addSnapshot(Snapshot* inSnap);
-    void setFPS(double infps);
 
     std::list<Event*> splitEvent(double threshold, double maxcount);
 
