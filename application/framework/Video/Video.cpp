@@ -58,6 +58,9 @@ cv::VideoCapture Video::getCapture(){
 /*******************************************************************************
  * Capture functions
  ******************************************************************************/
+/* Reads all the frames from the video and dumps them to Frame objects, queued in
+ *the deque "frames". This ignores the current position.
+ */
 double Video::readAll(){
     cv::Mat *image = new cv::Mat;
     Frame* frame;
@@ -69,21 +72,32 @@ double Video::readAll(){
         frames.push_back(frame);
         image = new cv::Mat;
     }
+
+    // delete the last created but unread image
+    delete image;
+
+    // return the number of frames read
     return framesRead;
 }
 
+/* Checks if there are any frames that can be read.
+ */
 bool Video::check_cap(){
     if(!frames.empty()){
-		return true;
-	}
-	std::cerr << "Couldn't open " << filename << std::endl;
-	return false;
+        return true;
+    }
+    std::cerr << "Couldn't open " << filename << std::endl;
+    return false;
 }
 
+/* Gets the current position inside the video
+ */
 double Video::getFramePos(){
     return position;
 }
 
+/* Sets the current position inside the video
+ */
 bool Video::setFramePos(double frameNum){
     if (frameNum > getLengthFrames()){
         return false;
@@ -93,18 +107,25 @@ bool Video::setFramePos(double frameNum){
     }
 }
 
+/* Gets the frame at the current position and takes one step forward
+ */
 cv::Mat* Video::getFrame(){
-	if(!check_cap()){
+    cv::Mat* image;
+
+    if(!check_cap()){
         return NULL;
-	}
-    position++;
+    }
     try{
-        return frames.at(position)->getImage();
+        image = frames.at(position)->getImage();
+        position++;
+        return image;
     } catch (std::out_of_range){
         return NULL;
     }
 }
 
+/* Rewinds one position and returns the frame
+ */
 cv::Mat* Video::getPrevFrame(){
     double tempPos = getFramePos();
     if (tempPos > 1){
@@ -130,10 +151,14 @@ double Video::getFPS(){
     return fps;
 }
 
+/* Returns the length of the video in seconds
+ */
 double Video::getLengthTime(){
     return getLengthFrames()/getFPS();
 }
 
+/* Returns the length of the video in frames
+ */
 double Video::getLengthFrames(){
     return lengthFrames;
 }
