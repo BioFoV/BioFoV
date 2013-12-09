@@ -10,19 +10,16 @@ Video::Video(){
 
 Video::Video(cv::VideoCapture capture){
 	bg = NULL;
+    filename = "";
 	cap = capture;
+    dumpCap();
 }
 
 Video::Video(std::string name){
 	bg = NULL;
 	filename = name;
 	cap = cv::VideoCapture(name);
-    fps = cap.get(CV_CAP_PROP_FPS);
-    resolution[0] = cap.get(CV_CAP_PROP_FRAME_WIDTH);
-    resolution[1] = cap.get(CV_CAP_PROP_FRAME_HEIGHT);
-    lengthFrames = cap.get(CV_CAP_PROP_FRAME_COUNT);
-    readAll();
-    cap.release();
+    dumpCap();
 }
 
 /*******************************************************************************
@@ -58,8 +55,20 @@ cv::VideoCapture Video::getCapture(){
 /*******************************************************************************
  * Capture functions
  ******************************************************************************/
-/* Reads all the frames from the video and dumps them to Frame objects, queued in
- *the deque "frames". This ignores the current position.
+/* From a cv::VideoCapture stored in cap, dumps all the necessary info to the
+ *structure.
+ */
+void Video::dumpCap(){
+    fps = cap.get(CV_CAP_PROP_FPS);
+    resolution[0] = cap.get(CV_CAP_PROP_FRAME_WIDTH);
+    resolution[1] = cap.get(CV_CAP_PROP_FRAME_HEIGHT);
+    lengthFrames = cap.get(CV_CAP_PROP_FRAME_COUNT);
+    readAll();
+    cap.release();
+}
+
+/* Reads all the frames from the video and dumps them to Frame objects, queued
+ *in the deque "frames". This ignores the current position.
  */
 double Video::readAll(){
     cv::Mat *image = new cv::Mat;

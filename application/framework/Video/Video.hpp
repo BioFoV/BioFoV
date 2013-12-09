@@ -73,6 +73,7 @@ public:
     cv::VideoCapture getCapture();
 	
 	// Capture functions
+    void dumpCap();
     double readAll();
 	bool check_cap();
     bool setFramePos(double frameNum);
