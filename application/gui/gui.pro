@@ -12,6 +12,9 @@ QT += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+unix: CONFIG += link_pkgconfig
+unix: PKGCONFIG += opencv
+
 # reset sources
 SOURCES += \
     about.cpp \
