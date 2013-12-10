@@ -74,12 +74,17 @@ double Video::readAll(){
     cv::Mat *image = new cv::Mat;
     Frame* frame;
     double framesRead = 0;
+    QList<QFuture<void> > future;
 
     while (cap.read(*image)){
         framesRead ++;
-        frame = new Frame(this, image);
+        frame = new Frame(this);
         frames.push_back(frame);
+        future.append(QtConcurrent::run(frame, &Frame::setImage, image->clone()));
         image = new cv::Mat;
+    }
+    foreach (QFuture<void> fut, future){
+        fut.waitForFinished();
     }
 
     // delete the last created but unread image

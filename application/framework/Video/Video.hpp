@@ -37,6 +37,11 @@
 #include "../player.hpp"
 #endif
 
+#ifndef INC_QTCORE
+#define INC_QTCORE
+#include <QtConcurrent/QtConcurrent>
+#endif
+
 class Frame;
 class Event;
 

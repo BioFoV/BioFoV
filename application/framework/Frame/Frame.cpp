@@ -9,21 +9,24 @@ Frame::Frame(){
 }
 
 Frame::Frame(Video *source_vid){
-	vid = source_vid;
-    snap = NULL;
-}
-
-Frame::Frame(Video *source_vid, cv::Mat* shot){
-    // use image address as filename to ensure there are no clashes
     const void * address = static_cast<const void*>(this);
     std::stringstream ss;
     ss << address;
     filename = ss.str() + IMG_EXT;
 
     vid = source_vid;
-    QFuture<void> future = QtConcurrent::run(this, &Frame::setImage, shot);
-    //setImage(shot);
-    future.waitForFinished();
+    snap = NULL;
+}
+
+Frame::Frame(Video *source_vid, cv::Mat* shot){
+    // use image address as filename to ensure there are no clashes
+    void * address = this;
+    std::stringstream ss;
+    ss << address;
+    filename = ss.str() + IMG_EXT;
+
+    vid = source_vid;
+    setImage(* shot);
     snap = NULL;
 }
 
@@ -38,8 +41,8 @@ Frame::~Frame(){
 /*******************************************************************************
  * Functions
  ******************************************************************************/
-void Frame::setImage(cv::Mat* shot){
-    imwrite( filename, *shot);
+void Frame::setImage( cv::Mat shot){
+    imwrite( filename, shot);
 }
 
 void Frame::setSnapshot(Snapshot *insnap){
