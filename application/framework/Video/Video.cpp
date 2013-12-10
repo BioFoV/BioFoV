@@ -81,7 +81,6 @@ double Video::readAll(){
         frame = new Frame(this);
         frames.push_back(frame);
         future.append(QtConcurrent::run(frame, &Frame::setImage, image->clone()));
-        image = new cv::Mat;
     }
     foreach (QFuture<void> fut, future){
         fut.waitForFinished();
