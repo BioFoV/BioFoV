@@ -6,6 +6,12 @@
 #include <QPainter>
 #include <QTimer>
 
+// OpenCV
+#ifndef OPENCV_INC
+#define OPENCV_INC
+#include <opencv2/opencv.hpp>
+#endif
+
 #ifndef INC_EVENT
 #define INC_EVENT
 #include "../framework/Event/Event.hpp"
