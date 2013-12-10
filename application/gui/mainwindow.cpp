@@ -122,6 +122,7 @@ void MainWindow::on_videoList_itemDoubleClicked(QTreeWidgetItem *item, int colum
         EventItem * vItem = (EventItem *) item;
         ui->player->loadVid(vItem->getEvent());
     }
+    ui->player->playOrPause();
 }
 
 /*******************************************************************************
