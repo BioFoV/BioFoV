@@ -82,7 +82,10 @@ void MainWindow::on_actionAuto_Detect_Events_triggered()
 
         events = videoiter->getVideo()->autoDetectEvents(split.getThreshold(),
                                                          split.getMaxFrames(),
-                                                         split.getMinFrames());
+                                                         split.getMinFrames(),
+                                                         split.getHistory(),
+                                                         split.getvarThreshold(),
+                                                         split.getbShadowDetection());
         for (j = 0; j < events.size(); j++) {
             showMessage(QString("Found Event %1").arg(nEvent));
             newEvent = new EventItem(QString("E%1").arg(nEvent));;

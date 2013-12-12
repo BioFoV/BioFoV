@@ -135,7 +135,10 @@ void Video::bgSubDelete(){
  ******************************************************************************/
 std::deque<Event*> Video::autoDetectEvents(double threshold,
                                            double maxcount,
-                                           double mincount){
+                                           double mincount,
+                                           int history,
+                                           int varThreshold,
+                                           bool bShadowDetection){
     cv::Mat shot;
     Frame *frame;
     Snapshot *snap;
@@ -152,7 +155,7 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
     int value;
 
     // Initialization of background subtraction
-    bgSubInit(1000, 50, false);
+    bgSubInit(history, varThreshold, bShadowDetection);
 
     setFramePos(0);
 

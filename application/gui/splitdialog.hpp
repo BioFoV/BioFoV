@@ -19,6 +19,9 @@ public:
     int getThreshold();
     int getMaxFrames();
     int getMinFrames();
+    int getHistory();
+    int getvarThreshold();
+    bool getbShadowDetection();
     
 private:
     Ui::SplitDialog *ui;

@@ -90,6 +90,9 @@ public:
     // Event autoDetection
     std::deque<Event *> autoDetectEvents(double threshold,
                                          double maxcount,
-                                         double mincount);
+                                         double mincount,
+                                         int history,
+                                         int varThreshold,
+                                         bool bShadowDetection);
 };
 #endif

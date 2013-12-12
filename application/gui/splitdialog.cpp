@@ -24,3 +24,15 @@ int SplitDialog::getMaxFrames(){
 int SplitDialog::getMinFrames(){
     return ui->minframes->value();
 }
+
+int SplitDialog::getHistory(){
+    return ui->history->value();
+}
+
+int SplitDialog::getvarThreshold(){
+    return ui->varThreshold->value();
+}
+
+bool SplitDialog::getbShadowDetection(){
+    return ui->bShadowDetection->checkState();
+}
