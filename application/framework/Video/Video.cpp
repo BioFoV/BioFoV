@@ -137,6 +137,7 @@ std::deque<Event*> Video::autoDetectEvents(){
     Frame *frame;
     Snapshot *snap;
     Event *event = new Event(this); // new empty event
+    unsigned int iter;
 
     // Initialization of background subtraction
     bgSubInit(1000, 50, false);
