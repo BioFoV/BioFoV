@@ -144,11 +144,6 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
     Snapshot *snap;
     Event *event = NULL;
 
-    // FIXME: HARDCODED!
-//    double threshold = 1;
-//    double maxcount = 3;
-//    double mincount = 10;
-
     int j=0;
     int emptycount=0;
     int framecount=0;
