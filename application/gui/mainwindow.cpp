@@ -67,17 +67,23 @@ void MainWindow::on_actionAuto_Detect_Events_triggered()
     std::deque<Event*> events;
     EventItem* newEvent;
 
-    for (int i = 0; i < ui->videoList->topLevelItemCount(); i++){
+    int i;
+    unsigned int j;
+
+    for (i = 0; i < ui->videoList->topLevelItemCount(); i++){
         videoiter = (VideoItem*) ui->videoList->topLevelItem(i);
         showMessage(QString("Analyzing Video %1").arg(i));
 
         events = videoiter->getVideo()->autoDetectEvents();
-        for (unsigned int j = 0; j < events.size(); j++) {
+        for (j = 0; j < events.size(); j++) {
             showMessage(QString("Found Event %1").arg(nEvent));
             newEvent = new EventItem(QString("E%1").arg(nEvent));;
             newEvent->setEvent(events.at(j));
             nEvent ++;
             videoiter->addChild(newEvent);
+        }
+        if (j != 0){
+            videoiter->setExpanded(true);
         }
     }
 }
