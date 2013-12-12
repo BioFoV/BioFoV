@@ -17,10 +17,10 @@ unix: PKGCONFIG += opencv
 
 win32 {
     #LIBS += -LC:/qt/OpenCV246_bin/install/lib -llopencv_core246 -llopencv_highgui246
-    LIBS += -L C:\Users\miguel\Downloads\opencv\build\install\lib
+    LIBS += -L C:\FIXME\opencv\build\install\lib
     LIBS += -lopencv_core245 -lopencv_highgui245 -lopencv_video245
     LIBS += -lopencv_imgproc245
-    INCLUDEPATH += C:\Users\miguel\Downloads\opencv\build\install\include
+    INCLUDEPATH += C:\FIXME\opencv\build\install\include
     LIBS += -L..\framework\release -lframework
 }
 

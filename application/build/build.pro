@@ -6,7 +6,7 @@ SOURCES += main.cpp
 
 win32 {
     LIBS += -L..\framework\release -L..\gui\release -lframework -lgui
-    INCLUDEPATH += C:\Users\miguel\Downloads\opencv\build\install\include
+    INCLUDEPATH += C:\FIXME\opencv\build\install\include
 }
 
 unix {
