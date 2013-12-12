@@ -88,6 +88,8 @@ public:
 	void bgSubDelete();
 
     // Event autoDetection
-    std::deque<Event *> autoDetectEvents();
+    std::deque<Event *> autoDetectEvents(double threshold,
+                                         double maxcount,
+                                         double mincount);
 };
 #endif

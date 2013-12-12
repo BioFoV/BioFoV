@@ -21,6 +21,11 @@
 #include "eventitem.hpp"
 #endif
 
+#ifndef INC_SPLITDIALOG
+#define INC_SPLITDIALOG
+#include "splitdialog.hpp"
+#endif
+
 #ifndef INC_STRING
 #define INC_STRING
 #include <string>
