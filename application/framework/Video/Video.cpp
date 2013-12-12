@@ -133,16 +133,18 @@ void Video::bgSubDelete(){
 /*******************************************************************************
  * Event autoDetection
  ******************************************************************************/
-std::deque<Event*> Video::autoDetectEvents(){
+std::deque<Event*> Video::autoDetectEvents(double threshold,
+                                           double maxcount,
+                                           double mincount){
     cv::Mat shot;
     Frame *frame;
     Snapshot *snap;
     Event *event = NULL;
 
     // FIXME: HARDCODED!
-    double threshold = 200;
-    double maxcount = 3;
-    double mincount = 10;
+//    double threshold = 1;
+//    double maxcount = 3;
+//    double mincount = 10;
 
     int j=0;
     int emptycount=0;
@@ -160,7 +162,7 @@ std::deque<Event*> Video::autoDetectEvents(){
         value = cv::countNonZero(bg->Foreground());
 
         // Detected change
-        if ( value > threshold ){
+        if ( value > threshold/100*resolution[0]*resolution[1] ){
             if (event == NULL){
                 event = new Event(this);
             }

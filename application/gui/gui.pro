@@ -21,7 +21,8 @@ SOURCES += \
     mainwindow.cpp \
     videoplayer.cpp \
     videoitem.cpp \
-    eventitem.cpp
+    eventitem.cpp \
+    splitdialog.cpp
 
 # reset headers
 HEADERS += \
@@ -29,7 +30,8 @@ HEADERS += \
     mainwindow.hpp \
     videoplayer.hpp \
     videoitem.hpp \
-    eventitem.hpp
+    eventitem.hpp \
+    splitdialog.hpp
 
 FORMS    += $$files(*.ui)
 
