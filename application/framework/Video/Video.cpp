@@ -137,8 +137,17 @@ std::deque<Event*> Video::autoDetectEvents(){
     cv::Mat shot;
     Frame *frame;
     Snapshot *snap;
-    Event *event = new Event(this); // new empty event
-    unsigned int iter;
+    Event *event = NULL;
+
+    // FIXME: HARDCODED!
+    double threshold = 200;
+    double maxcount = 3;
+    double mincount = 10;
+
+    int j=0;
+    int emptycount=0;
+    int framecount=0;
+    int value;
 
     // Initialization of background subtraction
     bgSubInit(1000, 50, false);
@@ -148,18 +157,48 @@ std::deque<Event*> Video::autoDetectEvents(){
     while(getFrame(shot)){
         bg->NewFrame(shot);
 
-        // create new frame
-        frame = new Frame(this, shot);
-        snap = new Snapshot(frame, bg->Foreground());
-        frame->setSnapshot(snap);
-        frames.push_back(frame);
-        event->addFrame(frame);
-        event->addSnapshot(snap);
-    }
+        value = cv::countNonZero(bg->Foreground());
 
-    std::deque<Event*> splited = event->splitEvent(200,3, 5);
-    for (iter = 0; iter < splited.size(); iter++){
-        events.push_back(splited.at(iter));
+        // Detected change
+        if ( value > threshold ){
+            if (event == NULL){
+                event = new Event(this);
+            }
+            // create new frame
+            frame = new Frame(this, shot);
+            snap = new Snapshot(frame, bg->Foreground());
+            frame->setSnapshot(snap);
+            // add frame to event
+            event->addFrame(frame);
+            event->addSnapshot(snap);
+            framecount ++;
+            emptycount = 0;
+        }
+        // Did not detect change
+        else {
+            if (event != NULL){
+                emptycount ++;
+                // create new frame
+                frame = new Frame(this, shot);
+                snap = new Snapshot(frame, bg->Foreground());
+                frame->setSnapshot(snap);
+                // add frame to event
+                event->addFrame(frame);
+                event->addSnapshot(snap);
+                framecount ++;
+                if(emptycount > maxcount){
+                    if (framecount > mincount){
+                        events.push_back(event);
+                    } else {
+                        delete event;
+                    }
+                    event = NULL;
+                    emptycount = 0;
+                    framecount = 0;
+                }
+            }
+        }
+        j++;
     }
 
     return events;
