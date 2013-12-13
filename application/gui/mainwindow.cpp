@@ -191,5 +191,10 @@ void MainWindow::on_actionCalibrate_triggered()
                                        calibDiag.getWidth(),
                                        calibDiag.getHeight(),
                                        calibDiag.getIterations());
+        if(videoIt->getVideo()->isCalibrated()){
+            showMessage(QString("Video Calibrated"));
+        } else {
+            showMessage(QString("Failed Calibration"));
+        }
     }
 }

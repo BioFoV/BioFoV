@@ -127,6 +127,10 @@ cv::Size Video::getSize(){
     return resolution;
 }
 
+bool Video::isCalibrated(){
+    return calibrated;
+}
+
 /*******************************************************************************
  * Background Subtraction functions
  ******************************************************************************/

@@ -93,6 +93,7 @@ public:
     double getLengthTime();
     double getLengthFrames();
     cv::Size getSize();
+    bool isCalibrated();
 	
 	// BackgroundSubtraction functions
 	void bgSubInit(int hist, int varThresh, bool bShadowDet);
