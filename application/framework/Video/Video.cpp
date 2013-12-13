@@ -18,9 +18,10 @@ Video::Video(std::string name){
 	filename = name;
 	cap = cv::VideoCapture(name);
     fps = cap.get(CV_CAP_PROP_FPS);
-    resolution[0] = cap.get(CV_CAP_PROP_FRAME_WIDTH);
-    resolution[1] = cap.get(CV_CAP_PROP_FRAME_HEIGHT);
-//    cap.release();
+    resolution.width = cap.get(CV_CAP_PROP_FRAME_WIDTH);
+    resolution.height = cap.get(CV_CAP_PROP_FRAME_HEIGHT);
+    cam = NULL;
+    calibrated = false;
 }
 
 /*******************************************************************************
@@ -77,7 +78,10 @@ bool Video::getFrame(cv::Mat &frame){
 		return false;
 	}
 	if(cap.read(frame)){
-		return true;
+        if(calibrated){
+            frame = cam->remap(frame);
+        }
+        return true;
 	}
 	else{
 		std::cerr << "Couldn't read frame" << std::endl;
@@ -117,6 +121,10 @@ double Video::getLengthTime(){
 
 double Video::getLengthFrames(){
     return cap.get(CV_CAP_PROP_FRAME_COUNT);
+}
+
+cv::Size Video::getSize(){
+    return resolution;
 }
 
 /*******************************************************************************
@@ -160,7 +168,7 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
         value = cv::countNonZero(bg->Foreground());
 
         // Detected change
-        if ( value > threshold/100*resolution[0]*resolution[1] ){
+        if ( value > threshold/100*resolution.width*resolution.height ){
             if (event == NULL){
                 event = new Event(this);
             }
@@ -202,4 +210,17 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
     }
 
     return events;
+}
+
+void Video::calibrate(int nBoards, int frameStep, int boardW,
+                      int boardH, int iterations) {
+
+    setFramePos(0);
+
+//    if (cam != NULL){
+//        delete cam;
+//    }
+    cam = new Camera(this, boardW, boardH);
+    cam->calibrate(nBoards, frameStep, boardW, boardH, iterations);
+    calibrated = true;
 }

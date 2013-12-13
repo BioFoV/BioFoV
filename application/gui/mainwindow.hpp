@@ -26,6 +26,11 @@
 #include "splitdialog.hpp"
 #endif
 
+#ifndef INC_CALIBRATIONDIALOG
+#define INC_CALIBRATIONDIALOG
+#include "calibrationdialog.hpp"
+#endif
+
 #ifndef INC_STRING
 #define INC_STRING
 #include <string>
@@ -55,6 +60,8 @@ private slots:
     void showMessage(QString text);
 
     void on_videoList_itemSelectionChanged();
+
+    void on_actionCalibrate_triggered();
 
 private:
     Ui::MainWindow *ui;

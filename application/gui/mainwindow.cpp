@@ -166,3 +166,30 @@ void MainWindow::on_videoList_itemSelectionChanged()
     ui->labelTotalFrames->setText(QString("%1").arg(frames));
     ui->labelTotalTime->setText(QString("%1 s").arg(time));
 }
+
+void MainWindow::on_actionCalibrate_triggered()
+{
+    if (ui->videoList->selectedItems().size() == 0){
+        showMessage(QString("Select a Video first"));
+        return;
+    }
+
+    CalibrationDialog calibDiag;
+    if(!calibDiag.exec()){
+        showMessage(QString("Calibration canceled"));
+        return;
+    }
+
+    VideoItem* videoIt;
+    foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
+        if (item->parent() != NULL){
+            continue;
+        }
+        videoIt = (VideoItem*) item;
+        videoIt->getVideo()->calibrate(calibDiag.getNBoards(),
+                                       calibDiag.getFrameStep(),
+                                       calibDiag.getWidth(),
+                                       calibDiag.getHeight(),
+                                       calibDiag.getIterations());
+    }
+}

@@ -79,8 +79,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>769</width>
-             <height>285</height>
+             <width>98</width>
+             <height>70</height>
             </rect>
            </property>
            <attribute name="label">
@@ -229,8 +229,32 @@
     <property name="title">
      <string>&amp;Video</string>
     </property>
+    <widget class="QMenu" name="menuTransformations">
+     <property name="title">
+      <string>Transformations</string>
+     </property>
+     <widget class="QMenu" name="menuFlip_2">
+      <property name="title">
+       <string>Flip</string>
+      </property>
+      <addaction name="actionHorizontally_2"/>
+      <addaction name="actionVertically_2"/>
+     </widget>
+     <widget class="QMenu" name="menuRotate">
+      <property name="title">
+       <string>Rotate</string>
+      </property>
+      <addaction name="actionClockwise"/>
+      <addaction name="actionCounter_clockwise"/>
+     </widget>
+     <addaction name="menuFlip_2"/>
+     <addaction name="menuRotate"/>
+     <addaction name="actionCalibrate"/>
+    </widget>
     <addaction name="actionAdd_Video_File"/>
     <addaction name="action_Remove_From_Project"/>
+    <addaction name="separator"/>
+    <addaction name="menuTransformations"/>
    </widget>
    <widget class="QMenu" name="menuEvent">
     <property name="title">
@@ -364,6 +388,41 @@
   <action name="actionAuto_Split">
    <property name="text">
     <string>Auto Split</string>
+   </property>
+  </action>
+  <action name="actionHorizontally">
+   <property name="text">
+    <string>Horizontally</string>
+   </property>
+  </action>
+  <action name="actionVertically">
+   <property name="text">
+    <string>Vertically</string>
+   </property>
+  </action>
+  <action name="actionHorizontally_2">
+   <property name="text">
+    <string>Horizontally</string>
+   </property>
+  </action>
+  <action name="actionVertically_2">
+   <property name="text">
+    <string>Vertically</string>
+   </property>
+  </action>
+  <action name="actionClockwise">
+   <property name="text">
+    <string>Clockwise</string>
+   </property>
+  </action>
+  <action name="actionCounter_clockwise">
+   <property name="text">
+    <string>Counter Clockwise</string>
+   </property>
+  </action>
+  <action name="actionCalibrate">
+   <property name="text">
+    <string>Calibrate</string>
    </property>
   </action>
  </widget>

@@ -25,7 +25,8 @@ SOURCES += \
     Individual/Individual.cpp \
     Snapshot/Snapshot.cpp \
     Video/Video.cpp \
-    Video/BackgroundSubtraction.cpp
+    Video/BackgroundSubtraction.cpp \
+    camera.cpp
 
 HEADERS += \
     Event/Event.hpp \
@@ -36,7 +37,8 @@ HEADERS += \
     Video/Video.hpp \
     Video/BackgroundSubtraction.hpp \
     Event/Event.hpp \
-    player.hpp
+    player.hpp \
+    camera.hpp
 
 #unix:!symbian {
 #    maemo5 {

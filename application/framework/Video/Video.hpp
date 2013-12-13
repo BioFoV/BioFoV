@@ -22,10 +22,15 @@
 #include "../Event/Event.hpp"
 #endif
 
-#ifndef INC_LIST
-#define INC_LIST
-#include <list>
+#ifndef INC_CAMERA
+#define INC_CAMERA
+#include "../camera.hpp"
 #endif
+
+//#ifndef INC_LIST
+//#define INC_LIST
+//#include <list>
+//#endif
 
 #ifndef INC_STRING
 #define INC_STRING
@@ -39,6 +44,7 @@
 
 class Frame;
 class Event;
+class Camera;
 
 /*
  * Class that holds the VideoCapture handler and that provides frames
@@ -50,7 +56,9 @@ private:
     std::deque<Event*> events;
 	std::string filename;
     double fps;
-    double resolution[2];
+    cv::Size resolution;
+    Camera* cam;
+    bool calibrated;
 	
 public:
 	// Atributes
@@ -82,6 +90,7 @@ public:
     double getFPS();
     double getLengthTime();
     double getLengthFrames();
+    cv::Size getSize();
 	
 	// BackgroundSubtraction functions
 	void bgSubInit(int hist, int varThresh, bool bShadowDet);
@@ -94,5 +103,9 @@ public:
                                          int history,
                                          int varThreshold,
                                          bool bShadowDetection);
+
+    // Calibration
+    void calibrate(int nBoards, int frameStep, int boardW,
+                   int boardH, int iterations);
 };
 #endif
