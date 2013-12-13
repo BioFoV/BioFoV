@@ -221,6 +221,11 @@ void Video::calibrate(int nBoards, int frameStep, int boardW,
 //        delete cam;
 //    }
     cam = new Camera(this, boardW, boardH);
-    cam->calibrate(nBoards, frameStep, boardW, boardH, iterations);
-    calibrated = true;
+    if (cam->calibrate(nBoards, frameStep, boardW, boardH, iterations) == NOTCALIBRATED){
+        calibrated = false;
+    }
+    else {
+        calibrated = true;
+    }
+
 }

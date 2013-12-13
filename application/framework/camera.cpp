@@ -150,6 +150,10 @@ double Camera::calibrate(int nBoards, int frameStep, int width,
         }
     }
 
+    if (successes == 0){
+        return -1;
+    }
+
     set_calib_flags(CV_CALIB_FIX_PRINCIPAL_POINT |
                     CV_CALIB_FIX_K3);
 
@@ -162,7 +166,7 @@ double Camera::calibrate(int nBoards, int frameStep, int width,
 
     // start calibration
     reprojectionError=
-        calibrateCamera(objectPoints, // the 3D points
+        cv::calibrateCamera(objectPoints, // the 3D points
         imagePoints, // the image points
         vid->getSize(), // image size
         cameraMatrix, // output camera matrix

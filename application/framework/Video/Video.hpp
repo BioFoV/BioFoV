@@ -42,6 +42,8 @@
 #include "../player.hpp"
 #endif
 
+#define NOTCALIBRATED -1
+
 class Frame;
 class Event;
 class Camera;
