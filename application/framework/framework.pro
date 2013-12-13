@@ -9,14 +9,20 @@
 
 QT       -= gui
 
-#TARGET = framework
+TARGET = framework
 #TEMPLATE = lib
 #CONFIG += staticlib
 
 unix: CONFIG += link_pkgconfig
 unix: PKGCONFIG += opencv
 
-DEFINES += FRAMEWORK_LIBRARY
+win32 {
+    #LIBS += -LC:/qt/OpenCV246_bin/install/lib -llopencv_core246 -llopencv_highgui246
+    LIBS += -L C:\FIXME\opencv\build\install\lib
+    LIBS += -lopencv_core245 -lopencv_highgui245 -lopencv_video245
+    LIBS += -lopencv_imgproc245
+    INCLUDEPATH += C:\FIXME\opencv\build\install\include
+}
 
 SOURCES += \
     Event/Event.cpp \
@@ -39,12 +45,3 @@ HEADERS += \
     Event/Event.hpp \
     player.hpp \
     camera.hpp
-
-#unix:!symbian {
-#    maemo5 {
-#        target.path = /opt/usr/lib
-#    } else {
-#        target.path = /usr/lib
-#    }
-#    INSTALLS += target
-#}

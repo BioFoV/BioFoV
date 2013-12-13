@@ -34,13 +34,15 @@ Em window$:
 2) reboot
 3) instalar cmake
 4) sacar opencv 2.7
-5) descompimir opencv <algures>\opencv
-6) abrir o cmake com source em <algures>\opencv e build em <algures>\opencv\build
+5) descompimir opencv algures\opencv
+6) abrir o cmake com source em algures\opencv e build em algures\opencv\build
 7) carregar em configure e depois generate
-8) abrir uma command terminal e ir até <algures>\opencv\build
+8) abrir uma command terminal e ir até algures\opencv\build
 9) correr o seguinte comando:
   C:\MinGW\bin\mingw32_make.exe
 se não correr é porque me enganei no nome do programa e é algo parecido com isto.
 10) ir almoçar
-11)
+11) adicionar o algures\opencv\build\bin à path do windows
+12) abrir o projecto com o qt creator
+13) compilar
 
