@@ -2,7 +2,7 @@
 
 Camera::Camera() : flag(0), mustInitUndistort(true), maxIter(0)
 {
-
+    vid = NULL;
 }
 
 Camera::Camera(Video* iVid, int boardW, int boardH)
@@ -14,8 +14,7 @@ Camera::Camera(Video* iVid, int boardW, int boardH)
 
 // Open chessboard images and extract corner points
 int Camera::addSeveralChessboardPoints(
-    const std::vector<std::string>& filelist,
-    cv::Size & boardSize) {
+    const std::vector<std::string>& filelist) {
 
     // the points on the chessboard
     std::vector<cv::Point2f> imageCorners;
@@ -65,8 +64,7 @@ int Camera::addSeveralChessboardPoints(
 
 // Given an image extract corner points
 std::vector<cv::Point2f> Camera::addChessboardPoints(
-    const cv::Mat image,
-    cv::Size & boardSize) {
+    const cv::Mat image) {
 
     cv::Mat gray_image;
     // the points on the chessboard
@@ -121,8 +119,7 @@ void Camera::addPoints(const std::vector<cv::Point2f> &imageCorners,
 
 // Calibrate the camera
 // returns the re-projection error
-double Camera::calibrate(int nBoards, int frameStep, int width,
-                         int height, int iterations) {
+double Camera::calibrate(int nBoards, int frameStep, int iterations) {
     std::vector<cv::Point2f> corners;
     int successes = 0;
     int frame = 0;
@@ -141,7 +138,7 @@ double Camera::calibrate(int nBoards, int frameStep, int width,
 
         //Skip frames if needed
         if((frame++ % frameStep) == 0){
-            corners = addChessboardPoints(image,boardSize);
+            corners = addChessboardPoints(image);
 
             // If we got a good board, add it to our data
             if( corners.size() == boardTotal){

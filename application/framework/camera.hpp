@@ -46,19 +46,14 @@ public:
     Camera(Video* iVid, int boardW, int boardH);
 
     // Functions
-    int addSeveralChessboardPoints(
-        const std::vector<std::string>& filelist,
-        cv::Size & boardSize);
+    int addSeveralChessboardPoints(const std::vector<std::string>& filelist);
 
-    std::vector<cv::Point2f> addChessboardPoints(
-        const cv::Mat image,
-        cv::Size & boardSize);
+    std::vector<cv::Point2f> addChessboardPoints(const cv::Mat image);
 
     void addPoints(const std::vector<cv::Point2f> &imageCorners,
         const std::vector<cv::Point3f> &objectCorners);
 
-    double calibrate(int nBoards, int frameStep, int width,
-                     int height, int iterations);
+    double calibrate(int nBoards, int frameStep, int iterations);
 
     cv::Mat remap(const cv::Mat &image);
 
