@@ -193,6 +193,7 @@ void MainWindow::on_actionCalibrate_triggered()
                                        calibDiag.getIterations());
         if(videoIt->getVideo()->isCalibrated()){
             showMessage(QString("Video Calibrated"));
+            ui->player->playOrPause();
         } else {
             showMessage(QString("Failed Calibration"));
         }

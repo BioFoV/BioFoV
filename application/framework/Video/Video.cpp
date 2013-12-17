@@ -217,6 +217,7 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
 void Video::calibrate(int nBoards, int frameStep, int boardW,
                       int boardH, int iterations) {
 
+    // Rewind to the beginning
     setFramePos(0);
 
 //    if (cam != NULL){
@@ -230,4 +231,6 @@ void Video::calibrate(int nBoards, int frameStep, int boardW,
         calibrated = true;
     }
 
+    // Rewind again
+    setFramePos(0);
 }
