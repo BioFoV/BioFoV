@@ -60,8 +60,7 @@ cv::VideoCapture Video::getCapture(){
 bool Video::check_cap(){
 	if(cap.isOpened()){
 		return true;
-	}
-	std::cerr << "Couldn't open " << filename << std::endl;
+    }
 	return false;
 }
 
@@ -83,9 +82,8 @@ bool Video::getFrame(cv::Mat &frame){
         }
         return true;
 	}
-	else{
-		std::cerr << "Couldn't read frame" << std::endl;
-		return false;
+    else{
+        return false;
 	}
 }
 
