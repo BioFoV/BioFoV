@@ -82,13 +82,15 @@ void VideoPlayer::loadVid(std::string filename){
     Video * vid = new Video(filename);
     pause();
     unload();
-    loadVid(vid);
+    loadVid(vid, PLAYER_VID);
 }
 
-void VideoPlayer::loadVid(Player* nextVid){
+void VideoPlayer::loadVid(Player* nextVid, int playerT){
     pause();
     unload();
     currentPlayer = nextVid;
+    playerType = playerT;
+
     nextVid->setFramePos(0);
     ui->posSlider->setValue(0);
     stepForward();
@@ -195,4 +197,16 @@ void VideoPlayer::on_playButton_clicked()
 void VideoPlayer::on_stepButton_clicked()
 {
     stepForward();
+}
+
+/*******************************************************************************
+ * Player type
+ ******************************************************************************/
+int VideoPlayer::getPlayerType(){
+    return playerType;
+}
+
+void VideoPlayer::setPlayMode(int mode){
+    if (playerType == PLAYER_EV)
+        ((Event*)currentPlayer)->setPlaybackMode(mode);
 }

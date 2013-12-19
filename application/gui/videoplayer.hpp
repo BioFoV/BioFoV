@@ -22,6 +22,9 @@
 #include "../framework/Video/Video.hpp"
 #endif
 
+#define PLAYER_VID 0
+#define PLAYER_EV  1
+
 namespace Ui {
 class VideoPlayer;
 }
@@ -42,12 +45,13 @@ public slots:
     bool stepForward();
     void goTo(double nthFrame);
     void loadVid(std::string filename);
-    void loadVid(Player* nextVid);
+    void loadVid(Player* nextVid, int playerT);
     void unload();
+    int getPlayerType();
+    void setPlayMode(int mode);
 
 private:
     Ui::VideoPlayer *ui;
-//    Video* currentVid;
     Player* currentPlayer;
     QImage _qimage;
     cv::Mat _tmp;
@@ -56,6 +60,7 @@ private:
     double FPS; // frames per second
     QTimer timer;
     float speed;
+    int playerType;
 
 private slots:
     void showImage(const cv::Mat& image);

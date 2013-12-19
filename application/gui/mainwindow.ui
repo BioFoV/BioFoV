@@ -79,8 +79,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>98</width>
-             <height>70</height>
+             <width>769</width>
+             <height>285</height>
             </rect>
            </property>
            <attribute name="label">
@@ -260,11 +260,21 @@
     <property name="title">
      <string>&amp;Event</string>
     </property>
+    <widget class="QMenu" name="menuPlayback_Mode">
+     <property name="title">
+      <string>Playback Mode</string>
+     </property>
+     <addaction name="actionNormal"/>
+     <addaction name="actionMask"/>
+     <addaction name="actionMasked_Video"/>
+    </widget>
     <addaction name="actionNewEvent"/>
     <addaction name="actionDeleteEvent"/>
     <addaction name="separator"/>
     <addaction name="actionAuto_Detect_Events"/>
     <addaction name="actionAuto_Split"/>
+    <addaction name="separator"/>
+    <addaction name="menuPlayback_Mode"/>
    </widget>
    <widget class="QMenu" name="menuIndividual">
     <property name="title">
@@ -423,6 +433,36 @@
   <action name="actionCalibrate">
    <property name="text">
     <string>Calibrate</string>
+   </property>
+  </action>
+  <action name="actionNormal">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Normal</string>
+   </property>
+  </action>
+  <action name="actionMask">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Mask</string>
+   </property>
+  </action>
+  <action name="actionMasked_Video">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Masked Video</string>
    </property>
   </action>
  </widget>

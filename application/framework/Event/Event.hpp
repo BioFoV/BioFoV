@@ -31,6 +31,10 @@
 #include <list>
 #endif
 
+#define PLAY_FRAMES 0
+#define PLAY_MASK 1
+#define PLAY_MASKED_FRAMES 2
+
 class Frame;
 class Snapshot;
 class Individual;
@@ -50,6 +54,13 @@ private:
 
     // player variables
     double position;
+
+    // playback mode
+    // PLAY_FRAMES -> plays frames
+    // PLAY_MASK -> plays BW mask
+    // PLAY_MASKED_FRAMES -> plays
+    int playMode;
+
 public:
 	// Constructor
     Event(Video* iVid);
@@ -75,5 +86,8 @@ public:
     double getFPS();
     double getLengthTime();
     double getLengthFrames();
+
+    // Playback modifier
+    void setPlaybackMode(int mode);
 };
 #endif 

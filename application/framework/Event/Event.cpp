@@ -6,6 +6,7 @@
 Event::Event(Video* iVid){
     position = 0;
     vid = iVid;
+    playMode = PLAY_FRAMES;
 }
 
 /*******************************************************************************
@@ -98,22 +99,40 @@ double Event::getFramePos(){
 }
 
 bool Event::getFrame(cv::Mat &frame){
-    Frame *tmpFrame;
-    try {
-        tmpFrame = frames.at(position);
-    }
-    catch (const std::out_of_range& oor) {
-        return false;
-    }
+    if (playMode == PLAY_FRAMES){
+        Frame* tmpFrame;
+        try {
+            tmpFrame = frames.at(position);
+        }
+        catch (const std::out_of_range& oor) {
+            return false;
+        }
 
-    frame = tmpFrame->getImage();
-    if (frame.empty())
+        frame = tmpFrame->getImage();
+        if (frame.empty())
+            return false;
+        else{
+            position += 1;
+            return true;
+        }
         return false;
-    else{
-        position += 1;
-        return true;
+    } else if (playMode == PLAY_MASK){
+        Snapshot* tmpSnap;
+        try {
+            tmpSnap = snapshots.at(position);
+        }
+        catch (const std::out_of_range& oor) {
+            return false;
+        }
+
+        frame = tmpSnap->getMask();
+        if (frame.empty())
+            return false;
+        else {
+            position ++;
+            return true;
+        }
     }
-    return false;
 }
 
 bool Event::getPrevFrame(cv::Mat &frame){
@@ -139,4 +158,11 @@ double Event::getLengthTime(){
 
 double Event::getLengthFrames(){
     return frames.size();
+}
+
+/*******************************************************************************
+ * Playback modifier
+ ******************************************************************************/
+void Event::setPlaybackMode(int mode){
+    playMode = mode;
 }

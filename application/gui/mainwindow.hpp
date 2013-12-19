@@ -63,9 +63,19 @@ private slots:
 
     void on_actionCalibrate_triggered();
 
+    // Event playback mode modifiers
+    void on_actionNormal_triggered();
+    void on_actionMask_triggered();
+    void on_actionMasked_Video_triggered();
+    // Flag handlers
+    void on_actionNormal_toggled(bool arg1);
+    void on_actionMask_toggled(bool arg1);
+    void on_actionMasked_Video_toggled(bool arg1);
+
 private:
     Ui::MainWindow *ui;
     int nEvent;
+    int playMode;
 };
 
 #endif // MAINWINDOW_H

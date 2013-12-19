@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     connect(ui->actionAbout, SIGNAL(triggered()), this, SLOT(openAbout()));
     nEvent = 0;
+    playMode = PLAY_FRAMES;
 }
 
 /*******************************************************************************
@@ -46,7 +47,7 @@ void MainWindow::on_actionAdd_Video_File_triggered()
             showMessage(QString("Loaded ") + fileName);
         }
         if(last != NULL) {
-            ui->player->loadVid(last->getVideo());
+            ui->player->loadVid(last->getVideo(), PLAYER_VID);
             showMessage("Finished loading files");
         }
     } else {
@@ -135,10 +136,12 @@ void MainWindow::on_videoList_itemDoubleClicked(QTreeWidgetItem *item,
     showMessage(QString("Loaded ") + item->text(0));
     if (item->parent() == NULL){
         VideoItem * vItem = (VideoItem *) item;
-        ui->player->loadVid(vItem->getVideo());
+        ui->player->loadVid(vItem->getVideo(), PLAYER_VID);
     } else {
         EventItem * vItem = (EventItem *) item;
-        ui->player->loadVid(vItem->getEvent());
+        Event* ev = vItem->getEvent();
+        ev->setPlaybackMode(playMode);
+        ui->player->loadVid(ev, PLAYER_EV);
     }
     ui->player->playOrPause();
 }
@@ -197,5 +200,66 @@ void MainWindow::on_actionCalibrate_triggered()
         } else {
             showMessage(QString("Failed Calibration"));
         }
+    }
+}
+
+/*******************************************************************************
+ * Playback mode
+ ******************************************************************************/
+/* Constraints
+ */
+void MainWindow::on_actionNormal_triggered()
+{
+    if (ui->actionNormal->isChecked()) {
+        ui->actionMask->setChecked(false);
+        ui->actionMasked_Video->setChecked(false);
+    } else {
+        ui->actionNormal->setChecked(true);
+    }
+}
+
+void MainWindow::on_actionMask_triggered()
+{
+    if (ui->actionMask->isChecked()) {
+        ui->actionNormal->setChecked(false);
+        ui->actionMasked_Video->setChecked(false);
+    } else {
+        ui->actionNormal->setChecked(true);
+    }
+}
+
+void MainWindow::on_actionMasked_Video_triggered()
+{
+    if (ui->actionMasked_Video->isChecked()) {
+        ui->actionNormal->setChecked(false);
+        ui->actionMask->setChecked(false);
+    } else {
+        ui->actionNormal->setChecked(true);
+    }
+}
+
+/*Flag handlers
+ */
+void MainWindow::on_actionNormal_toggled(bool arg1)
+{
+    if (arg1) {
+        playMode = PLAY_FRAMES;
+        ui->player->setPlayMode(playMode);
+    }
+}
+
+void MainWindow::on_actionMask_toggled(bool arg1)
+{
+    if (arg1) {
+        playMode = PLAY_MASK;
+        ui->player->setPlayMode(playMode);
+    }
+}
+
+void MainWindow::on_actionMasked_Video_toggled(bool arg1)
+{
+    if (arg1) {
+        playMode = PLAY_MASKED_FRAMES;
+        ui->player->setPlayMode(playMode);
     }
 }
