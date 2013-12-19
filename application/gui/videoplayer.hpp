@@ -66,7 +66,7 @@ private:
     float speed;
     int playerType;
 
-    cv::Point p1, p2, pLast;
+    cv::Point p1, p2;
 
 private slots:
     void showImage(const cv::Mat& image);
@@ -80,6 +80,7 @@ private slots:
     void on_stepButton_clicked();
     void on_rewindButton_clicked();
 
+    cv::Point qtPt_To_cvPt(QPoint in);
     void mousePressEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);

@@ -217,29 +217,34 @@ void VideoPlayer::setMouseTracking(bool enable){
     ui->player->setMouseTracking(enable);
 }
 
-void VideoPlayer::mousePressEvent(QMouseEvent *event){
-    p1 = pLast;
-}
-
-void VideoPlayer::mouseReleaseEvent(QMouseEvent *event){
-    p2 = pLast;
-}
-
-void VideoPlayer::mouseMoveEvent(QMouseEvent *event){
-    cv::Mat _tmp2 = frame.clone();
+cv::Point VideoPlayer::qtPt_To_cvPt(QPoint in){
     double x_cv = frame.rows;
     double y_cv = frame.cols;
 
     double x_qt = ui->player->size().height();
     double y_qt = ui->player->size().width();
 
-    double x_now = event->pos().x();
-    double y_now = event->pos().y();
+    double x_now = in.x();
+    double y_now = in.y();
 
-    pLast = cv::Point(x_now/x_qt*x_cv,
-                      y_now/y_qt*y_cv);
+    return cv::Point(x_now/x_qt*x_cv,
+                     y_now/y_qt*y_cv);
+}
 
-    cv::rectangle(_tmp2, p1, pLast, cv::Scalar( 0, 0, 255));
+void VideoPlayer::mousePressEvent(QMouseEvent *event){
+    p1 = qtPt_To_cvPt(event->pos());
+}
+
+void VideoPlayer::mouseReleaseEvent(QMouseEvent *event){
+    p2 = qtPt_To_cvPt(event->pos());
+}
+
+void VideoPlayer::mouseMoveEvent(QMouseEvent *event){
+    cv::Mat _tmp2 = frame.clone();
+
+    p2 = qtPt_To_cvPt(event->pos());
+
+    cv::rectangle(_tmp2, p1, p2, cv::Scalar( 0, 0, 255));
 
     showImage(_tmp2);
 }
