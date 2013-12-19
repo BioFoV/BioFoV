@@ -57,11 +57,15 @@ private slots:
     void on_actionDeleteEvent_triggered();
     void on_actionAuto_Split_triggered();
     void on_videoList_itemDoubleClicked(QTreeWidgetItem *item, int column);
+
+    // Status bar message handlers
     void showMessage(QString text);
     void showMessage(const char* text);
 
+    // Details of the video/events
     void on_videoList_itemSelectionChanged();
 
+    // Calibrate Camera with chess pattern
     void on_actionCalibrate_triggered();
 
     // Event playback mode modifiers
@@ -73,8 +77,8 @@ private slots:
     void on_actionMask_toggled(bool arg1);
     void on_actionMasked_Video_toggled(bool arg1);
 
+    // Filter video
     void on_actionCrop_triggered();
-
     void on_actionExclude_rectangle_triggered();
 
 private:
