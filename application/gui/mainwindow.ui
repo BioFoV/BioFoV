@@ -79,8 +79,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>769</width>
-             <height>285</height>
+             <width>98</width>
+             <height>70</height>
             </rect>
            </property>
            <attribute name="label">
@@ -459,7 +459,7 @@
     <bool>true</bool>
    </property>
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="text">
     <string>Masked Video</string>

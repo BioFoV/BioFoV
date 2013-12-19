@@ -132,7 +132,26 @@ bool Event::getFrame(cv::Mat &frame){
             position ++;
             return true;
         }
+    } else if (playMode == PLAY_MASKED_FRAMES){
+        Snapshot* tmpSnap;
+        Frame* tmpFrame;
+        try {
+            tmpSnap = snapshots.at(position);
+            tmpFrame = frames.at(position);
+        }
+        catch (const std::out_of_range& oor) {
+            return false;
+        }
+
+        tmpFrame->getImage().copyTo(frame,tmpSnap->getMask());
+        if (frame.empty())
+            return false;
+        else {
+            position ++;
+            return true;
+        }
     }
+    return false;
 }
 
 bool Event::getPrevFrame(cv::Mat &frame){
