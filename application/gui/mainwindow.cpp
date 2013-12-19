@@ -153,6 +153,10 @@ void MainWindow::showMessage(QString text){
     ui->statusBar->showMessage(text);
 }
 
+void MainWindow::showMessage(const char *text){
+    ui->statusBar->showMessage(QString(text));
+}
+
 void MainWindow::on_videoList_itemSelectionChanged()
 {
     EventItem* eventIt;
@@ -173,13 +177,13 @@ void MainWindow::on_videoList_itemSelectionChanged()
 void MainWindow::on_actionCalibrate_triggered()
 {
     if (ui->videoList->selectedItems().size() == 0){
-        showMessage(QString("Select a Video first"));
+        showMessage("Select a Video first");
         return;
     }
 
     CalibrationDialog calibDiag;
     if(!calibDiag.exec()){
-        showMessage(QString("Calibration canceled"));
+        showMessage("Calibration canceled");
         return;
     }
 
@@ -195,10 +199,10 @@ void MainWindow::on_actionCalibrate_triggered()
                                        calibDiag.getHeight(),
                                        calibDiag.getIterations());
         if(videoIt->getVideo()->isCalibrated()){
-            showMessage(QString("Video Calibrated"));
+            showMessage("Video Calibrated");
             ui->player->playOrPause();
         } else {
-            showMessage(QString("Failed Calibration"));
+            showMessage("Failed Calibration");
         }
     }
 }
@@ -262,4 +266,19 @@ void MainWindow::on_actionMasked_Video_toggled(bool arg1)
         playMode = PLAY_MASKED_FRAMES;
         ui->player->setPlayMode(playMode);
     }
+}
+
+/*******************************************************************************
+ * Filter Video
+ ******************************************************************************/
+void MainWindow::on_actionCrop_triggered()
+{
+    ui->player->pause();
+    showMessage("Select the area to crop in the player");
+}
+
+void MainWindow::on_actionExclude_rectangle_triggered()
+{
+    ui->player->pause();
+    showMessage("Select a rectangle to zoneout in the player");
 }

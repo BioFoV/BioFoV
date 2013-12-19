@@ -251,10 +251,18 @@
      <addaction name="menuRotate"/>
      <addaction name="actionCalibrate"/>
     </widget>
+    <widget class="QMenu" name="menuFilter">
+     <property name="title">
+      <string>Filter</string>
+     </property>
+     <addaction name="actionCrop"/>
+     <addaction name="actionExclude_rectangle"/>
+    </widget>
     <addaction name="actionAdd_Video_File"/>
     <addaction name="action_Remove_From_Project"/>
     <addaction name="separator"/>
     <addaction name="menuTransformations"/>
+    <addaction name="menuFilter"/>
    </widget>
    <widget class="QMenu" name="menuEvent">
     <property name="title">
@@ -463,6 +471,22 @@
    </property>
    <property name="text">
     <string>Masked Video</string>
+   </property>
+  </action>
+  <action name="actionCrop">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Crop</string>
+   </property>
+  </action>
+  <action name="actionExclude_rectangle">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Exclude rectangle</string>
    </property>
   </action>
  </widget>

@@ -58,6 +58,7 @@ private slots:
     void on_actionAuto_Split_triggered();
     void on_videoList_itemDoubleClicked(QTreeWidgetItem *item, int column);
     void showMessage(QString text);
+    void showMessage(const char* text);
 
     void on_videoList_itemSelectionChanged();
 
@@ -71,6 +72,10 @@ private slots:
     void on_actionNormal_toggled(bool arg1);
     void on_actionMask_toggled(bool arg1);
     void on_actionMasked_Video_toggled(bool arg1);
+
+    void on_actionCrop_triggered();
+
+    void on_actionExclude_rectangle_triggered();
 
 private:
     Ui::MainWindow *ui;
