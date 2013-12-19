@@ -58,10 +58,9 @@ bool VideoPlayer::stepBack(){
 }
 
 bool VideoPlayer::stepForward(){
-    cv::Mat _tmp2;
     // Check if there is a next frame
-    if(currentPlayer->getFrame(_tmp2)) {
-        showImage(_tmp2);
+    if(currentPlayer->getFrame(frame)) {
+        showImage(frame);
         return true;
     } else {
         qDebug("could not get frame");
@@ -209,4 +208,38 @@ int VideoPlayer::getPlayerType(){
 void VideoPlayer::setPlayMode(int mode){
     if (playerType == PLAYER_EV)
         ((Event*)currentPlayer)->setPlaybackMode(mode);
+}
+
+/*
+ * Mouse tracking
+ */
+void VideoPlayer::setMouseTracking(bool enable){
+    ui->player->setMouseTracking(enable);
+}
+
+void VideoPlayer::mousePressEvent(QMouseEvent *event){
+    p1 = pLast;
+}
+
+void VideoPlayer::mouseReleaseEvent(QMouseEvent *event){
+    p2 = pLast;
+}
+
+void VideoPlayer::mouseMoveEvent(QMouseEvent *event){
+    cv::Mat _tmp2 = frame.clone();
+    double x_cv = frame.rows;
+    double y_cv = frame.cols;
+
+    double x_qt = ui->player->size().height();
+    double y_qt = ui->player->size().width();
+
+    double x_now = event->pos().x();
+    double y_now = event->pos().y();
+
+    pLast = cv::Point(x_now/x_qt*x_cv,
+                      y_now/y_qt*y_cv);
+
+    cv::rectangle(_tmp2, p1, pLast, cv::Scalar( 0, 0, 255));
+
+    showImage(_tmp2);
 }

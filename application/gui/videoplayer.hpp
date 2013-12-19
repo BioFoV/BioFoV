@@ -5,6 +5,8 @@
 #include <QImage>
 #include <QPainter>
 #include <QTimer>
+#include <QMouseEvent>
+#include <QDebug>
 
 // OpenCV
 #ifndef OPENCV_INC
@@ -49,18 +51,22 @@ public slots:
     void unload();
     int getPlayerType();
     void setPlayMode(int mode);
+    void setMouseTracking(bool enable);
 
 private:
     Ui::VideoPlayer *ui;
     Player* currentPlayer;
     QImage _qimage;
     cv::Mat _tmp;
+    cv::Mat frame;
     bool isplaying; // playing or not
     double frameInt; // interval between frames
     double FPS; // frames per second
     QTimer timer;
     float speed;
     int playerType;
+
+    cv::Point p1, p2, pLast;
 
 private slots:
     void showImage(const cv::Mat& image);
@@ -73,6 +79,10 @@ private slots:
     void on_playButton_clicked();
     void on_stepButton_clicked();
     void on_rewindButton_clicked();
+
+    void mousePressEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
 };
 
 #endif // VIDEOPLAYER_H

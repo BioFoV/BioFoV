@@ -483,7 +483,7 @@
   </action>
   <action name="actionExclude_rectangle">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="text">
     <string>Exclude rectangle</string>
