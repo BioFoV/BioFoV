@@ -218,17 +218,17 @@ void VideoPlayer::setMouseTracking(bool enable){
 }
 
 cv::Point VideoPlayer::qtPt_To_cvPt(QPoint in){
-    double x_cv = frame.rows;
-    double y_cv = frame.cols;
+    double x_cv = frame.cols;
+    double y_cv = frame.rows;
 
-    double x_qt = ui->player->size().height();
-    double y_qt = ui->player->size().width();
+    double x_qt = _qimage.width();
+    double y_qt = _qimage.height();
 
     double x_now = in.x();
     double y_now = in.y();
 
-    return cv::Point(x_now/x_qt*x_cv,
-                     y_now/y_qt*y_cv);
+    return cv::Point(x_now*x_cv/x_qt,
+                     y_now*y_cv/y_qt);
 }
 
 void VideoPlayer::mousePressEvent(QMouseEvent *event){
