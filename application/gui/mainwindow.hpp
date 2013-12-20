@@ -40,6 +40,11 @@ namespace Ui {
 class MainWindow;
 }
 
+///
+/// \brief MainWindow class.
+/// Responsible for the main window, channel all user requests to the rightful
+///functions, and display the appropriate data.
+///
 class MainWindow : public QMainWindow
 {
 	Q_OBJECT
@@ -82,9 +87,13 @@ private slots:
     void on_actionExclude_rectangle_triggered();
 
 private:
-    Ui::MainWindow *ui;
-    int nEvent;
-    int playMode;
+    Ui::MainWindow *ui; ///< UI created by Qt.
+                        ///<Points to a class that contains everything that was
+                        ///<defined in the mainwindow.ui XML file.
+    int nEvent;   ///< Total events found so far.
+    int playMode; ///< Playback Mode.
+                  ///<Can be one of the 3 defined in event.hpp: PLAY_FRAMES,
+                  ///<PLAY_MASK or PLAY_MASKED_FRAMES.
 };
 
 #endif // MAINWINDOW_H
