@@ -143,6 +143,7 @@ bool Event::getFrame(cv::Mat &frame){
             return false;
         }
 
+        frame = tmpSnap->getMask();
         tmpFrame->getImage().copyTo(frame,tmpSnap->getMask());
         if (frame.empty())
             return false;
