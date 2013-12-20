@@ -210,9 +210,9 @@ void VideoPlayer::setPlayMode(int mode){
         ((Event*)currentPlayer)->setPlaybackMode(mode);
 }
 
-/*
+/*******************************************************************************
  * Mouse tracking
- */
+ ******************************************************************************/
 void VideoPlayer::setMouseTracking(bool enable){
     ui->player->setMouseTracking(enable);
 }
