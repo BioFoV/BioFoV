@@ -1,10 +1,6 @@
 #include "mainwindow.hpp"
 #include "ui_mainwindow.h"
 
-////////////////////////////////////////////////////////////////////////////////
-/// \brief MainWindow constructor.
-/// \param parent Parent of the new MainWindow.
-////////////////////////////////////////////////////////////////////////////////
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -15,18 +11,13 @@ MainWindow::MainWindow(QWidget *parent) :
     playMode = PLAY_FRAMES;
 }
 
-////////////////////////////////////////////////////////////////////////////////
-/// \brief MainWindow destructor.
-////////////////////////////////////////////////////////////////////////////////
+
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
-////////////////////////////////////////////////////////////////////////////////
-/// \brief Add video file.
-/// Add a video file dialog and import wizard.
-////////////////////////////////////////////////////////////////////////////////
+
 void MainWindow::on_actionAdd_Video_File_triggered()
 {
     VideoItem * last = NULL;
@@ -58,22 +49,12 @@ void MainWindow::on_actionAdd_Video_File_triggered()
     return;
 }
 
-////////////////////////////////////////////////////////////////////////////////
-/// \brief Opens the about window.
-/// This was a test for the exec function and opening new windows/dialogs, but
-///in the end it stayed.
-////////////////////////////////////////////////////////////////////////////////
 void MainWindow::openAbout()
 {
     About about;
     about.exec();
 }
 
-////////////////////////////////////////////////////////////////////////////////
-/// \brief Auto detect events in video.
-/// For each video in the video list split them into events accordingly with the
-///given parameters in the split window that is used.
-////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionAuto_Detect_Events_triggered()
 {
     VideoItem* videoiter;
@@ -112,27 +93,17 @@ void MainWindow::on_actionAuto_Detect_Events_triggered()
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////
-/// \brief Remove video file from project.
-////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_action_Remove_From_Project_triggered()
 {
     qDeleteAll(ui->videoList->selectedItems());
 }
 
-////////////////////////////////////////////////////////////////////////////////
-/// \brief Delete all selected Events.
-////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionDeleteEvent_triggered()
 {
     qDeleteAll(ui->videoList->selectedItems());
 }
 
-////////////////////////////////////////////////////////////////////////////////
-/// \brief Automatically split an event.
-/// This was sort of deprecated by the Auto Detect option, but it could still be
-///applied to Events.
-////////////////////////////////////////////////////////////////////////////////
+
 void MainWindow::on_actionAuto_Split_triggered()
 {
     EventItem* eventIt;
@@ -153,11 +124,6 @@ void MainWindow::on_actionAuto_Split_triggered()
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////
-/// \brief Double click an item on the video/event list.
-/// \param item Pointer to the item which was double clicked.
-/// \param column Index of the clicked column (not used).
-////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_videoList_itemDoubleClicked(QTreeWidgetItem *item,
                                                 int column)
 {
@@ -174,26 +140,15 @@ void MainWindow::on_videoList_itemDoubleClicked(QTreeWidgetItem *item,
     ui->player->playOrPause();
 }
 
-////////////////////////////////////////////////////////////////////////////////
-/// \brief Shows a message in the status bar.
-/// \param text message as a QString.
-////////////////////////////////////////////////////////////////////////////////
+
 void MainWindow::showMessage(QString text){
     ui->statusBar->showMessage(text);
 }
 
-////////////////////////////////////////////////////////////////////////////////
-/// \brief Shows a message in the status bar.
-/// \param text message as a normal C++ char *.
-////////////////////////////////////////////////////////////////////////////////
 void MainWindow::showMessage(const char *text){
     ui->statusBar->showMessage(QString(text));
 }
 
-////////////////////////////////////////////////////////////////////////////////
-/// \brief Changed selection in the video/event list.
-/// Updates the statistics for the selected events.
-////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_videoList_itemSelectionChanged()
 {
     EventItem* eventIt;
@@ -211,10 +166,6 @@ void MainWindow::on_videoList_itemSelectionChanged()
     ui->labelTotalTime->setText(QString("%1 s").arg(time));
 }
 
-////////////////////////////////////////////////////////////////////////////////
-/// \brief Calibrate the video.
-/// Call for the calibration function for each video selected.
-////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionCalibrate_triggered()
 {
     if (ui->videoList->selectedItems().size() == 0){
@@ -248,11 +199,7 @@ void MainWindow::on_actionCalibrate_triggered()
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////
-/// \brief RGB video playback triggered.
-/// Disables all the other playback options if enabled. If disabled,
-///re-enable, since at least one playback option should be enabled.
-////////////////////////////////////////////////////////////////////////////////
+
 void MainWindow::on_actionNormal_triggered()
 {
     if (ui->actionNormal->isChecked()) {
@@ -263,11 +210,7 @@ void MainWindow::on_actionNormal_triggered()
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////
-/// \brief Mask playback triggered.
-/// Disables all the other playback options if enabled. If disabled,
-///return to normal playback mode.
-////////////////////////////////////////////////////////////////////////////////
+
 void MainWindow::on_actionMask_triggered()
 {
     if (ui->actionMask->isChecked()) {
@@ -278,11 +221,7 @@ void MainWindow::on_actionMask_triggered()
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////
-/// \brief Masked video playback triggered.
-/// Disables all the other playback options if enabled. If disabled,
-///return to normal playback mode.
-////////////////////////////////////////////////////////////////////////////////
+
 void MainWindow::on_actionMasked_Video_triggered()
 {
     if (ui->actionMasked_Video->isChecked()) {
@@ -293,10 +232,7 @@ void MainWindow::on_actionMasked_Video_triggered()
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////
-/// \brief Event playback as RGB video toggled.
-/// \param arg1 Event playback as RGB video?
-////////////////////////////////////////////////////////////////////////////////
+
 void MainWindow::on_actionNormal_toggled(bool arg1)
 {
     if (arg1) {
@@ -305,10 +241,7 @@ void MainWindow::on_actionNormal_toggled(bool arg1)
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////
-/// \brief Event playback of the mask toggled.
-/// \param arg1 Event playback as mask only?
-////////////////////////////////////////////////////////////////////////////////
+
 void MainWindow::on_actionMask_toggled(bool arg1)
 {
     if (arg1) {
@@ -317,10 +250,7 @@ void MainWindow::on_actionMask_toggled(bool arg1)
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////
-/// \brief Event playback of the masked RGB video toggled.
-/// \param arg1 Event playback as masked video?
-////////////////////////////////////////////////////////////////////////////////
+
 void MainWindow::on_actionMasked_Video_toggled(bool arg1)
 {
     if (arg1) {
@@ -329,20 +259,14 @@ void MainWindow::on_actionMasked_Video_toggled(bool arg1)
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////
-/// \brief Crop action.
-/// Start cropping the video
-////////////////////////////////////////////////////////////////////////////////
+
 void MainWindow::on_actionCrop_triggered()
 {
     ui->player->pause();
     showMessage("Select the area to crop in the player");
 }
 
-////////////////////////////////////////////////////////////////////////////////
-/// \brief Exclude action.
-/// Start excluding a rectangular section of the video
-////////////////////////////////////////////////////////////////////////////////
+
 void MainWindow::on_actionExclude_rectangle_triggered()
 {
     ui->player->pause();
