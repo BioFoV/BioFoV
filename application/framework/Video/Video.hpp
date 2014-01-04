@@ -75,7 +75,7 @@ public:
 	~Video();
 
     // Set and Get
-    void setFileName(std::string);
+    void setFileName(std::string name);
     std::string getFileName();
     void setCapture(cv::VideoCapture capture);
     cv::VideoCapture getCapture();
