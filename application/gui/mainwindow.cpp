@@ -1,9 +1,6 @@
 #include "mainwindow.hpp"
 #include "ui_mainwindow.h"
 
-/*******************************************************************************
- * Constructors
- ******************************************************************************/
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -14,17 +11,13 @@ MainWindow::MainWindow(QWidget *parent) :
     playMode = PLAY_FRAMES;
 }
 
-/*******************************************************************************
- * Destructors
- ******************************************************************************/
+
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
-/*******************************************************************************
- * Actions
- ******************************************************************************/
+
 void MainWindow::on_actionAdd_Video_File_triggered()
 {
     VideoItem * last = NULL;
@@ -110,6 +103,7 @@ void MainWindow::on_actionDeleteEvent_triggered()
     qDeleteAll(ui->videoList->selectedItems());
 }
 
+
 void MainWindow::on_actionAuto_Split_triggered()
 {
     EventItem* eventIt;
@@ -146,9 +140,7 @@ void MainWindow::on_videoList_itemDoubleClicked(QTreeWidgetItem *item,
     ui->player->playOrPause();
 }
 
-/*******************************************************************************
- * Display messages on status bar
- ******************************************************************************/
+
 void MainWindow::showMessage(QString text){
     ui->statusBar->showMessage(text);
 }
@@ -207,11 +199,7 @@ void MainWindow::on_actionCalibrate_triggered()
     }
 }
 
-/*******************************************************************************
- * Playback mode
- ******************************************************************************/
-/* Constraints
- */
+
 void MainWindow::on_actionNormal_triggered()
 {
     if (ui->actionNormal->isChecked()) {
@@ -221,6 +209,7 @@ void MainWindow::on_actionNormal_triggered()
         ui->actionNormal->setChecked(true);
     }
 }
+
 
 void MainWindow::on_actionMask_triggered()
 {
@@ -232,6 +221,7 @@ void MainWindow::on_actionMask_triggered()
     }
 }
 
+
 void MainWindow::on_actionMasked_Video_triggered()
 {
     if (ui->actionMasked_Video->isChecked()) {
@@ -242,8 +232,7 @@ void MainWindow::on_actionMasked_Video_triggered()
     }
 }
 
-/*Flag handlers
- */
+
 void MainWindow::on_actionNormal_toggled(bool arg1)
 {
     if (arg1) {
@@ -251,6 +240,7 @@ void MainWindow::on_actionNormal_toggled(bool arg1)
         ui->player->setPlayMode(playMode);
     }
 }
+
 
 void MainWindow::on_actionMask_toggled(bool arg1)
 {
@@ -260,6 +250,7 @@ void MainWindow::on_actionMask_toggled(bool arg1)
     }
 }
 
+
 void MainWindow::on_actionMasked_Video_toggled(bool arg1)
 {
     if (arg1) {
@@ -268,14 +259,13 @@ void MainWindow::on_actionMasked_Video_toggled(bool arg1)
     }
 }
 
-/*******************************************************************************
- * Filter Video
- ******************************************************************************/
+
 void MainWindow::on_actionCrop_triggered()
 {
     ui->player->pause();
     showMessage("Select the area to crop in the player");
 }
+
 
 void MainWindow::on_actionExclude_rectangle_triggered()
 {
