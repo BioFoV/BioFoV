@@ -17,32 +17,80 @@
 #include "Video/Video.hpp"
 #endif
 
+///
+/// \brief The Camera class is responsible for the calibration of the camera and
+/// for holding the distortion parameters.
+///
 class Camera
 {
 private:
     // input points:
-    //the points in world coordinates
+    ///
+    /// \brief the points in world coordinates.
+    ///
     std::vector<std::vector<cv::Point3f> > objectPoints;
-    //the point positions in pixels
+    ///
+    /// \brief the points in image pixels.
+    ///
     std::vector<std::vector<cv::Point2f> > imagePoints;
-    // flag to specify how calibration is done
+    ///
+    /// \brief flag to specify how calibration is done.
+    ///
     int flag;
-    // used in image undistortion
+    ///
+    /// \brief used in image undistortion.
+    ///
     cv::Mat map1,map2;
+    ///
+    /// \brief maximum number of iterations.
+    ///
     int maxIter;
+    ///
+    /// \brief the camera matrix itself.
+    ///
     cv::Mat cameraMatrix;
+    ///
+    /// \brief distortion coeficients.
+    ///
     cv::Mat distCoeffs;
+    ///
+    /// \brief estimated error introduced by the reprojection.
+    ///
     double reprojectionError;
+    ///
+    /// \brief size of the chessboard pattern (number of inner corners).
+    /// This variable is a cv::Size, not an int or an array.
+    ///
     cv::Size boardSize;
+    ///
+    /// \brief total number of boards detected.
+    ///
     int boardTotal;
+    ///
+    /// \brief Video which was or will be used to calibrate de camera.
+    /// More Videos can be referenced to this camera, but none should re-call
+    ///the calibration methods.
+    ///
     Video* vid;
 
 public:
-
+    ///
+    /// \brief are the undistortion coeficients initialized?
+    ///
     bool mustInitUndistort;
 
     // Constructor
+    ///
+    /// \brief Simple Camera constructor.
+    ///
     Camera();
+    ///
+    /// \brief Camera constructorr using the board dimentions and Video
+    /// reference.
+    /// \param iVid Pointer to the Video object.
+    /// \param boardW Width of the board (input by the user).
+    /// \param boardH Height of the board (input by the user).
+    ///
     Camera(Video* iVid, int boardW, int boardH);
 
     // Functions
