@@ -276,6 +276,13 @@
      <addaction name="actionMask"/>
      <addaction name="actionMasked_Video"/>
     </widget>
+    <widget class="QMenu" name="menuOperations">
+     <property name="title">
+      <string>Operations</string>
+     </property>
+     <addaction name="actionMerge"/>
+     <addaction name="actionSplit_at_current_position"/>
+    </widget>
     <addaction name="actionNewEvent"/>
     <addaction name="actionDeleteEvent"/>
     <addaction name="separator"/>
@@ -283,6 +290,7 @@
     <addaction name="actionAuto_Split"/>
     <addaction name="separator"/>
     <addaction name="menuPlayback_Mode"/>
+    <addaction name="menuOperations"/>
    </widget>
    <widget class="QMenu" name="menuIndividual">
     <property name="title">
@@ -487,6 +495,16 @@
    </property>
    <property name="text">
     <string>Exclude rectangle</string>
+   </property>
+  </action>
+  <action name="actionMerge">
+   <property name="text">
+    <string>Merge</string>
+   </property>
+  </action>
+  <action name="actionSplit_at_current_position">
+   <property name="text">
+    <string>Split at current position</string>
    </property>
   </action>
  </widget>

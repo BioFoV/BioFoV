@@ -172,6 +172,8 @@ private slots:
     ///
     void on_actionExclude_rectangle_triggered();
 
+    void on_actionMerge_triggered();
+
 private:
     Ui::MainWindow *ui; ///< UI created by Qt.
                         ///<Points to a class that contains everything that was

@@ -272,3 +272,34 @@ void MainWindow::on_actionExclude_rectangle_triggered()
     ui->player->pause();
     showMessage("Select a rectangle to zoneout in the player");
 }
+
+void MainWindow::on_actionMerge_triggered()
+{
+    unsigned int count = 0;
+    EventItem* it0, * it1;
+    foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
+        if(item->parent() == NULL){
+            showMessage("Merging Videos is not supported");
+            return;
+        }
+        else{
+            switch (count){
+                case 0:
+                    it0 = (EventItem*) item;
+                    break;
+                case 1:
+                    it1 = (EventItem*) item;
+                    break;
+                case 2:
+                    showMessage("Events can only be merged in pairs");
+                    return;
+            }
+            count++;
+        }
+    }
+    if (count == 0 || count == 1){
+        showMessage("Select two events to be merged");
+        return;
+    }
+    showMessage(QString("Merging events %1 and %2").arg(it0->text(0), it1->text(0)));
+}
