@@ -45,13 +45,14 @@ class Video;
  * interesting on them.
  */
 class Event : public Player {
-private:
+protected:
 	// external references
 	Video* vid;
     std::deque<Frame*> frames;
     std::deque<Individual*> individuals;
     std::deque<Snapshot*> snapshots;
 
+private:
     // player variables
     double position;
 
@@ -67,6 +68,9 @@ public:
 
     // Destructor
     ~Event();
+
+    // Modifiers
+    Event& operator +=(const Event& ev1);
 
     // Functions
     void addFrame(Frame* inFrame);

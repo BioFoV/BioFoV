@@ -302,4 +302,8 @@ void MainWindow::on_actionMerge_triggered()
         return;
     }
     showMessage(QString("Merging events %1 and %2").arg(it0->text(0), it1->text(0)));
+    *(it0->getEvent()) += *(it1->getEvent());
+    showMessage(QString("Merged events %1 and %2 into event %1").arg(it0->text(0), it1->text(0)));
+
+    delete(it1);
 }

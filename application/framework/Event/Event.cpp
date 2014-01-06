@@ -13,12 +13,32 @@ Event::Event(Video* iVid){
  * Destructor
  ******************************************************************************/
 Event::~Event(){
-//    Frame* ftmp;
-    for(std::deque<Frame*>::iterator ftmp = frames.begin();
-        ftmp != frames.end(); ftmp++){
-        delete *ftmp;
-    }
+    // FIXME: deletion is not done due to merging.
+//    for(std::deque<Frame*>::iterator ftmp = frames.begin();
+//        ftmp != frames.end(); ftmp++){
+//        delete *ftmp;
+//    }
 }
+
+/*******************************************************************************
+ * Modifiers
+ ******************************************************************************/
+Event& Event::operator +=(const Event& ev1){
+    unsigned int i;
+    for (i=0; i<ev1.frames.size(); i++){
+        frames.push_back(ev1.frames.at(i));
+    }
+    for (i=0; i<ev1.individuals.size(); i++){
+        individuals.push_back(ev1.individuals.at(i));
+    }
+    for (i=0; i<ev1.snapshots.size(); i++){
+        snapshots.push_back(ev1.snapshots.at(i));
+    }
+    position = 0;
+
+    return *this;
+}
+
 
 /*******************************************************************************
  * Functions
