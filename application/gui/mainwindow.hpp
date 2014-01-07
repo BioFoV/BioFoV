@@ -36,7 +36,7 @@
 #include <string>
 #endif
 
-#include "../framework/rectanglemask.hpp"
+#include "../framework/Drawables/rectanglemask.hpp"
 
 namespace Ui {
 class MainWindow;

@@ -24,7 +24,7 @@
 #include "../framework/Video/Video.hpp"
 #endif
 
-#include "../framework/drawable.hpp"
+#include "../framework/Drawables/drawable.hpp"
 
 #define PLAYER_VID 0
 #define PLAYER_EV  1

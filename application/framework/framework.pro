@@ -33,7 +33,7 @@ SOURCES += \
     Video/Video.cpp \
     Video/BackgroundSubtraction.cpp \
     camera.cpp \
-    rectanglemask.cpp
+    Drawables/rectanglemask.cpp
 
 HEADERS += \
     Event/Event.hpp \
@@ -46,5 +46,5 @@ HEADERS += \
     Event/Event.hpp \
     player.hpp \
     camera.hpp \
-    drawable.hpp \
-    rectanglemask.hpp
+    Drawables/drawable.hpp \
+    Drawables/rectanglemask.hpp
