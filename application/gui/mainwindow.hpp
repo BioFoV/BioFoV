@@ -36,6 +36,8 @@
 #include <string>
 #endif
 
+#include "../framework/rectanglemask.hpp"
+
 namespace Ui {
 class MainWindow;
 }

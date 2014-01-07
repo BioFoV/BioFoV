@@ -24,6 +24,8 @@
 #include "../framework/Video/Video.hpp"
 #endif
 
+#include "../framework/drawable.hpp"
+
 #define PLAYER_VID 0
 #define PLAYER_EV  1
 
@@ -51,7 +53,7 @@ public slots:
     void unload();
     int getPlayerType();
     void setPlayMode(int mode);
-    void setClickable(bool enable);
+    void setClickable(Drawable* draw);
 
 private:
     Ui::VideoPlayer *ui;
@@ -67,7 +69,7 @@ private:
     int playerType;
 
     bool isClickable;
-    cv::Point p1, p2;
+    Drawable *drawer;
 
 private slots:
     void showImage(const cv::Mat& image);

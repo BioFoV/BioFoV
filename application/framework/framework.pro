@@ -32,7 +32,8 @@ SOURCES += \
     Snapshot/Snapshot.cpp \
     Video/Video.cpp \
     Video/BackgroundSubtraction.cpp \
-    camera.cpp
+    camera.cpp \
+    rectanglemask.cpp
 
 HEADERS += \
     Event/Event.hpp \
@@ -44,4 +45,6 @@ HEADERS += \
     Video/BackgroundSubtraction.hpp \
     Event/Event.hpp \
     player.hpp \
-    camera.hpp
+    camera.hpp \
+    drawable.hpp \
+    rectanglemask.hpp

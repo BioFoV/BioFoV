@@ -275,12 +275,12 @@ void MainWindow::on_actionCrop_triggered()
 {
     ui->player->pause();
     showMessage("Select the area to crop in the player");
-    ui->player->setClickable(true);
+//    ui->player->setClickable();
 }
 
 void MainWindow::on_actionExclude_rectangle_triggered()
 {
     ui->player->pause();
     showMessage("Select a rectangle to zoneout in the player");
-    ui->player->setClickable(true);
+    ui->player->setClickable((Drawable*)new RectangleMask());
 }
