@@ -10,6 +10,7 @@ VideoPlayer::VideoPlayer(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(&timer, SIGNAL(timeout()), this, SLOT(play()));
+    isClickable = false;
 }
 
 /*******************************************************************************
@@ -213,8 +214,8 @@ void VideoPlayer::setPlayMode(int mode){
 /*******************************************************************************
  * Mouse tracking
  ******************************************************************************/
-void VideoPlayer::setMouseTracking(bool enable){
-    ui->player->setMouseTracking(enable);
+void VideoPlayer::setClickable(bool enable){
+    isClickable = enable;
 }
 
 cv::Point VideoPlayer::qtPt_To_cvPt(QPoint in){
@@ -232,19 +233,26 @@ cv::Point VideoPlayer::qtPt_To_cvPt(QPoint in){
 }
 
 void VideoPlayer::mousePressEvent(QMouseEvent *event){
-    p1 = qtPt_To_cvPt(event->pos());
+    if (isClickable){
+        p1 = qtPt_To_cvPt(event->pos());
+    }
 }
 
 void VideoPlayer::mouseReleaseEvent(QMouseEvent *event){
-    p2 = qtPt_To_cvPt(event->pos());
+    if (isClickable){
+        p2 = qtPt_To_cvPt(event->pos());
+        isClickable = false;
+    }
 }
 
 void VideoPlayer::mouseMoveEvent(QMouseEvent *event){
-    cv::Mat _tmp2 = frame.clone();
+    if(isClickable){
+        cv::Mat _tmp2 = frame.clone();
 
-    p2 = qtPt_To_cvPt(event->pos());
+        p2 = qtPt_To_cvPt(event->pos());
 
-    cv::rectangle(_tmp2, p1, p2, cv::Scalar( 0, 0, 255));
+        cv::rectangle(_tmp2, p1, p2, cv::Scalar( 0, 0, 255));
 
-    showImage(_tmp2);
+        showImage(_tmp2);
+    }
 }

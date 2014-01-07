@@ -51,7 +51,7 @@ public slots:
     void unload();
     int getPlayerType();
     void setPlayMode(int mode);
-    void setMouseTracking(bool enable);
+    void setClickable(bool enable);
 
 private:
     Ui::VideoPlayer *ui;
@@ -66,6 +66,7 @@ private:
     float speed;
     int playerType;
 
+    bool isClickable;
     cv::Point p1, p2;
 
 private slots:
