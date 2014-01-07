@@ -18,7 +18,7 @@ public:
     RectangleMask();
     // Click
     void press(cv::Point pi1);
-    void release(cv::Point pi2);
+    bool release(cv::Point pi2);
 
     // Draw
     void draw(cv::Point pi2, cv::Mat& frame);

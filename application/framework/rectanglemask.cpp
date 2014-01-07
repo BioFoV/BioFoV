@@ -9,8 +9,9 @@ void RectangleMask::press(cv::Point pi1){
     p1 = pi1;
 }
 
-void RectangleMask::release(cv::Point pi2){
+bool RectangleMask::release(cv::Point pi2){
     p2 = pi2;
+    return false;
 }
 
 // Draw

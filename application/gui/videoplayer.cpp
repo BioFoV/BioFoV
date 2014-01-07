@@ -241,8 +241,7 @@ void VideoPlayer::mousePressEvent(QMouseEvent *event){
 
 void VideoPlayer::mouseReleaseEvent(QMouseEvent *event){
     if (isClickable){
-        drawer->release(qtPt_To_cvPt(event->pos()));
-        isClickable = false;
+        isClickable = drawer->release(qtPt_To_cvPt(event->pos()));
     }
 }
 
