@@ -37,6 +37,7 @@
 #endif
 
 #include "../framework/Drawables/rectanglemask.hpp"
+#include "../framework/Drawables/drawheight.hpp"
 
 namespace Ui {
 class MainWindow;
@@ -82,6 +83,8 @@ private slots:
     // Filter video
     void on_actionCrop_triggered();
     void on_actionExclude_rectangle_triggered();
+
+    void on_actionHeight_triggered();
 
 private:
     Ui::MainWindow *ui;

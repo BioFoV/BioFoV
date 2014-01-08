@@ -12,7 +12,7 @@
 class DrawHeight : public Drawable
 {
 private:
-    std::vector <cv::Point> points;
+    cv::Point points[4];
     unsigned int npoints;
 public:
     DrawHeight();

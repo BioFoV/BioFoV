@@ -242,6 +242,11 @@ void VideoPlayer::mousePressEvent(QMouseEvent *event){
 void VideoPlayer::mouseReleaseEvent(QMouseEvent *event){
     if (isClickable){
         isClickable = drawer->release(qtPt_To_cvPt(event->pos()));
+
+        cv::Mat _tmp2 = frame.clone();
+        drawer->draw(qtPt_To_cvPt(event->pos()),_tmp2);
+        showImage(_tmp2);
+
         if (!isClickable) { // no more user input is needed
             drawer->apply();
         }

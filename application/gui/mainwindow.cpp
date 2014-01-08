@@ -284,3 +284,10 @@ void MainWindow::on_actionExclude_rectangle_triggered()
     showMessage("Select a rectangle to zoneout in the player");
     ui->player->setClickable((Drawable*)new RectangleMask());
 }
+
+void MainWindow::on_actionHeight_triggered()
+{
+    ui->player->pause();
+    showMessage("Select 4 points in the player");
+    ui->player->setClickable((Drawable*)new DrawHeight());
+}

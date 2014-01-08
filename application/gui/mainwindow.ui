@@ -79,8 +79,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>98</width>
-             <height>70</height>
+             <width>769</width>
+             <height>285</height>
             </rect>
            </property>
            <attribute name="label">
@@ -258,11 +258,18 @@
      <addaction name="actionCrop"/>
      <addaction name="actionExclude_rectangle"/>
     </widget>
+    <widget class="QMenu" name="menuMeasures">
+     <property name="title">
+      <string>Measures</string>
+     </property>
+     <addaction name="actionHeight"/>
+    </widget>
     <addaction name="actionAdd_Video_File"/>
     <addaction name="action_Remove_From_Project"/>
     <addaction name="separator"/>
     <addaction name="menuTransformations"/>
     <addaction name="menuFilter"/>
+    <addaction name="menuMeasures"/>
    </widget>
    <widget class="QMenu" name="menuEvent">
     <property name="title">
@@ -487,6 +494,11 @@
    </property>
    <property name="text">
     <string>Exclude rectangle</string>
+   </property>
+  </action>
+  <action name="actionHeight">
+   <property name="text">
+    <string>Height</string>
    </property>
   </action>
  </widget>
