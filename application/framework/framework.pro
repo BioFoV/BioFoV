@@ -33,7 +33,9 @@ SOURCES += \
     Video/Video.cpp \
     Video/BackgroundSubtraction.cpp \
     camera.cpp \
-    Drawables/rectanglemask.cpp
+    Drawables/rectanglemask.cpp \
+    exclusionmod.cpp \
+    Drawables/drawheight.cpp
 
 HEADERS += \
     Event/Event.hpp \
@@ -47,4 +49,7 @@ HEADERS += \
     player.hpp \
     camera.hpp \
     Drawables/drawable.hpp \
-    Drawables/rectanglemask.hpp
+    Drawables/rectanglemask.hpp \
+    modifier.hpp \
+    exclusionmod.hpp \
+    Drawables/drawheight.hpp
