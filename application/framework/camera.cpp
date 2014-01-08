@@ -53,7 +53,7 @@ int Camera::addSeveralChessboardPoints(
             30, // max number of iterations
             0.1)); // min accuracy
         //If we have a good board, add it to our data
-        if (imageCorners.size() == boardSize.area()) {
+        if (imageCorners.size() == (unsigned)boardSize.area()) {
             // Add image and scene points from one view
             addPoints(imageCorners, objectCorners);
             successes++;
@@ -99,7 +99,7 @@ std::vector<cv::Point2f> Camera::addChessboardPoints(
         30, // max number of iterations
         0.1)); // min accuracy
     //If we have a good board, add it to our data
-    if (imageCorners.size() == boardSize.area()) {
+    if (imageCorners.size() == (unsigned)boardSize.area()) {
         // Add image and scene points from one view
         addPoints(imageCorners, objectCorners);
     }

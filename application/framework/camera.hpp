@@ -65,7 +65,7 @@ private:
     ///
     /// \brief total number of boards detected.
     ///
-    int boardTotal;
+    unsigned int boardTotal;
     ///
     /// \brief Video which was or will be used to calibrate de camera.
     /// More Videos can be referenced to this camera, but none should re-call
