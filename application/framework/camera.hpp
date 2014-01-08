@@ -42,6 +42,10 @@ private:
     ///
     cv::Mat map1,map2;
     ///
+    /// \brief are the undistortion coeficients initialized?
+    ///
+    bool mustInitUndistort;
+    ///
     /// \brief maximum number of iterations.
     ///
     int maxIter;
@@ -74,11 +78,6 @@ private:
     Video* vid;
 
 public:
-    ///
-    /// \brief are the undistortion coeficients initialized?
-    ///
-    bool mustInitUndistort;
-
     // Constructor
     ///
     /// \brief Simple Camera constructor.
