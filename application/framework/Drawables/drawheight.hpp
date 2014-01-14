@@ -9,6 +9,12 @@
 
 #include "drawable.hpp"
 
+/// Defines the radius of the clicked point markers (independent of image
+///resolution.
+#define CIRCLE_RATIO .01
+/// Defines the thickness of the lines (independent of image resolution.
+#define LINE_RATIO .002
+
 class DrawHeight : public Drawable
 {
 private:
