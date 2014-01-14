@@ -264,6 +264,7 @@ void MainWindow::on_actionCrop_triggered()
 {
     ui->player->pause();
     showMessage("Select the area to crop in the player");
+//    ui->player->setClickable();
 }
 
 
@@ -271,6 +272,14 @@ void MainWindow::on_actionExclude_rectangle_triggered()
 {
     ui->player->pause();
     showMessage("Select a rectangle to zoneout in the player");
+    ui->player->setClickable((Drawable*)new RectangleMask());
+}
+
+void MainWindow::on_actionHeight_triggered()
+{
+    ui->player->pause();
+    showMessage("Select 4 points in the player");
+    ui->player->setClickable((Drawable*)new DrawHeight());
 }
 
 void MainWindow::on_actionMerge_triggered()

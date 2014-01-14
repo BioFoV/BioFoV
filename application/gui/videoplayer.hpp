@@ -5,6 +5,8 @@
 #include <QImage>
 #include <QPainter>
 #include <QTimer>
+#include <QMouseEvent>
+#include <QDebug>
 
 // OpenCV
 #ifndef OPENCV_INC
@@ -21,6 +23,8 @@
 #define INC_VIDEO
 #include "../framework/Video/Video.hpp"
 #endif
+
+#include "../framework/Drawables/drawable.hpp"
 
 #define PLAYER_VID 0
 #define PLAYER_EV  1
@@ -49,18 +53,23 @@ public slots:
     void unload();
     int getPlayerType();
     void setPlayMode(int mode);
+    void setClickable(Drawable* draw);
 
 private:
     Ui::VideoPlayer *ui;
     Player* currentPlayer;
     QImage _qimage;
     cv::Mat _tmp;
+    cv::Mat frame;
     bool isplaying; // playing or not
     double frameInt; // interval between frames
     double FPS; // frames per second
     QTimer timer;
     float speed;
     int playerType;
+
+    bool isClickable;
+    Drawable *drawer;
 
 private slots:
     void showImage(const cv::Mat& image);
@@ -73,6 +82,11 @@ private slots:
     void on_playButton_clicked();
     void on_stepButton_clicked();
     void on_rewindButton_clicked();
+
+    cv::Point qtPt_To_cvPt(QPoint in);
+    void mousePressEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
 };
 
 #endif // VIDEOPLAYER_H

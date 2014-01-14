@@ -36,6 +36,9 @@
 #include <string>
 #endif
 
+#include "../framework/Drawables/rectanglemask.hpp"
+#include "../framework/Drawables/drawheight.hpp"
+
 namespace Ui {
 class MainWindow;
 }
@@ -171,6 +174,8 @@ private slots:
     /// Start excluding a rectangular section of the video
     ///
     void on_actionExclude_rectangle_triggered();
+
+    void on_actionHeight_triggered();
 
     void on_actionMerge_triggered();
 

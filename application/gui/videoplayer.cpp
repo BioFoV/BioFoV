@@ -10,6 +10,7 @@ VideoPlayer::VideoPlayer(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(&timer, SIGNAL(timeout()), this, SLOT(play()));
+    isClickable = false;
 }
 
 /*******************************************************************************
@@ -58,10 +59,9 @@ bool VideoPlayer::stepBack(){
 }
 
 bool VideoPlayer::stepForward(){
-    cv::Mat _tmp2;
     // Check if there is a next frame
-    if(currentPlayer->getFrame(_tmp2)) {
-        showImage(_tmp2);
+    if(currentPlayer->getFrame(frame)) {
+        showImage(frame);
         return true;
     } else {
         qDebug("could not get frame");
@@ -209,4 +209,56 @@ int VideoPlayer::getPlayerType(){
 void VideoPlayer::setPlayMode(int mode){
     if (playerType == PLAYER_EV)
         ((Event*)currentPlayer)->setPlaybackMode(mode);
+}
+
+/*******************************************************************************
+ * Mouse tracking
+ ******************************************************************************/
+void VideoPlayer::setClickable(Drawable *draw){
+    isClickable = true;
+    drawer = draw;
+}
+
+cv::Point VideoPlayer::qtPt_To_cvPt(QPoint in){
+    double x_cv = frame.cols;
+    double y_cv = frame.rows;
+
+    double x_qt = _qimage.width();
+    double y_qt = _qimage.height();
+
+    double x_now = in.x();
+    double y_now = in.y();
+
+    return cv::Point(x_now*x_cv/x_qt,
+                     y_now*y_cv/y_qt);
+}
+
+void VideoPlayer::mousePressEvent(QMouseEvent *event){
+    if (isClickable){
+        drawer->press(qtPt_To_cvPt(event->pos()));
+    }
+}
+
+void VideoPlayer::mouseReleaseEvent(QMouseEvent *event){
+    if (isClickable){
+        isClickable = drawer->release(qtPt_To_cvPt(event->pos()));
+
+        cv::Mat _tmp2 = frame.clone();
+        drawer->draw(qtPt_To_cvPt(event->pos()),_tmp2);
+        showImage(_tmp2);
+
+        if (!isClickable) { // no more user input is needed
+            drawer->apply();
+        }
+    }
+}
+
+void VideoPlayer::mouseMoveEvent(QMouseEvent *event){
+    if(isClickable){
+        cv::Mat _tmp2 = frame.clone();
+
+        drawer->draw(qtPt_To_cvPt(event->pos()),_tmp2);
+
+        showImage(_tmp2);
+    }
 }
