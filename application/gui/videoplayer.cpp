@@ -250,7 +250,13 @@ void VideoPlayer::mouseReleaseEvent(QMouseEvent *event){
         // check if no more user input is needed and it can proceed to the
         //calculation.
         if (!isClickable) {
-            drawer->apply(_tmp2);
+            double result = drawer->apply(_tmp2);
+
+            std::stringstream s;
+            s << "(" << result << ")";
+
+            cv::putText(_tmp2, s.str(),cv::Point(0,50), cv::FONT_HERSHEY_SIMPLEX,
+                        1, cv::Scalar(255,0,0));
             showImage(_tmp2);
             delete drawer;
         }

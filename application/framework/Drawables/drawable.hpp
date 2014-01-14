@@ -23,7 +23,7 @@ public:
     virtual void draw(cv::Point pi2, cv::Mat& frame) = 0;
 
     // Apply
-    virtual void apply(cv::Mat &frame) = 0;
+    virtual double apply(cv::Mat &frame) = 0;
 };
 
 #endif // DRAWABLE_HPP

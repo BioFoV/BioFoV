@@ -18,14 +18,14 @@
 class DrawHeight : public Drawable
 {
 private:
-    cv::Point2f points[4];
+    cv::Point2f points[5];
     unsigned int npoints;
 public:
     DrawHeight();
     void press(cv::Point pi1);
     bool release(cv::Point pi2);
     void draw(cv::Point pi2, cv::Mat& frame);
-    void apply(cv::Mat &frame);
+    double apply(cv::Mat &frame);
 };
 
 #endif // DRAWHEIGHT_HPP
