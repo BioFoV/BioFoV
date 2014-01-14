@@ -24,7 +24,7 @@ public:
     void draw(cv::Point pi2, cv::Mat& frame);
 
     // Apply
-    void apply();
+    void apply(cv::Mat &frame);
 };
 
 #endif // RECTANGLEMASK_HPP

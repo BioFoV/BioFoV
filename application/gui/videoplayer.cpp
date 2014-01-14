@@ -247,8 +247,12 @@ void VideoPlayer::mouseReleaseEvent(QMouseEvent *event){
         drawer->draw(qtPt_To_cvPt(event->pos()),_tmp2);
         showImage(_tmp2);
 
-        if (!isClickable) { // no more user input is needed
-            drawer->apply();
+        // check if no more user input is needed and it can proceed to the
+        //calculation.
+        if (!isClickable) {
+            drawer->apply(_tmp2);
+            showImage(_tmp2);
+            delete drawer;
         }
     }
 }

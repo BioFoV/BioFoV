@@ -20,6 +20,6 @@ void RectangleMask::draw(cv::Point pi2, cv::Mat& frame){
 }
 
 // Apply
-void RectangleMask::apply(){
+void RectangleMask::apply(cv::Mat &frame){
 
 }
