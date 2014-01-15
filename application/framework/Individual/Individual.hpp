@@ -31,24 +31,28 @@ class Event;
 class Snapshot;
 class Feature;
 
-/*
- * Class that represents an individual, and has associated with it the
- * various Events and Snapshots where this same individual shows up.
- * An Individual also has several Features that can be used for later
- * matching.
- */
+///
+/// \brief Class that represents an individual.
+///has associated with it the various Events and Snapshots where this same
+///individual shows up. An Individual also has several Features that can be used
+///for later matching.
+///
 class Individual{
 private:
-	// external references
+    /// \brief List of Event where this individual shows up.
 	std::list<Event> events;
+
+    /// \brief List of Snapshots of this individual.
 	std::list<Snapshot> snapshots;
+
+    /// \brief List of Features for this individual.
 	std::list<Feature> features;
 	
 public:
-	// Constructors
+    /// \brief Simple constructor.
 	Individual();
 	
-	// Destructor
+    /// \brief Simple destructor.
 	~Individual();
 };
 #endif 

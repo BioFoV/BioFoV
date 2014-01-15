@@ -27,9 +27,9 @@
 class Video;
 class Snapshot;
 
-/*
- * Class that represents Frames
- */
+///
+/// \brief Class that represents Frames.
+///
 class Frame{
 private:
 	// external references

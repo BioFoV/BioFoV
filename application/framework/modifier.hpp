@@ -2,7 +2,7 @@
 #define MODIFIER_HPP
 
 ///
-/// \brief The Modifier class
+/// \brief The Modifier class.
 ///
 class Modifier
 {

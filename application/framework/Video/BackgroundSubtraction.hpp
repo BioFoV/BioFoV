@@ -12,9 +12,9 @@
 #include <vector>
 #endif
 
-/*
- * Class that holds the VideoCapture handler and that provides frames
- */
+///
+/// \brief Class that holds the VideoCapture handler and that provides frames.
+///
 class BackgroundSubtractor {
 private:
 	std::vector<std::vector<cv::Point> > contours;
@@ -24,10 +24,17 @@ private:
 	cv::BackgroundSubtractorMOG2 bgsub;
 	
 	// images of the different stages
-	cv::Mat frame;	// original frame
-	cv::Mat fore;	// foreground mask
-	cv::Mat back;	// background image
-	cv::Mat cont;	// contours after erosion and dilation
+    /// \brief Original frame.
+    cv::Mat frame;
+
+    /// \brief Foreground mask.
+    cv::Mat fore;
+
+    /// \brief Background image.
+    cv::Mat back;
+
+    /// \brief Contours after erosion and dilation.
+    cv::Mat cont;
 	
 public:
 	// Constructors

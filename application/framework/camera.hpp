@@ -25,71 +25,55 @@ class Camera
 {
 private:
     // input points:
-    ///
-    /// \brief the points in world coordinates.
-    ///
+    /// \brief The points in world coordinates.
     std::vector<std::vector<cv::Point3f> > objectPoints;
-    ///
-    /// \brief the points in image pixels.
-    ///
+
+    /// \brief The points in image pixels.
     std::vector<std::vector<cv::Point2f> > imagePoints;
-    ///
-    /// \brief flag to specify how calibration is done.
-    ///
+
+    /// \brief Flag to specify how calibration is done.
     int flag;
-    ///
-    /// \brief used in image undistortion.
-    ///
+
+    /// \brief Used in image undistortion.
     cv::Mat map1,map2;
-    ///
-    /// \brief are the undistortion coeficients initialized?
-    ///
+
+    /// \brief Are the undistortion coeficients initialized?
     bool mustInitUndistort;
-    ///
-    /// \brief maximum number of iterations.
-    ///
+
+    /// \brief Maximum number of iterations.
     int maxIter;
-    ///
-    /// \brief the camera matrix itself.
-    ///
+
+    /// \brief The camera matrix itself.
     cv::Mat cameraMatrix;
-    ///
-    /// \brief distortion coeficients.
-    ///
+
+    /// \brief Distortion coeficients.
     cv::Mat distCoeffs;
-    ///
-    /// \brief estimated error introduced by the reprojection.
-    ///
+
+    /// \brief Estimated error introduced by the reprojection.
     double reprojectionError;
-    ///
-    /// \brief size of the chessboard pattern (number of inner corners).
+
+    /// \brief Size of the chessboard pattern (number of inner corners).
     /// This variable is a cv::Size, not an int or an array.
-    ///
     cv::Size boardSize;
-    ///
-    /// \brief total number of boards detected.
-    ///
+
+    /// \brief Total number of boards detected.
     unsigned int boardTotal;
-    ///
+
     /// \brief Video which was or will be used to calibrate de camera.
     /// More Videos can be referenced to this camera, but none should re-call
     ///the calibration methods.
-    ///
     Video* vid;
 
 public:
     // Constructor
-    ///
     /// \brief Simple Camera constructor.
-    ///
     Camera();
-    ///
+
     /// \brief Camera constructorr using the board dimentions and Video
     /// reference.
     /// \param iVid Pointer to the Video object.
     /// \param boardW Width of the board (input by the user).
     /// \param boardH Height of the board (input by the user).
-    ///
     Camera(Video* iVid, int boardW, int boardH);
 
     // Functions

@@ -19,25 +19,37 @@
 
 #define SNAP_EXT ".snap.png"
 
-/*
- * Class that associated with a Frame represents an area of interest in
- * a frame.
- */
 class Frame;
 
+///
+/// \brief Class that associated with a Frame represents an area of interest in
+///a frame.
+///
 class Snapshot{
 private:
-	// external references
+    /// \brief External Frame reference.
 	Frame *image;
+
 	// class data
     std::string filename;
 	
 public:
-	// Constructors
+    /// \brief Simple constructor.
 	Snapshot();
-	Snapshot(Frame *img);
-    Snapshot(Frame *img, cv::Mat inmask);
+
+    /// \brief Simple destructor.
     ~Snapshot();
+
+    /// \brief Constructor with a reference to the Frame this Snapshot relates
+    ///to.
+    /// \param img Pointer to the refered Frame.
+	Snapshot(Frame *img);
+
+    /// \brief Constructor with a reference to the Frame this Snapshot relates
+    ///to, and the image mask.
+    /// \param img Pointer to the refered Frame.
+    /// \param inmask Mask that defines where something is.
+    Snapshot(Frame *img, cv::Mat inmask);
 
     // Functions
     cv::Mat getMask();
