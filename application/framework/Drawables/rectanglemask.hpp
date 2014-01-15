@@ -9,12 +9,18 @@
 
 #include "drawable.hpp"
 
+///
+/// \brief Select a rectangle area end exclude it from background subtraction.
+///Implementation of Drawable.
+///
 class RectangleMask : public Drawable
 {
 private:
-    cv::Point p1, p2;
+    /// \brief p Points that define the rectangle.
+    cv::Point p[2];
 
 public:
+    /// \brief Simple Constructor.
     RectangleMask();
     // Click
     void press(cv::Point pi1);
