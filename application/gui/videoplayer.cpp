@@ -91,8 +91,7 @@ void VideoPlayer::loadVid(Player* nextVid, int playerT){
     currentPlayer = nextVid;
     playerType = playerT;
 
-    nextVid->setFramePos(0);
-    ui->posSlider->setValue(0);
+    ui->posSlider->setValue(nextVid->getFramePos());
     stepForward();
     FPS = currentPlayer->getFPS();
     frameInt = currentPlayer->getFrameInt();
