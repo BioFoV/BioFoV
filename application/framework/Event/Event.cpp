@@ -127,15 +127,7 @@ bool Event::getFrame(cv::Mat &frame){
         catch (const std::out_of_range& oor) {
             return false;
         }
-
         frame = tmpFrame->getImage();
-        if (frame.empty())
-            return false;
-        else{
-            position += 1;
-            return true;
-        }
-        return false;
     } else if (playMode == PLAY_MASK){
         Snapshot* tmpSnap;
         try {
@@ -146,12 +138,6 @@ bool Event::getFrame(cv::Mat &frame){
         }
 
         frame = tmpSnap->getMask();
-        if (frame.empty())
-            return false;
-        else {
-            position ++;
-            return true;
-        }
     } else if (playMode == PLAY_MASKED_FRAMES){
         Snapshot* tmpSnap;
         Frame* tmpFrame;
@@ -165,14 +151,13 @@ bool Event::getFrame(cv::Mat &frame){
 
         frame = tmpSnap->getMask();
         tmpFrame->getImage().copyTo(frame,tmpSnap->getMask());
-        if (frame.empty())
-            return false;
-        else {
-            position ++;
-            return true;
-        }
     }
-    return false;
+    if (frame.empty())
+        return false;
+    else{
+        position += 1;
+        return true;
+    }
 }
 
 bool Event::getPrevFrame(cv::Mat &frame){
