@@ -2,6 +2,7 @@
 #define VIDEOITEM_HPP
 
 #include <QTreeWidgetItem>
+#include <QDir>
 
 #ifndef INC_VIDEO
 #define INC_VIDEO
