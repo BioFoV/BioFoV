@@ -210,6 +210,14 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
         }
         j++;
     }
+    // Check if Video ended in the middle of an Event.
+    if (event != NULL){
+        if (framecount > mincount){
+            events.push_back(event);
+        } else {
+            delete event;
+        }
+    }
 
     return events;
 }
