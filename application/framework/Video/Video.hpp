@@ -100,7 +100,7 @@ public:
 	
 	// Destructors
     /// \brief Video destructor.
-	~Video();
+    virtual ~Video();
 
     // Set and Get
     /// \brief Changes the filename to the string provided.

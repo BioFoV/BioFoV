@@ -4,6 +4,10 @@ RectangleMask::RectangleMask()
 {
 }
 
+RectangleMask::~RectangleMask()
+{
+}
+
 // Click
 void RectangleMask::press(cv::Point pi1){
     p[0] = pi1;

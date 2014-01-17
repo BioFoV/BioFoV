@@ -14,15 +14,15 @@
 class Individual;
 
 ///
-/// \brief Class that holds the data of a certain individual.
-///This container can be used for holding deterministic features or sets of
+/// \brief Class that holds the data of a certain Individual.
+///This container can be used for holding deterministic Features or sets of
 ///samples.
 ///
 class Feature{
 private:
-    /// \brief Pointer to the individual to which this feature was attributed.
+    /// \brief Pointer to the Individual to which this Feature was attributed.
 	Individual *ind;
-    /// \brief Text describing the feature.
+    /// \brief Text describing the Feature.
 	std::string description;
 	
 public:

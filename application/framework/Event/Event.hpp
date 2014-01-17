@@ -40,42 +40,61 @@ class Snapshot;
 class Individual;
 class Video;
 
-/*
- * Class that represents a contiguous set of frames with something
- * interesting on them.
- */
+///
+/// \brief Class that represents a contiguous set of frames with something
+///interesting on them.
+///
 class Event : public Player {
 protected:
 	// external references
+    /// \brief Video from which the Frames in this Event were extracted.
 	Video* vid;
+    /// \brief Deque of Frames that define this Event.
     std::deque<Frame*> frames;
+    /// \brief Deque of Individual that show up in this Event.
     std::deque<Individual*> individuals;
+    /// \brief Deque of Snapshots.
     std::deque<Snapshot*> snapshots;
 
 private:
-    // player variables
+    /// \brief Player position.
     double position;
 
-    // playback mode
-    // PLAY_FRAMES -> plays frames
-    // PLAY_MASK -> plays BW mask
-    // PLAY_MASKED_FRAMES -> plays
+    /// \brief Player playback mode.
+    /// PLAY_FRAMES -> plays frames,
+    /// PLAY_MASK -> plays BW mask,
+    /// PLAY_MASKED_FRAMES -> plays frames with the applied mask.
     int playMode;
 
 public:
-	// Constructor
+    /// \brief Constructor providing the Video from which the Frames are to be
+    ///extracted.
     Event(Video* iVid);
 
-    // Destructor
-    ~Event();
+    /// \brief Simple destructor.
+    virtual ~Event();
 
     // Modifiers
+    /// \brief Appends another Event to this one.
+    /// \param ev1 Event to be appended to this one.
+    /// \return The reference to the resulting Event.
     Event& operator +=(const Event& ev1);
 
     // Functions
+    /// \brief Adds another Frame to this Event.
+    /// \param inFrame Frame to be added to this Event.
     void addFrame(Frame* inFrame);
+    /// \brief Adds another Snapshot to this Event.
+    /// \param inSnap Snapshot to be added to this Event.
     void addSnapshot(Snapshot* inSnap);
 
+    /// \brief Splits this Event into several based on the background
+    ///subtraction results.
+    /// TODO: Extensive description since this is an important method.
+    /// \param threshold
+    /// \param maxcount
+    /// \param mincount
+    /// \return Deque of the singular Event FIXME.
     std::deque<Event*> splitEvent(double threshold, double maxcount, double mincount);
 
     // Capture functions

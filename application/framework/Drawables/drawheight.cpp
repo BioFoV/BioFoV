@@ -4,6 +4,10 @@ DrawHeight::DrawHeight() {
     npoints = -1;
 }
 
+DrawHeight::~DrawHeight() {
+
+}
+
 void DrawHeight::press(cv::Point pi1){
 
 }
