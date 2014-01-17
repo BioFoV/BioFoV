@@ -82,7 +82,7 @@
       <item>
        <widget class="QPushButton" name="rewindButton">
         <property name="text">
-         <string>Rewind</string>
+         <string>Step Back</string>
         </property>
        </widget>
       </item>
@@ -96,7 +96,7 @@
       <item>
        <widget class="QPushButton" name="stepButton">
         <property name="text">
-         <string>Step</string>
+         <string>Step Forward</string>
         </property>
        </widget>
       </item>
