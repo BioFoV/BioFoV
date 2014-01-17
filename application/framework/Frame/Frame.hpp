@@ -32,11 +32,11 @@ class Snapshot;
 ///
 class Frame{
 private:
-	// external references
+    /// \brief Video object from which this Frame was extracted.
 	Video *vid;
-	// class data
+    /// \brief Filename of the Frame.
     std::string filename;
-
+    /// \brief Deque of Snapshot that relate to this Frame.
     std::deque<Snapshot *> snap;
 	
 public:
@@ -45,9 +45,12 @@ public:
 	Frame();
     /// \brief Constructor with reference to the Video source from which the
     ///Frame was taken.
+    /// \param source_vid Video from which the Frame was extracted.
     Frame(Video *source_vid);
     /// \brief Constructor with reference to the Video source from which the
     ///Frame was taken and the image itself.
+    /// \param source_vid Video from which the Frame was extracted.
+    /// \param shot The image itself.
     Frame(Video *source_vid, cv::Mat shot);
 
     // Destructor
@@ -55,7 +58,12 @@ public:
     ~Frame();
 
     // Functions
+    /// \brief Sets the image of the Frame.
+    ///Use this if you didn't specify it in the constructor.
+    /// \param shot Image of the Frame.
     void setImage(cv::Mat shot);
+    /// \brief Adds a Snapshot to the Frame.
+    /// \param insnap Snapshot to be added to the deque of this Frame.
     void setSnapshot(Snapshot *insnap);
     cv::Mat getImage();
 };
