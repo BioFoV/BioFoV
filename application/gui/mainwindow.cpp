@@ -70,6 +70,7 @@ void MainWindow::on_actionAuto_Detect_Events_triggered()
         videoiter = (VideoItem*) ui->videoList->topLevelItem(i);
         showMessage(QString("Analyzing Video %1").arg(i));
         split.setFPS(videoiter->getVideo()->getFPS());
+        split.setWindowTitle(videoiter->text(0));
         if(!split.exec()){
             showMessage(QString("Auto detection canceled"));
             continue;
