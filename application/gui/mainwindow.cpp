@@ -65,14 +65,15 @@ void MainWindow::on_actionAuto_Detect_Events_triggered()
     unsigned int j;
     
     SplitDialog split;
-    if(!split.exec()){
-        showMessage(QString("Auto detection canceled"));
-        return;
-    }
     
     for (i = 0; i < ui->videoList->topLevelItemCount(); i++){
         videoiter = (VideoItem*) ui->videoList->topLevelItem(i);
         showMessage(QString("Analyzing Video %1").arg(i));
+        split.setFPS(videoiter->getVideo()->getFPS());
+        if(!split.exec()){
+            showMessage(QString("Auto detection canceled"));
+            return;
+        }
 
         events = videoiter->getVideo()->autoDetectEvents(split.getThreshold(),
                                                          split.getMaxFrames(),

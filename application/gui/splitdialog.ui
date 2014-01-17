@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>253</height>
+    <height>257</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -88,10 +88,10 @@
             <number>1</number>
            </property>
            <property name="maximum">
-            <number>100</number>
+            <number>50</number>
            </property>
            <property name="value">
-            <number>5</number>
+            <number>1</number>
            </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -100,7 +100,7 @@
             <enum>QSlider::TicksAbove</enum>
            </property>
            <property name="tickInterval">
-            <number>25</number>
+            <number>5</number>
            </property>
           </widget>
          </item>
@@ -134,7 +134,11 @@
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QSpinBox" name="maxframes"/>
+       <widget class="QSpinBox" name="maxframes">
+        <property name="value">
+         <number>5</number>
+        </property>
+       </widget>
       </item>
       <item row="3" column="0">
        <widget class="QLabel" name="label_3">
@@ -150,7 +154,11 @@
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="QSpinBox" name="minframes"/>
+       <widget class="QSpinBox" name="minframes">
+        <property name="value">
+         <number>5</number>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
