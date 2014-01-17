@@ -72,7 +72,7 @@ void MainWindow::on_actionAuto_Detect_Events_triggered()
         split.setFPS(videoiter->getVideo()->getFPS());
         if(!split.exec()){
             showMessage(QString("Auto detection canceled"));
-            return;
+            continue;
         }
 
         events = videoiter->getVideo()->autoDetectEvents(split.getThreshold(),
