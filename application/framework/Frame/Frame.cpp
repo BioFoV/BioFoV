@@ -5,12 +5,10 @@
  ******************************************************************************/
 Frame::Frame(){
 	vid = NULL;
-    snap = NULL;
 }
 
 Frame::Frame(Video *source_vid){
 	vid = source_vid;
-    snap = NULL;
 }
 
 Frame::Frame(Video *source_vid, cv::Mat shot){
@@ -22,7 +20,6 @@ Frame::Frame(Video *source_vid, cv::Mat shot){
 
     vid = source_vid;
     cv::imwrite( filename, shot );
-    snap = NULL;
 }
 
 /*******************************************************************************
@@ -30,7 +27,9 @@ Frame::Frame(Video *source_vid, cv::Mat shot){
  ******************************************************************************/
 Frame::~Frame(){
     remove(filename.c_str());
-    delete snap;
+    for (unsigned int i=0; i<snap.size(); i++){
+        snap.pop_back();
+    }
 }
 
 /*******************************************************************************
@@ -41,7 +40,7 @@ void Frame::setImage(cv::Mat shot){
 }
 
 void Frame::setSnapshot(Snapshot *insnap){
-    snap = insnap;
+    snap.push_back(insnap);
 }
 
 cv::Mat Frame::getImage(){

@@ -36,15 +36,22 @@ private:
 	Video *vid;
 	// class data
     std::string filename;
-    Snapshot * snap;
+
+    std::deque<Snapshot *> snap;
 	
 public:
 	// Constructors
+    /// \brief Simple constructor.
 	Frame();
+    /// \brief Constructor with reference to the Video source from which the
+    ///Frame was taken.
     Frame(Video *source_vid);
+    /// \brief Constructor with reference to the Video source from which the
+    ///Frame was taken and the image itself.
     Frame(Video *source_vid, cv::Mat shot);
 
     // Destructor
+    /// \brief Simple destructor.
     ~Frame();
 
     // Functions
