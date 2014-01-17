@@ -316,3 +316,16 @@ void MainWindow::on_actionMerge_triggered()
 
     delete(it1);
 }
+
+void MainWindow::on_actionPrint_triggered()
+{
+    QPrinter printer;
+    QPrintDialog *dlg = new QPrintDialog(&printer,0);
+    if(dlg->exec() == QDialog::Accepted) {
+        QPainter painter(&printer);
+        ui->player->print(painter);
+        painter.end();
+    }
+
+    delete dlg;
+}

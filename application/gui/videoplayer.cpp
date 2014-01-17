@@ -271,3 +271,9 @@ void VideoPlayer::mouseMoveEvent(QMouseEvent *event){
         showImage(_tmp2);
     }
 }
+
+void VideoPlayer::print(QPainter &printerPainter){
+    QImage _qimage(_tmp.data, _tmp.cols, _tmp.rows,
+                   _tmp.cols*3, QImage::Format_RGB888);
+    printerPainter.drawImage(QPoint(0,0), _qimage);
+}

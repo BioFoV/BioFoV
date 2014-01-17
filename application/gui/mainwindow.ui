@@ -217,6 +217,8 @@
     <addaction name="actionSave_Project"/>
     <addaction name="actionSave_Project_As"/>
     <addaction name="separator"/>
+    <addaction name="actionPrint"/>
+    <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -517,6 +519,11 @@
   <action name="actionSplit_at_current_position">
    <property name="text">
     <string>Split at current position</string>
+   </property>
+  </action>
+  <action name="actionPrint">
+   <property name="text">
+    <string>Print</string>
    </property>
   </action>
  </widget>

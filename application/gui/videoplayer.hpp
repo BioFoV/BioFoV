@@ -7,6 +7,7 @@
 #include <QTimer>
 #include <QMouseEvent>
 #include <QDebug>
+#include <QtPrintSupport>
 
 // OpenCV
 #ifndef OPENCV_INC
@@ -54,6 +55,7 @@ public slots:
     int getPlayerType();
     void setPlayMode(int mode);
     void setClickable(Drawable* draw);
+    void print(QPainter &printerPainter);
 
 private:
     Ui::VideoPlayer *ui;

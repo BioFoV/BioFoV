@@ -5,6 +5,8 @@
 #include <QFileDialog>
 #include <QListWidget>
 #include <QListWidgetItem>
+#include <QtPrintSupport/QPrintDialog>
+#include <QtPrintSupport/QPrinter>
 
 #ifndef INC_ABOUT
 #define INC_ABOUT
@@ -178,6 +180,8 @@ private slots:
     void on_actionHeight_triggered();
 
     void on_actionMerge_triggered();
+
+    void on_actionPrint_triggered();
 
 private:
     Ui::MainWindow *ui; ///< UI created by Qt.
