@@ -69,7 +69,7 @@ public:
     /// \brief Simple Camera constructor.
     Camera();
 
-    /// \brief Camera constructorr using the board dimentions and Video
+    /// \brief Camera constructor using the board dimentions and Video
     /// reference.
     /// \param iVid Pointer to the Video object.
     /// \param boardW Width of the board (input by the user).
@@ -77,20 +77,48 @@ public:
     Camera(Video* iVid, int boardW, int boardH);
 
     // Functions
+    /// \brief Open chessboard images and extract corner points.
+    /// \param filelist
+    /// \return
     int addSeveralChessboardPoints(const std::vector<std::string>& filelist);
 
+    /// \brief Given an image extract corner points.
+    /// \param image
+    /// \return
     std::vector<cv::Point2f> addChessboardPoints(const cv::Mat image);
 
+    /// \brief Add scene points and corresponding image points.
+    /// \param imageCorners
+    /// \param objectCorners
     void addPoints(const std::vector<cv::Point2f> &imageCorners,
         const std::vector<cv::Point3f> &objectCorners);
 
+    /// \brief Calibrate the camera.
+    /// \param nBoards
+    /// \param frameStep
+    /// \param iterations
+    /// \return re-projection error.
     double calibrate(int nBoards, int frameStep, int iterations);
 
+    /// \brief Remove distortion in an image (after calibration).
+    /// \param Original image.
+    /// \return Remaped image.
     cv::Mat remap(const cv::Mat &image);
 
+    /// \brief Set flags for calibration public method.
+    /// \param Flags for the calibration.
     void set_calib_flags(int flags);
 
+    /// \brief Writes relevant calibration data to output file.
+    /// \param Filename.
+    /// \return File write succcessful or not.
     bool write_file(std::string filename);
+
+    /// \brief Flips the calibration horizontally.
+    void flip_horizontal();
+
+    /// \brief Flips the calibration vertically.
+    void flip_vertical();
 };
 
 #endif // CAMERA_HPP

@@ -12,7 +12,6 @@ Camera::Camera(Video* iVid, int boardW, int boardH)
     boardTotal = boardSize.width * boardSize.height;
 }
 
-// Open chessboard images and extract corner points
 int Camera::addSeveralChessboardPoints(
     const std::vector<std::string>& filelist) {
 
@@ -62,7 +61,6 @@ int Camera::addSeveralChessboardPoints(
     return successes;
 }
 
-// Given an image extract corner points
 std::vector<cv::Point2f> Camera::addChessboardPoints(
     const cv::Mat image) {
 
@@ -107,7 +105,6 @@ std::vector<cv::Point2f> Camera::addChessboardPoints(
     return imageCorners;
 }
 
-// Add scene points and corresponding image points
 void Camera::addPoints(const std::vector<cv::Point2f> &imageCorners,
     const std::vector<cv::Point3f> &objectCorners) {
 
@@ -117,8 +114,6 @@ void Camera::addPoints(const std::vector<cv::Point2f> &imageCorners,
     objectPoints.push_back(objectCorners);
 }
 
-// Calibrate the camera
-// returns the re-projection error
 double Camera::calibrate(int nBoards, int frameStep, int iterations) {
     std::vector<cv::Point2f> corners;
     int successes = 0;
@@ -176,7 +171,6 @@ double Camera::calibrate(int nBoards, int frameStep, int iterations) {
     return reprojectionError;
 }
 
-// remove distortion in an image (after calibration)
 cv::Mat Camera::remap(const cv::Mat &image) {
 
     cv::Mat undistorted;
@@ -200,12 +194,10 @@ cv::Mat Camera::remap(const cv::Mat &image) {
     return undistorted;
 }
 
-// Set flags for calibration public method
 void Camera::set_calib_flags(int flags){
     flag = flags;
 }
 
-// Writes relevant calibration data to output file
 bool Camera::write_file(std::string filename){
     cv::FileStorage fs(filename, cv::FileStorage::WRITE);
     if (!fs.isOpened()){
@@ -220,4 +212,12 @@ bool Camera::write_file(std::string filename){
     fs << "distance Coefficients" << distCoeffs;
     fs.release();
     return true;
+}
+
+void Camera::flip_horizontal(){
+
+}
+
+void Camera::flip_vertical(){
+
 }
