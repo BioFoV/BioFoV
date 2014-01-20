@@ -153,8 +153,12 @@ private slots:
     /// \brief Calculates the height of something.
     void on_actionHeight_triggered();
 
+    /// \brief Merge two events into one.
+    ///The second selected event is merged after the first one.
     void on_actionMerge_triggered();
 
+    /// \brief Print the current frame with any of the system configured
+    ///printers.
     void on_actionPrint_triggered();
 
 private:

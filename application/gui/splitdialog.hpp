@@ -12,6 +12,9 @@ namespace Ui {
 class SplitDialog;
 }
 
+///
+/// \brief Class to control the split settings input menu.
+///
 class SplitDialog : public QDialog
 {
     Q_OBJECT
