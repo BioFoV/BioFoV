@@ -331,3 +331,17 @@ void MainWindow::on_actionPrint_triggered()
 
     delete dlg;
 }
+
+void MainWindow::on_actionHorizontally_triggered()
+{
+    VideoItem * vidItem;
+    foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
+        if(item->parent() != NULL){
+            showMessage("Flip Videos, not events.");
+            continue;
+        }
+        vidItem = (VideoItem*) item;
+        vidItem->getVideo()->flip_horizontally();
+        showMessage("Flipped selected Video.");
+    }
+}

@@ -69,6 +69,8 @@ public:
     /// \brief Simple Camera constructor.
     Camera();
 
+    Camera(Video* iVid);
+
     /// \brief Camera constructor using the board dimentions and Video
     /// reference.
     /// \param iVid Pointer to the Video object.
@@ -115,7 +117,7 @@ public:
     bool write_file(std::string filename);
 
     /// \brief Flips the calibration horizontally.
-    void flip_horizontal();
+    void flip_horizontal(cv::Size size);
 
     /// \brief Flips the calibration vertically.
     void flip_vertical();

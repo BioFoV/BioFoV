@@ -242,3 +242,15 @@ void Video::calibrate(int nBoards, int frameStep, int boardW,
     // Rewind again
     setFramePos(0);
 }
+
+void Video::flip_horizontally(){
+    if (cam == NULL){
+        cam = new Camera(this);
+    }
+    cam->flip_horizontal(resolution);
+    calibrated = true;
+}
+
+void Video::flip_vertically(){
+
+}

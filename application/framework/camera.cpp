@@ -5,6 +5,10 @@ Camera::Camera() : flag(0), mustInitUndistort(true), maxIter(0)
     vid = NULL;
 }
 
+Camera::Camera(Video* iVid){
+    vid = iVid;
+}
+
 Camera::Camera(Video* iVid, int boardW, int boardH)
 {
     vid = iVid;
@@ -177,8 +181,8 @@ cv::Mat Camera::remap(const cv::Mat &image) {
 
     if (mustInitUndistort) { // called once per calibration
         cv::initUndistortRectifyMap(
-            cameraMatrix, // computed camera matrix
-            distCoeffs,   // computed distortion matrix
+            cv::Mat(),    // computed camera matrix
+            cv::Mat(),    // computed distortion matrix
             cv::Mat(),    // optional rectification (none)
             cv::Mat(),    // camera matrix to generate undistorted
             image.size(), // size of undistorted
@@ -214,10 +218,21 @@ bool Camera::write_file(std::string filename){
     return true;
 }
 
-void Camera::flip_horizontal(){
-
+void Camera::flip_horizontal(cv::Size size){
+    if (mustInitUndistort) { // called once per calibration
+        cv::initUndistortRectifyMap(
+            cameraMatrix, // computed camera matrix
+            distCoeffs,   // computed distortion matrix
+            cv::Mat(),    // optional rectification (none)
+            cv::Mat(),    // camera matrix to generate undistorted
+            size, // size of undistorted
+            CV_32FC1,     // type of output map
+            map1, map2);  // the x and y mapping functions
+        mustInitUndistort=false;
+    }
+    cv::flip(map2, map2, 0);
 }
 
 void Camera::flip_vertical(){
-
+    cv::flip(map2, map2, 1);
 }

@@ -178,5 +178,8 @@ public:
     /// 1~5 is normally enough.
     void calibrate(int nBoards, int frameStep, int boardW,
                    int boardH, int iterations);
+
+    void flip_horizontally();
+    void flip_vertically();
 };
 #endif

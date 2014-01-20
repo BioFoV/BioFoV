@@ -161,6 +161,8 @@ private slots:
     ///printers.
     void on_actionPrint_triggered();
 
+    void on_actionHorizontally_triggered();
+
 private:
     /// \brief UI created by Qt.
     ///Points to a class that contains everything that was defined in the
