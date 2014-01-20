@@ -79,8 +79,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>769</width>
-             <height>285</height>
+             <width>98</width>
+             <height>70</height>
             </rect>
            </property>
            <attribute name="label">
@@ -260,18 +260,11 @@
      <addaction name="actionCrop"/>
      <addaction name="actionExclude_rectangle"/>
     </widget>
-    <widget class="QMenu" name="menuMeasures">
-     <property name="title">
-      <string>Measures</string>
-     </property>
-     <addaction name="actionHeight"/>
-    </widget>
     <addaction name="actionAdd_Video_File"/>
     <addaction name="action_Remove_From_Project"/>
     <addaction name="separator"/>
     <addaction name="menuTransformations"/>
     <addaction name="menuFilter"/>
-    <addaction name="menuMeasures"/>
    </widget>
    <widget class="QMenu" name="menuEvent">
     <property name="title">
@@ -305,10 +298,18 @@
     <property name="title">
      <string>&amp;Individual</string>
     </property>
+    <widget class="QMenu" name="menuMeasures">
+     <property name="title">
+      <string>Measures</string>
+     </property>
+     <addaction name="actionHeight"/>
+    </widget>
     <addaction name="actionNewIndividual"/>
     <addaction name="actionDeleteIndividual"/>
     <addaction name="separator"/>
     <addaction name="actionAuto_Detect_Individuals"/>
+    <addaction name="separator"/>
+    <addaction name="menuMeasures"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuVideo"/>
