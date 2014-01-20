@@ -79,8 +79,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>98</width>
-             <height>70</height>
+             <width>769</width>
+             <height>285</height>
             </rect>
            </property>
            <attribute name="label">
@@ -239,8 +239,9 @@
       <property name="title">
        <string>Flip</string>
       </property>
-      <addaction name="actionHorizontally_2"/>
-      <addaction name="actionVertically_2"/>
+      <addaction name="separator"/>
+      <addaction name="actionHorizontally"/>
+      <addaction name="actionVertically"/>
      </widget>
      <widget class="QMenu" name="menuRotate">
       <property name="title">
@@ -432,16 +433,6 @@
    </property>
   </action>
   <action name="actionVertically">
-   <property name="text">
-    <string>Vertically</string>
-   </property>
-  </action>
-  <action name="actionHorizontally_2">
-   <property name="text">
-    <string>Horizontally</string>
-   </property>
-  </action>
-  <action name="actionVertically_2">
    <property name="text">
     <string>Vertically</string>
    </property>
