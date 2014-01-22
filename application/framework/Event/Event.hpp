@@ -84,9 +84,16 @@ public:
     /// \brief Adds another Frame to this Event.
     /// \param inFrame Frame to be added to this Event.
     void addFrame(Frame* inFrame);
+
     /// \brief Adds another Snapshot to this Event.
     /// \param inSnap Snapshot to be added to this Event.
     void addSnapshot(Snapshot* inSnap);
+
+    /// \brief Pop last Frame.
+    void remLastFrame();
+
+    /// \brief Pop last Snapshot.
+    void remLastSnapshot();
 
     /// \brief Splits this Event into several based on the background
     ///subtraction results.

@@ -51,6 +51,14 @@ void Event::addSnapshot(Snapshot* inSnap){
     snapshots.push_back(inSnap);
 }
 
+void Event::remLastFrame(){
+    frames.pop_back();
+}
+
+void Event::remLastSnapshot(){
+    snapshots.pop_back();
+}
+
 /* Splits an event into several based on background subtraction
  * threshold -> pixelcount for background subtraction difference
  * maxcount -> maximum distance in frames between events for them to be a single

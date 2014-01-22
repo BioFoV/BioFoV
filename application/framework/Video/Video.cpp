@@ -197,7 +197,12 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
                 event->addSnapshot(snap);
                 framecount ++;
                 if(emptycount > maxcount){
-                    if (framecount > mincount){
+                    if (framecount - emptycount > mincount){
+                        // remove extra frames with no movement
+                        for (int i = 0; i < maxcount; i++){
+                            event->remLastFrame();
+                            event->remLastSnapshot();
+                        }
                         events.push_back(event);
                     } else {
                         delete event;
