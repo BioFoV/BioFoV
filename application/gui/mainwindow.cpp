@@ -345,3 +345,17 @@ void MainWindow::on_actionHorizontally_triggered()
         showMessage("Flipped selected Video.");
     }
 }
+
+void MainWindow::on_actionVertically_triggered()
+{
+    VideoItem * vidItem;
+    foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
+        if(item->parent() != NULL){
+            showMessage("Flip Videos, not events.");
+            continue;
+        }
+        vidItem = (VideoItem*) item;
+        vidItem->getVideo()->flip_vertically();
+        showMessage("Flipped selected Video.");
+    }
+}

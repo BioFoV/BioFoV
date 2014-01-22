@@ -2,15 +2,18 @@
 
 Camera::Camera() : flag(0), mustInitUndistort(true), maxIter(0)
 {
+    calibrated = false;
     vid = NULL;
 }
 
 Camera::Camera(Video* iVid){
+    calibrated = false;
     vid = iVid;
 }
 
 Camera::Camera(Video* iVid, int boardW, int boardH)
 {
+    calibrated = false;
     vid = iVid;
     boardSize = cv::Size( boardW, boardH );
     boardTotal = boardSize.width * boardSize.height;
@@ -172,6 +175,7 @@ double Camera::calibrate(int nBoards, int frameStep, int iterations) {
         cv::TermCriteria( cv::TermCriteria::COUNT +
         cv::TermCriteria::EPS, iterations,DBL_EPSILON ) ); // set options
 
+    calibrated = true;
     return reprojectionError;
 }
 
@@ -219,20 +223,33 @@ bool Camera::write_file(std::string filename){
 }
 
 void Camera::flip_horizontal(cv::Size size){
-    if (mustInitUndistort) { // called once per calibration
-        cv::initUndistortRectifyMap(
-            cameraMatrix, // computed camera matrix
-            distCoeffs,   // computed distortion matrix
-            cv::Mat(),    // optional rectification (none)
-            cv::Mat(),    // camera matrix to generate undistorted
-            size, // size of undistorted
-            CV_32FC1,     // type of output map
-            map1, map2);  // the x and y mapping functions
-        mustInitUndistort=false;
+    if (!calibrated) { // called once per calibration
+        map1.create(size, CV_32FC1);
+        map2.create(size, CV_32FC1);
+        for( int j = 0; j < map1.rows; j++ ){
+            for( int i = 0; i < map1.cols; i++ ){
+                map1.at<float>(j,i) = i ;
+                map2.at<float>(j,i) = j ;
+            }
+        }
+        calibrated = true;
+        mustInitUndistort = false;
     }
-    cv::flip(map2, map2, 0);
+    cv::flip(map1, map1, 1);
 }
 
-void Camera::flip_vertical(){
-    cv::flip(map2, map2, 1);
+void Camera::flip_vertical(cv::Size size){
+    if (!calibrated) { // called once per calibration
+        map1.create(size, CV_32FC1);
+        map2.create(size, CV_32FC1);
+        for( int j = 0; j < map1.rows; j++ ){
+            for( int i = 0; i < map1.cols; i++ ){
+                map1.at<float>(j,i) = i ;
+                map2.at<float>(j,i) = j ;
+            }
+        }
+        calibrated = true;
+        mustInitUndistort = false;
+    }
+    cv::flip(map2, map2, 0);
 }

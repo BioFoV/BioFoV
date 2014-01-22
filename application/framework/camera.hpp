@@ -64,6 +64,9 @@ private:
     ///the calibration methods.
     Video* vid;
 
+    /// \brief Is calibrated.
+    bool calibrated;
+
 public:
     // Constructor
     /// \brief Simple Camera constructor.
@@ -120,7 +123,7 @@ public:
     void flip_horizontal(cv::Size size);
 
     /// \brief Flips the calibration vertically.
-    void flip_vertical();
+    void flip_vertical(cv::Size size);
 };
 
 #endif // CAMERA_HPP

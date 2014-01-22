@@ -252,5 +252,9 @@ void Video::flip_horizontally(){
 }
 
 void Video::flip_vertically(){
-
+    if (cam == NULL){
+        cam = new Camera(this);
+    }
+    cam->flip_vertical(resolution);
+    calibrated = true;
 }
