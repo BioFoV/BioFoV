@@ -19,10 +19,23 @@ public:
 
     // Functions
     Face* getFace();
-    void setFace(Face* inface);
 
 private:
     Face * face;
+};
+
+class SnapshotItem : public QTreeWidgetItem
+{
+public:
+    explicit SnapshotItem(QTreeWidgetItem *parent = 0);
+    SnapshotItem(QString snapname, Snapshot *insnap, QTreeWidget *parent = 0);
+
+    ~SnapshotItem();
+
+    Snapshot* getSnapshot();
+
+private:
+    Snapshot* snap;
 };
 
 #endif // FACEITEM_HPP

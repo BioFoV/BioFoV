@@ -40,6 +40,7 @@ public:
     void findFaces(Frame * newFrame);
     void addEvent(Event * newEvent);
     unsigned int faceNumber();
+    Snapshot * getFaceAt(unsigned int i);
 };
 
 #endif // FACES_HPP
