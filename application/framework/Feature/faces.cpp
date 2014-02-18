@@ -25,3 +25,7 @@ void Face::findFaces(Frame *newFrame){
         snapshots.push_back(newSnap);
     }
 }
+
+unsigned int Face::faceNumber(){
+    return snapshots.size();
+}

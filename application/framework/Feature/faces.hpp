@@ -39,6 +39,7 @@ public:
     Face(std::string haar_filename);
     void findFaces(Frame * newFrame);
     void addEvent(Event * newEvent);
+    unsigned int faceNumber();
 };
 
 #endif // FACES_HPP

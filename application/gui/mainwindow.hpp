@@ -23,6 +23,11 @@
 #include "eventitem.hpp"
 #endif
 
+#ifndef INC_FACEITEM
+#define INC_FACEITEM
+#include "faceitem.hpp"
+#endif
+
 #ifndef INC_SPLITDIALOG
 #define INC_SPLITDIALOG
 #include "splitdialog.hpp"
@@ -167,6 +172,8 @@ private slots:
     void on_actionVertically_triggered();
 
     void on_actionAuto_Detect_Individuals_triggered();
+
+    void on_faceList_itemDoubleClicked(QTreeWidgetItem *item, int column);
 
 private:
     /// \brief UI created by Qt.

@@ -377,10 +377,10 @@ void MainWindow::on_actionAuto_Detect_Individuals_triggered()
         } // No file name provided
 
         foreach (QString fileName, fileNames) {
-            Face face(fileName.toStdString());
+            Face* face = new Face(fileName.toStdString());
 
             foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
-                face.addEvent(((EventItem* )item)->getEvent());
+                face->addEvent(((EventItem* )item)->getEvent());
             }
             foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
                 Event* ev = ((EventItem*)item)->getEvent();
@@ -388,9 +388,16 @@ void MainWindow::on_actionAuto_Detect_Individuals_triggered()
                 for (;;){
                     if(!ev->getFrameObject(&face_frame))
                         break;
-                    face.findFaces(face_frame);
+                    face->findFaces(face_frame);
                 }
+                FaceItem * newFaceItem = new FaceItem(QString("face"), face);
+                ui->faceList->addTopLevelItem(newFaceItem);
             }
         }
     }
+}
+
+void MainWindow::on_faceList_itemDoubleClicked(QTreeWidgetItem *item, int column)
+{
+
 }

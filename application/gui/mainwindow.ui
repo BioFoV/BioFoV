@@ -25,7 +25,7 @@
         <item>
          <widget class="QToolBox" name="itemToolBox">
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="videoPage">
            <property name="geometry">
@@ -88,7 +88,21 @@
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_2">
             <item>
-             <widget class="QListWidget" name="faceList"/>
+             <widget class="QTreeWidget" name="faceList">
+              <property name="columnCount">
+               <number>2</number>
+              </property>
+              <column>
+               <property name="text">
+                <string notr="true">1</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string notr="true">2</string>
+               </property>
+              </column>
+             </widget>
             </item>
            </layout>
           </widget>
@@ -336,15 +350,6 @@
    <addaction name="menuIndividual"/>
    <addaction name="menuHelp"/>
   </widget>
-  <widget class="QToolBar" name="projectBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-   <addaction name="actionSave_Project"/>
-  </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <widget class="QToolBar" name="videoBar">
    <property name="windowTitle">
@@ -371,6 +376,15 @@
    </attribute>
    <addaction name="actionAuto_Detect_Events"/>
    <addaction name="actionDeleteEvent"/>
+  </widget>
+  <widget class="QToolBar" name="projectBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionSave_Project"/>
   </widget>
   <action name="actionNew">
    <property name="text">
