@@ -57,6 +57,9 @@
               <property name="selectionMode">
                <enum>QAbstractItemView::ExtendedSelection</enum>
               </property>
+              <property name="expandsOnDoubleClick">
+               <bool>false</bool>
+              </property>
               <property name="columnCount">
                <number>2</number>
               </property>
@@ -95,6 +98,9 @@
               <property name="horizontalScrollMode">
                <enum>QAbstractItemView::ScrollPerPixel</enum>
               </property>
+              <property name="expandsOnDoubleClick">
+               <bool>false</bool>
+              </property>
               <property name="columnCount">
                <number>2</number>
               </property>
@@ -117,8 +123,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>769</width>
-             <height>257</height>
+             <width>98</width>
+             <height>86</height>
             </rect>
            </property>
            <attribute name="label">
