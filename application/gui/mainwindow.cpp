@@ -390,10 +390,7 @@ void MainWindow::on_actionAuto_Detect_Individuals_triggered()
                         break;
                     face.findFaces(face_frame);
                 }
-
             }
         }
-
     }
-
 }
