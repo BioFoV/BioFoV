@@ -359,3 +359,41 @@ void MainWindow::on_actionVertically_triggered()
         showMessage("Flipped selected Video.");
     }
 }
+
+void MainWindow::on_actionAuto_Detect_Individuals_triggered()
+{
+    QFileDialog getFileDialog(this);
+    getFileDialog.setDirectory(QDir::homePath());
+    getFileDialog.setFileMode(QFileDialog::ExistingFiles);
+    getFileDialog.setAcceptMode(QFileDialog::AcceptOpen);
+
+    QStringList fileNames;
+    if(getFileDialog.exec())
+    {
+        fileNames = getFileDialog.selectedFiles();
+        if (fileNames.isEmpty()) {
+            showMessage("No files loaded");
+            return;
+        } // No file name provided
+
+        foreach (QString fileName, fileNames) {
+            Face face(fileName.toStdString());
+
+            foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
+                face.addEvent(((EventItem* )item)->getEvent());
+            }
+            foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
+                Event* ev = ((EventItem*)item)->getEvent();
+                Frame * face_frame;
+                for (;;){
+                    if(!ev->getFrameObject(&face_frame))
+                        break;
+                    face.findFaces(face_frame);
+                }
+
+            }
+        }
+
+    }
+
+}

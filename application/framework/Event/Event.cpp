@@ -109,6 +109,17 @@ std::deque<Event*> Event::splitEvent(double threshold, double maxcount,
     return events;
 }
 
+bool Event::getFrameObject(Frame **outFrame){
+    try {
+        *outFrame = frames.at(position);
+    }
+    catch (const std::out_of_range& oor) {
+        return false;
+    }
+    position += 1;
+    return true;
+}
+
 /*******************************************************************************
  * Capture functions
  ******************************************************************************/

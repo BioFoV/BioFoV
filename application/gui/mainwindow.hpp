@@ -40,6 +40,7 @@
 
 #include "../framework/Drawables/rectanglemask.hpp"
 #include "../framework/Drawables/drawheight.hpp"
+#include "../framework/Feature/faces.hpp"
 
 namespace Ui {
 class MainWindow;
@@ -164,6 +165,8 @@ private slots:
     void on_actionHorizontally_triggered();
 
     void on_actionVertically_triggered();
+
+    void on_actionAuto_Detect_Individuals_triggered();
 
 private:
     /// \brief UI created by Qt.
