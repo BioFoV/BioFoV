@@ -57,6 +57,8 @@ public slots:
     void setClickable(Drawable* draw);
     void print(QPainter &printerPainter);
 
+    void showStillImage(const cv::Mat& image);
+
 private:
     Ui::VideoPlayer *ui;
     Player* currentPlayer;
@@ -84,6 +86,8 @@ private slots:
     void on_playButton_clicked();
     void on_stepButton_clicked();
     void on_rewindButton_clicked();
+
+    void setControlsEnabled(bool status);
 
     cv::Point qtPt_To_cvPt(QPoint in);
     void mousePressEvent(QMouseEvent *event);
