@@ -57,6 +57,7 @@ cv::Mat BackgroundSubtractor::Foreground(){
 }
 
 cv::Mat BackgroundSubtractor::Background(){
+    bgsub.getBackgroundImage(back);
     return back;
 }
 
