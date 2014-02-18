@@ -185,32 +185,30 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
             emptycount = 0;
         }
         // Did not detect change
-        else {
-            if (event != NULL){
-                emptycount ++;
-                // create new frame
-                frame = new Frame(this, shot);
-                snap = new Snapshot(frame, bg->Foreground());
-                frame->setSnapshot(snap);
-                // add frame to event
-                event->addFrame(frame);
-                event->addSnapshot(snap);
-                framecount ++;
-                if(emptycount > maxcount){
-                    if (framecount - emptycount > mincount){
-                        // remove extra frames with no movement
-                        for (int i = 0; i < maxcount; i++){
-                            event->remLastFrame();
-                            event->remLastSnapshot();
-                        }
-                        events.push_back(event);
-                    } else {
-                        delete event;
+        else if (event != NULL){
+            emptycount ++;
+            // create new frame
+            frame = new Frame(this, shot);
+            snap = new Snapshot(frame, bg->Foreground());
+            frame->setSnapshot(snap);
+            // add frame to event
+            event->addFrame(frame);
+            event->addSnapshot(snap);
+            framecount ++;
+            if(emptycount > maxcount){
+                if (framecount - emptycount > mincount){
+                    // remove extra frames with no movement
+                    for (int i = 0; i < maxcount; i++){
+                        event->remLastFrame();
+                        event->remLastSnapshot();
                     }
-                    event = NULL;
-                    emptycount = 0;
-                    framecount = 0;
+                    events.push_back(event);
+                } else {
+                    delete event;
                 }
+                event = NULL;
+                emptycount = 0;
+                framecount = 0;
             }
         }
         j++;
