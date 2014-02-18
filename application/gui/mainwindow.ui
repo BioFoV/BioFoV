@@ -25,7 +25,7 @@
         <item>
          <widget class="QToolBox" name="itemToolBox">
           <property name="currentIndex">
-           <number>2</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="videoPage">
            <property name="geometry">
@@ -41,16 +41,16 @@
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout">
             <property name="leftMargin">
-             <number>0</number>
+             <number>8</number>
             </property>
             <property name="topMargin">
-             <number>0</number>
+             <number>8</number>
             </property>
             <property name="rightMargin">
-             <number>0</number>
+             <number>8</number>
             </property>
             <property name="bottomMargin">
-             <number>0</number>
+             <number>8</number>
             </property>
             <item>
              <widget class="QTreeWidget" name="videoList">
@@ -75,6 +75,14 @@
            </layout>
           </widget>
           <widget class="QWidget" name="facePage">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>769</width>
+             <height>257</height>
+            </rect>
+           </property>
            <attribute name="label">
             <string>Faces</string>
            </attribute>
@@ -98,16 +106,16 @@
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_3">
             <property name="leftMargin">
-             <number>0</number>
+             <number>8</number>
             </property>
             <property name="topMargin">
-             <number>0</number>
+             <number>8</number>
             </property>
             <property name="rightMargin">
-             <number>0</number>
+             <number>8</number>
             </property>
             <property name="bottomMargin">
-             <number>0</number>
+             <number>8</number>
             </property>
             <item>
              <widget class="QListWidget" name="indiviualList">
