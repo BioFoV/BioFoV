@@ -34,6 +34,7 @@ void BackgroundSubtractor::NewFrame(cv::Mat img, bool f/*=true*/,
 	// calculate background
 	if(b)
 		bgsub.getBackgroundImage(back);
+    // draw contours
 	if(c){
 		cont = frame.clone();
 		cv::Mat aux = fore.clone();
