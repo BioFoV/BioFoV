@@ -24,32 +24,11 @@ BackgroundSubtractor::BackgroundSubtractor(int hist, int varThresh,
 /*******************************************************************************
  * Get foreground, background and contours functions
  ******************************************************************************/
-void BackgroundSubtractor::NewFrame(cv::Mat img, bool f/*=true*/,
-                                    bool b/*=true*/, bool c/*=false*/){
+void BackgroundSubtractor::NewFrame(cv::Mat img){
     // copy image to object
     frame = img;
     // calculate foreground
-    if(f)
-        bgsub(img,fore);
-    // calculate background
-    if(b)
-        bgsub.getBackgroundImage(back);
-    // draw contours
-    if(c){
-        cont = frame.clone();
-        cv::Mat aux = fore.clone();
-
-        cv::erode(aux,aux,cv::Mat());
-        cv::dilate(aux,aux,cv::Mat());
-        cv::findContours(aux,contours,
-            CV_RETR_EXTERNAL,
-            CV_CHAIN_APPROX_NONE);
-        cv::drawContours(cont,
-            contours,
-            -1,
-            cv::Scalar(0,0,255),
-            1);
-    }
+    bgsub(img,fore);
 }
 
 cv::Mat BackgroundSubtractor::Foreground(){
@@ -62,5 +41,18 @@ cv::Mat BackgroundSubtractor::Background(){
 }
 
 cv::Mat BackgroundSubtractor::Contours(){
+    cont = frame.clone();
+    cv::Mat aux = fore.clone();
+
+    cv::erode(aux,aux,cv::Mat());
+    cv::dilate(aux,aux,cv::Mat());
+    cv::findContours(aux,contours,
+        CV_RETR_EXTERNAL,
+        CV_CHAIN_APPROX_NONE);
+    cv::drawContours(cont,
+        contours,
+        -1,
+        cv::Scalar(0,0,255),
+        1);
     return cont;
 }

@@ -42,7 +42,7 @@ public:
 	BackgroundSubtractor(int hist, int varThresh, bool bShadowDet);
 	
 	// Get foreground, background and contours functions
-    void NewFrame(cv::Mat img, bool f=true, bool b=false, bool c=false);
+    void NewFrame(cv::Mat img);
 	cv::Mat Foreground();
 	cv::Mat Background();
 	cv::Mat Contours();
