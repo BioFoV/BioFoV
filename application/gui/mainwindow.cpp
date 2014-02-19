@@ -62,14 +62,22 @@ void MainWindow::on_actionAuto_Detect_Events_triggered()
     std::deque<Event*> events;
     EventItem* newEvent;
 
-    int i;
     unsigned int j;
     
     SplitDialog split;
     
-    for (i = 0; i < ui->videoList->topLevelItemCount(); i++){
-        videoiter = (VideoItem*) ui->videoList->topLevelItem(i);
-        showMessage(QString("Analyzing Video %1").arg(i));
+    if (ui->videoList->selectedItems().isEmpty()){
+        showMessage("Select at least one Video");
+        return;
+    }
+
+    foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
+        if (item->parent() != NULL){
+            showMessage("Item selected is not a video");
+            continue;
+        }
+        videoiter = (VideoItem*) item;
+        showMessage(QString("Analyzing Video %1").arg(item->text(0)));
         split.setFPS(videoiter->getVideo()->getFPS());
         split.setWindowTitle(videoiter->text(0));
         if(!split.exec()){
