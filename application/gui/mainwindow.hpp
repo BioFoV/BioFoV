@@ -171,7 +171,7 @@ private slots:
 
     void on_actionVertically_triggered();
 
-    void on_actionAuto_Detect_Individuals_triggered();
+    void on_actionDetect_Faces_triggered();
 
     void on_actionDeleteFace_triggered();
 

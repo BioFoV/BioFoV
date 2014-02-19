@@ -385,7 +385,7 @@ void MainWindow::on_actionVertically_triggered()
     }
 }
 
-void MainWindow::on_actionAuto_Detect_Individuals_triggered()
+void MainWindow::on_actionDetect_Faces_triggered()
 {
     QFileDialog getFileDialog(this);
     getFileDialog.setDirectory(QDir::homePath());

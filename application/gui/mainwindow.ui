@@ -32,8 +32,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>769</width>
-             <height>257</height>
+             <width>98</width>
+             <height>86</height>
             </rect>
            </property>
            <attribute name="label">
@@ -123,8 +123,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>769</width>
-             <height>257</height>
+             <width>98</width>
+             <height>86</height>
             </rect>
            </property>
            <attribute name="label">
@@ -358,7 +358,6 @@
     <addaction name="actionNewIndividual"/>
     <addaction name="actionDeleteIndividual"/>
     <addaction name="separator"/>
-    <addaction name="actionAuto_Detect_Individuals"/>
     <addaction name="separator"/>
     <addaction name="menuMeasures"/>
    </widget>
@@ -366,6 +365,7 @@
     <property name="title">
      <string>Face</string>
     </property>
+    <addaction name="actionDetect_Faces"/>
     <addaction name="actionDeleteFace"/>
    </widget>
    <addaction name="menuFile"/>
@@ -474,9 +474,9 @@
     <string>Auto Detect</string>
    </property>
   </action>
-  <action name="actionAuto_Detect_Individuals">
+  <action name="actionDetect_Faces">
    <property name="text">
-    <string>Auto Detect</string>
+    <string>Detect Faces</string>
    </property>
   </action>
   <action name="actionAuto_Split">
