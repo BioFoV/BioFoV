@@ -14,7 +14,7 @@ FaceItem::FaceItem(QString facename, Face* inface, QTreeWidget *parent) :
     ss << inface->faceNumber();
     setText(1, ss.str().c_str());
 
-    for (unsigned int i=0; i<inface->faceNumber(); i++){
+    for (unsigned int i=0; i<inface->faceNumber()-1; i++){
         SnapshotItem * newsnap = new SnapshotItem("FIXME",inface->getFaceAt(i));
         this->addChild(newsnap);
     }
