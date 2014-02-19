@@ -106,12 +106,12 @@
               </property>
               <column>
                <property name="text">
-                <string notr="true">1</string>
+                <string notr="true">Label</string>
                </property>
               </column>
               <column>
                <property name="text">
-                <string notr="true">2</string>
+                <string notr="true">Count</string>
                </property>
               </column>
              </widget>
