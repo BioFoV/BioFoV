@@ -30,6 +30,8 @@ private:
     /// \brief External Frame reference.
 	Frame *image;
 
+    cv::Rect rect;
+
 	// class data
     std::string filename;
 	
@@ -51,7 +53,10 @@ public:
     /// \param inmask Mask that defines where something is.
     Snapshot(Frame *img, cv::Mat inmask);
 
+    Snapshot(Frame *img, cv::Rect inrect);
+
     // Functions
     cv::Mat getMask();
+    cv::Mat getMasked();
 };
 #endif

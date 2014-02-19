@@ -104,6 +104,8 @@ public:
     /// \return Deque of the singular Event FIXME.
     std::deque<Event*> splitEvent(double threshold, double maxcount, double mincount);
 
+    bool getFrameObject(Frame** outFrame);
+
     // Capture functions
     bool check_cap();
     bool setFramePos(double frameNum);

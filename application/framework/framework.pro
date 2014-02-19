@@ -35,7 +35,8 @@ SOURCES += \
     camera.cpp \
     Drawables/rectanglemask.cpp \
     exclusionmod.cpp \
-    Drawables/drawheight.cpp
+    Drawables/drawheight.cpp \
+    Feature/faces.cpp
 
 HEADERS += \
     Event/Event.hpp \
@@ -52,4 +53,5 @@ HEADERS += \
     Drawables/rectanglemask.hpp \
     modifier.hpp \
     exclusionmod.hpp \
-    Drawables/drawheight.hpp
+    Drawables/drawheight.hpp \
+    Feature/faces.hpp

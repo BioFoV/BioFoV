@@ -83,6 +83,7 @@ void VideoPlayer::loadVid(std::string filename){
     pause();
     unload();
     loadVid(vid, PLAYER_VID);
+    setControlsEnabled(true);
 }
 
 void VideoPlayer::loadVid(Player* nextVid, int playerT){
@@ -105,6 +106,7 @@ void VideoPlayer::loadVid(Player* nextVid, int playerT){
     ui->posSlider->setPageStep(currentPlayer->getLengthFrames()/10);
     speed = 1;
     ui->speedSlider->setValue(speed*10);
+    setControlsEnabled(true);
 }
 
 void VideoPlayer::unload(){
@@ -276,4 +278,15 @@ void VideoPlayer::print(QPainter &printerPainter){
     QImage _qimage(_tmp.data, _tmp.cols, _tmp.rows,
                    _tmp.cols*3, QImage::Format_RGB888);
     printerPainter.drawImage(QPoint(0,0), _qimage);
+}
+
+void VideoPlayer::showStillImage(const cv::Mat& image){
+    setControlsEnabled(false);
+    showImage(image);
+}
+
+void VideoPlayer::setControlsEnabled(bool status){
+    ui->controls->setEnabled(status);
+    ui->posSlider->setEnabled(status);
+    ui->speedSlider->setEnabled(status);
 }

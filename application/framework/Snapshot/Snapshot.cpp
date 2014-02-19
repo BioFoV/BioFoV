@@ -21,6 +21,11 @@ Snapshot::Snapshot(Frame *img, cv::Mat inmask){
     cv::imwrite( filename, inmask );
 }
 
+Snapshot::Snapshot(Frame *img, cv::Rect inrect){
+    image = img;
+    rect = inrect;
+}
+
 /*******************************************************************************
  * Destructor
  ******************************************************************************/
@@ -32,6 +37,23 @@ Snapshot::~Snapshot(){
  * Functions
  ******************************************************************************/
 cv::Mat Snapshot::getMask(){
-    cv::Mat mask = cv::imread(filename, 0);
-    return mask;
+    cv::Mat mask;
+    if (!filename.empty()){
+        mask = cv::imread(filename, 0);
+        return mask;
+    } else { //FIXME: Missing application of rectangle mask.
+        return mask;
+    }
+}
+
+cv::Mat Snapshot::getMasked(){
+    if (!filename.empty()){
+        cv::Mat mask = cv::imread(filename, 0);
+        cv::Mat out;
+        image->getImage().copyTo(out, mask);
+
+        return out;
+    } else {
+        return (image->getImage())(rect);
+    }
 }

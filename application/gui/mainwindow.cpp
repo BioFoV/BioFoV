@@ -97,12 +97,26 @@ void MainWindow::on_actionAuto_Detect_Events_triggered()
 
 void MainWindow::on_action_Remove_From_Project_triggered()
 {
-    qDeleteAll(ui->videoList->selectedItems());
+    if(ui->videoPage->isVisible()){
+        foreach(QTreeWidgetItem* item, ui->videoList->selectedItems()){
+            if(item->parent() == NULL){
+                delete item;
+            }
+            else {
+                showMessage("Item selected is not a Video");
+            }
+        }
+    }
+
 }
 
 void MainWindow::on_actionDeleteEvent_triggered()
 {
-    qDeleteAll(ui->videoList->selectedItems());
+    if(ui->videoPage->isVisible()){
+        qDeleteAll(ui->videoList->selectedItems());
+    } else {
+        showMessage("Please select the Videos tab first");
+    }
 }
 
 
@@ -358,4 +372,51 @@ void MainWindow::on_actionVertically_triggered()
         vidItem->getVideo()->flip_vertically();
         showMessage("Flipped selected Video.");
     }
+}
+
+void MainWindow::on_actionAuto_Detect_Individuals_triggered()
+{
+    QFileDialog getFileDialog(this);
+    getFileDialog.setDirectory(QDir::homePath());
+    getFileDialog.setFileMode(QFileDialog::ExistingFiles);
+    getFileDialog.setAcceptMode(QFileDialog::AcceptOpen);
+
+    QStringList fileNames;
+    if(getFileDialog.exec())
+    {
+        fileNames = getFileDialog.selectedFiles();
+        if (fileNames.isEmpty()) {
+            showMessage("No files loaded");
+            return;
+        } // No file name provided
+
+        foreach (QString fileName, fileNames) {
+            Face* face = new Face(fileName.toStdString());
+
+            foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
+                face->addEvent(((EventItem* )item)->getEvent());
+            }
+            foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
+                Event* ev = ((EventItem*)item)->getEvent();
+                Frame * face_frame;
+                for (;;){
+                    if(!ev->getFrameObject(&face_frame))
+                        break;
+                    face->findFaces(face_frame);
+                }
+                FaceItem * newFaceItem = new FaceItem(QString("face"), face);
+                ui->faceList->addTopLevelItem(newFaceItem);
+            }
+        }
+    }
+}
+
+void MainWindow::on_faceList_itemDoubleClicked(QTreeWidgetItem *item, int column)
+{
+    if(item->parent() == NULL){
+        return;
+    }
+
+    SnapshotItem* snapitem = (SnapshotItem *) item;
+    ui->player->showStillImage(snapitem->getSnapshot()->getMasked());
 }

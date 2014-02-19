@@ -109,6 +109,17 @@ std::deque<Event*> Event::splitEvent(double threshold, double maxcount,
     return events;
 }
 
+bool Event::getFrameObject(Frame **outFrame){
+    try {
+        *outFrame = frames.at(position);
+    }
+    catch (const std::out_of_range& oor) {
+        return false;
+    }
+    position += 1;
+    return true;
+}
+
 /*******************************************************************************
  * Capture functions
  ******************************************************************************/
@@ -144,21 +155,16 @@ bool Event::getFrame(cv::Mat &frame){
         catch (const std::out_of_range& oor) {
             return false;
         }
-
         frame = tmpSnap->getMask();
     } else if (playMode == PLAY_MASKED_FRAMES){
         Snapshot* tmpSnap;
-        Frame* tmpFrame;
         try {
             tmpSnap = snapshots.at(position);
-            tmpFrame = frames.at(position);
         }
         catch (const std::out_of_range& oor) {
             return false;
         }
-
-        frame = tmpSnap->getMask();
-        tmpFrame->getImage().copyTo(frame,tmpSnap->getMask());
+        frame = tmpSnap->getMasked();
     }
     if (frame.empty())
         return false;

@@ -32,7 +32,8 @@ SOURCES += \
     videoitem.cpp \
     eventitem.cpp \
     splitdialog.cpp \
-    calibrationdialog.cpp
+    calibrationdialog.cpp \
+    faceitem.cpp
 
 # reset headers
 HEADERS += \
@@ -42,7 +43,8 @@ HEADERS += \
     videoitem.hpp \
     eventitem.hpp \
     splitdialog.hpp \
-    calibrationdialog.hpp
+    calibrationdialog.hpp \
+    faceitem.hpp
 
 FORMS    += $$files(*.ui)
 
