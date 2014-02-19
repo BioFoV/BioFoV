@@ -37,14 +37,17 @@ Snapshot::~Snapshot(){
  * Functions
  ******************************************************************************/
 cv::Mat Snapshot::getMask(){
+    cv::Mat mask;
     if (!filename.empty()){
-        cv::Mat mask = cv::imread(filename, 0);
+        mask = cv::imread(filename, 0);
+        return mask;
+    } else { //FIXME: Missing application of rectangle mask.
         return mask;
     }
 }
 
 cv::Mat Snapshot::getMasked(){
-    if (!filename.empty()){ //FIXME returning mask and not masked frame.
+    if (!filename.empty()){
         cv::Mat mask = cv::imread(filename, 0);
         cv::Mat out;
         image->getImage().copyTo(out, mask);
