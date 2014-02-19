@@ -32,8 +32,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>769</width>
-             <height>257</height>
+             <width>98</width>
+             <height>86</height>
             </rect>
            </property>
            <attribute name="label">
@@ -319,6 +319,9 @@
      <string>&amp;Event</string>
     </property>
     <widget class="QMenu" name="menuPlayback_Mode">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="title">
       <string>Playback Mode</string>
      </property>

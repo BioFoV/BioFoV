@@ -40,6 +40,7 @@ void MainWindow::on_actionAdd_Video_File_triggered()
             showMessage(QString("Loaded ") + fileName);
         }
         if(last != NULL) {
+            ui->menuPlayback_Mode->setEnabled(false);
             ui->player->loadVid(last->getVideo(), PLAYER_VID);
             showMessage("Finished loading files");
         }
@@ -154,11 +155,13 @@ void MainWindow::on_videoList_itemDoubleClicked(QTreeWidgetItem *item,
     showMessage(QString("Loaded ") + item->text(0));
     if (item->parent() == NULL){
         VideoItem * vItem = (VideoItem *) item;
+        ui->menuPlayback_Mode->setEnabled(false);
         ui->player->loadVid(vItem->getVideo(), PLAYER_VID);
     } else {
         EventItem * vItem = (EventItem *) item;
         Event* ev = vItem->getEvent();
         ev->setPlaybackMode(playMode);
+        ui->menuPlayback_Mode->setEnabled(true);
         ui->player->loadVid(ev, PLAYER_EV);
     }
     ui->player->playOrPause();
@@ -427,4 +430,5 @@ void MainWindow::on_faceList_itemDoubleClicked(QTreeWidgetItem *item, int column
 
     SnapshotItem* snapitem = (SnapshotItem *) item;
     ui->player->showStillImage(snapitem->getSnapshot()->getMasked());
+    ui->menuPlayback_Mode->setEnabled(false);
 }
