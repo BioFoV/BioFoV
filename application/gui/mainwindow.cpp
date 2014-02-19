@@ -399,9 +399,10 @@ void MainWindow::on_actionAuto_Detect_Individuals_triggered()
 
 void MainWindow::on_faceList_itemDoubleClicked(QTreeWidgetItem *item, int column)
 {
-    if(item->parent() == NULL)
+    if(item->parent() == NULL){
         return;
+    }
 
     SnapshotItem* snapitem = (SnapshotItem *) item;
-    ui->player->showStillImage(snapitem->getSnapshot()->getMask());
+    ui->player->showStillImage(snapitem->getSnapshot()->getMasked());
 }

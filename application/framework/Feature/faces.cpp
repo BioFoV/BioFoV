@@ -18,10 +18,10 @@ void Face::findFaces(Frame *newFrame){
     for(unsigned int i = 0; i < faces.size(); i++) {
         cv::Rect face_i = faces[i];
         // Crop the face from the image. So simple with OpenCV C++:
-        cv::Mat face = gray(face_i);
-        cv::imshow("haar output", face);
-        cv::waitKey(10);
-        Snapshot* newSnap = new Snapshot(newFrame, face);
+//        cv::Mat face = img(face_i);
+//        cv::imshow("haar output", face);
+//        cv::waitKey(10);
+        Snapshot* newSnap = new Snapshot(newFrame, face_i);
         snapshots.push_back(newSnap);
     }
 }

@@ -155,21 +155,16 @@ bool Event::getFrame(cv::Mat &frame){
         catch (const std::out_of_range& oor) {
             return false;
         }
-
         frame = tmpSnap->getMask();
     } else if (playMode == PLAY_MASKED_FRAMES){
         Snapshot* tmpSnap;
-        Frame* tmpFrame;
         try {
             tmpSnap = snapshots.at(position);
-            tmpFrame = frames.at(position);
         }
         catch (const std::out_of_range& oor) {
             return false;
         }
-
-        frame = tmpSnap->getMask();
-        tmpFrame->getImage().copyTo(frame,tmpSnap->getMask());
+        frame = tmpSnap->getMasked();
     }
     if (frame.empty())
         return false;
