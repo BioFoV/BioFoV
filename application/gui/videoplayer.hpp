@@ -59,6 +59,7 @@ public slots:
 
     void showStillImage(const cv::Mat& image);
 
+    Player* getCurrentPlayer();
 private:
     Ui::VideoPlayer *ui;
     Player* currentPlayer;

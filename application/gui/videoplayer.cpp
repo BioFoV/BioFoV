@@ -290,3 +290,7 @@ void VideoPlayer::setControlsEnabled(bool status){
     ui->posSlider->setEnabled(status);
     ui->speedSlider->setEnabled(status);
 }
+
+Player* VideoPlayer::getCurrentPlayer(){
+    return currentPlayer;
+}

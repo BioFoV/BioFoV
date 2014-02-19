@@ -124,6 +124,11 @@ void MainWindow::on_actionDeleteEvent_triggered()
         if(ui->videoPage->isVisible()){
             foreach(QTreeWidgetItem* item, ui->videoList->selectedItems()){
                 if(item->parent() != NULL){
+                    EventItem* evItem = (EventItem *) item;
+                    if(ui->player->getCurrentPlayer() == evItem->getEvent()){
+                        ui->player->pause();
+                        ui->player->unload();
+                    }
                     delete item;
                 }
                 else {
@@ -131,8 +136,6 @@ void MainWindow::on_actionDeleteEvent_triggered()
                 }
             }
         }
-    } else {
-        showMessage("Please select the Videos tab first");
     }
 }
 
@@ -423,8 +426,13 @@ void MainWindow::on_actionDetect_Faces_triggered()
                         break;
                     face->findFaces(face_frame);
                 }
-                FaceItem * newFaceItem = new FaceItem(QString("face"), face);
-                ui->faceList->addTopLevelItem(newFaceItem);
+                if (face->faceNumber() == 0){
+                    showMessage("No faces found");
+                    return;
+                } else {
+                    FaceItem * newFaceItem = new FaceItem(QString("face"), face);
+                    ui->faceList->addTopLevelItem(newFaceItem);
+                }
             }
         }
     }
