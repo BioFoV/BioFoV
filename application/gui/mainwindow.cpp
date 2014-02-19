@@ -107,13 +107,21 @@ void MainWindow::on_action_Remove_From_Project_triggered()
             }
         }
     }
-
 }
 
 void MainWindow::on_actionDeleteEvent_triggered()
 {
     if(ui->videoPage->isVisible()){
-        qDeleteAll(ui->videoList->selectedItems());
+        if(ui->videoPage->isVisible()){
+            foreach(QTreeWidgetItem* item, ui->videoList->selectedItems()){
+                if(item->parent() != NULL){
+                    delete item;
+                }
+                else {
+                    showMessage("Item selected is not an Event");
+                }
+            }
+        }
     } else {
         showMessage("Please select the Videos tab first");
     }
