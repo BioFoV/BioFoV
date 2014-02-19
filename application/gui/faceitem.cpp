@@ -28,6 +28,8 @@ Face* FaceItem::getFace(){
     return face;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+
 SnapshotItem::SnapshotItem(QTreeWidgetItem *parent) :
     QTreeWidgetItem(parent)
 {
@@ -42,7 +44,7 @@ SnapshotItem::SnapshotItem(QString snapname, Snapshot *insnap, QTreeWidget *pare
 }
 
 SnapshotItem::~SnapshotItem(){
-
+    delete snap;
 }
 
 Snapshot* SnapshotItem::getSnapshot(){

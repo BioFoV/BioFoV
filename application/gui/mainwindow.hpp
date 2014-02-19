@@ -173,7 +173,9 @@ private slots:
 
     void on_actionAuto_Detect_Individuals_triggered();
 
-    void on_faceList_itemDoubleClicked(QTreeWidgetItem *item, int column);
+    void on_actionDeleteFace_triggered();
+
+    void on_faceList_itemPressed(QTreeWidgetItem *item, int column);
 
 private:
     /// \brief UI created by Qt.

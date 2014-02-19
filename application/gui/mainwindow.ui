@@ -32,8 +32,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>98</width>
-             <height>86</height>
+             <width>769</width>
+             <height>257</height>
             </rect>
            </property>
            <attribute name="label">
@@ -123,8 +123,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>98</width>
-             <height>86</height>
+             <width>769</width>
+             <height>257</height>
             </rect>
            </property>
            <attribute name="label">
@@ -362,9 +362,16 @@
     <addaction name="separator"/>
     <addaction name="menuMeasures"/>
    </widget>
+   <widget class="QMenu" name="menuFace">
+    <property name="title">
+     <string>Face</string>
+    </property>
+    <addaction name="actionDeleteFace"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuVideo"/>
    <addaction name="menuEvent"/>
+   <addaction name="menuFace"/>
    <addaction name="menuIndividual"/>
    <addaction name="menuHelp"/>
   </widget>
@@ -566,6 +573,11 @@
   <action name="actionPrint">
    <property name="text">
     <string>Print</string>
+   </property>
+  </action>
+  <action name="actionDeleteFace">
+   <property name="text">
+    <string>Delete</string>
    </property>
   </action>
  </widget>

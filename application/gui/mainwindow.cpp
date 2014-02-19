@@ -422,7 +422,21 @@ void MainWindow::on_actionAuto_Detect_Individuals_triggered()
     }
 }
 
-void MainWindow::on_faceList_itemDoubleClicked(QTreeWidgetItem *item, int column)
+void MainWindow::on_actionDeleteFace_triggered()
+{
+    if(ui->facePage->isVisible()){
+        foreach(QTreeWidgetItem* item, ui->faceList->selectedItems()){
+            if(item->parent() != NULL){
+                delete item;
+            }
+            else {
+                showMessage("Item selected is not a Face");
+            }
+        }
+    }
+}
+
+void MainWindow::on_faceList_itemPressed(QTreeWidgetItem *item, int column)
 {
     if(item->parent() == NULL){
         return;
