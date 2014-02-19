@@ -190,6 +190,7 @@ private:
     /// Can be one of the 3 defined in event.hpp: PLAY_FRAMES, PLAY_MASK or
     ///PLAY_MASKED_FRAMES.
     int playMode;
+    void keyPressEvent(QKeyEvent *ev);
 };
 
 #endif // MAINWINDOW_H

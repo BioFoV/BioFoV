@@ -446,3 +446,10 @@ void MainWindow::on_faceList_itemPressed(QTreeWidgetItem *item, int column)
     ui->player->showStillImage(snapitem->getSnapshot()->getMasked());
     ui->menuPlayback_Mode->setEnabled(false);
 }
+
+void MainWindow::keyPressEvent(QKeyEvent *ev){
+    if(ev->key() == Qt::Key_Delete){
+        on_actionDeleteEvent_triggered();
+        on_actionDeleteFace_triggered();
+    }
+}
