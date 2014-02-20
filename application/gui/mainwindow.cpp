@@ -482,6 +482,7 @@ void MainWindow::on_actionDetect_Faces_triggered()
                 } else {
                     FaceItem * newFaceItem = new FaceItem(QString("face"), face);
                     ui->faceList->addTopLevelItem(newFaceItem);
+                    showMessage(QString("Found %1 faces").arg(face->faceNumber()));
                 }
                 // rewind event again
                 ev->setFramePos(0);
