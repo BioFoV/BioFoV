@@ -13,8 +13,10 @@ TARGET = framework
 #TEMPLATE = lib
 #CONFIG += staticlib
 
-unix: CONFIG += link_pkgconfig
-unix: PKGCONFIG += opencv
+unix {
+    CONFIG += link_pkgconfig
+    PKGCONFIG += opencv
+}
 
 win32 {
     #LIBS += -LC:/qt/OpenCV246_bin/install/lib -llopencv_core246 -llopencv_highgui246

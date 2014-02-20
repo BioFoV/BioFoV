@@ -11,7 +11,6 @@ win32 {
 
 unix {
     LIBS += -L../framework -L../gui -lframework -lgui
-
 }
 
 # Will build the final executable in the main project directory.
