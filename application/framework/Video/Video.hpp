@@ -44,6 +44,8 @@
 
 #define NOTCALIBRATED -1
 
+#include <QObject>
+
 class Frame;
 class Event;
 class Camera;
@@ -51,7 +53,13 @@ class Camera;
 ///
 /// \brief Class that holds the VideoCapture handler and that provides frames
 ///
-class Video : public Player {
+class Video : public QObject, public Player {
+    Q_OBJECT
+
+signals:
+    void startProgress(unsigned int min, unsigned int max);
+    void progressChanged(unsigned int val);
+
 private:
     /// \brief CV Capture interface of this Video.
     cv::VideoCapture cap;

@@ -9,6 +9,19 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionAbout, SIGNAL(triggered()), this, SLOT(openAbout()));
     nEvent = 0;
     playMode = PLAY_FRAMES;
+
+    // Progress bar setup
+    //This is here since it can not be done in the mainwindow.ui file
+    progressBar = new QProgressBar(NULL);
+    progressBar->setMaximumHeight(16);
+    progressBar->setMaximumWidth(200);
+    progressBar->setTextVisible(false);
+    this->statusBar()->addPermanentWidget(progressBar, 0);
+
+    progressBar->setFormat(QString("%v/%m"));
+    setProgressSize(0, 100);
+    disableProgress();
+
 }
 
 
@@ -85,12 +98,19 @@ void MainWindow::on_actionAuto_Detect_Events_triggered()
             continue;
         }
 
+        // Progress bar signals and slots
+        connect(videoiter->getVideo(), SIGNAL(startProgress(uint, uint)),
+                this, SLOT(enableProgress(uint,uint)));
+        connect(videoiter->getVideo(), SIGNAL(progressChanged(uint)),
+                this, SLOT(setProgress(uint)));
+
         events = videoiter->getVideo()->autoDetectEvents(split.getThreshold(),
                                                          split.getMaxFrames(),
                                                          split.getMinFrames(),
                                                          split.getHistory(),
                                                          split.getvarThreshold(),
                                                          split.getbShadowDetection());
+        resetProgress();
         for (j = 0; j < events.size(); j++) {
             showMessage(QString("Found Event %1").arg(nEvent));
             newEvent = new EventItem(QString("E%1").arg(nEvent));;
@@ -185,6 +205,31 @@ void MainWindow::showMessage(QString text){
 
 void MainWindow::showMessage(const char *text){
     ui->statusBar->showMessage(QString(text));
+}
+
+void MainWindow::setProgressSize(unsigned int min, unsigned int max,
+                                 unsigned int val) {
+    progressBar->setMinimum(min);
+    progressBar->setMaximum(max);
+    setProgress(val);
+}
+
+void MainWindow::enableProgress(unsigned int min, unsigned int max){
+    progressBar->setEnabled(true);
+    setProgressSize(min, max, min);
+}
+
+void MainWindow::setProgress(uint val){
+    progressBar->setValue(val);
+}
+
+void MainWindow::disableProgress(){
+    progressBar->setEnabled(false);
+}
+
+void MainWindow::resetProgress(){
+    setProgressSize(0, 100, 0);
+    disableProgress();
 }
 
 void MainWindow::on_videoList_itemSelectionChanged()
@@ -423,11 +468,14 @@ void MainWindow::on_actionDetect_Faces_triggered()
                 Frame * face_frame;
                 // rewind event
                 ev->setFramePos(0);
+                enableProgress(0, ev->getLengthFrames());
                 for (;;){
                     if(!ev->getFrameObject(&face_frame))
                         break;
+                    setProgress(ev->getFramePos());
                     face->findFaces(face_frame);
                 }
+                resetProgress();
                 if (face->faceNumber() == 0){
                     showMessage("No faces found");
                     return;

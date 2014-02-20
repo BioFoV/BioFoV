@@ -7,6 +7,7 @@
 #include <QListWidgetItem>
 #include <QtPrintSupport/QPrintDialog>
 #include <QtPrintSupport/QPrinter>
+#include <QProgressBar>
 
 #ifndef INC_ABOUT
 #define INC_ABOUT
@@ -69,6 +70,15 @@ public:
     /// \brief MainWindow destructor.
 	~MainWindow();
 
+public slots:
+
+    /// \brief Enable the progress bar.
+    /// \param min Minimum value of progressBar.
+    /// \param max Maximum value of progressBar.
+    void enableProgress(unsigned int min = 0, unsigned int max = 100);
+
+    void setProgress(uint val);
+
 private slots:
 
     /// \brief Add video file.
@@ -109,6 +119,18 @@ private slots:
     /// \brief Shows a message in the status bar.
     /// \param text message as a normal C++ char pointer.
     void showMessage(const char* text);
+
+    /// \brief Changes the limits of progressBar.
+    /// \param min Minimum value of progressBar.
+    /// \param max Maximum value of progressBar.
+    /// \param val Current value to set progressBar to.
+    void setProgressSize(unsigned int min, unsigned int max, unsigned int val = 0);
+
+    /// \brief Disables the progress bar.
+    void disableProgress();
+
+    /// \brief Disables and empties the progress bar.
+    void resetProgress();
 
     /// \brief Changed selection in the video/event list.
     /// Updates the statistics for the selected events.
@@ -185,6 +207,8 @@ private:
 
     /// \brief Total events found so far.
     int nEvent;
+
+    QProgressBar* progressBar;
 
     /// \brief Playback Mode.
     /// Can be one of the 3 defined in event.hpp: PLAY_FRAMES, PLAY_MASK or
