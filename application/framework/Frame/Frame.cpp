@@ -11,7 +11,7 @@ Frame::Frame(Video *source_vid){
 	vid = source_vid;
 }
 
-Frame::Frame(Video *source_vid, cv::Mat shot){
+Frame::Frame(Video *source_vid, cv::Mat shot, unsigned int index){
     // use image address as filename to ensure there are no clashes
     const void * address = static_cast<const void*>(this);
     std::stringstream ss;
@@ -19,6 +19,8 @@ Frame::Frame(Video *source_vid, cv::Mat shot){
     filename = ss.str() + IMG_EXT;
 
     vid = source_vid;
+    frameNumber = index;
+
     cv::imwrite( filename, shot );
 }
 

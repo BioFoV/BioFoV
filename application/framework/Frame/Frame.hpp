@@ -34,6 +34,8 @@ class Frame{
 private:
     /// \brief Video object from which this Frame was extracted.
 	Video *vid;
+    /// \brief Frame number in the video.
+    unsigned int frameNumber;
     /// \brief Filename of the Frame.
     std::string filename;
     /// \brief Deque of Snapshot that relate to this Frame.
@@ -51,7 +53,7 @@ public:
     ///Frame was taken and the image itself.
     /// \param source_vid Video from which the Frame was extracted.
     /// \param shot The image itself.
-    Frame(Video *source_vid, cv::Mat shot);
+    Frame(Video *source_vid, cv::Mat shot, unsigned int index);
 
     // Destructor
     /// \brief Simple destructor.

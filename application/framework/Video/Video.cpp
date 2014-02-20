@@ -154,7 +154,7 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
     Snapshot *snap;
     Event *event = NULL;
 
-    int j=0;
+    unsigned int j=0;
     int emptycount=0;
     int framecount=0;
     int value;
@@ -175,7 +175,7 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
                 event = new Event(this);
             }
             // create new frame
-            frame = new Frame(this, shot);
+            frame = new Frame(this, shot, j);
             snap = new Snapshot(frame, bg->Foreground());
             frame->setSnapshot(snap);
             // add frame to event
@@ -188,7 +188,7 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
         else if (event != NULL){
             emptycount ++;
             // create new frame
-            frame = new Frame(this, shot);
+            frame = new Frame(this, shot, j);
             snap = new Snapshot(frame, bg->Foreground());
             frame->setSnapshot(snap);
             // add frame to event
