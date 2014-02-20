@@ -27,8 +27,6 @@
 #include "../Frame/Frame.hpp"
 #endif
 
-#include <QDebug>
-
 class Face : public Feature {
 private:
     cv::Ptr<cv::FaceRecognizer> model;
