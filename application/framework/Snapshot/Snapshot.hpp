@@ -58,5 +58,7 @@ public:
     // Functions
     cv::Mat getMask();
     cv::Mat getMasked();
+
+    Frame* getFrame();
 };
 #endif

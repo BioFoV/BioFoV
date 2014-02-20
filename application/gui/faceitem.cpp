@@ -15,7 +15,7 @@ FaceItem::FaceItem(QString facename, Face* inface, QTreeWidget *parent) :
     setText(1, ss.str().c_str());
 
     for (unsigned int i=0; i<inface->faceNumber()-1; i++){
-        SnapshotItem * newsnap = new SnapshotItem("FIXME",inface->getFaceAt(i));
+        SnapshotItem * newsnap = new SnapshotItem(inface->getFaceAt(i));
         this->addChild(newsnap);
     }
 }
@@ -36,11 +36,11 @@ SnapshotItem::SnapshotItem(QTreeWidgetItem *parent) :
 
 }
 
-SnapshotItem::SnapshotItem(QString snapname, Snapshot *insnap, QTreeWidget *parent) :
+SnapshotItem::SnapshotItem(Snapshot *insnap, QTreeWidget *parent) :
     QTreeWidgetItem(parent)
 {
     snap = insnap;
-    setText(0, snapname);
+    setText(0, QString("Frame %1").arg(insnap->getFrame()->getNumber()));
 }
 
 SnapshotItem::~SnapshotItem(){

@@ -49,3 +49,7 @@ cv::Mat Frame::getImage(){
     cv::Mat image = cv::imread(filename);
     return image;
 }
+
+unsigned int Frame::getNumber(){
+    return frameNumber;
+}

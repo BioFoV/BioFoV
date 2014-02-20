@@ -57,3 +57,7 @@ cv::Mat Snapshot::getMasked(){
         return (image->getImage())(rect);
     }
 }
+
+Frame* Snapshot::getFrame(){
+    return image;
+}

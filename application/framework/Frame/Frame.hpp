@@ -68,5 +68,7 @@ public:
     /// \param insnap Snapshot to be added to the deque of this Frame.
     void setSnapshot(Snapshot *insnap);
     cv::Mat getImage();
+
+    unsigned int getNumber();
 };
 #endif
