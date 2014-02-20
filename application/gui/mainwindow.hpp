@@ -129,6 +129,9 @@ private slots:
     /// \brief Disables the progress bar.
     void disableProgress();
 
+    /// \brief Disables and empties the progress bar.
+    void resetProgress();
+
     /// \brief Changed selection in the video/event list.
     /// Updates the statistics for the selected events.
     void on_videoList_itemSelectionChanged();

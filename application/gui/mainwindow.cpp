@@ -227,6 +227,11 @@ void MainWindow::disableProgress(){
     progressBar->setEnabled(false);
 }
 
+void MainWindow::resetProgress(){
+    setProgressSize(0, 100, 0);
+    disableProgress();
+}
+
 void MainWindow::on_videoList_itemSelectionChanged()
 {
     EventItem* eventIt;
@@ -463,11 +468,14 @@ void MainWindow::on_actionDetect_Faces_triggered()
                 Frame * face_frame;
                 // rewind event
                 ev->setFramePos(0);
+                setProgressSize(0, ev->getLengthFrames());
                 for (;;){
                     if(!ev->getFrameObject(&face_frame))
                         break;
+                    setProgress(ev->getFramePos());
                     face->findFaces(face_frame);
                 }
+                resetProgress();
                 if (face->faceNumber() == 0){
                     showMessage("No faces found");
                     return;
