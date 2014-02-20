@@ -421,6 +421,8 @@ void MainWindow::on_actionDetect_Faces_triggered()
             foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
                 Event* ev = ((EventItem*)item)->getEvent();
                 Frame * face_frame;
+                // rewind event
+                ev->setFramePos(0);
                 for (;;){
                     if(!ev->getFrameObject(&face_frame))
                         break;
@@ -433,6 +435,8 @@ void MainWindow::on_actionDetect_Faces_triggered()
                     FaceItem * newFaceItem = new FaceItem(QString("face"), face);
                     ui->faceList->addTopLevelItem(newFaceItem);
                 }
+                // rewind event again
+                ev->setFramePos(0);
             }
         }
     }
