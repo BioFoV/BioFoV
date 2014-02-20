@@ -110,7 +110,7 @@ void MainWindow::on_actionAuto_Detect_Events_triggered()
                                                          split.getHistory(),
                                                          split.getvarThreshold(),
                                                          split.getbShadowDetection());
-        disableProgress();
+        resetProgress();
         for (j = 0; j < events.size(); j++) {
             showMessage(QString("Found Event %1").arg(nEvent));
             newEvent = new EventItem(QString("E%1").arg(nEvent));;
@@ -468,7 +468,7 @@ void MainWindow::on_actionDetect_Faces_triggered()
                 Frame * face_frame;
                 // rewind event
                 ev->setFramePos(0);
-                setProgressSize(0, ev->getLengthFrames());
+                enableProgress(0, ev->getLengthFrames());
                 for (;;){
                     if(!ev->getFrameObject(&face_frame))
                         break;
