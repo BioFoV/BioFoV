@@ -35,6 +35,8 @@
 #define PLAY_MASK 1
 #define PLAY_MASKED_FRAMES 2
 
+#include <QObject>
+
 class Frame;
 class Snapshot;
 class Individual;
@@ -44,7 +46,12 @@ class Video;
 /// \brief Class that represents a contiguous set of frames with something
 ///interesting on them.
 ///
-class Event : public Player {
+class Event : public QObject, public Player {
+    Q_OBJECT
+
+signals:
+     void frameProcessChanged(unsigned int newFrame);
+
 protected:
 	// external references
     /// \brief Video from which the Frames in this Event were extracted.

@@ -70,6 +70,15 @@ public:
     /// \brief MainWindow destructor.
 	~MainWindow();
 
+public slots:
+
+    /// \brief Enable the progress bar.
+    /// \param min Minimum value of progressBar.
+    /// \param max Maximum value of progressBar.
+    void enableProgress(unsigned int min = 0, unsigned int max = 100);
+
+    void setProgress(uint val);
+
 private slots:
 
     /// \brief Add video file.
@@ -111,16 +120,11 @@ private slots:
     /// \param text message as a normal C++ char pointer.
     void showMessage(const char* text);
 
-    /// \brief Changes the state of progressBar.
+    /// \brief Changes the limits of progressBar.
     /// \param min Minimum value of progressBar.
     /// \param max Maximum value of progressBar.
     /// \param val Current value to set progressBar to.
-    void setProgress(unsigned int min, unsigned int max, unsigned int val = 0);
-
-    /// \brief Enable the progress bar.
-    /// \param min Minimum value of progressBar.
-    /// \param max Maximum value of progressBar.
-    void enableProgress(unsigned int min = 0, unsigned int max = 100);
+    void setProgressSize(unsigned int min, unsigned int max, unsigned int val = 0);
 
     /// \brief Disables the progress bar.
     void disableProgress();

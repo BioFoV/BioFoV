@@ -164,9 +164,11 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
 
     setFramePos(0);
 
+    emit startProgress(0, (uint) getLengthFrames());
+
     while(getFrame(shot)){
         bg->NewFrame(shot);
-
+        emit progressChanged(j);
         value = cv::countNonZero(bg->Foreground());
 
         // Detected change

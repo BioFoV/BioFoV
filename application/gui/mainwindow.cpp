@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->statusBar()->addPermanentWidget(progressBar, 0);
 
     progressBar->setFormat(QString("%v/%m"));
-    setProgress(0, 100);
+    setProgressSize(0, 100);
     disableProgress();
 
 }
@@ -98,12 +98,19 @@ void MainWindow::on_actionAuto_Detect_Events_triggered()
             continue;
         }
 
+        // Progress bar signals and slots
+        connect(videoiter->getVideo(), SIGNAL(startProgress(uint, uint)),
+                this, SLOT(enableProgress(uint,uint)));
+        connect(videoiter->getVideo(), SIGNAL(progressChanged(uint)),
+                this, SLOT(setProgress(uint)));
+
         events = videoiter->getVideo()->autoDetectEvents(split.getThreshold(),
                                                          split.getMaxFrames(),
                                                          split.getMinFrames(),
                                                          split.getHistory(),
                                                          split.getvarThreshold(),
                                                          split.getbShadowDetection());
+        disableProgress();
         for (j = 0; j < events.size(); j++) {
             showMessage(QString("Found Event %1").arg(nEvent));
             newEvent = new EventItem(QString("E%1").arg(nEvent));;
@@ -200,16 +207,20 @@ void MainWindow::showMessage(const char *text){
     ui->statusBar->showMessage(QString(text));
 }
 
-void MainWindow::setProgress(unsigned int min, unsigned int max,
-                             unsigned int val) {
+void MainWindow::setProgressSize(unsigned int min, unsigned int max,
+                                 unsigned int val) {
     progressBar->setMinimum(min);
     progressBar->setMaximum(max);
-    progressBar->setValue(val);
+    setProgress(val);
 }
 
 void MainWindow::enableProgress(unsigned int min, unsigned int max){
     progressBar->setEnabled(true);
-    setProgress(min, min, max);
+    setProgressSize(min, max, min);
+}
+
+void MainWindow::setProgress(uint val){
+    progressBar->setValue(val);
 }
 
 void MainWindow::disableProgress(){
