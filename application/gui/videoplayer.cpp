@@ -11,6 +11,7 @@ VideoPlayer::VideoPlayer(QWidget *parent) :
     ui->setupUi(this);
     connect(&timer, SIGNAL(timeout()), this, SLOT(play()));
     isClickable = false;
+    setControlsEnabled(false);
 }
 
 /*******************************************************************************
