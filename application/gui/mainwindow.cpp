@@ -468,8 +468,22 @@ void MainWindow::on_faceList_itemPressed(QTreeWidgetItem *item, int column)
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *ev){
+    // DELETE
     if(ev->key() == Qt::Key_Delete){
         on_actionDeleteEvent_triggered();
         on_actionDeleteFace_triggered();
+    }
+    // ENTER
+    else if ( ev->key() == Qt::Key_Enter || ev->key() == Qt::Key_Return ){
+
+        if(ui->videoList->isVisible()){
+            foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
+                on_videoList_itemDoubleClicked(item, 0);
+            }
+        } else if (ui->faceList->isVisible()){
+            foreach (QTreeWidgetItem* item, ui->faceList->selectedItems()) {
+                on_faceList_itemPressed(item, 0);
+            }
+        }
     }
 }
