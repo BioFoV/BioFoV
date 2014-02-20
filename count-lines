@@ -1,2 +1,0 @@
-#!/bin/bash
-find application -type f -print0 | wc -l --files0-from=-
