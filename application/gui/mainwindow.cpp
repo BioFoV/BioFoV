@@ -12,16 +12,16 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Progress bar setup
     //This is here since it can not be done in the mainwindow.ui file
-    QProgressBar *progressBar = new QProgressBar(NULL);
+    progressBar = new QProgressBar(NULL);
     progressBar->setMaximumHeight(16);
     progressBar->setMaximumWidth(200);
     progressBar->setTextVisible(false);
     this->statusBar()->addPermanentWidget(progressBar, 0);
 
-    progressBar->setValue(0);
-    progressBar->setMinimum(0);
-    progressBar->setMaximum(100);
-    progressBar->setEnabled(false);
+    progressBar->setFormat(QString("%v/%m"));
+    setProgress(0, 100);
+    disableProgress();
+
 }
 
 
@@ -198,6 +198,22 @@ void MainWindow::showMessage(QString text){
 
 void MainWindow::showMessage(const char *text){
     ui->statusBar->showMessage(QString(text));
+}
+
+void MainWindow::setProgress(unsigned int min, unsigned int max,
+                             unsigned int val) {
+    progressBar->setMinimum(min);
+    progressBar->setMaximum(max);
+    progressBar->setValue(val);
+}
+
+void MainWindow::enableProgress(unsigned int min, unsigned int max){
+    progressBar->setEnabled(true);
+    setProgress(min, min, max);
+}
+
+void MainWindow::disableProgress(){
+    progressBar->setEnabled(false);
 }
 
 void MainWindow::on_videoList_itemSelectionChanged()
