@@ -9,6 +9,19 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionAbout, SIGNAL(triggered()), this, SLOT(openAbout()));
     nEvent = 0;
     playMode = PLAY_FRAMES;
+
+    // Progress bar setup
+    //This is here since it can not be done in the mainwindow.ui file
+    QProgressBar *progressBar = new QProgressBar(NULL);
+    progressBar->setMaximumHeight(16);
+    progressBar->setMaximumWidth(200);
+    progressBar->setTextVisible(false);
+    this->statusBar()->addPermanentWidget(progressBar, 0);
+
+    progressBar->setValue(0);
+    progressBar->setMinimum(0);
+    progressBar->setMaximum(100);
+    progressBar->setEnabled(false);
 }
 
 
