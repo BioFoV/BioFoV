@@ -446,7 +446,7 @@ void MainWindow::on_actionVertically_triggered()
 void MainWindow::on_actionDetect_Faces_triggered()
 {
     QFileDialog getFileDialog(this);
-    getFileDialog.setDirectory(QDir::homePath());
+    getFileDialog.setDirectory(QDir(settings->getHaarDir()));
     getFileDialog.setFileMode(QFileDialog::ExistingFiles);
     getFileDialog.setAcceptMode(QFileDialog::AcceptOpen);
 
