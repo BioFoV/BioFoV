@@ -73,9 +73,9 @@ HEADERS += \
     src/videoitem.hpp \
     src/eventitem.hpp \
     src/splitdialog.hpp \
-    src/calibrationdialog.hpp
+    src/calibrationdialog.hpp \
     src/faceitem.hpp
 
-FORMS    += $$files(src/*.ui)
+FORMS    += $$files(ui/*.ui)
 
 RESOURCES += $$files(resources/*.qrc)
