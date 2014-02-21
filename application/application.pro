@@ -20,11 +20,10 @@ unix {
 }
 
 win32 {
-    #LIBS += -LC:/qt/OpenCV246_bin/install/lib -llopencv_core246 -llopencv_highgui246
-    LIBS += -L C:\FIXME\opencv\build\install\lib
-    LIBS += -lopencv_core245 -lopencv_highgui245 -lopencv_video245
-    LIBS += -lopencv_imgproc245
-    INCLUDEPATH += C:\FIXME\opencv\build\install\include
+    LIBS += -L C:\opencv-2.4.8\build\install\x64\mingw\lib
+    LIBS += -lopencv_core248 -lopencv_highgui248 -lopencv_video248 -lz
+    LIBS += -lopencv_imgproc248 -lopencv_calib3d248 -lopencv_contrib248 -lopencv_objdetect248
+    INCLUDEPATH += C:\opencv-2.4.8\build\install\include
 }
 
 SOURCES += \
