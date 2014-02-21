@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QFileDialog>
+#include <QSettings>
 
 namespace Ui {
 class QdialogSettings;
@@ -18,6 +19,14 @@ public:
 
     QString getCacheDir();
     QString getHaarDir();
+    bool getUseGPU();
+
+    void setHaarDir(QString newHaarDir);
+    void setCacheDir(QString newHaarDir);
+
+public slots:
+    void saveSettings();
+    void loadSettings();
     
 private slots:
     void on_cacheButton_clicked();

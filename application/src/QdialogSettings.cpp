@@ -58,3 +58,47 @@ QString QdialogSettings::getHaarDir(){
 QString QdialogSettings::getCacheDir(){
     return ui->cacheDir->text();
 }
+
+bool QdialogSettings::getUseGPU(){
+    return ui->useGPU->isChecked();
+}
+
+void QdialogSettings::saveSettings(){
+    QFileDialog getDirDialog(this);
+    getDirDialog.setDirectory(QDir::homePath());
+    getDirDialog.setAcceptMode(QFileDialog::AcceptSave);
+
+    QStringList fileNames;
+
+    if(getDirDialog.exec()) {
+        fileNames = getDirDialog.selectedFiles();
+        foreach (QString fileName, fileNames) {
+            QSettings setSave(fileName, QSettings::IniFormat);
+            setSave.setValue("CacheDir",getCacheDir());
+            setSave.setValue("HaarDir",getHaarDir());
+            setSave.setValue("UseGPU",getUseGPU());
+        }
+    }
+}
+
+void QdialogSettings::loadSettings(){
+    QFileDialog getDirDialog(this);
+    getDirDialog.setDirectory(QDir::homePath());
+    getDirDialog.setAcceptMode(QFileDialog::AcceptOpen);
+
+    QStringList fileNames;
+
+    if(getDirDialog.exec()) {
+        fileNames = getDirDialog.selectedFiles();
+        foreach (QString fileName, fileNames) {
+            QSettings setLoad(fileName, QSettings::IniFormat);
+
+            ui->cacheDir->setText(
+                        setLoad.value("CacheDir", "Uninitialized").toString());
+            ui->haarDir->setText(
+                        setLoad.value("HaarDir", "Uninitialized").toString());
+            ui->useGPU->setChecked(
+                        setLoad.value("UseGPU", false).toBool());
+        }
+    }
+}

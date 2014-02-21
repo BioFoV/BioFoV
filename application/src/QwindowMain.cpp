@@ -22,7 +22,13 @@ MainWindow::MainWindow(QWidget *parent) :
     setProgressSize(0, 100);
     disableProgress();
 
+    // Settings setup
     settings = new QdialogSettings();
+
+    connect(ui->actionSave_Settings_as, SIGNAL(triggered()),
+            settings, SLOT(saveSettings()));
+    connect(ui->actionLoad_Settings, SIGNAL(triggered()),
+            settings, SLOT(loadSettings()));
 }
 
 
