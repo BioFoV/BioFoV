@@ -5,7 +5,7 @@
 
 #ifndef INC_FACES
 #define INC_FACES
-#include "../framework/Feature/faces.hpp"
+#include "Feature/faces.hpp"
 #endif
 
 class FaceItem : public QTreeWidgetItem

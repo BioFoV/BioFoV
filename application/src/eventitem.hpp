@@ -5,7 +5,7 @@
 
 #ifndef INC_VIDEO
 #define INC_VIDEO
-#include "../framework/Event/Event.hpp"
+#include "Event/Event.hpp"
 #endif
 
 #define TAG_EVENT "Event"

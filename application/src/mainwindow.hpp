@@ -44,9 +44,9 @@
 #include <string>
 #endif
 
-#include "../framework/Drawables/rectanglemask.hpp"
-#include "../framework/Drawables/drawheight.hpp"
-#include "../framework/Feature/faces.hpp"
+#include "Drawables/rectanglemask.hpp"
+#include "Drawables/drawheight.hpp"
+#include "Feature/faces.hpp"
 
 namespace Ui {
 class MainWindow;

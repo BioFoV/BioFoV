@@ -6,7 +6,7 @@
 
 #ifndef INC_VIDEO
 #define INC_VIDEO
-#include "../framework/Video/Video.hpp"
+#include "Video/Video.hpp"
 #endif
 
 #define TAG_VIDEO "Video"
