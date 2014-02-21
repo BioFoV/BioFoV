@@ -42,6 +42,7 @@ SOURCES += \
     src/exclusionmod.cpp \
     src/Drawables/drawheight.cpp \
     src/Feature/faces.cpp \
+    src/QdialogSettings.cpp
 
 # UI related source files
 SOURCES += \
@@ -72,6 +73,7 @@ HEADERS += \
     src/exclusionmod.hpp \
     src/Drawables/drawheight.hpp \
     src/Feature/faces.hpp \
+    src/QdialogSettings.hpp
 
 # UI related headers
 HEADERS += \
