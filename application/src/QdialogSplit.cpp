@@ -1,4 +1,4 @@
-#include "splitdialog.hpp"
+#include "QdialogSplit.hpp"
 #include "ui_splitdialog.h"
 
 SplitDialog::SplitDialog(QWidget *parent) :

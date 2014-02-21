@@ -41,14 +41,14 @@ SOURCES += \
     src/exclusionmod.cpp \
     src/Drawables/drawheight.cpp \
     src/Feature/faces.cpp \
-    src/about.cpp \
-    src/mainwindow.cpp \
-    src/videoplayer.cpp \
-    src/videoitem.cpp \
-    src/eventitem.cpp \
-    src/splitdialog.cpp \
-    src/calibrationdialog.cpp \
-    src/faceitem.cpp
+    src/QwindowMain.cpp \
+    src/QplayerVideo.cpp \
+    src/QitemVideo.cpp \
+    src/QdialogCalibration.cpp \
+    src/QdialogAbout.cpp \
+    src/QitemFace.cpp \
+    src/QdialogSplit.cpp \
+    src/QitemEvent.cpp
 
 HEADERS += \
     src/Event/Event.hpp \
@@ -67,14 +67,14 @@ HEADERS += \
     src/exclusionmod.hpp \
     src/Drawables/drawheight.hpp \
     src/Feature/faces.hpp \
-    src/about.hpp \
-    src/mainwindow.hpp \
-    src/videoplayer.hpp \
-    src/videoitem.hpp \
-    src/eventitem.hpp \
-    src/splitdialog.hpp \
-    src/calibrationdialog.hpp \
-    src/faceitem.hpp
+    src/QdialogAbout.hpp \
+    src/QitemVideo.hpp \
+    src/QdialogSplit.hpp \
+    src/QplayerVideo.hpp \
+    src/QwindowMain.hpp \
+    src/QitemFace.hpp \
+    src/QdialogCalibration.hpp \
+    src/QitemEvent.hpp
 
 FORMS    += $$files(ui/*.ui)
 

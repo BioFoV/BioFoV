@@ -1,4 +1,4 @@
-#include "videoplayer.hpp"
+#include "QplayerVideo.hpp"
 #include "ui_videoplayer.h"
 
 /*******************************************************************************

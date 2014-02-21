@@ -1,4 +1,4 @@
-#include "videoitem.hpp"
+#include "QitemVideo.hpp"
 
 /*******************************************************************************
  * Constructors

@@ -1,4 +1,4 @@
-#include "faceitem.hpp"
+#include "QitemFace.hpp"
 
 FaceItem::FaceItem(QTreeWidgetItem *parent) :
     QTreeWidgetItem(parent)

@@ -1,4 +1,4 @@
-#include "about.hpp"
+#include "QdialogAbout.hpp"
 #include "ui_about.h"
 
 /*******************************************************************************

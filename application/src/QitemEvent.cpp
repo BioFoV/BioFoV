@@ -1,4 +1,4 @@
-#include "eventitem.hpp"
+#include "QitemEvent.hpp"
 
 /*******************************************************************************
  * Constructors

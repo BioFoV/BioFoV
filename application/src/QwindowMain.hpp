@@ -11,32 +11,32 @@
 
 #ifndef INC_ABOUT
 #define INC_ABOUT
-#include "about.hpp"
+#include "QdialogAbout.hpp"
 #endif
 
 #ifndef INC_VIDEOITEM
 #define INC_VIDEOITEM
-#include "videoitem.hpp"
+#include "QitemVideo.hpp"
 #endif
 
 #ifndef INC_EVENTITEM
 #define INC_EVENTITEM
-#include "eventitem.hpp"
+#include "QitemEvent.hpp"
 #endif
 
 #ifndef INC_FACEITEM
 #define INC_FACEITEM
-#include "faceitem.hpp"
+#include "QitemFace.hpp"
 #endif
 
 #ifndef INC_SPLITDIALOG
 #define INC_SPLITDIALOG
-#include "splitdialog.hpp"
+#include "QdialogSplit.hpp"
 #endif
 
 #ifndef INC_CALIBRATIONDIALOG
 #define INC_CALIBRATIONDIALOG
-#include "calibrationdialog.hpp"
+#include "QdialogCalibration.hpp"
 #endif
 
 #ifndef INC_STRING
