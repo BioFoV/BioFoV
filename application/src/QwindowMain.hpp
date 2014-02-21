@@ -39,6 +39,11 @@
 #include "QdialogCalibration.hpp"
 #endif
 
+#ifndef INC_DIALOGSETTINGS
+#define INC_DIALOGSETTINGS
+#include "QdialogSettings.hpp"
+#endif
+
 #ifndef INC_STRING
 #define INC_STRING
 #include <string>
@@ -77,6 +82,8 @@ public slots:
     /// \param max Maximum value of progressBar.
     void enableProgress(unsigned int min = 0, unsigned int max = 100);
 
+    /// \brief Sets progress bar value.
+    /// \param val New value for progressBar.
     void setProgress(uint val);
 
 private slots:
@@ -199,11 +206,16 @@ private slots:
 
     void on_faceList_itemPressed(QTreeWidgetItem *item, int column);
 
+    void on_actionSettings_triggered();
+
 private:
     /// \brief UI created by Qt.
     ///Points to a class that contains everything that was defined in the
     ///mainwindow.ui XML file.
     Ui::MainWindow *ui;
+
+    /// \brief Settings
+    QdialogSettings* settings;
 
     /// \brief Total events found so far.
     int nEvent;

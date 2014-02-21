@@ -22,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setProgressSize(0, 100);
     disableProgress();
 
+    settings = new QdialogSettings();
 }
 
 
@@ -109,7 +110,8 @@ void MainWindow::on_actionAuto_Detect_Events_triggered()
                                                          split.getMinFrames(),
                                                          split.getHistory(),
                                                          split.getvarThreshold(),
-                                                         split.getbShadowDetection());
+                                                         split.getbShadowDetection(),
+                                                         (settings->getCacheDir().append("/")).toStdString());
         resetProgress();
         for (j = 0; j < events.size(); j++) {
             showMessage(QString("Found Event %1").arg(nEvent));
@@ -535,4 +537,9 @@ void MainWindow::keyPressEvent(QKeyEvent *ev){
             }
         }
     }
+}
+
+void MainWindow::on_actionSettings_triggered()
+{
+    settings->exec();
 }

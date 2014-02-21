@@ -11,12 +11,12 @@ Frame::Frame(Video *source_vid){
 	vid = source_vid;
 }
 
-Frame::Frame(Video *source_vid, cv::Mat shot, unsigned int index){
+Frame::Frame(Video *source_vid, cv::Mat shot, std::string path, unsigned int index){
     // use image address as filename to ensure there are no clashes
     const void * address = static_cast<const void*>(this);
     std::stringstream ss;
     ss << address;
-    filename = ss.str() + IMG_EXT;
+    filename = path + ss.str() + IMG_EXT;
 
     vid = source_vid;
     frameNumber = index;

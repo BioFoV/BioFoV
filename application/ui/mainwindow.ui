@@ -266,6 +266,8 @@
     <addaction name="separator"/>
     <addaction name="actionPrint"/>
     <addaction name="separator"/>
+    <addaction name="actionSettings"/>
+    <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -577,6 +579,11 @@
   <action name="actionDeleteFace">
    <property name="text">
     <string>&amp;Delete Face</string>
+   </property>
+  </action>
+  <action name="actionSettings">
+   <property name="text">
+    <string>Settings</string>
    </property>
   </action>
  </widget>

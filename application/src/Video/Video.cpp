@@ -148,7 +148,8 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
                                            double mincount,
                                            int history,
                                            int varThreshold,
-                                           bool bShadowDetection){
+                                           bool bShadowDetection,
+                                           std::string path){
     cv::Mat shot;
     Frame *frame;
     Snapshot *snap;
@@ -177,7 +178,7 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
                 event = new Event(this);
             }
             // create new frame
-            frame = new Frame(this, shot, j);
+            frame = new Frame(this, shot, path, j);
             snap = new Snapshot(frame, bg->Foreground());
             frame->setSnapshot(snap);
             // add frame to event
@@ -190,7 +191,7 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
         else if (event != NULL){
             emptycount ++;
             // create new frame
-            frame = new Frame(this, shot, j);
+            frame = new Frame(this, shot, path, j);
             snap = new Snapshot(frame, bg->Foreground());
             frame->setSnapshot(snap);
             // add frame to event

@@ -161,13 +161,15 @@ public:
     /// \param history
     /// \param varThreshold
     /// \param bShadowDetection
+    /// \param path
     /// \return
     std::deque<Event *> autoDetectEvents(double threshold,
                                          double maxcount,
                                          double mincount,
                                          int history,
                                          int varThreshold,
-                                         bool bShadowDetection);
+                                         bool bShadowDetection,
+                                         std::string path);
 
     // Calibration
     /// \brief Calibrates the camera based on this Video.
