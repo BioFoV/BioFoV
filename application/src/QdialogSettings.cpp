@@ -91,14 +91,14 @@ void QdialogSettings::loadSettings(){
     if(getDirDialog.exec()) {
         fileNames = getDirDialog.selectedFiles();
         foreach (QString fileName, fileNames) {
-            QSettings setSave(fileName, QSettings::IniFormat);
+            QSettings setLoad(fileName, QSettings::IniFormat);
 
             ui->cacheDir->setText(
-                        setSave.value("CacheDir", "Uninitialized").toString());
+                        setLoad.value("CacheDir", "Uninitialized").toString());
             ui->haarDir->setText(
-                        setSave.value("HaarDir", "Uninitialized").toString());
+                        setLoad.value("HaarDir", "Uninitialized").toString());
             ui->useGPU->setChecked(
-                        setSave.value("UseGPU", false).toBool());
+                        setLoad.value("UseGPU", false).toBool());
         }
     }
 }
