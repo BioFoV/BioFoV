@@ -27,7 +27,6 @@ win32 {
     INCLUDEPATH += C:\FIXME\opencv\build\install\include
 }
 
-# Background job related source files
 SOURCES += \
     src/main.cpp \
     src/Event/Event.cpp \
@@ -55,7 +54,6 @@ SOURCES += \
     src/QitemEvent.cpp \
     src/QdialogSettings.cpp
 
-# Background job related headers
 HEADERS += \
     src/Event/Event.hpp \
     src/Feature/Feature.hpp \
@@ -86,8 +84,6 @@ HEADERS += \
     src/QitemEvent.hpp \
     src/QdialogSettings.hpp
 
-# UI forms
 FORMS    += $$files(ui/*.ui)
 
-# Place to pack extra resources
 RESOURCES += $$files(resources/*.qrc)
