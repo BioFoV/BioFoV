@@ -41,8 +41,7 @@ SOURCES += \
     src/Drawables/rectanglemask.cpp \
     src/exclusionmod.cpp \
     src/Drawables/drawheight.cpp \
-    src/Feature/faces.cpp \
-    src/QdialogSettings.cpp
+    src/Feature/faces.cpp
 
 # UI related source files
 SOURCES += \
@@ -53,7 +52,8 @@ SOURCES += \
     src/QdialogAbout.cpp \
     src/QitemFace.cpp \
     src/QdialogSplit.cpp \
-    src/QitemEvent.cpp
+    src/QitemEvent.cpp \
+    src/QdialogSettings.cpp
 
 # Background job related headers
 HEADERS += \
@@ -72,8 +72,7 @@ HEADERS += \
     src/modifier.hpp \
     src/exclusionmod.hpp \
     src/Drawables/drawheight.hpp \
-    src/Feature/faces.hpp \
-    src/QdialogSettings.hpp
+    src/Feature/faces.hpp
 
 # UI related headers
 HEADERS += \
@@ -84,7 +83,8 @@ HEADERS += \
     src/QwindowMain.hpp \
     src/QitemFace.hpp \
     src/QdialogCalibration.hpp \
-    src/QitemEvent.hpp
+    src/QitemEvent.hpp \
+    src/QdialogSettings.hpp
 
 # UI forms
 FORMS    += $$files(ui/*.ui)
