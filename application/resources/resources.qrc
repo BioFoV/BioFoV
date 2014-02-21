@@ -1,3 +1,26 @@
 <RCC>
-    <qresource prefix="/icons"/>
+    <qresource prefix="/haarcascades">
+        <file>haarcascades/eye_tree_eyeglasses.xml</file>
+        <file>haarcascades/eye.xml</file>
+        <file>haarcascades/frontalface_alt_tree.xml</file>
+        <file>haarcascades/frontalface_alt.xml</file>
+        <file>haarcascades/frontalface_alt2.xml</file>
+        <file>haarcascades/frontalface_default.xml</file>
+        <file>haarcascades/fullbody.xml</file>
+        <file>haarcascades/lefteye_2splits.xml</file>
+        <file>haarcascades/lowerbody.xml</file>
+        <file>haarcascades/mcs_eyepair_big.xml</file>
+        <file>haarcascades/mcs_eyepair_small.xml</file>
+        <file>haarcascades/mcs_leftear.xml</file>
+        <file>haarcascades/mcs_lefteye.xml</file>
+        <file>haarcascades/mcs_mouth.xml</file>
+        <file>haarcascades/mcs_nose.xml</file>
+        <file>haarcascades/mcs_rightear.xml</file>
+        <file>haarcascades/mcs_righteye.xml</file>
+        <file>haarcascades/mcs_upperbody.xml</file>
+        <file>haarcascades/profileface.xml</file>
+        <file>haarcascades/righteye_2splits.xml</file>
+        <file>haarcascades/smile.xml</file>
+        <file>haarcascades/upperbody.xml</file>
+    </qresource>
 </RCC>

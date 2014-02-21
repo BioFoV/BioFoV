@@ -27,6 +27,7 @@ win32 {
     INCLUDEPATH += C:\FIXME\opencv\build\install\include
 }
 
+# Background job related source files
 SOURCES += \
     src/main.cpp \
     src/Event/Event.cpp \
@@ -41,6 +42,9 @@ SOURCES += \
     src/exclusionmod.cpp \
     src/Drawables/drawheight.cpp \
     src/Feature/faces.cpp \
+
+# UI related source files
+SOURCES += \
     src/QwindowMain.cpp \
     src/QplayerVideo.cpp \
     src/QitemVideo.cpp \
@@ -50,6 +54,7 @@ SOURCES += \
     src/QdialogSplit.cpp \
     src/QitemEvent.cpp
 
+# Background job related headers
 HEADERS += \
     src/Event/Event.hpp \
     src/Feature/Feature.hpp \
@@ -67,6 +72,9 @@ HEADERS += \
     src/exclusionmod.hpp \
     src/Drawables/drawheight.hpp \
     src/Feature/faces.hpp \
+
+# UI related headers
+HEADERS += \
     src/QdialogAbout.hpp \
     src/QitemVideo.hpp \
     src/QdialogSplit.hpp \
@@ -76,6 +84,8 @@ HEADERS += \
     src/QdialogCalibration.hpp \
     src/QitemEvent.hpp
 
+# UI forms
 FORMS    += $$files(ui/*.ui)
 
+# Place to pack extra resources
 RESOURCES += $$files(resources/*.qrc)
