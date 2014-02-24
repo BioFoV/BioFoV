@@ -267,6 +267,7 @@
     <addaction name="actionPrint"/>
     <addaction name="separator"/>
     <addaction name="actionSettings"/>
+    <addaction name="actionSave_Settings"/>
     <addaction name="actionSave_Settings_as"/>
     <addaction name="actionLoad_Settings"/>
     <addaction name="separator"/>
@@ -596,6 +597,11 @@
   <action name="actionLoad_Settings">
    <property name="text">
     <string>Load Settings</string>
+   </property>
+  </action>
+  <action name="actionSave_Settings">
+   <property name="text">
+    <string>Save Settings</string>
    </property>
   </action>
  </widget>

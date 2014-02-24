@@ -6,6 +6,7 @@ QdialogSettings::QdialogSettings(QWidget *parent) :
     ui(new Ui::QdialogSettings)
 {
     ui->setupUi(this);
+    settingsFile = NULL;
 }
 
 QdialogSettings::~QdialogSettings()
@@ -63,7 +64,22 @@ bool QdialogSettings::getUseGPU(){
     return ui->useGPU->isChecked();
 }
 
+void QdialogSettings::justSaveSettings(){
+    settingsFile->setValue("CacheDir",getCacheDir());
+    settingsFile->setValue("HaarDir",getHaarDir());
+    settingsFile->setValue("UseGPU",getUseGPU());
+}
+
 void QdialogSettings::saveSettings(){
+    if (settingsFile == NULL) {
+        saveSettingsAs();
+        return;
+    }
+
+    justSaveSettings();
+}
+
+void QdialogSettings::saveSettingsAs(){
     QFileDialog getDirDialog(this);
     getDirDialog.setDirectory(QDir::homePath());
     getDirDialog.setAcceptMode(QFileDialog::AcceptSave);
@@ -73,10 +89,8 @@ void QdialogSettings::saveSettings(){
     if(getDirDialog.exec()) {
         fileNames = getDirDialog.selectedFiles();
         foreach (QString fileName, fileNames) {
-            QSettings setSave(fileName, QSettings::IniFormat);
-            setSave.setValue("CacheDir",getCacheDir());
-            setSave.setValue("HaarDir",getHaarDir());
-            setSave.setValue("UseGPU",getUseGPU());
+            settingsFile = new QSettings(fileName, QSettings::IniFormat);
+            justSaveSettings();
         }
     }
 }
@@ -91,14 +105,14 @@ void QdialogSettings::loadSettings(){
     if(getDirDialog.exec()) {
         fileNames = getDirDialog.selectedFiles();
         foreach (QString fileName, fileNames) {
-            QSettings setLoad(fileName, QSettings::IniFormat);
+            settingsFile = new QSettings(fileName, QSettings::IniFormat);
 
             ui->cacheDir->setText(
-                        setLoad.value("CacheDir", "Uninitialized").toString());
+                settingsFile->value("CacheDir", "Uninitialized").toString());
             ui->haarDir->setText(
-                        setLoad.value("HaarDir", "Uninitialized").toString());
+                settingsFile->value("HaarDir", "Uninitialized").toString());
             ui->useGPU->setChecked(
-                        setLoad.value("UseGPU", false).toBool());
+                settingsFile->value("UseGPU", false).toBool());
         }
     }
 }

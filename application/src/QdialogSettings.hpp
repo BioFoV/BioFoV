@@ -26,6 +26,7 @@ public:
 
 public slots:
     void saveSettings();
+    void saveSettingsAs();
     void loadSettings();
     
 private slots:
@@ -35,6 +36,9 @@ private slots:
 
 private:
     Ui::QdialogSettings *ui;
+    QSettings *settingsFile;
+
+    void justSaveSettings();
 };
 
 #endif // QDIALOGSETTINGS_HPP
