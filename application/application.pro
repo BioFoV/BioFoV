@@ -1,4 +1,6 @@
 INCLUDEPATH += . src
+
+# Just to get all the warnings on compilation.
 WARNINGS += -Wall
 
 TEMPLATE = app
@@ -9,16 +11,20 @@ UI_DIR = uics
 MOC_DIR = mocs
 OBJECTS_DIR = objs
 
+# Output binary name
 TARGET = project
 
+# Qt components to be included
 QT += core gui printsupport
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+# Configuration for *ix systems
 unix {
     CONFIG += link_pkgconfig
     PKGCONFIG += opencv
 }
 
+# Configurations for MS Windows
 win32 {
     LIBS += -L C:\opencv-2.4.8\build\install\x64\mingw\lib
     LIBS += -lopencv_core248 -lopencv_highgui248 -lopencv_video248 -lz
@@ -26,6 +32,7 @@ win32 {
     INCLUDEPATH += C:\opencv-2.4.8\build\install\include
 }
 
+# General purpose source files
 SOURCES += \
     src/main.cpp \
     src/Event/Event.cpp \
@@ -53,6 +60,7 @@ SOURCES += \
     src/QitemEvent.cpp \
     src/QdialogSettings.cpp
 
+# General purpose headers
 HEADERS += \
     src/Event/Event.hpp \
     src/Feature/Feature.hpp \
@@ -83,6 +91,8 @@ HEADERS += \
     src/QitemEvent.hpp \
     src/QdialogSettings.hpp
 
+# UI forms (XML files)
 FORMS    += $$files(ui/*.ui)
 
+# Resource files.
 RESOURCES += $$files(resources/*.qrc)
