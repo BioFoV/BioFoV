@@ -31,6 +31,9 @@ MainWindow::MainWindow(QWidget *parent) :
             settings, SLOT(saveSettings()));
     connect(ui->actionLoad_Settings, SIGNAL(triggered()),
             settings, SLOT(loadSettings()));
+
+    connect(ui->actionSettings, SIGNAL(triggered()),
+            settings, SLOT(exec()));
 }
 
 
@@ -545,11 +548,6 @@ void MainWindow::keyPressEvent(QKeyEvent *ev){
             }
         }
     }
-}
-
-void MainWindow::on_actionSettings_triggered()
-{
-    settings->exec();
 }
 
 void MainWindow::on_actionNew_Face_Group_triggered()

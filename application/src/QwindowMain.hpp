@@ -206,8 +206,6 @@ private slots:
 
     void on_faceList_itemPressed(QTreeWidgetItem *item, int column);
 
-    void on_actionSettings_triggered();
-
     void on_actionNew_Face_Group_triggered();
 
 private:
