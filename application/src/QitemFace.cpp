@@ -21,7 +21,7 @@ FaceItem::FaceItem(QString facename, Face* inface, QTreeWidget *parent) :
         this->addChild(newsnap);
     }
     this->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled |
-                   Qt::ItemIsDragEnabled | Qt::ItemIsEditable);
+                   Qt::ItemIsDropEnabled | Qt::ItemIsEditable);
 }
 
 FaceItem::~FaceItem(){
