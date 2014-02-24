@@ -5,6 +5,10 @@ Face::Face(std::string haar_filename){
     haar_cascade.load(haar_filename);
 }
 
+Face::~Face(){
+
+}
+
 void Face::addEvent(Event * newEvent){
     events.push_back(newEvent);
 }

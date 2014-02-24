@@ -35,6 +35,7 @@ private:
     std::deque<Snapshot *> snapshots;
 public:
     Face(std::string haar_filename);
+    ~Face();
     void findFaces(Frame * newFrame);
     void addEvent(Event * newEvent);
     unsigned int faceNumber();
