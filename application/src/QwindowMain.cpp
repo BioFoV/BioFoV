@@ -551,3 +551,9 @@ void MainWindow::on_actionSettings_triggered()
 {
     settings->exec();
 }
+
+void MainWindow::on_actionNew_Face_Group_triggered()
+{
+    FaceItem * newFaceGroup = new FaceItem(QString("Coiso"));
+    ui->faceList->addTopLevelItem(newFaceGroup);
+}

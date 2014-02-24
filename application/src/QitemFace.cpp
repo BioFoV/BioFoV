@@ -3,7 +3,16 @@
 FaceItem::FaceItem(QTreeWidgetItem *parent) :
     QTreeWidgetItem(parent)
 {
+    face = NULL;
+}
 
+FaceItem::FaceItem(QString facename, QTreeWidget *parent) :
+    QTreeWidgetItem(parent)
+{
+    setText(0, facename);
+    this->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled |
+                   Qt::ItemIsDropEnabled | Qt::ItemIsEditable);
+    face = NULL;
 }
 
 FaceItem::FaceItem(QString facename, Face* inface, QTreeWidget *parent) :
@@ -25,7 +34,8 @@ FaceItem::FaceItem(QString facename, Face* inface, QTreeWidget *parent) :
 }
 
 FaceItem::~FaceItem(){
-    delete face;
+    if (face != NULL)
+        delete face;
 }
 
 Face* FaceItem::getFace(){

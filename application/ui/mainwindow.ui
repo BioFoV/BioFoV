@@ -374,6 +374,7 @@
     <property name="title">
      <string>Face</string>
     </property>
+    <addaction name="actionNew_Face_Group"/>
     <addaction name="actionDetect_Faces"/>
     <addaction name="separator"/>
     <addaction name="actionDeleteFace"/>
@@ -608,6 +609,11 @@
   <action name="actionSave_Settings">
    <property name="text">
     <string>Save Settings</string>
+   </property>
+  </action>
+  <action name="actionNew_Face_Group">
+   <property name="text">
+    <string>New Face Group</string>
    </property>
   </action>
  </widget>

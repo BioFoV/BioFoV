@@ -12,6 +12,7 @@ class FaceItem : public QTreeWidgetItem
 {
 public:
     explicit FaceItem(QTreeWidgetItem *parent = 0);
+    FaceItem(QString facename, QTreeWidget *parent = 0);
     FaceItem(QString facename, Face *inface, QTreeWidget *parent = 0);
 
     // Destructors
