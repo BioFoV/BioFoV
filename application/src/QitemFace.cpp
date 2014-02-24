@@ -16,8 +16,12 @@ FaceItem::FaceItem(QString facename, Face* inface, QTreeWidget *parent) :
 
     for (unsigned int i=0; i<inface->faceNumber()-1; i++){
         SnapshotItem * newsnap = new SnapshotItem(inface->getFaceAt(i));
+        newsnap->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable |
+                          Qt::ItemIsDragEnabled | Qt::ItemIsEnabled);
         this->addChild(newsnap);
     }
+    this->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled |
+                   Qt::ItemIsDragEnabled | Qt::ItemIsEditable);
 }
 
 FaceItem::~FaceItem(){
