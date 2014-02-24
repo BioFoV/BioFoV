@@ -58,7 +58,8 @@ SOURCES += \
     src/QitemFace.cpp \
     src/QdialogSplit.cpp \
     src/QitemEvent.cpp \
-    src/QdialogSettings.cpp
+    src/QdialogSettings.cpp \
+    src/QtreeFaces.cpp
 
 # General purpose headers
 HEADERS += \
@@ -89,7 +90,8 @@ HEADERS += \
     src/QitemFace.hpp \
     src/QdialogCalibration.hpp \
     src/QitemEvent.hpp \
-    src/QdialogSettings.hpp
+    src/QdialogSettings.hpp \
+    src/QtreeFaces.hpp
 
 # UI forms (XML files)
 FORMS    += $$files(ui/*.ui)

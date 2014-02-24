@@ -91,7 +91,7 @@
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_2">
             <item>
-             <widget class="QTreeWidget" name="faceList">
+             <widget class="QtreeFaces" name="faceList">
               <property name="dragEnabled">
                <bool>true</bool>
               </property>
@@ -624,6 +624,11 @@
    <extends>QWidget</extends>
    <header>QplayerVideo.hpp</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QtreeFaces</class>
+   <extends>QTreeWidget</extends>
+   <header>QtreeFaces.hpp</header>
   </customwidget>
  </customwidgets>
  <resources/>
