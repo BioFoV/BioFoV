@@ -42,7 +42,10 @@ cv::Mat Snapshot::getMask(){
         mask = cv::imread(filename, 0);
         return mask;
     } else { //FIXME: Missing application of rectangle mask.
-        return mask;
+        cv::Mat a = cv::Mat(image->getImage().rows, image->getImage().cols, CV_8U);
+        a.setTo(0);
+        cv::rectangle(a, rect, 255, CV_FILLED);
+        return a;
     }
 }
 
