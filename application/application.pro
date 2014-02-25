@@ -18,6 +18,8 @@ TARGET = project
 QT += core gui printsupport
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+TRANSLATIONS = resources/project_pt.ts
+
 # Configuration for *ix systems
 unix {
     CONFIG += link_pkgconfig
