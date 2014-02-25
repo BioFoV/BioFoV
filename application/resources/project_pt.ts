@@ -341,6 +341,161 @@
         <source>New Face Group</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="59"/>
+        <location filename="../src/QwindowMain.cpp" line="469"/>
+        <source>No files loaded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="65"/>
+        <location filename="../src/QwindowMain.cpp" line="199"/>
+        <source>Loaded </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="70"/>
+        <source>Finished loading files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="73"/>
+        <source>No files selected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="95"/>
+        <source>Select at least one Video</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="101"/>
+        <source>Item selected is not a video</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="105"/>
+        <source>Analyzing Video %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="109"/>
+        <source>Auto detection canceled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="128"/>
+        <location filename="../src/QwindowMain.cpp" line="186"/>
+        <source>Found Event %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="148"/>
+        <source>Item selected is not a Video</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="168"/>
+        <source>Item selected is not an Event</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="268"/>
+        <source>Select a Video first</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="274"/>
+        <source>Calibration canceled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="290"/>
+        <source>Video Calibrated</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="293"/>
+        <source>Failed Calibration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="362"/>
+        <source>Select the area to crop in the player</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="370"/>
+        <source>Select a rectangle to zoneout in the player</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="377"/>
+        <source>Select 4 points in the player</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="387"/>
+        <source>Merging Videos is not supported</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="399"/>
+        <source>Events can only be merged in pairs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="406"/>
+        <source>Select two events to be merged</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="409"/>
+        <source>Merging events %1 and %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="411"/>
+        <source>Merged events %1 and %2 into event %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="434"/>
+        <location filename="../src/QwindowMain.cpp" line="448"/>
+        <source>Flip Videos, not events.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="439"/>
+        <location filename="../src/QwindowMain.cpp" line="453"/>
+        <source>Flipped selected Video.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="493"/>
+        <source>No faces found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="496"/>
+        <source>face</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="498"/>
+        <source>Found %1 faces</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="515"/>
+        <source>Item selected is not a Face</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/QwindowMain.cpp" line="555"/>
+        <source>New Group</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QdialogSettings</name>

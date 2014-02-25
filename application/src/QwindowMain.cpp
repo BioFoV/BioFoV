@@ -56,21 +56,21 @@ void MainWindow::on_actionAdd_Video_File_triggered()
     {
         fileNames = getFileDialog.selectedFiles();
         if (fileNames.isEmpty()) {
-            showMessage("No files loaded");
+            showMessage(tr("No files loaded"));
             return;
         } // No file name provided
         foreach (QString fileName, fileNames) {
             last = new VideoItem(fileName);
             ui->videoList->addTopLevelItem(last);
-            showMessage(QString("Loaded ") + fileName);
+            showMessage(tr("Loaded ") + fileName);
         }
         if(last != NULL) {
             ui->menuPlayback_Mode->setEnabled(false);
             ui->player->loadVid(last->getVideo(), PLAYER_VID);
-            showMessage("Finished loading files");
+            showMessage(tr("Finished loading files"));
         }
     } else {
-        showMessage("No files selected");
+        showMessage(tr("No files selected"));
     }
     return;
 }
@@ -92,21 +92,21 @@ void MainWindow::on_actionAuto_Detect_Events_triggered()
     SplitDialog split;
     
     if (ui->videoList->selectedItems().isEmpty()){
-        showMessage("Select at least one Video");
+        showMessage(tr("Select at least one Video"));
         return;
     }
 
     foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
         if (item->parent() != NULL){
-            showMessage("Item selected is not a video");
+            showMessage(tr("Item selected is not a video"));
             continue;
         }
         videoiter = (VideoItem*) item;
-        showMessage(QString("Analyzing Video %1").arg(item->text(0)));
+        showMessage(tr("Analyzing Video %1").arg(item->text(0)));
         split.setFPS(videoiter->getVideo()->getFPS());
         split.setWindowTitle(videoiter->text(0));
         if(!split.exec()){
-            showMessage(QString("Auto detection canceled"));
+            showMessage(tr("Auto detection canceled"));
             continue;
         }
 
@@ -125,7 +125,7 @@ void MainWindow::on_actionAuto_Detect_Events_triggered()
                                                          (settings->getCacheDir().append("/")).toStdString());
         resetProgress();
         for (j = 0; j < events.size(); j++) {
-            showMessage(QString("Found Event %1").arg(nEvent));
+            showMessage(tr("Found Event %1").arg(nEvent));
             newEvent = new EventItem(QString("E%1").arg(nEvent));;
             newEvent->setEvent(events.at(j));
             nEvent ++;
@@ -145,7 +145,7 @@ void MainWindow::on_action_Remove_From_Project_triggered()
                 delete item;
             }
             else {
-                showMessage("Item selected is not a Video");
+                showMessage(tr("Item selected is not a Video"));
             }
         }
     }
@@ -165,7 +165,7 @@ void MainWindow::on_actionDeleteEvent_triggered()
                     delete item;
                 }
                 else {
-                    showMessage("Item selected is not an Event");
+                    showMessage(tr("Item selected is not an Event"));
                 }
             }
         }
@@ -183,7 +183,7 @@ void MainWindow::on_actionAuto_Split_triggered()
         eventIt = (EventItem *) item;
         events = eventIt->getEvent()->splitEvent(200, 3, 5);
         foreach(Event* event, events){
-            showMessage(QString("Found Event %1").arg(nEvent));
+            showMessage(tr("Found Event %1").arg(nEvent));
             newEventIt = new EventItem(QString("E%1").arg(nEvent));
             newEventIt->setEvent(event);
             nEvent ++;
@@ -196,7 +196,7 @@ void MainWindow::on_actionAuto_Split_triggered()
 void MainWindow::on_videoList_itemDoubleClicked(QTreeWidgetItem *item,
                                                 int column)
 {
-    showMessage(QString("Loaded ") + item->text(0));
+    showMessage(tr("Loaded ") + item->text(0));
     if (item->parent() == NULL){
         VideoItem * vItem = (VideoItem *) item;
         ui->menuPlayback_Mode->setEnabled(false);
@@ -265,13 +265,13 @@ void MainWindow::on_videoList_itemSelectionChanged()
 void MainWindow::on_actionCalibrate_triggered()
 {
     if (ui->videoList->selectedItems().size() == 0){
-        showMessage("Select a Video first");
+        showMessage(tr("Select a Video first"));
         return;
     }
 
     CalibrationDialog calibDiag;
     if(!calibDiag.exec()){
-        showMessage("Calibration canceled");
+        showMessage(tr("Calibration canceled"));
         return;
     }
 
@@ -287,10 +287,10 @@ void MainWindow::on_actionCalibrate_triggered()
                                        calibDiag.getHeight(),
                                        calibDiag.getIterations());
         if(videoIt->getVideo()->isCalibrated()){
-            showMessage("Video Calibrated");
+            showMessage(tr("Video Calibrated"));
             ui->player->playOrPause();
         } else {
-            showMessage("Failed Calibration");
+            showMessage(tr("Failed Calibration"));
         }
     }
 }
@@ -359,7 +359,7 @@ void MainWindow::on_actionMasked_Video_toggled(bool arg1)
 void MainWindow::on_actionCrop_triggered()
 {
     ui->player->pause();
-    showMessage("Select the area to crop in the player");
+    showMessage(tr("Select the area to crop in the player"));
 //    ui->player->setClickable();
 }
 
@@ -367,14 +367,14 @@ void MainWindow::on_actionCrop_triggered()
 void MainWindow::on_actionExclude_rectangle_triggered()
 {
     ui->player->pause();
-    showMessage("Select a rectangle to zoneout in the player");
+    showMessage(tr("Select a rectangle to zoneout in the player"));
     ui->player->setClickable((Drawable*)new RectangleMask());
 }
 
 void MainWindow::on_actionHeight_triggered()
 {
     ui->player->pause();
-    showMessage("Select 4 points in the player");
+    showMessage(tr("Select 4 points in the player"));
     ui->player->setClickable((Drawable*)new DrawHeight());
 }
 
@@ -384,7 +384,7 @@ void MainWindow::on_actionMerge_triggered()
     EventItem* it0, * it1;
     foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
         if(item->parent() == NULL){
-            showMessage("Merging Videos is not supported");
+            showMessage(tr("Merging Videos is not supported"));
             return;
         }
         else{
@@ -396,19 +396,19 @@ void MainWindow::on_actionMerge_triggered()
                     it1 = (EventItem*) item;
                     break;
                 case 2:
-                    showMessage("Events can only be merged in pairs");
+                    showMessage(tr("Events can only be merged in pairs"));
                     return;
             }
             count++;
         }
     }
     if (count == 0 || count == 1){
-        showMessage("Select two events to be merged");
+        showMessage(tr("Select two events to be merged"));
         return;
     }
-    showMessage(QString("Merging events %1 and %2").arg(it0->text(0), it1->text(0)));
+    showMessage(tr("Merging events %1 and %2").arg(it0->text(0), it1->text(0)));
     *(it0->getEvent()) += *(it1->getEvent());
-    showMessage(QString("Merged events %1 and %2 into event %1").arg(it0->text(0), it1->text(0)));
+    showMessage(tr("Merged events %1 and %2 into event %1").arg(it0->text(0), it1->text(0)));
 
     delete(it1);
 }
@@ -431,12 +431,12 @@ void MainWindow::on_actionHorizontally_triggered()
     VideoItem * vidItem;
     foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
         if(item->parent() != NULL){
-            showMessage("Flip Videos, not events.");
+            showMessage(tr("Flip Videos, not events."));
             continue;
         }
         vidItem = (VideoItem*) item;
         vidItem->getVideo()->flip_horizontally();
-        showMessage("Flipped selected Video.");
+        showMessage(tr("Flipped selected Video."));
     }
 }
 
@@ -445,12 +445,12 @@ void MainWindow::on_actionVertically_triggered()
     VideoItem * vidItem;
     foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
         if(item->parent() != NULL){
-            showMessage("Flip Videos, not events.");
+            showMessage(tr("Flip Videos, not events."));
             continue;
         }
         vidItem = (VideoItem*) item;
         vidItem->getVideo()->flip_vertically();
-        showMessage("Flipped selected Video.");
+        showMessage(tr("Flipped selected Video."));
     }
 }
 
@@ -466,7 +466,7 @@ void MainWindow::on_actionDetect_Faces_triggered()
     {
         fileNames = getFileDialog.selectedFiles();
         if (fileNames.isEmpty()) {
-            showMessage("No files loaded");
+            showMessage(tr("No files loaded"));
             return;
         } // No file name provided
 
@@ -490,12 +490,12 @@ void MainWindow::on_actionDetect_Faces_triggered()
                 }
                 resetProgress();
                 if (face->faceNumber() == 0){
-                    showMessage("No faces found");
+                    showMessage(tr("No faces found"));
                     return;
                 } else {
-                    FaceItem * newFaceItem = new FaceItem(QString("face"), face);
+                    FaceItem * newFaceItem = new FaceItem(tr("face"), face);
                     ui->faceList->addTopLevelItem(newFaceItem);
-                    showMessage(QString("Found %1 faces").arg(face->faceNumber()));
+                    showMessage(tr("Found %1 faces").arg(face->faceNumber()));
                 }
                 // rewind event again
                 ev->setFramePos(0);
@@ -512,7 +512,7 @@ void MainWindow::on_actionDeleteFace_triggered()
                 delete item;
             }
             else {
-                showMessage("Item selected is not a Face");
+                showMessage(tr("Item selected is not a Face"));
             }
         }
     }
@@ -552,6 +552,6 @@ void MainWindow::keyPressEvent(QKeyEvent *ev){
 
 void MainWindow::on_actionNew_Face_Group_triggered()
 {
-    FaceItem * newFaceGroup = new FaceItem(QString("Coiso"));
+    FaceItem * newFaceGroup = new FaceItem(tr("New Group"));
     ui->faceList->addTopLevelItem(newFaceGroup);
 }
