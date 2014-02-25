@@ -7,6 +7,13 @@ QdialogSettings::QdialogSettings(QWidget *parent) :
 {
     ui->setupUi(this);
     settingsFile = NULL;
+
+    QDir cacheFolder(QDir::tempPath() + QDir::separator() + "forensics");
+    ui->cacheDir->setText(cacheFolder.path());
+    if(!cacheFolder.exists()){
+        cacheFolder.mkpath(".");
+    }
+    ui->haarDir->setText(QDir::homePath());
 }
 
 QdialogSettings::~QdialogSettings()
