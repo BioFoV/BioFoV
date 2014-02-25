@@ -38,6 +38,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->faceList, SIGNAL(showStillImage(cv::Mat)),
             ui->player, SLOT(showStillImage(cv::Mat)));
 
+    connect(ui->faceList, SIGNAL(showMessage(QString)),
+            this, SLOT(showMessage(QString)));
+    connect(ui->actionDeleteFace, SIGNAL(triggered()),
+            ui->faceList, SLOT(on_item_delete()));
+
 }
 
 
@@ -508,25 +513,11 @@ void MainWindow::on_actionDetect_Faces_triggered()
     }
 }
 
-void MainWindow::on_actionDeleteFace_triggered()
-{
-    if(ui->facePage->isVisible()){
-        foreach(QTreeWidgetItem* item, ui->faceList->selectedItems()){
-            if(item->parent() != NULL){
-                delete item;
-            }
-            else {
-                showMessage(tr("Item selected is not a Face"));
-            }
-        }
-    }
-}
-
 void MainWindow::keyPressEvent(QKeyEvent *ev){
     // DELETE
     if(ev->key() == Qt::Key_Delete){
         on_actionDeleteEvent_triggered();
-        on_actionDeleteFace_triggered();
+        ui->actionDeleteFace->trigger();
     }
     // ENTER
     else if ( ev->key() == Qt::Key_Enter || ev->key() == Qt::Key_Return ){

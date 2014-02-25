@@ -204,8 +204,6 @@ private slots:
 
     void on_actionDetect_Faces_triggered();
 
-    void on_actionDeleteFace_triggered();
-
 //    void on_faceList_itemPressed(QTreeWidgetItem *item, int column);
 
     void on_actionNew_Face_Group_triggered();

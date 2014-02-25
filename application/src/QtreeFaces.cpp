@@ -21,3 +21,16 @@ void QtreeFaces::on_enter_pressed(){
         on_item_pressed(item, 0);
     }
 }
+
+void QtreeFaces::on_item_delete(){
+    if(isVisible()){
+        foreach(QTreeWidgetItem* item, selectedItems()){
+            if(item->parent() != NULL){
+                delete item;
+            }
+            else {
+                emit showMessage(tr("Item selected is not a Face"));
+            }
+        }
+    }
+}

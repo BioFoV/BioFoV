@@ -20,7 +20,9 @@ public:
     void on_enter_pressed();
 signals:
     void showStillImage(const cv::Mat& image);
+    void showMessage(QString message);
 public slots:
+    void on_item_delete();
     void on_item_pressed(QTreeWidgetItem *item, int column);
 };
 
