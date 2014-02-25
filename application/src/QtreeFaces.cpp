@@ -36,3 +36,8 @@ void QtreeFaces::on_item_delete(){
         }
     }
 }
+
+void QtreeFaces::newFaceGroup(){
+    FaceItem * newFaceGroup = new FaceItem(tr("New Group"));
+    addTopLevelItem(newFaceGroup);
+}

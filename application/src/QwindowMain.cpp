@@ -42,6 +42,8 @@ MainWindow::MainWindow(QWidget *parent) :
             this, SLOT(showMessage(QString)));
     connect(ui->actionDeleteFace, SIGNAL(triggered()),
             ui->faceList, SLOT(on_item_delete()));
+    connect(ui->actionNew_Face_Group, SIGNAL(triggered()),
+            ui->faceList, SLOT(newFaceGroup()));
 
 }
 
@@ -529,10 +531,4 @@ void MainWindow::keyPressEvent(QKeyEvent *ev){
         }
         ui->faceList->on_enter_pressed();
     }
-}
-
-void MainWindow::on_actionNew_Face_Group_triggered()
-{
-    FaceItem * newFaceGroup = new FaceItem(tr("New Group"));
-    ui->faceList->addTopLevelItem(newFaceGroup);
 }

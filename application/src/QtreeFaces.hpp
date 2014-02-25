@@ -24,6 +24,7 @@ signals:
 public slots:
     void on_item_delete();
     void on_item_pressed(QTreeWidgetItem *item, int column);
+    void newFaceGroup();
 };
 
 #endif // QTREEFACES_HPP
