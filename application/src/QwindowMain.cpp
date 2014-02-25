@@ -34,6 +34,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->actionSettings, SIGNAL(triggered()),
             settings, SLOT(exec()));
+            
+    connect(ui->faceList, SIGNAL(showStillImage(cv::Mat)),
+            ui->player, SLOT(showStillImage(cv::Mat)));
+
 }
 
 
@@ -518,17 +522,6 @@ void MainWindow::on_actionDeleteFace_triggered()
     }
 }
 
-void MainWindow::on_faceList_itemPressed(QTreeWidgetItem *item, int column)
-{
-    if(item->parent() == NULL){
-        return;
-    }
-
-    SnapshotItem* snapitem = (SnapshotItem *) item;
-    ui->player->showStillImage(snapitem->getSnapshot()->getMasked());
-    ui->menuPlayback_Mode->setEnabled(false);
-}
-
 void MainWindow::keyPressEvent(QKeyEvent *ev){
     // DELETE
     if(ev->key() == Qt::Key_Delete){
@@ -543,9 +536,7 @@ void MainWindow::keyPressEvent(QKeyEvent *ev){
                 on_videoList_itemDoubleClicked(item, 0);
             }
         } else if (ui->faceList->isVisible()){
-            foreach (QTreeWidgetItem* item, ui->faceList->selectedItems()) {
-                on_faceList_itemPressed(item, 0);
-            }
+            ui->faceList->on_enter_pressed();
         }
     }
 }

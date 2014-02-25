@@ -86,6 +86,15 @@ public slots:
     /// \param val New value for progressBar.
     void setProgress(uint val);
 
+    // Status bar message handlers
+    /// \brief Shows a message in the status bar.
+    /// \param text message as a QString.
+    void showMessage(QString text);
+
+    /// \brief Shows a message in the status bar.
+    /// \param text message as a normal C++ char pointer.
+    void showMessage(const char* text);
+
 private slots:
 
     /// \brief Add video file.
@@ -118,14 +127,7 @@ private slots:
     /// \param column Index of the clicked column (not used).
     void on_videoList_itemDoubleClicked(QTreeWidgetItem *item, int column);
 
-    // Status bar message handlers
-    /// \brief Shows a message in the status bar.
-    /// \param text message as a QString.
-    void showMessage(QString text);
 
-    /// \brief Shows a message in the status bar.
-    /// \param text message as a normal C++ char pointer.
-    void showMessage(const char* text);
 
     /// \brief Changes the limits of progressBar.
     /// \param min Minimum value of progressBar.
@@ -204,7 +206,7 @@ private slots:
 
     void on_actionDeleteFace_triggered();
 
-    void on_faceList_itemPressed(QTreeWidgetItem *item, int column);
+//    void on_faceList_itemPressed(QTreeWidgetItem *item, int column);
 
     void on_actionNew_Face_Group_triggered();
 
