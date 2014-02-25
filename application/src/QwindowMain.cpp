@@ -526,9 +526,8 @@ void MainWindow::keyPressEvent(QKeyEvent *ev){
             foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
                 on_videoList_itemDoubleClicked(item, 0);
             }
-        } else if (ui->faceList->isVisible()){
-            ui->faceList->on_enter_pressed();
         }
+        ui->faceList->on_enter_pressed();
     }
 }
 

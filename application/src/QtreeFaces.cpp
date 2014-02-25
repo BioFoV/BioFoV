@@ -17,8 +17,10 @@ void QtreeFaces::on_item_pressed(QTreeWidgetItem *item, int column){
 }
 
 void QtreeFaces::on_enter_pressed(){
-    foreach (QTreeWidgetItem* item, selectedItems()) {
-        on_item_pressed(item, 0);
+    if(isVisible()){
+        foreach (QTreeWidgetItem* item, selectedItems()) {
+            on_item_pressed(item, 0);
+        }
     }
 }
 
