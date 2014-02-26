@@ -110,7 +110,7 @@ public:
     /// \brief Remove distortion in an image (after calibration).
     /// \param Original image.
     /// \return Remaped image.
-    cv::Mat remap(const cv::Mat &image);
+    cv::Mat undistort(const cv::Mat &image);
 
     /// \brief Set flags for calibration public method.
     /// \param Flags for the calibration.

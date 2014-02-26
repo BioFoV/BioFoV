@@ -131,6 +131,7 @@ double Camera::calibrate(int nBoards, int frameStep, int iterations) {
     // Loop while successful captures equals total snapshots
     // Successful captures implies when all the enclosed corners
     //are detected from a snapshot
+
     while(successes < nBoards){
         //Get next image
         if (! vid->getFrame(image)){
@@ -179,25 +180,11 @@ double Camera::calibrate(int nBoards, int frameStep, int iterations) {
     return reprojectionError;
 }
 
-cv::Mat Camera::remap(const cv::Mat &image) {
+cv::Mat Camera::undistort(const cv::Mat &image) {
 
     cv::Mat undistorted;
 
-    if (mustInitUndistort) { // called once per calibration
-        cv::initUndistortRectifyMap(
-            cv::Mat(),    // computed camera matrix
-            cv::Mat(),    // computed distortion matrix
-            cv::Mat(),    // optional rectification (none)
-            cv::Mat(),    // camera matrix to generate undistorted
-            image.size(), // size of undistorted
-            CV_32FC1,     // type of output map
-            map1, map2);  // the x and y mapping functions
-        mustInitUndistort=false;
-    }
-
-    // Apply mapping functions
-    cv::remap(image, undistorted, map1, map2,
-        cv::INTER_LINEAR); // interpolation type
+    cv::undistort(image, undistorted, cameraMatrix, distCoeffs);
 
     return undistorted;
 }
