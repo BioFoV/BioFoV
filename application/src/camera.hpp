@@ -17,6 +17,8 @@
 #include "Video/Video.hpp"
 #endif
 
+#include <QDateTime>
+
 ///
 /// \brief The Camera class is responsible for the calibration of the camera and
 /// for holding the distortion parameters.

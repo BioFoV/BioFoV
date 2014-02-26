@@ -211,11 +211,12 @@ bool Camera::write_file(std::string filename){
     if (!fs.isOpened()){
         return false;
     }
-    time_t rawtime; time(&rawtime);
+    QDateTime date;
+    date.date();
     fs << "number of frames used" << (int) imagePoints.size();
     fs << "number of maximum iterations" << maxIter;
     fs << "reprojection error" << reprojectionError;
-    fs << "calibrationDate" << asctime(localtime(&rawtime));
+    fs << "calibrationDate" << date.toString("dd-mm-yyyy-hh.mm").toStdString();
     fs << "camera Matrix" << cameraMatrix;
     fs << "distance Coefficients" << distCoeffs;
     fs.release();
