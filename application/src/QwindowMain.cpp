@@ -532,3 +532,16 @@ void MainWindow::keyPressEvent(QKeyEvent *ev){
         ui->faceList->on_enter_pressed();
     }
 }
+
+void MainWindow::on_actionExport_camera_triggered()
+{
+    VideoItem * vidItem;
+    foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
+        if(item->parent() != NULL){
+            showMessage(tr("Export camera only implemented for Videos, not Events"));
+            continue;
+        }
+        vidItem = (VideoItem*) item;
+        vidItem->getVideo()->getCamera()->write_file();
+    }
+}

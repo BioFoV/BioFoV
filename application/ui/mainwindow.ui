@@ -135,8 +135,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>98</width>
-             <height>86</height>
+             <width>769</width>
+             <height>257</height>
             </rect>
            </property>
            <attribute name="label">
@@ -316,7 +316,6 @@
      </widget>
      <addaction name="menuFlip_2"/>
      <addaction name="menuRotate"/>
-     <addaction name="actionCalibrate"/>
     </widget>
     <widget class="QMenu" name="menuFilter">
      <property name="title">
@@ -325,10 +324,18 @@
      <addaction name="actionCrop"/>
      <addaction name="actionExclude_rectangle"/>
     </widget>
+    <widget class="QMenu" name="menuCalibration">
+     <property name="title">
+      <string>Calibration</string>
+     </property>
+     <addaction name="actionCalibrate"/>
+     <addaction name="actionExport_camera"/>
+    </widget>
     <addaction name="actionAdd_Video_File"/>
     <addaction name="action_Remove_From_Project"/>
     <addaction name="separator"/>
     <addaction name="menuTransformations"/>
+    <addaction name="menuCalibration"/>
     <addaction name="menuFilter"/>
    </widget>
    <widget class="QMenu" name="menuEvent">
@@ -620,6 +627,11 @@
   <action name="actionNew_Face_Group">
    <property name="text">
     <string>New Face Group</string>
+   </property>
+  </action>
+  <action name="actionExport_camera">
+   <property name="text">
+    <string>Export camera</string>
    </property>
   </action>
  </widget>

@@ -206,6 +206,8 @@ private slots:
 
 //    void on_faceList_itemPressed(QTreeWidgetItem *item, int column);
 
+    void on_actionExport_camera_triggered();
+
 private:
     /// \brief UI created by Qt.
     ///Points to a class that contains everything that was defined in the

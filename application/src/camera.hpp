@@ -18,6 +18,7 @@
 #endif
 
 #include <QDateTime>
+#include <QFileDialog>
 
 ///
 /// \brief The Camera class is responsible for the calibration of the camera and
@@ -119,7 +120,7 @@ public:
     /// \brief Writes relevant calibration data to output file.
     /// \param Filename.
     /// \return File write succcessful or not.
-    bool write_file(std::string filename);
+    bool write_file();
 
     /// \brief Flips the calibration horizontally.
     void flip_horizontal(cv::Size size);

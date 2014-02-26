@@ -264,3 +264,7 @@ void Video::flip_vertically(){
     cam->flip_vertical(resolution);
     calibrated = true;
 }
+
+Camera* Video::getCamera(){
+    return cam;
+}

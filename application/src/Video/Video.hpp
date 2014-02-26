@@ -189,6 +189,8 @@ public:
     void calibrate(int nBoards, int frameStep, int boardW,
                    int boardH, int iterations);
 
+    Camera* getCamera();
+
     void flip_horizontally();
     void flip_vertically();
 };

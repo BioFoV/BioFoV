@@ -193,8 +193,10 @@ void Camera::set_calib_flags(int flags){
     flag = flags;
 }
 
-bool Camera::write_file(std::string filename){
-    cv::FileStorage fs(filename, cv::FileStorage::WRITE);
+bool Camera::write_file(){
+    QString filename = QFileDialog::getSaveFileName();
+
+    cv::FileStorage fs(filename.toStdString(), cv::FileStorage::WRITE);
     if (!fs.isOpened()){
         return false;
     }
