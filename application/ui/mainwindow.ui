@@ -308,6 +308,9 @@
       <addaction name="actionVertically"/>
      </widget>
      <widget class="QMenu" name="menuRotate">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="title">
        <string>Rotate</string>
       </property>
