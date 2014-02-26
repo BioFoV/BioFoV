@@ -250,14 +250,14 @@ void Video::flip_horizontally(){
     if (cam == NULL){
         cam = new Camera(this);
     }
-    cam->flip_horizontal(resolution);
+    cam->flip_horizontal();
 }
 
 void Video::flip_vertically(){
     if (cam == NULL){
         cam = new Camera(this);
     }
-    cam->flip_vertical(resolution);
+    cam->flip_vertical();
 }
 
 Camera* Video::getCamera(){

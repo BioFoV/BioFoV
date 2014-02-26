@@ -162,6 +162,8 @@ double Camera::calibrate(int nBoards, int frameStep, int iterations) {
     //Output rotations and translations
     std::vector<cv::Mat> rvecs, tvecs;
 
+    initCamera();
+
     // start calibration
     reprojectionError=
         cv::calibrateCamera(objectPoints, // the 3D points
@@ -182,7 +184,7 @@ cv::Mat Camera::undistort(const cv::Mat &image) {
 
     cv::Mat undistorted;
 
-    cv::undistort(image, undistorted, cameraMatrix, distCoeffs);
+    cv::undistort(image, undistorted, cameraMatrix, distCoeffs, cameraMatrix*posCameraMatrix);
 
     return undistorted;
 }
@@ -205,6 +207,7 @@ bool Camera::write_file(){
     fs << "reprojection error" << reprojectionError;
     fs << "calibrationDate" << date.toString("dd-mm-yyyy-hh.mm").toStdString();
     fs << "camera Matrix" << cameraMatrix;
+    fs << "transformations" << posCameraMatrix;
     fs << "distance Coefficients" << distCoeffs;
     fs.release();
     return true;
@@ -220,40 +223,35 @@ bool Camera::read_file() {
 
     fs["reprojection error"] >> reprojectionError;
     fs["camera Matrix"] >> cameraMatrix;
+    fs["transformations"] >> posCameraMatrix;
     fs["distance Coefficients"] >> distCoeffs;
     fs.release();
     calibrated = true;
     return true;
 }
 
-void Camera::flip_horizontal(cv::Size size){
-    if (!calibrated) { // called once per calibration
-        map1.create(size, CV_32FC1);
-        map2.create(size, CV_32FC1);
-        for( int j = 0; j < map1.rows; j++ ){
-            for( int i = 0; i < map1.cols; i++ ){
-                map1.at<float>(j,i) = i ;
-                map2.at<float>(j,i) = j ;
-            }
-        }
-        calibrated = true;
+void Camera::initCamera(){
+    if(cameraMatrix.empty()) {
+        cameraMatrix = cv::Mat::eye(3, 3, CV_64FC1);
+        cameraMatrix.at<double>(0,2) = vid->getSize().width/2;
+        cameraMatrix.at<double>(1,2) = vid->getSize().height/2;
+
+        distCoeffs = cv::Mat(1, 5, CV_64FC1);
     }
-    cv::flip(map1, map1, 1);
+    if(posCameraMatrix.empty()){
+        posCameraMatrix = cv::Mat::eye(3, 3, CV_64FC1);
+    }
+    calibrated = true;
 }
 
-void Camera::flip_vertical(cv::Size size){
-    if (!calibrated) { // called once per calibration
-        map1.create(size, CV_32FC1);
-        map2.create(size, CV_32FC1);
-        for( int j = 0; j < map1.rows; j++ ){
-            for( int i = 0; i < map1.cols; i++ ){
-                map1.at<float>(j,i) = i ;
-                map2.at<float>(j,i) = j ;
-            }
-        }
-        calibrated = true;
-    }
-    cv::flip(map2, map2, 0);
+void Camera::flip_horizontal(){
+    initCamera();
+    posCameraMatrix.col(0) *= -1.0;
+}
+
+void Camera::flip_vertical(){
+    initCamera();
+    posCameraMatrix.col(1) *= -1.0;
 }
 
 bool Camera::isCalibrated(){

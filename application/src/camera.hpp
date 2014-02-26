@@ -37,14 +37,13 @@ private:
     /// \brief Flag to specify how calibration is done.
     int flag;
 
-    /// \brief Used in image undistortion.
-    cv::Mat map1,map2;
-
     /// \brief Maximum number of iterations.
     int maxIter;
 
     /// \brief The camera matrix itself.
     cv::Mat cameraMatrix;
+
+    cv::Mat posCameraMatrix;
 
     /// \brief Distortion coeficients.
     cv::Mat distCoeffs;
@@ -66,6 +65,8 @@ private:
 
     /// \brief Is calibrated.
     bool calibrated;
+
+    void initCamera();
 
 public:
     // Constructor
@@ -124,10 +125,10 @@ public:
     bool read_file();
 
     /// \brief Flips the calibration horizontally.
-    void flip_horizontal(cv::Size size);
+    void flip_horizontal();
 
     /// \brief Flips the calibration vertically.
-    void flip_vertical(cv::Size size);
+    void flip_vertical();
 };
 
 #endif // CAMERA_HPP
