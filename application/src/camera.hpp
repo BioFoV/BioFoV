@@ -40,9 +40,6 @@ private:
     /// \brief Used in image undistortion.
     cv::Mat map1,map2;
 
-    /// \brief Are the undistortion coeficients initialized?
-    bool mustInitUndistort;
-
     /// \brief Maximum number of iterations.
     int maxIter;
 
@@ -107,6 +104,8 @@ public:
     /// \param iterations
     /// \return re-projection error.
     double calibrate(int nBoards, int frameStep, int iterations);
+
+    bool isCalibrated();
 
     /// \brief Remove distortion in an image (after calibration).
     /// \param Original image.

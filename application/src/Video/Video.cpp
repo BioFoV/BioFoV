@@ -21,7 +21,6 @@ Video::Video(std::string name){
     resolution.width = cap.get(CV_CAP_PROP_FRAME_WIDTH);
     resolution.height = cap.get(CV_CAP_PROP_FRAME_HEIGHT);
     cam = NULL;
-    calibrated = false;
 }
 
 /*******************************************************************************
@@ -77,7 +76,7 @@ bool Video::getFrame(cv::Mat &frame){
 		return false;
 	}
 	if(cap.read(frame)){
-        if(calibrated){
+        if(isCalibrated()){
             frame = cam->undistort(frame);
         }
         return true;
@@ -126,7 +125,10 @@ cv::Size Video::getSize(){
 }
 
 bool Video::isCalibrated(){
-    return calibrated;
+    if (cam != NULL){
+        return cam->isCalibrated();
+    }
+    return false;
 }
 
 /*******************************************************************************
@@ -238,12 +240,7 @@ void Video::calibrate(int nBoards, int frameStep, int boardW,
 //        delete cam;
 //    }
     cam = new Camera(this, boardW, boardH);
-    if (cam->calibrate(nBoards, frameStep, iterations) == NOTCALIBRATED){
-        calibrated = false;
-    }
-    else {
-        calibrated = true;
-    }
+    cam->calibrate(nBoards, frameStep, iterations);
 
     // Rewind again
     setFramePos(0);
@@ -254,7 +251,6 @@ void Video::flip_horizontally(){
         cam = new Camera(this);
     }
     cam->flip_horizontal(resolution);
-    calibrated = true;
 }
 
 void Video::flip_vertically(){
@@ -262,7 +258,6 @@ void Video::flip_vertically(){
         cam = new Camera(this);
     }
     cam->flip_vertical(resolution);
-    calibrated = true;
 }
 
 Camera* Video::getCamera(){
@@ -272,5 +267,5 @@ Camera* Video::getCamera(){
 void Video::importCamera(){
     cam = new Camera(this);
 
-    calibrated = cam->read_file();
+    cam->read_file();
 }

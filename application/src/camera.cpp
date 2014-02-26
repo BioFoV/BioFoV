@@ -1,6 +1,6 @@
 #include "camera.hpp"
 
-Camera::Camera() : flag(0), mustInitUndistort(true), maxIter(0)
+Camera::Camera() : flag(0), maxIter(0)
 {
     calibrated = false;
     vid = NULL;
@@ -157,8 +157,6 @@ double Camera::calibrate(int nBoards, int frameStep, int iterations) {
     set_calib_flags(CV_CALIB_FIX_PRINCIPAL_POINT |
                     CV_CALIB_FIX_K3);
 
-    // undistorter must be reinitialized
-    mustInitUndistort= true;
     maxIter = iterations;
 
     //Output rotations and translations
@@ -219,6 +217,7 @@ bool Camera::read_file() {
     if (!fs.isOpened()){
         return false;
     }
+
     fs["reprojection error"] >> reprojectionError;
     fs["camera Matrix"] >> cameraMatrix;
     fs["distance Coefficients"] >> distCoeffs;
@@ -238,7 +237,6 @@ void Camera::flip_horizontal(cv::Size size){
             }
         }
         calibrated = true;
-        mustInitUndistort = false;
     }
     cv::flip(map1, map1, 1);
 }
@@ -254,7 +252,10 @@ void Camera::flip_vertical(cv::Size size){
             }
         }
         calibrated = true;
-        mustInitUndistort = false;
     }
     cv::flip(map2, map2, 0);
+}
+
+bool Camera::isCalibrated(){
+    return calibrated;
 }

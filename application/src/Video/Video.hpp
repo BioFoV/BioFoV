@@ -83,10 +83,6 @@ private:
     /// Describes the camera model of the Video capture device (camera in real
     /// life). One camera may be associated with several videos.
     Camera* cam;
-
-    /// \brief Is the video calibrated or not?
-    /// If this variable is true, then there should be a Camera pointed by cam.
-    bool calibrated;
 	
 public:
 	// Atributes
