@@ -329,6 +329,7 @@
       <string>Calibration</string>
      </property>
      <addaction name="actionCalibrate"/>
+     <addaction name="actionImport_camera"/>
      <addaction name="actionExport_camera"/>
     </widget>
     <addaction name="actionAdd_Video_File"/>
@@ -632,6 +633,11 @@
   <action name="actionExport_camera">
    <property name="text">
     <string>Export camera</string>
+   </property>
+  </action>
+  <action name="actionImport_camera">
+   <property name="text">
+    <string>Import camera</string>
    </property>
   </action>
  </widget>

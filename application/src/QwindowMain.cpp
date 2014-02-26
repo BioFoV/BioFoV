@@ -542,6 +542,30 @@ void MainWindow::on_actionExport_camera_triggered()
             continue;
         }
         vidItem = (VideoItem*) item;
-        vidItem->getVideo()->getCamera()->write_file();
+        if(vidItem->getVideo()->getCamera()->write_file()){
+            showMessage(tr("Camera saved to file"));
+        } else {
+            showMessage(tr("Failed to save camera to file"));
+        }
+    }
+}
+
+void MainWindow::on_actionImport_camera_triggered()
+{
+    VideoItem * vidItem;
+    int i = 0;
+
+    foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
+        if(item->parent() != NULL){
+            showMessage(tr("Export camera only implemented for Videos, not Events"));
+            continue;
+        }
+        vidItem = (VideoItem*) item;
+        vidItem->getVideo()->importCamera();
+
+        i++;
+    }
+    if (!i){
+        showMessage(tr("Select at least one video first"));
     }
 }

@@ -268,3 +268,9 @@ void Video::flip_vertically(){
 Camera* Video::getCamera(){
     return cam;
 }
+
+void Video::importCamera(){
+    cam = new Camera(this);
+
+    calibrated = cam->read_file();
+}

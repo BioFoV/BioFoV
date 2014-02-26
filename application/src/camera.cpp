@@ -212,6 +212,21 @@ bool Camera::write_file(){
     return true;
 }
 
+bool Camera::read_file() {
+    QString filename = QFileDialog::getOpenFileName();
+
+    cv::FileStorage fs(filename.toStdString(), cv::FileStorage::READ);
+    if (!fs.isOpened()){
+        return false;
+    }
+    fs["reprojection error"] >> reprojectionError;
+    fs["camera Matrix"] >> cameraMatrix;
+    fs["distance Coefficients"] >> distCoeffs;
+    fs.release();
+    calibrated = true;
+    return true;
+}
+
 void Camera::flip_horizontal(cv::Size size){
     if (!calibrated) { // called once per calibration
         map1.create(size, CV_32FC1);

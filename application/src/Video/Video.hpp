@@ -190,6 +190,7 @@ public:
                    int boardH, int iterations);
 
     Camera* getCamera();
+    void importCamera();
 
     void flip_horizontally();
     void flip_vertically();

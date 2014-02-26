@@ -122,6 +122,8 @@ public:
     /// \return File write succcessful or not.
     bool write_file();
 
+    bool read_file();
+
     /// \brief Flips the calibration horizontally.
     void flip_horizontal(cv::Size size);
 
