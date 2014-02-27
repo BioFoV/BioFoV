@@ -161,3 +161,29 @@ void QtreeVideos::on_item_selection_changed()
     setTotalFramesText(QString("%1").arg(frames));
     setTotalTimeText(QString("%1 s").arg(time));
 }
+
+void QtreeVideos::flip_horizontally(){
+    VideoItem * vidItem;
+    foreach (QTreeWidgetItem* item, selectedItems()){
+        if(item->parent() != NULL){
+            showMessage(tr("Flip Videos, not events."));
+            continue;
+        }
+        vidItem = (VideoItem*) item;
+        vidItem->getVideo()->flip_horizontally();
+        showMessage(tr("Flipped selected Video."));
+    }
+}
+
+void QtreeVideos::flip_vertically(){
+    VideoItem * vidItem;
+    foreach (QTreeWidgetItem* item, selectedItems()){
+        if(item->parent() != NULL){
+            showMessage(tr("Flip Videos, not events."));
+            continue;
+        }
+        vidItem = (VideoItem*) item;
+        vidItem->getVideo()->flip_vertically();
+        showMessage(tr("Flipped selected Video."));
+    }
+}

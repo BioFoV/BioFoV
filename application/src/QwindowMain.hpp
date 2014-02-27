@@ -178,10 +178,6 @@ private slots:
     ///printers.
     void on_actionPrint_triggered();
 
-    void on_actionHorizontally_triggered();
-
-    void on_actionVertically_triggered();
-
     void on_actionDetect_Faces_triggered();
 
 //    void on_faceList_itemPressed(QTreeWidgetItem *item, int column);

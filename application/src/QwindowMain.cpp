@@ -71,6 +71,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->action_Remove_From_Project, SIGNAL(triggered()),
             ui->videoList, SLOT(on_remove_from_project()));
+    connect(ui->actionHorizontally, SIGNAL(triggered()),
+            ui->videoList, SLOT(flip_horizontally()));
+    connect(ui->actionVertically, SIGNAL(triggered()),
+            ui->videoList, SLOT(flip_horizontally()));
+
     connect(ui->videoList, SIGNAL(removePlayer(Player*)),
             ui->player, SLOT(unload(Player*)));
     connect(ui->videoList, SIGNAL(getPlayMode()),
@@ -318,34 +323,6 @@ void MainWindow::on_actionPrint_triggered()
     }
 
     delete dlg;
-}
-
-void MainWindow::on_actionHorizontally_triggered()
-{
-    VideoItem * vidItem;
-    foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
-        if(item->parent() != NULL){
-            showMessage(tr("Flip Videos, not events."));
-            continue;
-        }
-        vidItem = (VideoItem*) item;
-        vidItem->getVideo()->flip_horizontally();
-        showMessage(tr("Flipped selected Video."));
-    }
-}
-
-void MainWindow::on_actionVertically_triggered()
-{
-    VideoItem * vidItem;
-    foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
-        if(item->parent() != NULL){
-            showMessage(tr("Flip Videos, not events."));
-            continue;
-        }
-        vidItem = (VideoItem*) item;
-        vidItem->getVideo()->flip_vertically();
-        showMessage(tr("Flipped selected Video."));
-    }
 }
 
 void MainWindow::on_actionDetect_Faces_triggered()

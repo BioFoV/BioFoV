@@ -72,6 +72,10 @@ public slots:
     /// \brief Changed selection in the video/event list.
     /// Updates the statistics for the selected events.
     void on_item_selection_changed();
+
+    void flip_horizontally();
+
+    void flip_vertically();
 private:
     uint nEvent;
 };
