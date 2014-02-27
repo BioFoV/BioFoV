@@ -48,7 +48,8 @@ SOURCES += \
     src/Drawables/rectanglemask.cpp \
     src/exclusionmod.cpp \
     src/Drawables/drawheight.cpp \
-    src/Feature/faces.cpp
+    src/Feature/faces.cpp \
+    src/QtreeVideos.cpp
 
 # UI related source files
 SOURCES += \
@@ -80,7 +81,8 @@ HEADERS += \
     src/modifier.hpp \
     src/exclusionmod.hpp \
     src/Drawables/drawheight.hpp \
-    src/Feature/faces.hpp
+    src/Feature/faces.hpp \
+    src/QtreeVideos.hpp
 
 # UI related headers
 HEADERS += \

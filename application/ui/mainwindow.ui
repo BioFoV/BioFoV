@@ -53,7 +53,7 @@
              <number>8</number>
             </property>
             <item>
-             <widget class="QTreeWidget" name="videoList">
+             <widget class="QtreeVideos" name="videoList">
               <property name="selectionMode">
                <enum>QAbstractItemView::ExtendedSelection</enum>
               </property>
@@ -656,6 +656,11 @@
    <class>QtreeFaces</class>
    <extends>QTreeWidget</extends>
    <header>QtreeFaces.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>QtreeVideos</class>
+   <extends>QTreeWidget</extends>
+   <header>QtreeVideos.hpp</header>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -95,11 +95,9 @@ public slots:
     /// \param text message as a normal C++ char pointer.
     void showMessage(const char* text);
 
-private slots:
+    void loadVid(Player* player, int type);
 
-    /// \brief Add video file.
-    /// Add a video file dialog and import wizard.
-    void on_actionAdd_Video_File_triggered();
+private slots:
 
     /// \brief Opens the about window.
     /// This was a test for the exec function and opening new windows/dialogs, but

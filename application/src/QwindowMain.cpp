@@ -40,50 +40,28 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->faceList, SIGNAL(showMessage(QString)),
             this, SLOT(showMessage(QString)));
+    connect(ui->videoList, SIGNAL(showMessage(QString)),
+            this, SLOT(showMessage(QString)));
+
+    connect(ui->videoList, SIGNAL(loadVid(Player*, int)),
+            this, SLOT(loadVid(Player*,int)));
+
+    connect(ui->actionAdd_Video_File, SIGNAL(triggered()),
+            ui->videoList, SLOT(on_add_video_file()));
+
     connect(ui->actionDeleteFace, SIGNAL(triggered()),
             ui->faceList, SLOT(on_item_delete()));
     connect(ui->actionNew_Face_Group, SIGNAL(triggered()),
             ui->faceList, SLOT(newFaceGroup()));
 
+    connect(ui->videoList, SIGNAL(setPlaybackEnabled(bool)),
+            ui->menuPlayback_Mode, SLOT(setEnabled(bool)));
 }
 
 
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-
-void MainWindow::on_actionAdd_Video_File_triggered()
-{
-    VideoItem * last = NULL;
-    QFileDialog getFileDialog(this);
-    getFileDialog.setDirectory(QDir::homePath());
-    getFileDialog.setFileMode(QFileDialog::ExistingFiles);
-    getFileDialog.setAcceptMode(QFileDialog::AcceptOpen);
-
-    QStringList fileNames;
-    if(getFileDialog.exec())
-    {
-        fileNames = getFileDialog.selectedFiles();
-        if (fileNames.isEmpty()) {
-            showMessage(tr("No files loaded"));
-            return;
-        } // No file name provided
-        foreach (QString fileName, fileNames) {
-            last = new VideoItem(fileName);
-            ui->videoList->addTopLevelItem(last);
-            showMessage(tr("Loaded ") + fileName);
-        }
-        if(last != NULL) {
-            ui->menuPlayback_Mode->setEnabled(false);
-            ui->player->loadVid(last->getVideo(), PLAYER_VID);
-            showMessage(tr("Finished loading files"));
-        }
-    } else {
-        showMessage(tr("No files selected"));
-    }
-    return;
 }
 
 void MainWindow::openAbout()
@@ -568,4 +546,8 @@ void MainWindow::on_actionImport_camera_triggered()
     if (!i){
         showMessage(tr("Select at least one video first"));
     }
+}
+
+void MainWindow::loadVid(Player* player, int type){
+    ui->player->loadVid(player, type);
 }
