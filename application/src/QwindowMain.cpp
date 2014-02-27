@@ -48,6 +48,18 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->actionAdd_Video_File, SIGNAL(triggered()),
             ui->videoList, SLOT(on_add_video_file()));
+    connect(ui->actionAuto_Detect_Events, SIGNAL(triggered()),
+            ui->videoList, SLOT(on_auto_detect_events()));
+
+    connect(ui->videoList, SIGNAL(getSettings()),
+            this, SLOT(getSettings()));
+
+    connect(ui->videoList, SIGNAL(startProgress(uint,uint)),
+            this, SLOT(enableProgress(uint,uint)));
+    connect(ui->videoList, SIGNAL(progressChanged(uint)),
+            this, SLOT(setProgress(uint)));
+    connect(ui->videoList, SIGNAL(resetProgress()),
+            this, SLOT(resetProgress()));
 
     connect(ui->actionDeleteFace, SIGNAL(triggered()),
             ui->faceList, SLOT(on_item_delete()));
@@ -56,6 +68,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->videoList, SIGNAL(setPlaybackEnabled(bool)),
             ui->menuPlayback_Mode, SLOT(setEnabled(bool)));
+
+    connect(ui->action_Remove_From_Project, SIGNAL(triggered()),
+            ui->videoList, SLOT(on_remove_from_project()));
+    connect(ui->videoList, SIGNAL(removePlayer(Player*)),
+            ui->player, SLOT(unload(Player*)));
 }
 
 
@@ -69,98 +86,6 @@ void MainWindow::openAbout()
     About about;
     about.exec();
 }
-
-void MainWindow::on_actionAuto_Detect_Events_triggered()
-{
-    VideoItem* videoiter;
-    std::deque<Event*> events;
-    EventItem* newEvent;
-
-    unsigned int j;
-    
-    SplitDialog split;
-    
-    if (ui->videoList->selectedItems().isEmpty()){
-        showMessage(tr("Select at least one Video"));
-        return;
-    }
-
-    foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
-        if (item->parent() != NULL){
-            showMessage(tr("Item selected is not a video"));
-            continue;
-        }
-        videoiter = (VideoItem*) item;
-        showMessage(tr("Analyzing Video %1").arg(item->text(0)));
-        split.setFPS(videoiter->getVideo()->getFPS());
-        split.setWindowTitle(videoiter->text(0));
-        if(!split.exec()){
-            showMessage(tr("Auto detection canceled"));
-            continue;
-        }
-
-        // Progress bar signals and slots
-        connect(videoiter->getVideo(), SIGNAL(startProgress(uint, uint)),
-                this, SLOT(enableProgress(uint,uint)));
-        connect(videoiter->getVideo(), SIGNAL(progressChanged(uint)),
-                this, SLOT(setProgress(uint)));
-
-        events = videoiter->getVideo()->autoDetectEvents(split.getThreshold(),
-                                                         split.getMaxFrames(),
-                                                         split.getMinFrames(),
-                                                         split.getHistory(),
-                                                         split.getvarThreshold(),
-                                                         split.getbShadowDetection(),
-                                                         (settings->getCacheDir().append("/")).toStdString());
-        resetProgress();
-        for (j = 0; j < events.size(); j++) {
-            showMessage(tr("Found Event %1").arg(nEvent));
-            newEvent = new EventItem(QString("E%1").arg(nEvent));;
-            newEvent->setEvent(events.at(j));
-            nEvent ++;
-            videoiter->addChild(newEvent);
-        }
-        if (j != 0){
-            videoiter->setExpanded(true);
-        }
-    }
-}
-
-void MainWindow::on_action_Remove_From_Project_triggered()
-{
-    if(ui->videoPage->isVisible()){
-        foreach(QTreeWidgetItem* item, ui->videoList->selectedItems()){
-            if(item->parent() == NULL){
-                delete item;
-            }
-            else {
-                showMessage(tr("Item selected is not a Video"));
-            }
-        }
-    }
-}
-
-void MainWindow::on_actionDeleteEvent_triggered()
-{
-    if(ui->videoPage->isVisible()){
-        if(ui->videoPage->isVisible()){
-            foreach(QTreeWidgetItem* item, ui->videoList->selectedItems()){
-                if(item->parent() != NULL){
-                    EventItem* evItem = (EventItem *) item;
-                    if(ui->player->getCurrentPlayer() == evItem->getEvent()){
-                        ui->player->pause();
-                        ui->player->unload();
-                    }
-                    delete item;
-                }
-                else {
-                    showMessage(tr("Item selected is not an Event"));
-                }
-            }
-        }
-    }
-}
-
 
 void MainWindow::on_actionAuto_Split_triggered()
 {
@@ -496,7 +421,7 @@ void MainWindow::on_actionDetect_Faces_triggered()
 void MainWindow::keyPressEvent(QKeyEvent *ev){
     // DELETE
     if(ev->key() == Qt::Key_Delete){
-        on_actionDeleteEvent_triggered();
+        ui->videoList->on_delete_event();
         ui->actionDeleteFace->trigger();
     }
     // ENTER
@@ -550,4 +475,8 @@ void MainWindow::on_actionImport_camera_triggered()
 
 void MainWindow::loadVid(Player* player, int type){
     ui->player->loadVid(player, type);
+}
+
+QdialogSettings* MainWindow::getSettings(){
+    return settings;
 }

@@ -82,6 +82,9 @@ public slots:
     /// \param max Maximum value of progressBar.
     void enableProgress(unsigned int min = 0, unsigned int max = 100);
 
+    /// \brief Disables and empties the progress bar.
+    void resetProgress();
+
     /// \brief Sets progress bar value.
     /// \param val New value for progressBar.
     void setProgress(uint val);
@@ -97,23 +100,14 @@ public slots:
 
     void loadVid(Player* player, int type);
 
+    QdialogSettings* getSettings();
+
 private slots:
 
     /// \brief Opens the about window.
     /// This was a test for the exec function and opening new windows/dialogs, but
     ///in the end it stayed.
     void openAbout();
-
-    /// \brief Auto detect events in video.
-    /// For each video in the video list split them into events accordingly with the
-    ///given parameters in the split window that is used.
-    void on_actionAuto_Detect_Events_triggered();
-
-    /// \brief Remove video file from project.
-    void on_action_Remove_From_Project_triggered();
-
-    /// \brief Delete all selected Events.
-    void on_actionDeleteEvent_triggered();
 
     /// \brief Automatically split an event.
     /// This was sort of deprecated by the Auto Detect option, but it could still be
@@ -125,8 +119,6 @@ private slots:
     /// \param column Index of the clicked column (not used).
     void on_videoList_itemDoubleClicked(QTreeWidgetItem *item, int column);
 
-
-
     /// \brief Changes the limits of progressBar.
     /// \param min Minimum value of progressBar.
     /// \param max Maximum value of progressBar.
@@ -135,9 +127,6 @@ private slots:
 
     /// \brief Disables the progress bar.
     void disableProgress();
-
-    /// \brief Disables and empties the progress bar.
-    void resetProgress();
 
     /// \brief Changed selection in the video/event list.
     /// Updates the statistics for the selected events.

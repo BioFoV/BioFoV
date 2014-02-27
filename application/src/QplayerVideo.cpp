@@ -115,6 +115,13 @@ void VideoPlayer::unload(){
     qDebug("unloaded video to player");
 }
 
+void VideoPlayer::unload(Player* toUnload){
+    if(getCurrentPlayer() == toUnload){
+        pause();
+        unload();
+    }
+}
+
 /*******************************************************************************
  * Image show
  ******************************************************************************/

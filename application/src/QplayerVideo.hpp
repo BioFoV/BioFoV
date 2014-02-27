@@ -52,6 +52,7 @@ public slots:
     void loadVid(std::string filename);
     void loadVid(Player* nextVid, int playerT);
     void unload();
+    void unload(Player* toUnload);
     int getPlayerType();
     void setPlayMode(int mode);
     void setClickable(Drawable* draw);
