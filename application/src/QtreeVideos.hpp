@@ -81,6 +81,10 @@ public slots:
     /// \brief Calibrate the video.
     /// Call for the calibration function for each video selected.
     void on_calibrate();
+
+    void on_export_camera();
+
+    void on_import_camera();
 private:
     uint nEvent;
 };

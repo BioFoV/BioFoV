@@ -220,3 +220,38 @@ void QtreeVideos::on_calibrate()
         }
     }
 }
+
+void QtreeVideos::on_import_camera(){
+    VideoItem * vidItem;
+    int i = 0;
+
+    foreach (QTreeWidgetItem* item, selectedItems()){
+        if(item->parent() != NULL){
+            showMessage(tr("Export camera only implemented for Videos, not Events"));
+            continue;
+        }
+        vidItem = (VideoItem*) item;
+        vidItem->getVideo()->importCamera();
+
+        i++;
+    }
+    if (!i){
+        showMessage(tr("Select at least one video first"));
+    }
+}
+
+void QtreeVideos::on_export_camera(){
+    VideoItem * vidItem;
+    foreach (QTreeWidgetItem* item, selectedItems()){
+        if(item->parent() != NULL){
+            showMessage(tr("Export camera only implemented for Videos, not Events"));
+            continue;
+        }
+        vidItem = (VideoItem*) item;
+        if(vidItem->getVideo()->getCamera()->write_file()){
+            showMessage(tr("Camera saved to file"));
+        } else {
+            showMessage(tr("Failed to save camera to file"));
+        }
+    }
+}

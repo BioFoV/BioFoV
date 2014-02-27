@@ -77,6 +77,10 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->videoList, SLOT(flip_horizontally()));
     connect(ui->actionCalibrate, SIGNAL(triggered()),
             ui->videoList, SLOT(on_calibrate()));
+    connect(ui->actionImport_camera, SIGNAL(triggered()),
+            ui->videoList, SLOT(on_import_camera()));
+    connect(ui->actionExport_camera, SIGNAL(triggered()),
+            ui->videoList, SLOT(on_export_camera()));
 
     connect(ui->videoList, SIGNAL(removePlayer(Player*)),
             ui->player, SLOT(unload(Player*)));
@@ -358,43 +362,6 @@ void MainWindow::keyPressEvent(QKeyEvent *ev){
             }
         }
         ui->faceList->on_enter_pressed();
-    }
-}
-
-void MainWindow::on_actionExport_camera_triggered()
-{
-    VideoItem * vidItem;
-    foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
-        if(item->parent() != NULL){
-            showMessage(tr("Export camera only implemented for Videos, not Events"));
-            continue;
-        }
-        vidItem = (VideoItem*) item;
-        if(vidItem->getVideo()->getCamera()->write_file()){
-            showMessage(tr("Camera saved to file"));
-        } else {
-            showMessage(tr("Failed to save camera to file"));
-        }
-    }
-}
-
-void MainWindow::on_actionImport_camera_triggered()
-{
-    VideoItem * vidItem;
-    int i = 0;
-
-    foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
-        if(item->parent() != NULL){
-            showMessage(tr("Export camera only implemented for Videos, not Events"));
-            continue;
-        }
-        vidItem = (VideoItem*) item;
-        vidItem->getVideo()->importCamera();
-
-        i++;
-    }
-    if (!i){
-        showMessage(tr("Select at least one video first"));
     }
 }
 
