@@ -74,6 +74,10 @@ public slots:
     /// Updates the statistics for the selected events.
     void on_item_selection_changed();
 
+    /// \brief Merge two events into one.
+    ///The second selected event is merged after the first one.
+    void on_merge();
+
     void flip_horizontally();
 
     void flip_vertically();

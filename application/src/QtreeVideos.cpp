@@ -255,3 +255,38 @@ void QtreeVideos::on_export_camera(){
         }
     }
 }
+
+void QtreeVideos::on_merge()
+{
+    unsigned int count = 0;
+    EventItem* it0, * it1;
+    foreach (QTreeWidgetItem* item, selectedItems()){
+        if(item->parent() == NULL){
+            showMessage(tr("Merging Videos is not supported"));
+            return;
+        }
+        else{
+            switch (count){
+                case 0:
+                    it0 = (EventItem*) item;
+                    break;
+                case 1:
+                    it1 = (EventItem*) item;
+                    break;
+                case 2:
+                    showMessage(tr("Events can only be merged in pairs"));
+                    return;
+            }
+            count++;
+        }
+    }
+    if (count == 0 || count == 1){
+        showMessage(tr("Select two events to be merged"));
+        return;
+    }
+    showMessage(tr("Merging events %1 and %2").arg(it0->text(0), it1->text(0)));
+    *(it0->getEvent()) += *(it1->getEvent());
+    showMessage(tr("Merged events %1 and %2 into event %1").arg(it0->text(0), it1->text(0)));
+
+    delete(it1);
+}
