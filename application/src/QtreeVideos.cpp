@@ -84,6 +84,11 @@ void QtreeVideos::on_auto_detect_events(){
                                                          split.getbShadowDetection(),
                                                          (getSettings()->getCacheDir().append("/")).toStdString());
 
+        disconnect(videoiter->getVideo(), SIGNAL(startProgress(uint, uint)),
+                   this, SIGNAL(startProgress(uint,uint)));
+        disconnect(videoiter->getVideo(), SIGNAL(progressChanged(uint)),
+                   this, SIGNAL(progressChanged(uint)));
+
         resetProgress();
         for (j = 0; j < events.size(); j++) {
             showMessage(tr("Found Event %1").arg(nEvent));
