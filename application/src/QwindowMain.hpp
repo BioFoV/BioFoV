@@ -166,10 +166,6 @@ private slots:
     /// \brief Calculates the height of something.
     void on_actionHeight_triggered();
 
-    /// \brief Print the current frame with any of the system configured
-    ///printers.
-    void on_actionPrint_triggered();
-
     void on_actionDetect_Faces_triggered();
 
 //    void on_faceList_itemPressed(QTreeWidgetItem *item, int column);

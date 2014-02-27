@@ -282,10 +282,17 @@ void VideoPlayer::mouseMoveEvent(QMouseEvent *event){
     }
 }
 
-void VideoPlayer::print(QPainter &printerPainter){
-    QImage _qimage(_tmp.data, _tmp.cols, _tmp.rows,
-                   _tmp.cols*3, QImage::Format_RGB888);
-    printerPainter.drawImage(QPoint(0,0), _qimage);
+void VideoPlayer::print(){
+    QPrinter printer;
+    QPrintDialog *dlg = new QPrintDialog(&printer,0);
+    if(dlg->exec() == QDialog::Accepted) {
+        QPainter printerPainter(&printer);
+        QImage _qimage(_tmp.data, _tmp.cols, _tmp.rows,
+                       _tmp.cols*3, QImage::Format_RGB888);
+        printerPainter.drawImage(QPoint(0,0), _qimage);
+        printerPainter.end();
+    }
+    delete dlg;
 }
 
 void VideoPlayer::showStillImage(const cv::Mat& image){

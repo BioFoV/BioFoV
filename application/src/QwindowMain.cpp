@@ -99,6 +99,9 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->labelTotalFrames, SLOT(setText(QString)));
     connect(ui->videoList, SIGNAL(setTotalTimeText(QString)),
             ui->labelTotalTime, SLOT(setText(QString)));
+
+    connect(ui->actionPrint, SIGNAL(triggered()),
+            ui->player, SLOT(print()));
 }
 
 
@@ -249,19 +252,6 @@ void MainWindow::on_actionHeight_triggered()
     ui->player->pause();
     showMessage(tr("Select 4 points in the player"));
     ui->player->setClickable((Drawable*)new DrawHeight());
-}
-
-void MainWindow::on_actionPrint_triggered()
-{
-    QPrinter printer;
-    QPrintDialog *dlg = new QPrintDialog(&printer,0);
-    if(dlg->exec() == QDialog::Accepted) {
-        QPainter painter(&printer);
-        ui->player->print(painter);
-        painter.end();
-    }
-
-    delete dlg;
 }
 
 void MainWindow::on_actionDetect_Faces_triggered()

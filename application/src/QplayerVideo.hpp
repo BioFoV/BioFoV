@@ -56,7 +56,10 @@ public slots:
     int getPlayerType();
     void setPlayMode(int mode);
     void setClickable(Drawable* draw);
-    void print(QPainter &printerPainter);
+
+    /// \brief Print the current frame with any of the system configured
+    ///printers.
+    void print();
 
     void showStillImage(const cv::Mat& image);
 
