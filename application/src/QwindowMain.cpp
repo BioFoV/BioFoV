@@ -79,6 +79,13 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->player, SLOT(setPlayMode(int)));
     connect(ui->videoList, SIGNAL(playOrPause()),
             ui->player, SLOT(playOrPause()));
+
+    connect(ui->videoList, SIGNAL(setSelectedText(QString)),
+            ui->labelSelected, SLOT(setText(QString)));
+    connect(ui->videoList, SIGNAL(setTotalFramesText(QString)),
+            ui->labelTotalFrames, SLOT(setText(QString)));
+    connect(ui->videoList, SIGNAL(setTotalTimeText(QString)),
+            ui->labelTotalTime, SLOT(setText(QString)));
 }
 
 
@@ -144,23 +151,6 @@ void MainWindow::disableProgress(){
 void MainWindow::resetProgress(){
     setProgressSize(0, 100, 0);
     disableProgress();
-}
-
-void MainWindow::on_videoList_itemSelectionChanged()
-{
-    EventItem* eventIt;
-    int selected = 0;
-    double frames = 0;
-    double time = 0;
-    foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
-        eventIt = (EventItem *) item;
-        frames += eventIt->getEvent()->getLengthFrames();
-        time += eventIt->getEvent()->getLengthTime();
-        selected ++;
-    }
-    ui->labelSelected->setText(QString("%1").arg(selected));
-    ui->labelTotalFrames->setText(QString("%1").arg(frames));
-    ui->labelTotalTime->setText(QString("%1 s").arg(time));
 }
 
 void MainWindow::on_actionCalibrate_triggered()

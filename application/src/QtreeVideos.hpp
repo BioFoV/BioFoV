@@ -44,6 +44,10 @@ signals:
     void setPlaybackMode(int);
     void playOrPause();
 
+    void setSelectedText(QString);
+    void setTotalFramesText(QString);
+    void setTotalTimeText(QString);
+
 public slots:
     /// \brief Add video file.
     /// Add a video file dialog and import wizard.
@@ -65,6 +69,9 @@ public slots:
     /// \param column Index of the clicked column (not used).
     void on_item_doubleclicked(QTreeWidgetItem* item, int column);
 
+    /// \brief Changed selection in the video/event list.
+    /// Updates the statistics for the selected events.
+    void on_item_selection_changed();
 private:
     uint nEvent;
 };

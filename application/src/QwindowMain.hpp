@@ -125,10 +125,6 @@ private slots:
     /// \brief Disables the progress bar.
     void disableProgress();
 
-    /// \brief Changed selection in the video/event list.
-    /// Updates the statistics for the selected events.
-    void on_videoList_itemSelectionChanged();
-
     /// \brief Calibrate the video.
     /// Call for the calibration function for each video selected.
     void on_actionCalibrate_triggered();

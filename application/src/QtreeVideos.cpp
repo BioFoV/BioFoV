@@ -7,6 +7,8 @@ QtreeVideos::QtreeVideos(QWidget *parent) :
 
     connect(this, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)),
             this, SLOT(on_item_doubleclicked(QTreeWidgetItem*,int)));
+    connect(this, SIGNAL(itemSelectionChanged()),
+            this, SLOT(on_item_selection_changed()));
 }
 
 void QtreeVideos::on_add_video_file(){
@@ -141,4 +143,21 @@ void QtreeVideos::on_item_doubleclicked(QTreeWidgetItem *item, int column){
         loadVid(ev, PLAYER_EV);
     }
     playOrPause();
+}
+
+void QtreeVideos::on_item_selection_changed()
+{
+    EventItem* eventIt;
+    int selected = 0;
+    double frames = 0;
+    double time = 0;
+    foreach (QTreeWidgetItem* item, selectedItems()){
+        eventIt = (EventItem *) item;
+        frames += eventIt->getEvent()->getLengthFrames();
+        time += eventIt->getEvent()->getLengthTime();
+        selected ++;
+    }
+    setSelectedText(QString("%1").arg(selected));
+    setTotalFramesText(QString("%1").arg(frames));
+    setTotalTimeText(QString("%1 s").arg(time));
 }
