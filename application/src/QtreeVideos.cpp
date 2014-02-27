@@ -4,6 +4,9 @@ QtreeVideos::QtreeVideos(QWidget *parent) :
     QTreeWidget(parent)
 {
     nEvent = 0;
+
+    connect(this, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)),
+            this, SLOT(on_item_doubleclicked(QTreeWidgetItem*,int)));
 }
 
 void QtreeVideos::on_add_video_file(){
@@ -122,4 +125,20 @@ void QtreeVideos::on_delete_event()
             }
         }
     }
+}
+
+void QtreeVideos::on_item_doubleclicked(QTreeWidgetItem *item, int column){
+    showMessage(tr("Loaded ") + item->text(0));
+    if (item->parent() == NULL){
+        VideoItem * vItem = (VideoItem *) item;
+        setPlaybackEnabled(false);
+        loadVid(vItem->getVideo(), PLAYER_VID);
+    } else {
+        EventItem * vItem = (EventItem *) item;
+        Event* ev = vItem->getEvent();
+        setPlaybackMode(getPlayMode());
+        setPlaybackEnabled(true);
+        loadVid(ev, PLAYER_EV);
+    }
+    playOrPause();
 }

@@ -102,6 +102,8 @@ public slots:
 
     QdialogSettings* getSettings();
 
+    int getPlayMode();
+
 private slots:
 
     /// \brief Opens the about window.
@@ -113,11 +115,6 @@ private slots:
     /// This was sort of deprecated by the Auto Detect option, but it could still be
     ///applied to Events.
     void on_actionAuto_Split_triggered();
-
-    /// \brief Double click an item on the video/event list.
-    /// \param item Pointer to the item which was double clicked.
-    /// \param column Index of the clicked column (not used).
-    void on_videoList_itemDoubleClicked(QTreeWidgetItem *item, int column);
 
     /// \brief Changes the limits of progressBar.
     /// \param min Minimum value of progressBar.

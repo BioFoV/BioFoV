@@ -32,14 +32,17 @@ public:
     explicit QtreeVideos(QWidget *parent = 0);
     
 signals:
-    void showMessage(QString message);
-    void loadVid(Player* player, int type);
-    void setPlaybackEnabled(bool value);
+    void showMessage(QString);
+    void loadVid(Player*, int);
+    void setPlaybackEnabled(bool);
     QdialogSettings* getSettings();
     void progressChanged(uint);
     void startProgress(uint, uint);
     void resetProgress();
     void removePlayer(Player*);
+    int getPlayMode();
+    void setPlaybackMode(int);
+    void playOrPause();
 
 public slots:
     /// \brief Add video file.
@@ -56,6 +59,11 @@ public slots:
 
     /// \brief Delete all selected Events.
     void on_delete_event();
+
+    /// \brief Double click an item on the video/event list.
+    /// \param item Pointer to the item which was double clicked.
+    /// \param column Index of the clicked column (not used).
+    void on_item_doubleclicked(QTreeWidgetItem* item, int column);
 
 private:
     uint nEvent;

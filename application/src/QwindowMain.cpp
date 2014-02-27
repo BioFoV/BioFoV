@@ -73,6 +73,12 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->videoList, SLOT(on_remove_from_project()));
     connect(ui->videoList, SIGNAL(removePlayer(Player*)),
             ui->player, SLOT(unload(Player*)));
+    connect(ui->videoList, SIGNAL(getPlayMode()),
+            this, SLOT(getPlayMode()));
+    connect(ui->videoList, SIGNAL(setPlaybackMode(int)),
+            ui->player, SLOT(setPlayMode(int)));
+    connect(ui->videoList, SIGNAL(playOrPause()),
+            ui->player, SLOT(playOrPause()));
 }
 
 
@@ -106,25 +112,6 @@ void MainWindow::on_actionAuto_Split_triggered()
         ui->videoList->removeItemWidget(item,0);
     }
 }
-
-void MainWindow::on_videoList_itemDoubleClicked(QTreeWidgetItem *item,
-                                                int column)
-{
-    showMessage(tr("Loaded ") + item->text(0));
-    if (item->parent() == NULL){
-        VideoItem * vItem = (VideoItem *) item;
-        ui->menuPlayback_Mode->setEnabled(false);
-        ui->player->loadVid(vItem->getVideo(), PLAYER_VID);
-    } else {
-        EventItem * vItem = (EventItem *) item;
-        Event* ev = vItem->getEvent();
-        ev->setPlaybackMode(playMode);
-        ui->menuPlayback_Mode->setEnabled(true);
-        ui->player->loadVid(ev, PLAYER_EV);
-    }
-    ui->player->playOrPause();
-}
-
 
 void MainWindow::showMessage(QString text){
     ui->statusBar->showMessage(text);
@@ -242,6 +229,9 @@ void MainWindow::on_actionMasked_Video_triggered()
     }
 }
 
+int MainWindow::getPlayMode(){
+    return playMode;
+}
 
 void MainWindow::on_actionNormal_toggled(bool arg1)
 {
@@ -429,7 +419,7 @@ void MainWindow::keyPressEvent(QKeyEvent *ev){
 
         if(ui->videoList->isVisible()){
             foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
-                on_videoList_itemDoubleClicked(item, 0);
+                ui->videoList->on_item_doubleclicked(item, 0);
             }
         }
         ui->faceList->on_enter_pressed();
