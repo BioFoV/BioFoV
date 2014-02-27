@@ -74,7 +74,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionHorizontally, SIGNAL(triggered()),
             ui->videoList, SLOT(flip_horizontally()));
     connect(ui->actionVertically, SIGNAL(triggered()),
-            ui->videoList, SLOT(flip_horizontally()));
+            ui->videoList, SLOT(flip_vertically()));
     connect(ui->actionCalibrate, SIGNAL(triggered()),
             ui->videoList, SLOT(on_calibrate()));
     connect(ui->actionImport_camera, SIGNAL(triggered()),
