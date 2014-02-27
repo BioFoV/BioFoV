@@ -125,10 +125,6 @@ private slots:
     /// \brief Disables the progress bar.
     void disableProgress();
 
-    /// \brief Calibrate the video.
-    /// Call for the calibration function for each video selected.
-    void on_actionCalibrate_triggered();
-
     // Event playback mode modifiers
     /// \brief RGB video playback triggered.
     /// Disables all the other playback options if enabled. If disabled,

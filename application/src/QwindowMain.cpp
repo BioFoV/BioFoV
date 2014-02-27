@@ -75,6 +75,8 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->videoList, SLOT(flip_horizontally()));
     connect(ui->actionVertically, SIGNAL(triggered()),
             ui->videoList, SLOT(flip_horizontally()));
+    connect(ui->actionCalibrate, SIGNAL(triggered()),
+            ui->videoList, SLOT(on_calibrate()));
 
     connect(ui->videoList, SIGNAL(removePlayer(Player*)),
             ui->player, SLOT(unload(Player*)));
@@ -157,40 +159,6 @@ void MainWindow::resetProgress(){
     setProgressSize(0, 100, 0);
     disableProgress();
 }
-
-void MainWindow::on_actionCalibrate_triggered()
-{
-    if (ui->videoList->selectedItems().size() == 0){
-        showMessage(tr("Select a Video first"));
-        return;
-    }
-
-    CalibrationDialog calibDiag;
-    if(!calibDiag.exec()){
-        showMessage(tr("Calibration canceled"));
-        return;
-    }
-
-    VideoItem* videoIt;
-    foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
-        if (item->parent() != NULL){
-            continue;
-        }
-        videoIt = (VideoItem*) item;
-        videoIt->getVideo()->calibrate(calibDiag.getNBoards(),
-                                       calibDiag.getFrameStep(),
-                                       calibDiag.getWidth(),
-                                       calibDiag.getHeight(),
-                                       calibDiag.getIterations());
-        if(videoIt->getVideo()->isCalibrated()){
-            showMessage(tr("Video Calibrated"));
-            ui->player->playOrPause();
-        } else {
-            showMessage(tr("Failed Calibration"));
-        }
-    }
-}
-
 
 void MainWindow::on_actionNormal_triggered()
 {

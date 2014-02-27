@@ -23,6 +23,7 @@
 #include "QdialogSettings.hpp"
 #endif
 
+#include "QdialogCalibration.hpp"
 #include "QplayerVideo.hpp"
 
 class QtreeVideos : public QTreeWidget
@@ -76,6 +77,10 @@ public slots:
     void flip_horizontally();
 
     void flip_vertically();
+
+    /// \brief Calibrate the video.
+    /// Call for the calibration function for each video selected.
+    void on_calibrate();
 private:
     uint nEvent;
 };

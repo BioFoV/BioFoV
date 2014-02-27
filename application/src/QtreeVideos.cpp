@@ -187,3 +187,36 @@ void QtreeVideos::flip_vertically(){
         showMessage(tr("Flipped selected Video."));
     }
 }
+
+void QtreeVideos::on_calibrate()
+{
+    if (selectedItems().size() == 0){
+        showMessage(tr("Select a Video first"));
+        return;
+    }
+
+    CalibrationDialog calibDiag;
+    if(!calibDiag.exec()){
+        showMessage(tr("Calibration canceled"));
+        return;
+    }
+
+    VideoItem* videoIt;
+    foreach (QTreeWidgetItem* item, selectedItems()){
+        if (item->parent() != NULL){
+            continue;
+        }
+        videoIt = (VideoItem*) item;
+        videoIt->getVideo()->calibrate(calibDiag.getNBoards(),
+                                       calibDiag.getFrameStep(),
+                                       calibDiag.getWidth(),
+                                       calibDiag.getHeight(),
+                                       calibDiag.getIterations());
+        if(videoIt->getVideo()->isCalibrated()){
+            showMessage(tr("Video Calibrated"));
+            playOrPause();
+        } else {
+            showMessage(tr("Failed Calibration"));
+        }
+    }
+}
