@@ -124,7 +124,6 @@ void QtreeVideos::on_delete_event()
         foreach(QTreeWidgetItem* item, selectedItems()){
             if(EventItem* evItem = dynamic_cast< EventItem * >( item )){
                 removePlayer((Player *) evItem->getEvent());
-
                 delete item;
             }
             else {
