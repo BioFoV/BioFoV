@@ -8,12 +8,10 @@ QtreeFaces::QtreeFaces(QWidget *parent) :
 }
 
 void QtreeFaces::on_item_pressed(QTreeWidgetItem *item, int column){
-    if(item->parent() == NULL){
-        return;
+    if(SnapshotItem* snapitem = dynamic_cast< SnapshotItem * >( item )){
+        showStillImage(snapitem->getSnapshot()->getMasked());
     }
-
-    SnapshotItem* snapitem = (SnapshotItem *) item;
-    emit showStillImage(snapitem->getSnapshot()->getMasked());
+    return;
 }
 
 void QtreeFaces::on_enter_pressed(){
@@ -27,11 +25,11 @@ void QtreeFaces::on_enter_pressed(){
 void QtreeFaces::on_item_delete(){
     if(isVisible()){
         foreach(QTreeWidgetItem* item, selectedItems()){
-            if(item->parent() != NULL){
-                delete item;
+            if(SnapshotItem* snapitem = dynamic_cast< SnapshotItem * >( item )){
+                delete snapitem;
             }
             else {
-                emit showMessage(tr("Item selected is not a Face"));
+                showMessage(tr("Item selected is not a Face"));
             }
         }
     }
