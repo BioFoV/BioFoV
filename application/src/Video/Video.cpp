@@ -113,7 +113,9 @@ bool Video::getNextFrame(cv::Mat &frame){
 }
 
 void *Video::getCurrentFrameRef(){
-    return new Frame(this, getCacheDir());
+    cv::Mat shot;
+    getFrame(shot);
+    return new Frame(this, shot, getCacheDir());
 }
 
 std::string Video::getCacheDir(){
@@ -203,7 +205,7 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
                 event = new Event(this);
             }
             // create new frame
-            frame = new Frame(this, path);
+            frame = new Frame(this, shot, path);
             snap = new Snapshot(frame, bg->Foreground());
             frame->setSnapshot(snap);
             // add frame to event
@@ -216,7 +218,7 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
         else if (event != NULL){
             emptycount ++;
             // create new frame
-            frame = new Frame(this, path);
+            frame = new Frame(this, shot, path);
             snap = new Snapshot(frame, bg->Foreground());
             frame->setSnapshot(snap);
             // add frame to event

@@ -54,7 +54,7 @@ public:
     ///Frame was taken.
     /// \param source_vid Video from which the Frame was extracted.
     /// \param path Folder for holding the png files.
-    Frame(Video *source_vid, std::string path);
+    Frame(Video *source_vid, cv::Mat shot, std::string path);
 
     // Destructor
     /// \brief Simple destructor.
