@@ -49,7 +49,8 @@ SOURCES += \
     src/exclusionmod.cpp \
     src/Drawables/drawheight.cpp \
     src/Feature/faces.cpp \
-    src/QtreeVideos.cpp
+    src/QtreeVideos.cpp \
+    src/QitemFrame.cpp
 
 # UI related source files
 SOURCES += \
@@ -82,7 +83,8 @@ HEADERS += \
     src/exclusionmod.hpp \
     src/Drawables/drawheight.hpp \
     src/Feature/faces.hpp \
-    src/QtreeVideos.hpp
+    src/QtreeVideos.hpp \
+    src/QitemFrame.hpp
 
 # UI related headers
 HEADERS += \

@@ -1,6 +1,11 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
+#ifndef INC_FRAME
+#define INC_FRAME
+#include "Frame/Frame.hpp"
+#endif
+
 // OpenCV
 #ifndef OPENCV_INC
 #define OPENCV_INC
@@ -65,6 +70,8 @@ public:
     /// \brief Gets the length of the video in frames.
     /// \return Length of the video in frames.
     virtual double getLengthFrames() = 0;
+
+    virtual void* getCurrentFrameRef() = 0;
 };
 
 #endif // PLAYER_HPP

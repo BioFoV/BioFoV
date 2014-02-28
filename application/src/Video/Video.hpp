@@ -42,6 +42,11 @@
 #include "../player.hpp"
 #endif
 
+#ifndef INC_DIALOGSETTINGS
+#define INC_DIALOGSETTINGS
+#include "QdialogSettings.hpp"
+#endif
+
 #define NOTCALIBRATED -1
 
 #include <QObject>
@@ -59,6 +64,7 @@ class Video : public QObject, public Player {
 signals:
     void startProgress(unsigned int min, unsigned int max);
     void progressChanged(unsigned int val);
+    QdialogSettings* getSettings();
 
 private:
     /// \brief CV Capture interface of this Video.
@@ -83,6 +89,8 @@ private:
     /// Describes the camera model of the Video capture device (camera in real
     /// life). One camera may be associated with several videos.
     Camera* cam;
+
+    std::string getCacheDir();
 	
 public:
 	// Atributes
@@ -130,6 +138,7 @@ public:
     bool getFrame(cv::Mat &frame);
     bool getPrevFrame(cv::Mat &frame);
     bool getNextFrame(cv::Mat &frame);
+    void* getCurrentFrameRef();
 
     // Properties
     double getFrameInt();

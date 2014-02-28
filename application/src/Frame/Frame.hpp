@@ -12,6 +12,11 @@
 #include "../Video/Video.hpp"
 #endif
 
+#ifndef INC_PLAYER
+#define INC_PLAYER
+#include "../player.hpp"
+#endif
+
 #ifndef INC_SNAPSHOT
 #define INC_SNAPSHOT
 #include "../Snapshot/Snapshot.hpp"
@@ -30,7 +35,7 @@ class Snapshot;
 ///
 /// \brief Class that represents Frames.
 ///
-class Frame{
+class Frame : public Player {
 private:
     /// \brief Video object from which this Frame was extracted.
 	Video *vid;
@@ -48,15 +53,8 @@ public:
     /// \brief Constructor with reference to the Video source from which the
     ///Frame was taken.
     /// \param source_vid Video from which the Frame was extracted.
-    Frame(Video *source_vid);
-    /// \brief Constructor with reference to the Video source from which the
-    ///Frame was taken and the image itself.
-    /// \param source_vid Video from which the Frame was extracted.
-    /// \param shot The image itself.
     /// \param path Folder for holding the png files.
-    /// \param index Image index in the video.
-    Frame(Video *source_vid, cv::Mat shot,
-          std::string path, unsigned int index);
+    Frame(Video *source_vid, std::string path);
 
     // Destructor
     /// \brief Simple destructor.
@@ -73,5 +71,20 @@ public:
     cv::Mat getImage();
 
     unsigned int getNumber();
+
+    // Capture functions
+    bool check_cap();
+    bool setFramePos(double frameNum);
+    double getFramePos();
+    bool getFrame(cv::Mat &frame);
+    bool getPrevFrame(cv::Mat &frame);
+    bool getNextFrame(cv::Mat &frame);
+    void *getCurrentFrameRef();
+
+    // Properties
+    double getFrameInt();
+    double getFPS();
+    double getLengthTime();
+    double getLengthFrames();
 };
 #endif

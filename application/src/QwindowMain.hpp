@@ -98,8 +98,6 @@ public slots:
     /// \param text message as a normal C++ char pointer.
     void showMessage(const char* text);
 
-    void loadVid(Player* player, int type);
-
     QdialogSettings* getSettings();
 
     int getPlayMode();
@@ -155,9 +153,6 @@ private slots:
     void on_actionMasked_Video_toggled(bool arg1);
 
     // Filter video
-    /// \brief Crop action.
-    /// Start cropping the video.
-    void on_actionCrop_triggered();
 
     /// \brief Exclude action.
     /// Start excluding a rectangular section of the video.

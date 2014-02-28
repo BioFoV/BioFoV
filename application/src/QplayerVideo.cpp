@@ -84,19 +84,13 @@ void VideoPlayer::goTo(double nthFrame){
 /*******************************************************************************
  * Video loading functions
  ******************************************************************************/
-void VideoPlayer::loadVid(std::string filename){
-    Video * vid = new Video(filename);
-    pause();
-    unload();
-    loadVid(vid, PLAYER_VID);
-    setControlsEnabled(true);
-}
-
-void VideoPlayer::loadVid(Player* nextVid, int playerT){
+void VideoPlayer::loadVid(Player* nextVid, int playerT, QTreeWidgetItem* item){
     pause();
     unload();
     currentPlayer = nextVid;
     playerType = playerT;
+
+    Qitem = item;
 
     ui->posSlider->setValue(nextVid->getFramePos());
     stepForward();
@@ -295,4 +289,12 @@ void VideoPlayer::setControlsEnabled(bool status){
 
 Player* VideoPlayer::getCurrentPlayer(){
     return currentPlayer;
+}
+
+QTreeWidgetItem* VideoPlayer::getCurrentItem(){
+    return Qitem;
+}
+
+Frame* VideoPlayer::getCurrentFrameRef(){
+    return (Frame*)getCurrentPlayer()->getCurrentFrameRef();
 }
