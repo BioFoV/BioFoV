@@ -43,8 +43,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->videoList, SIGNAL(showMessage(QString)),
             this, SLOT(showMessage(QString)));
 
-    connect(ui->videoList, SIGNAL(loadVid(Player*, int)),
-            this, SLOT(loadVid(Player*,int)));
+    connect(ui->videoList, SIGNAL(loadVid(Player*, int, QTreeWidgetItem*)),
+            ui->player, SLOT(loadVid(Player*,int, QTreeWidgetItem*)));
 
     connect(ui->actionAdd_Video_File, SIGNAL(triggered()),
             ui->videoList, SLOT(on_add_video_file()));
@@ -102,8 +102,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->actionPrint, SIGNAL(triggered()),
             ui->player, SLOT(print()));
-}
 
+    connect(ui->actionCrop, SIGNAL(triggered()),
+            ui->videoList, SLOT(on_crop()));
+    connect(ui->videoList, SIGNAL(getCurrentItem()),
+            ui->player, SLOT(getCurrentItem()));
+    connect(ui->videoList, SIGNAL(getFrameRef()),
+            ui->player, SLOT(getCurrentFrameRef()));
+}
 
 MainWindow::~MainWindow()
 {
@@ -231,15 +237,6 @@ void MainWindow::on_actionMasked_Video_toggled(bool arg1)
     }
 }
 
-
-void MainWindow::on_actionCrop_triggered()
-{
-    ui->player->pause();
-    showMessage(tr("Select the area to crop in the player"));
-//    ui->player->setClickable();
-}
-
-
 void MainWindow::on_actionExclude_rectangle_triggered()
 {
     ui->player->pause();
@@ -320,10 +317,6 @@ void MainWindow::keyPressEvent(QKeyEvent *ev){
         }
         ui->faceList->on_enter_pressed();
     }
-}
-
-void MainWindow::loadVid(Player* player, int type){
-    ui->player->loadVid(player, type);
 }
 
 QdialogSettings* MainWindow::getSettings(){

@@ -7,11 +7,7 @@ Frame::Frame(){
 	vid = NULL;
 }
 
-Frame::Frame(Video *source_vid){
-	vid = source_vid;
-}
-
-Frame::Frame(Video *source_vid, cv::Mat shot, std::string path, unsigned int index){
+Frame::Frame(Video *source_vid, std::string path){
     // use image address as filename to ensure there are no clashes
     const void * address = static_cast<const void*>(this);
     std::stringstream ss;
@@ -19,7 +15,10 @@ Frame::Frame(Video *source_vid, cv::Mat shot, std::string path, unsigned int ind
     filename = path + ss.str() + IMG_EXT;
 
     vid = source_vid;
-    frameNumber = index;
+    frameNumber = vid->getFramePos();
+
+    cv::Mat shot;
+    vid->getFrame(shot);
 
     cv::imwrite( filename, shot );
 }
@@ -53,3 +52,49 @@ cv::Mat Frame::getImage(){
 unsigned int Frame::getNumber(){
     return frameNumber;
 }
+
+
+bool Frame::check_cap(){
+    return true;
+}
+
+bool Frame::setFramePos(double frameNum){
+    return true;
+}
+
+double Frame::getFramePos(){
+    return 0;
+}
+
+bool Frame::getFrame(cv::Mat &frame) {
+    getImage();
+}
+
+bool Frame::getPrevFrame(cv::Mat &frame){
+    return false;
+}
+
+bool Frame::getNextFrame(cv::Mat &frame){
+    return false;
+}
+
+void* Frame::getCurrentFrameRef(){
+    return this;
+}
+
+double Frame::getFrameInt(){
+    return 0;
+}
+
+double Frame::getFPS(){
+    return 0;
+}
+
+double Frame::getLengthTime(){
+    return 0;
+}
+
+double Frame::getLengthFrames(){
+    return 1;
+}
+

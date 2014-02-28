@@ -29,6 +29,7 @@
 
 #define PLAYER_VID 0
 #define PLAYER_EV  1
+#define PLAYER_FRAME 2
 
 namespace Ui {
 class VideoPlayer;
@@ -49,8 +50,7 @@ public slots:
     bool stepBack();
     bool stepForward();
     void goTo(double nthFrame);
-    void loadVid(std::string filename);
-    void loadVid(Player* nextVid, int playerT);
+    void loadVid(Player* nextVid, int playerT, QTreeWidgetItem *item);
     void unload();
     void unload(Player* toUnload);
     int getPlayerType();
@@ -64,6 +64,8 @@ public slots:
     void showStillImage(const cv::Mat& image);
 
     Player* getCurrentPlayer();
+    Frame* getCurrentFrameRef();
+    QTreeWidgetItem* getCurrentItem();
 private:
     Ui::VideoPlayer *ui;
     Player* currentPlayer;
@@ -79,6 +81,8 @@ private:
 
     bool isClickable;
     Drawable *drawer;
+
+    QTreeWidgetItem* Qitem;
 
 private slots:
     void showImage(const cv::Mat& image);

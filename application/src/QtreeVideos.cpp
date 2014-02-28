@@ -28,12 +28,14 @@ void QtreeVideos::on_add_video_file(){
         } // No file name provided
         foreach (QString fileName, fileNames) {
             last = new VideoItem(fileName);
+            connect(last->getVideo(),SIGNAL(getSettings()),
+                    this, SIGNAL(getSettings()));
             addTopLevelItem(last);
             showMessage(tr("Loaded ") + fileName);
         }
         if(last != NULL) {
             setPlaybackEnabled(false); //FIXME: SIGNAL SLOT
-            loadVid(last->getVideo(), PLAYER_VID); //FIXME: SIGNAL SLOT
+            loadVid(last->getVideo(), PLAYER_VID, last); //FIXME: SIGNAL SLOT
             showMessage(tr("Finished loading files"));
         }
     } else {
@@ -139,27 +141,30 @@ void QtreeVideos::on_item_doubleclicked(QTreeWidgetItem *item, int column){
     if (item->parent() == NULL){
         VideoItem * vItem = (VideoItem *) item;
         setPlaybackEnabled(false);
-        loadVid(vItem->getVideo(), PLAYER_VID);
+        loadVid(vItem->getVideo(), PLAYER_VID, vItem);
     } else {
         EventItem * vItem = (EventItem *) item;
         Event* ev = vItem->getEvent();
         setPlaybackMode(getPlayMode());
         setPlaybackEnabled(true);
-        loadVid(ev, PLAYER_EV);
+        loadVid(ev, PLAYER_EV, vItem);
     }
     playOrPause();
 }
 
 void QtreeVideos::on_item_selection_changed()
 {
-    EventItem* eventIt;
     int selected = 0;
     double frames = 0;
     double time = 0;
     foreach (QTreeWidgetItem* item, selectedItems()){
-        eventIt = (EventItem *) item;
-        frames += eventIt->getEvent()->getLengthFrames();
-        time += eventIt->getEvent()->getLengthTime();
+        if (EventItem* eventIt = dynamic_cast< EventItem * >( item )){
+            frames += eventIt->getEvent()->getLengthFrames();
+            time += eventIt->getEvent()->getLengthTime();
+        } else if (VideoItem* videoIt = dynamic_cast< VideoItem * >( item )) {
+            frames += videoIt->getVideo()->getLengthFrames();
+            time += videoIt->getVideo()->getLengthTime();
+        }
         selected ++;
     }
     setSelectedText(QString("%1").arg(selected));
@@ -294,4 +299,13 @@ void QtreeVideos::on_merge()
     showMessage(tr("Merged events %1 and %2 into event %1").arg(it0->text(0), it1->text(0)));
 
     delete(it1);
+}
+
+void QtreeVideos::on_crop() {
+    QTreeWidgetItem* qitem = getCurrentItem();
+    QitemFrame* fitem = new QitemFrame((Frame*)getFrameRef());
+    qitem->addChild(fitem);
+//    loadVid(fitem->getFrameRef(), PLAYER_FRAME, fitem);
+    pause();
+    showMessage(tr("Select the area to crop in the player"));
 }

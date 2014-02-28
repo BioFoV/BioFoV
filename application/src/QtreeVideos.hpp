@@ -13,6 +13,11 @@
 #include "QitemEvent.hpp"
 #endif
 
+#ifndef INC_FRAMEITEM
+#define INC_FRAMEITEM
+#include "QitemFrame.hpp"
+#endif
+
 #ifndef INC_SPLITDIALOG
 #define INC_SPLITDIALOG
 #include "QdialogSplit.hpp"
@@ -34,7 +39,7 @@ public:
     
 signals:
     void showMessage(QString);
-    void loadVid(Player*, int);
+    void loadVid(Player*, int, QTreeWidgetItem*);
     void setPlaybackEnabled(bool);
     QdialogSettings* getSettings();
     void progressChanged(uint);
@@ -44,10 +49,14 @@ signals:
     int getPlayMode();
     void setPlaybackMode(int);
     void playOrPause();
+    void pause(); // FIXME connect
 
     void setSelectedText(QString);
     void setTotalFramesText(QString);
     void setTotalTimeText(QString);
+
+    QTreeWidgetItem* getCurrentItem();
+    void* getFrameRef(); // FIXME connect
 
 public slots:
     /// \brief Add video file.
@@ -89,6 +98,11 @@ public slots:
     void on_export_camera();
 
     void on_import_camera();
+
+    /// \brief Crop action.
+    /// Start cropping the video.
+    void on_crop();
+
 private:
     uint nEvent;
 };
