@@ -98,11 +98,16 @@ bool Video::getPrevFrame(cv::Mat &frame){
 }
 
 bool Video::getNextFrame(cv::Mat &frame){
-    double now = getFramePos();
-    if (now < getLengthFrames()-1){
-        setFramePos(now+1);
-        return getFrame(frame);
-    } else {
+    if(!check_cap()){
+        return false;
+    }
+    if(cap.read(frame)){
+        if(isCalibrated()){
+            frame = cam->undistort(frame);
+        }
+        return true;
+    }
+    else{
         return false;
     }
 }
