@@ -45,7 +45,6 @@ void QtreeVideos::on_add_video_file(){
 }
 
 void QtreeVideos::on_auto_detect_events(){
-    VideoItem* videoiter;
     std::deque<Event*> events;
     EventItem* newEvent;
 
@@ -59,48 +58,48 @@ void QtreeVideos::on_auto_detect_events(){
     }
 
     foreach (QTreeWidgetItem* item, selectedItems()){
-        if (item->parent() != NULL){
+        if (VideoItem* videoiter = dynamic_cast< VideoItem * >( item )){
+            showMessage(tr("Analyzing Video %1").arg(item->text(0)));
+            split.setFPS(videoiter->getVideo()->getFPS());
+            split.setWindowTitle(videoiter->text(0));
+            if(!split.exec()){
+                showMessage(tr("Auto detection canceled"));
+                continue;
+            }
+
+            // Progress bar signals and slots
+            connect(videoiter->getVideo(), SIGNAL(startProgress(uint, uint)),
+                    this, SIGNAL(startProgress(uint,uint)));
+            connect(videoiter->getVideo(), SIGNAL(progressChanged(uint)),
+                    this, SIGNAL(progressChanged(uint)));
+
+            events = videoiter->getVideo()->autoDetectEvents(split.getThreshold(),
+                                                             split.getMaxFrames(),
+                                                             split.getMinFrames(),
+                                                             split.getHistory(),
+                                                             split.getvarThreshold(),
+                                                             split.getbShadowDetection(),
+                                                             (getSettings()->getCacheDir().append("/")).toStdString());
+
+            disconnect(videoiter->getVideo(), SIGNAL(startProgress(uint, uint)),
+                       this, SIGNAL(startProgress(uint,uint)));
+            disconnect(videoiter->getVideo(), SIGNAL(progressChanged(uint)),
+                       this, SIGNAL(progressChanged(uint)));
+
+            resetProgress();
+            for (j = 0; j < events.size(); j++) {
+                showMessage(tr("Found Event %1").arg(nEvent));
+                newEvent = new EventItem(QString("E%1").arg(nEvent));;
+                newEvent->setEvent(events.at(j));
+                nEvent ++;
+                videoiter->addChild(newEvent);
+            }
+            if (j != 0){
+                videoiter->setExpanded(true);
+            }
+        } else {
             showMessage(tr("Item selected is not a video"));
             continue;
-        }
-        videoiter = (VideoItem*) item;
-        showMessage(tr("Analyzing Video %1").arg(item->text(0)));
-        split.setFPS(videoiter->getVideo()->getFPS());
-        split.setWindowTitle(videoiter->text(0));
-        if(!split.exec()){
-            showMessage(tr("Auto detection canceled"));
-            continue;
-        }
-
-        // Progress bar signals and slots
-        connect(videoiter->getVideo(), SIGNAL(startProgress(uint, uint)),
-                this, SIGNAL(startProgress(uint,uint)));
-        connect(videoiter->getVideo(), SIGNAL(progressChanged(uint)),
-                this, SIGNAL(progressChanged(uint)));
-
-        events = videoiter->getVideo()->autoDetectEvents(split.getThreshold(),
-                                                         split.getMaxFrames(),
-                                                         split.getMinFrames(),
-                                                         split.getHistory(),
-                                                         split.getvarThreshold(),
-                                                         split.getbShadowDetection(),
-                                                         (getSettings()->getCacheDir().append("/")).toStdString());
-
-        disconnect(videoiter->getVideo(), SIGNAL(startProgress(uint, uint)),
-                   this, SIGNAL(startProgress(uint,uint)));
-        disconnect(videoiter->getVideo(), SIGNAL(progressChanged(uint)),
-                   this, SIGNAL(progressChanged(uint)));
-
-        resetProgress();
-        for (j = 0; j < events.size(); j++) {
-            showMessage(tr("Found Event %1").arg(nEvent));
-            newEvent = new EventItem(QString("E%1").arg(nEvent));;
-            newEvent->setEvent(events.at(j));
-            nEvent ++;
-            videoiter->addChild(newEvent);
-        }
-        if (j != 0){
-            videoiter->setExpanded(true);
         }
     }
 }
@@ -109,7 +108,7 @@ void QtreeVideos::on_remove_from_project()
 {
     if(isVisible()){
         foreach(QTreeWidgetItem* item, selectedItems()){
-            if(item->parent() == NULL){
+            if (VideoItem* vItem = dynamic_cast< VideoItem * >( item )){
                 delete item;
             }
             else {
@@ -123,8 +122,7 @@ void QtreeVideos::on_delete_event()
 {
     if(isVisible()){
         foreach(QTreeWidgetItem* item, selectedItems()){
-            if(item->parent() != NULL){
-                EventItem* evItem = (EventItem *) item;
+            if(EventItem* evItem = dynamic_cast< EventItem * >( item )){
                 removePlayer((Player *) evItem->getEvent());
 
                 delete item;
@@ -138,13 +136,11 @@ void QtreeVideos::on_delete_event()
 
 void QtreeVideos::on_item_doubleclicked(QTreeWidgetItem *item, int column){
     showMessage(tr("Loaded ") + item->text(0));
-    if (item->parent() == NULL){
-        VideoItem * vItem = (VideoItem *) item;
+    if (VideoItem* vItem = dynamic_cast< VideoItem * >( item )){
         setPlaybackEnabled(false);
         loadVid(vItem->getVideo(), PLAYER_VID, vItem);
-    } else {
-        EventItem * vItem = (EventItem *) item;
-        Event* ev = vItem->getEvent();
+    } else if (EventItem* eItem = dynamic_cast< EventItem * >( item )){
+        Event* ev = eItem->getEvent();
         setPlaybackMode(getPlayMode());
         setPlaybackEnabled(true);
         loadVid(ev, PLAYER_EV, vItem);
@@ -173,28 +169,24 @@ void QtreeVideos::on_item_selection_changed()
 }
 
 void QtreeVideos::flip_horizontally(){
-    VideoItem * vidItem;
     foreach (QTreeWidgetItem* item, selectedItems()){
-        if(item->parent() != NULL){
+        if (EventItem* eventIt = dynamic_cast< EventItem * >( item )){
             showMessage(tr("Flip Videos, not events."));
-            continue;
+        } else if (VideoItem* videoIt = dynamic_cast< VideoItem * >( item )) {
+            videoIt->getVideo()->flip_horizontally();
+            showMessage(tr("Flipped selected Video."));
         }
-        vidItem = (VideoItem*) item;
-        vidItem->getVideo()->flip_horizontally();
-        showMessage(tr("Flipped selected Video."));
     }
 }
 
 void QtreeVideos::flip_vertically(){
-    VideoItem * vidItem;
     foreach (QTreeWidgetItem* item, selectedItems()){
-        if(item->parent() != NULL){
+        if (EventItem* eventIt = dynamic_cast< EventItem * >( item )){
             showMessage(tr("Flip Videos, not events."));
-            continue;
+        } else if (VideoItem* videoIt = dynamic_cast< VideoItem * >( item )) {
+            videoIt->getVideo()->flip_vertically();
+            showMessage(tr("Flipped selected Video."));
         }
-        vidItem = (VideoItem*) item;
-        vidItem->getVideo()->flip_vertically();
-        showMessage(tr("Flipped selected Video."));
     }
 }
 
@@ -211,39 +203,34 @@ void QtreeVideos::on_calibrate()
         return;
     }
 
-    VideoItem* videoIt;
     foreach (QTreeWidgetItem* item, selectedItems()){
-        if (item->parent() != NULL){
-            continue;
-        }
-        videoIt = (VideoItem*) item;
-        videoIt->getVideo()->calibrate(calibDiag.getNBoards(),
-                                       calibDiag.getFrameStep(),
-                                       calibDiag.getWidth(),
-                                       calibDiag.getHeight(),
-                                       calibDiag.getIterations());
-        if(videoIt->getVideo()->isCalibrated()){
-            showMessage(tr("Video Calibrated"));
-            playOrPause();
-        } else {
-            showMessage(tr("Failed Calibration"));
+        if (VideoItem* videoIt = dynamic_cast< VideoItem * >( item )){
+            videoIt->getVideo()->calibrate(calibDiag.getNBoards(),
+                                           calibDiag.getFrameStep(),
+                                           calibDiag.getWidth(),
+                                           calibDiag.getHeight(),
+                                           calibDiag.getIterations());
+            if(videoIt->getVideo()->isCalibrated()){
+                showMessage(tr("Video Calibrated"));
+                playOrPause();
+            } else {
+                showMessage(tr("Failed Calibration"));
+            }
         }
     }
 }
 
 void QtreeVideos::on_import_camera(){
-    VideoItem * vidItem;
     int i = 0;
 
     foreach (QTreeWidgetItem* item, selectedItems()){
-        if(item->parent() != NULL){
-            showMessage(tr("Export camera only implemented for Videos, not Events"));
+        if(VideoItem* videoIt = dynamic_cast< VideoItem * >( item )){
+            videoIt->getVideo()->importCamera();
+            i++;
+        } else {
+            showMessage(tr("Export camera only implemented for Videos"));
             continue;
         }
-        vidItem = (VideoItem*) item;
-        vidItem->getVideo()->importCamera();
-
-        i++;
     }
     if (!i){
         showMessage(tr("Select at least one video first"));
@@ -253,15 +240,15 @@ void QtreeVideos::on_import_camera(){
 void QtreeVideos::on_export_camera(){
     VideoItem * vidItem;
     foreach (QTreeWidgetItem* item, selectedItems()){
-        if(item->parent() != NULL){
+        if(VideoItem* videoIt = dynamic_cast< VideoItem * >( item )){
+            if(vidItem->getVideo()->getCamera()->write_file()){
+                showMessage(tr("Camera saved to file"));
+            } else {
+                showMessage(tr("Failed to save camera to file"));
+            }
+        } else {
             showMessage(tr("Export camera only implemented for Videos, not Events"));
             continue;
-        }
-        vidItem = (VideoItem*) item;
-        if(vidItem->getVideo()->getCamera()->write_file()){
-            showMessage(tr("Camera saved to file"));
-        } else {
-            showMessage(tr("Failed to save camera to file"));
         }
     }
 }
@@ -271,23 +258,23 @@ void QtreeVideos::on_merge()
     unsigned int count = 0;
     EventItem* it0, * it1;
     foreach (QTreeWidgetItem* item, selectedItems()){
-        if(item->parent() == NULL){
-            showMessage(tr("Merging Videos is not supported"));
-            return;
-        }
-        else{
+        if(EventItem* eventIt = dynamic_cast< EventItem * >( item )){
             switch (count){
                 case 0:
-                    it0 = (EventItem*) item;
+                    it0 = eventIt;
                     break;
                 case 1:
-                    it1 = (EventItem*) item;
+                    it1 = eventIt;
                     break;
                 case 2:
                     showMessage(tr("Events can only be merged in pairs"));
                     return;
             }
             count++;
+        }
+        else{
+            showMessage(tr("Merging Videos is not supported"));
+            return;
         }
     }
     if (count == 0 || count == 1){
