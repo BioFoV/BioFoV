@@ -12,6 +12,12 @@ VideoPlayer::VideoPlayer(QWidget *parent) :
     connect(&timer, SIGNAL(timeout()), this, SLOT(play()));
     isClickable = false;
     setControlsEnabled(false);
+    connect(ui->rewindButton, SIGNAL(clicked()),
+            this, SLOT(stepBack()));
+    connect(ui->playButton, SIGNAL(clicked()),
+            this, SLOT(playOrPause()));
+    connect(ui->stepButton, SIGNAL(clicked()),
+            this, SLOT(stepForward()));
 }
 
 /*******************************************************************************
@@ -187,24 +193,6 @@ void VideoPlayer::on_speedSlider_sliderMoved(int position)
 {
     speed = position/10.0;
     timer.setInterval(frameInt/speed);
-}
-
-/*******************************************************************************
- * Playback button hadlers
- ******************************************************************************/
-void VideoPlayer::on_rewindButton_clicked()
-{
-    stepBack();
-}
-
-void VideoPlayer::on_playButton_clicked()
-{
-    playOrPause();
-}
-
-void VideoPlayer::on_stepButton_clicked()
-{
-    stepForward();
 }
 
 /*******************************************************************************
