@@ -10,10 +10,10 @@
 
 #include <QTreeWidgetItem>
 
-class QitemFrame : public QTreeWidgetItem
+class FrameItem : public QTreeWidgetItem
 {
 public:
-    QitemFrame(Frame* pframe);
+    FrameItem(Frame* pframe);
 
     Frame* getFrameRef();
 

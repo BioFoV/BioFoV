@@ -67,15 +67,18 @@ double Frame::getFramePos(){
 }
 
 bool Frame::getFrame(cv::Mat &frame) {
-    getImage();
+    frame = getImage();
+    return true;
 }
 
 bool Frame::getPrevFrame(cv::Mat &frame){
-    return false;
+    frame = getImage();
+    return true;
 }
 
 bool Frame::getNextFrame(cv::Mat &frame){
-    return false;
+    frame = getImage();
+    return true;
 }
 
 void* Frame::getCurrentFrameRef(){

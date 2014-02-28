@@ -143,7 +143,11 @@ void QtreeVideos::on_item_doubleclicked(QTreeWidgetItem *item, int column){
         Event* ev = eItem->getEvent();
         setPlaybackMode(getPlayMode());
         setPlaybackEnabled(true);
-        loadVid(ev, PLAYER_EV, vItem);
+        loadVid(ev, PLAYER_EV, eItem);
+    } else if (FrameItem* fItem = dynamic_cast< FrameItem * >( item )) {
+        Frame* fr = fItem->getFrameRef();
+        setPlaybackEnabled(false);
+        loadVid(fr, PLAYER_FRAME, fItem);
     }
     playOrPause();
 }
@@ -290,7 +294,7 @@ void QtreeVideos::on_merge()
 
 void QtreeVideos::on_crop() {
     QTreeWidgetItem* qitem = getCurrentItem();
-    QitemFrame* fitem = new QitemFrame((Frame*)getFrameRef());
+    FrameItem* fitem = new FrameItem((Frame*)getFrameRef());
     qitem->addChild(fitem);
 //    loadVid(fitem->getFrameRef(), PLAYER_FRAME, fitem);
     pause();
