@@ -109,6 +109,7 @@ void QtreeVideos::on_remove_from_project()
     if(isVisible()){
         foreach(QTreeWidgetItem* item, selectedItems()){
             if (VideoItem* vItem = dynamic_cast< VideoItem * >( item )){
+                removePlayer((Player *) vItem->getVideo());
                 delete item;
             }
             else {
