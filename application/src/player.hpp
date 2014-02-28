@@ -36,6 +36,13 @@ public:
     /// \return Wheather the Player was successful into fetching the new frame.
     virtual bool getFrame(cv::Mat &frame) = 0;
 
+    /// \brief Gets the next frame available in the Player.
+    /// \param frame Reference of the cv::Mat object where to put the read
+    ///frame.
+    /// \param direction true is forward, false is rewind.
+    /// \return Wheather the Player was successful into fetching the new frame.
+    virtual bool getNextFrame(cv::Mat &frame) = 0;
+
     /// \brief Gets the previous frame available in the Player.
     /// \param frame Reference of the cv::Mat object where to put the read
     ///frame.

@@ -169,15 +169,26 @@ bool Event::getFrame(cv::Mat &frame){
     if (frame.empty())
         return false;
     else{
-        position += 1;
         return true;
     }
 }
 
 bool Event::getPrevFrame(cv::Mat &frame){
-    position -= 1;
-    getFrame(frame);
-    return false;
+    if (position > 0) {
+        position --;
+        return getFrame(frame);
+    } else {
+        return false;
+    }
+}
+
+bool Event::getNextFrame(cv::Mat &frame){
+    if (position < getLengthFrames()-1){
+        position ++;
+        return getFrame(frame);
+    } else {
+        return false;
+    }
 }
 
 /*******************************************************************************

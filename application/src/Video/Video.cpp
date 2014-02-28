@@ -76,6 +76,7 @@ bool Video::getFrame(cv::Mat &frame){
 		return false;
 	}
 	if(cap.read(frame)){
+        setFramePos(getFramePos()-1);
         if(isCalibrated()){
             frame = cam->undistort(frame);
         }
@@ -88,13 +89,22 @@ bool Video::getFrame(cv::Mat &frame){
 
 bool Video::getPrevFrame(cv::Mat &frame){
     double tempPos = getFramePos();
-    if (tempPos > 1){
-        setFramePos(tempPos-2);
+    if (tempPos > 0){
+        setFramePos(tempPos-1);
         return getFrame(frame);
     } else {
         return false;
     }
+}
 
+bool Video::getNextFrame(cv::Mat &frame){
+    double now = getFramePos();
+    if (now < getLengthFrames()-1){
+        setFramePos(now+1);
+        return getFrame(frame);
+    } else {
+        return false;
+    }
 }
 
 /*******************************************************************************
@@ -169,7 +179,7 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
 
     emit startProgress(0, (uint) getLengthFrames());
 
-    while(getFrame(shot)){
+    while(getNextFrame(shot)){
         bg->NewFrame(shot);
         emit progressChanged(j);
         value = cv::countNonZero(bg->Foreground());

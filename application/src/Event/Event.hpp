@@ -119,6 +119,7 @@ public:
     double getFramePos();
     bool getFrame(cv::Mat &frame);
     bool getPrevFrame(cv::Mat &frame);
+    bool getNextFrame(cv::Mat &frame);
 
     // Properties
     double getFrameInt();
