@@ -174,7 +174,7 @@ void QtreeVideos::on_item_selection_changed()
 
 void QtreeVideos::flip_horizontally(){
     foreach (QTreeWidgetItem* item, selectedItems()){
-        if (EventItem* eventIt = dynamic_cast< EventItem * >( item )){
+        if (NULL != dynamic_cast< EventItem * >( item )){
             showMessage(tr("Flip Videos, not events."));
         } else if (VideoItem* videoIt = dynamic_cast< VideoItem * >( item )) {
             videoIt->getVideo()->flip_horizontally();
@@ -185,7 +185,7 @@ void QtreeVideos::flip_horizontally(){
 
 void QtreeVideos::flip_vertically(){
     foreach (QTreeWidgetItem* item, selectedItems()){
-        if (EventItem* eventIt = dynamic_cast< EventItem * >( item )){
+        if (NULL != dynamic_cast< EventItem * >( item )){
             showMessage(tr("Flip Videos, not events."));
         } else if (VideoItem* videoIt = dynamic_cast< VideoItem * >( item )) {
             videoIt->getVideo()->flip_vertically();
@@ -242,10 +242,9 @@ void QtreeVideos::on_import_camera(){
 }
 
 void QtreeVideos::on_export_camera(){
-    VideoItem * vidItem;
     foreach (QTreeWidgetItem* item, selectedItems()){
-        if(VideoItem* videoIt = dynamic_cast< VideoItem * >( item )){
-            if(vidItem->getVideo()->getCamera()->write_file()){
+        if(VideoItem* vidIt = dynamic_cast< VideoItem * >( item )){
+            if(vidIt->getVideo()->getCamera()->write_file()){
                 showMessage(tr("Camera saved to file"));
             } else {
                 showMessage(tr("Failed to save camera to file"));
