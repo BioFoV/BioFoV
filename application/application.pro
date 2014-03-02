@@ -48,9 +48,7 @@ SOURCES += \
     src/Drawables/rectanglemask.cpp \
     src/exclusionmod.cpp \
     src/Drawables/drawheight.cpp \
-    src/Feature/faces.cpp \
-    src/QtreeVideos.cpp \
-    src/QitemFrame.cpp
+    src/Feature/faces.cpp
 
 # UI related source files
 SOURCES += \
@@ -63,7 +61,9 @@ SOURCES += \
     src/QdialogSplit.cpp \
     src/QitemEvent.cpp \
     src/QdialogSettings.cpp \
-    src/QtreeFaces.cpp
+    src/QtreeFaces.cpp \
+    src/QtreeVideos.cpp \
+    src/QitemFrame.cpp
 
 # General purpose headers
 HEADERS += \
@@ -82,9 +82,7 @@ HEADERS += \
     src/modifier.hpp \
     src/exclusionmod.hpp \
     src/Drawables/drawheight.hpp \
-    src/Feature/faces.hpp \
-    src/QtreeVideos.hpp \
-    src/QitemFrame.hpp
+    src/Feature/faces.hpp
 
 # UI related headers
 HEADERS += \
@@ -97,7 +95,9 @@ HEADERS += \
     src/QdialogCalibration.hpp \
     src/QitemEvent.hpp \
     src/QdialogSettings.hpp \
-    src/QtreeFaces.hpp
+    src/QtreeFaces.hpp \
+    src/QtreeVideos.hpp \
+    src/QitemFrame.hpp
 
 # UI forms (XML files)
 FORMS    += $$files(ui/*.ui)
