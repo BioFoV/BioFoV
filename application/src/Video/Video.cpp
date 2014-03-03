@@ -271,6 +271,11 @@ void Video::calibrate(int nBoards, int frameStep, int boardW,
     setFramePos(0);
 }
 
+void Video::deleteCalibration() {
+    delete cam;
+    cam = NULL;
+}
+
 void Video::flip_horizontally(){
     if (cam == NULL){
         cam = new Camera(this);

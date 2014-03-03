@@ -155,7 +155,7 @@ double Camera::calibrate(int nBoards, int frameStep, int iterations) {
     }
 
     set_calib_flags(CV_CALIB_FIX_PRINCIPAL_POINT |
-                    CV_CALIB_FIX_K3);
+                    CV_CALIB_FIX_K3|CV_CALIB_FIX_K4|CV_CALIB_FIX_K5);
 
     maxIter = iterations;
 

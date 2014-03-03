@@ -85,6 +85,8 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->videoList, SLOT(on_merge()));
     connect(ui->actionDeleteEvent, SIGNAL(triggered()),
             ui->videoList, SLOT(on_delete_event()));
+    connect(ui->actionDiscard_Calibration, SIGNAL(triggered()),
+            ui->videoList, SLOT(on_discard_calibration()));
 
     connect(ui->videoList, SIGNAL(removePlayer(Player*)),
             ui->player, SLOT(unload(Player*)));

@@ -194,6 +194,7 @@ public:
     /// 1~5 is normally enough.
     void calibrate(int nBoards, int frameStep, int boardW,
                    int boardH, int iterations);
+    void deleteCalibration();
 
     Camera* getCamera();
     void importCamera();

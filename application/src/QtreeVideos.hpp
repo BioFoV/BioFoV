@@ -95,6 +95,8 @@ public slots:
     /// Call for the calibration function for each video selected.
     void on_calibrate();
 
+    void on_discard_calibration();
+
     void on_export_camera();
 
     void on_import_camera();

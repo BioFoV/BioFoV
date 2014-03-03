@@ -224,6 +224,24 @@ void QtreeVideos::on_calibrate()
     }
 }
 
+void QtreeVideos::on_discard_calibration(){
+    if (selectedItems().size() == 0){
+        showMessage(tr("Select a calibrated Video first"));
+        return;
+    }
+    foreach (QTreeWidgetItem* item, selectedItems()){
+        if (VideoItem* videoIt = dynamic_cast< VideoItem * >( item )){
+            if(videoIt->getVideo()->isCalibrated()){
+                videoIt->getVideo()->deleteCalibration();
+                showMessage(tr("Calibration discarded"));
+                playOrPause();
+            } else {
+                showMessage(tr("Video is not calibrated"));
+            }
+        }
+    }
+}
+
 void QtreeVideos::on_import_camera(){
     int i = 0;
 
