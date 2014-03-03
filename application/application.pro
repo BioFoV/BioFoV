@@ -74,7 +74,6 @@ HEADERS += \
     src/Snapshot/Snapshot.hpp \
     src/Video/Video.hpp \
     src/Video/BackgroundSubtraction.hpp \
-    src/Event/Event.hpp \
     src/player.hpp \
     src/camera.hpp \
     src/Drawables/drawable.hpp \
