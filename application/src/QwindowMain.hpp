@@ -151,12 +151,6 @@ private slots:
     /// \param arg1 Event playback as masked video?
     void on_actionMasked_Video_toggled(bool arg1);
 
-    // Filter video
-
-    /// \brief Exclude action.
-    /// Start excluding a rectangular section of the video.
-    void on_actionExclude_rectangle_triggered();
-
     void on_actionDetect_Faces_triggered();
 
 //    void on_faceList_itemPressed(QTreeWidgetItem *item, int column);

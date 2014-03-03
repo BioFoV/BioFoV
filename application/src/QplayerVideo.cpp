@@ -234,43 +234,46 @@ cv::Point VideoPlayer::qtPt_To_cvPt(QPoint in){
 }
 
 void VideoPlayer::mousePressEvent(QMouseEvent *event){
-    if (isClickable){
-        drawer->press(qtPt_To_cvPt(event->pos()));
-    }
+    getCurrentPlayer()->mousePressEvent(qtPt_To_cvPt(event->pos()));
+    getCurrentPlayer()->getFrame(frame);
+    showImage(frame);
 }
 
 void VideoPlayer::mouseReleaseEvent(QMouseEvent *event){
-    if (isClickable){
-        isClickable = drawer->release(qtPt_To_cvPt(event->pos()));
+    getCurrentPlayer()->mouseReleaseEvent(qtPt_To_cvPt(event->pos()));
+    getCurrentPlayer()->getFrame(frame);
+    showImage(frame);
 
-        cv::Mat _tmp2 = frame.clone();
-        drawer->draw(qtPt_To_cvPt(event->pos()),_tmp2);
-        showImage(_tmp2);
+//    cv::Mat _tmp2 = frame.clone();
+//    drawer->draw(qtPt_To_cvPt(event->pos()),_tmp2);
+//    showImage(_tmp2);
 
-        // check if no more user input is needed and it can proceed to the
-        //calculation.
-        if (!isClickable) {
-            double result = drawer->apply(_tmp2);
+//    // check if no more user input is needed and it can proceed to the
+//    //calculation.
+//    if (!isClickable) {
+//        double result = drawer->apply(_tmp2);
 
-            std::stringstream s;
-            s << "(" << result << ")";
+//        std::stringstream s;
+//        s << "(" << result << ")";
 
-            cv::putText(_tmp2, s.str(),cv::Point(0,50), cv::FONT_HERSHEY_SIMPLEX,
-                        1, cv::Scalar(255,0,0));
-            showImage(_tmp2);
-            delete drawer;
-        }
-    }
+//        cv::putText(_tmp2, s.str(),cv::Point(0,50), cv::FONT_HERSHEY_SIMPLEX,
+//                    1, cv::Scalar(255,0,0));
+//        showImage(_tmp2);
+//        delete drawer;
+//    }
 }
 
 void VideoPlayer::mouseMoveEvent(QMouseEvent *event){
-    if(isClickable){
-        cv::Mat _tmp2 = frame.clone();
+    getCurrentPlayer()->mouseMoveEvent(qtPt_To_cvPt(event->pos()));
+    getCurrentPlayer()->getFrame(frame);
+    showImage(frame);
+//    if(isClickable){
+//        cv::Mat _tmp2 = frame.clone();
 
-        drawer->draw(qtPt_To_cvPt(event->pos()),_tmp2);
+//        drawer->draw(qtPt_To_cvPt(event->pos()),_tmp2);
 
-        showImage(_tmp2);
-    }
+//        showImage(_tmp2);
+//    }
 }
 
 void VideoPlayer::print(){

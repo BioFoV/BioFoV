@@ -128,6 +128,10 @@ public:
     double getLengthTime();
     double getLengthFrames();
 
+    void mousePressEvent(cv::Point){}
+    void mouseReleaseEvent(cv::Point){}
+    void mouseMoveEvent(cv::Point){}
+
     // Playback modifier
     void setPlaybackMode(int mode);
 };

@@ -27,6 +27,8 @@
 #include <stdio.h>
 #endif
 
+#include "Drawables/drawable.hpp"
+
 #define IMG_EXT ".image.png"
 
 class Video;
@@ -45,6 +47,10 @@ private:
     std::string filename;
     /// \brief Deque of Snapshot that relate to this Frame.
     std::deque<Snapshot *> snap;
+
+    std::deque<Drawable *> drawers;
+
+    Drawable* activeDrawable;
 	
 public:
 	// Constructors
@@ -86,5 +92,9 @@ public:
     double getFPS();
     double getLengthTime();
     double getLengthFrames();
+
+    void mousePressEvent(cv::Point point);
+    void mouseReleaseEvent(cv::Point point);
+    void mouseMoveEvent(cv::Point point);
 };
 #endif

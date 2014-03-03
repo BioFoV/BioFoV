@@ -89,6 +89,8 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->videoList, SLOT(on_discard_calibration()));
     connect(ui->actionHeight, SIGNAL(triggered()),
             ui->videoList, SLOT(on_height()));
+    connect(ui->actionExclude_rectangle, SIGNAL(triggered()),
+            ui->videoList, SLOT(on_exclude_rectangle()));
 
     connect(ui->videoList, SIGNAL(removePlayer(Player*)),
             ui->player, SLOT(unload(Player*)));
@@ -245,13 +247,6 @@ void MainWindow::on_actionMasked_Video_toggled(bool arg1)
         playMode = PLAY_MASKED_FRAMES;
         ui->player->setPlayMode(playMode);
     }
-}
-
-void MainWindow::on_actionExclude_rectangle_triggered()
-{
-    ui->player->pause();
-    showMessage(tr("Select a rectangle to zoneout in the player"));
-    ui->player->setClickable((Drawable*)new RectangleMask());
 }
 
 void MainWindow::on_actionDetect_Faces_triggered()

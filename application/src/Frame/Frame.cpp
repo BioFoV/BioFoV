@@ -65,6 +65,11 @@ double Frame::getFramePos(){
 
 bool Frame::getFrame(cv::Mat &frame) {
     frame = getImage();
+    for (std::deque<Drawable*>::iterator drawIter = drawers.begin();
+            drawIter != drawers.end();
+            drawIter ++) {
+        (*drawIter)->apply(frame);
+    }
     return true;
 }
 
@@ -98,3 +103,14 @@ double Frame::getLengthFrames(){
     return 1;
 }
 
+void Frame::mousePressEvent(cv::Point point){
+    activeDrawable->press(point);
+}
+
+void Frame::mouseReleaseEvent(cv::Point point){
+    activeDrawable->release(point);
+}
+
+void Frame::mouseMoveEvent(cv::Point point){
+
+}

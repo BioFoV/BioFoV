@@ -328,3 +328,14 @@ void QtreeVideos::on_height()
     showMessage(tr("Select 4 points in the player"));
     setClickable((Drawable*)new DrawHeight());
 }
+
+void QtreeVideos::on_exclude_rectangle()
+{
+    pause();
+    QTreeWidgetItem* qitem = getCurrentItem();
+    FrameItem* fitem = new FrameItem((Frame*)getFrameRef());
+    qitem->addChild(fitem);
+    loadVid(fitem->getFrameRef(), PLAYER_FRAME, fitem);
+    showMessage(tr("Select a rectangle to zoneout in the player"));
+    setClickable((Drawable*)new RectangleMask());
+}

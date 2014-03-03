@@ -29,6 +29,7 @@
 #endif
 
 #include "Drawables/drawheight.hpp"
+#include "Drawables/rectanglemask.hpp"
 #include "QdialogCalibration.hpp"
 #include "QplayerVideo.hpp"
 
@@ -110,6 +111,10 @@ public slots:
 
     /// \brief Calculates the height of something.
     void on_height();
+
+    /// \brief Exclude action.
+    /// Start excluding a rectangular section of the video.
+    void on_exclude_rectangle();
 
 private:
     uint nEvent;

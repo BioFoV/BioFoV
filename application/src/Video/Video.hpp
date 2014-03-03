@@ -145,6 +145,11 @@ public:
     double getFPS();
     double getLengthTime();
     double getLengthFrames();
+
+    void mousePressEvent(cv::Point){}
+    void mouseReleaseEvent(cv::Point){}
+    void mouseMoveEvent(cv::Point){}
+
     cv::Size getSize();
     bool isCalibrated();
 	
