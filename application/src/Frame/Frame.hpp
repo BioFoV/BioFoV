@@ -96,5 +96,7 @@ public:
     void mousePressEvent(cv::Point point);
     void mouseReleaseEvent(cv::Point point);
     void mouseMoveEvent(cv::Point point);
+
+    void addDrawable(Drawable* newDrawable);
 };
 #endif

@@ -119,8 +119,6 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->player, SLOT(getCurrentItem()));
     connect(ui->videoList, SIGNAL(getFrameRef()),
             ui->player, SLOT(getCurrentFrameRef()));
-    connect(ui->videoList, SIGNAL(setClickable(Drawable*)),
-            ui->player, SLOT(setClickable(Drawable*)));
 }
 
 MainWindow::~MainWindow()

@@ -326,7 +326,7 @@ void QtreeVideos::on_height()
     qitem->addChild(fitem);
     loadVid(fitem->getFrameRef(), PLAYER_FRAME, fitem);
     showMessage(tr("Select 4 points in the player"));
-    setClickable((Drawable*)new DrawHeight());
+    fitem->getFrameRef()->addDrawable((Drawable*)new DrawHeight());
 }
 
 void QtreeVideos::on_exclude_rectangle()
@@ -337,5 +337,5 @@ void QtreeVideos::on_exclude_rectangle()
     qitem->addChild(fitem);
     loadVid(fitem->getFrameRef(), PLAYER_FRAME, fitem);
     showMessage(tr("Select a rectangle to zoneout in the player"));
-    setClickable((Drawable*)new RectangleMask());
+    fitem->getFrameRef()->addDrawable((Drawable*)new RectangleMask());
 }

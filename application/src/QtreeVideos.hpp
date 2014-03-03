@@ -53,8 +53,6 @@ signals:
     void playOrPause();
     void pause();
 
-    void setClickable(Drawable*);
-
     void setSelectedText(QString);
     void setTotalFramesText(QString);
     void setTotalTimeText(QString);

@@ -56,7 +56,7 @@ public slots:
     bool isloaded();
     int getPlayerType();
     void setPlayMode(int mode);
-    void setClickable(Drawable* draw);
+//    void setClickable(Drawable* draw);
 
     /// \brief Print the current frame with any of the system configured
     ///printers.
@@ -80,7 +80,6 @@ private:
     float speed;
     int playerType;
 
-    bool isClickable;
     Drawable *drawer;
 
     QTreeWidgetItem* Qitem;

@@ -18,6 +18,8 @@ Frame::Frame(Video *source_vid, cv::Mat shot, std::string path){
     frameNumber = vid->getFramePos();
 
     cv::imwrite( filename, shot );
+
+    activeDrawable = NULL;
 }
 
 /*******************************************************************************
@@ -104,13 +106,20 @@ double Frame::getLengthFrames(){
 }
 
 void Frame::mousePressEvent(cv::Point point){
-    activeDrawable->press(point);
+    if (activeDrawable != NULL)
+        activeDrawable->press(point);
 }
 
 void Frame::mouseReleaseEvent(cv::Point point){
-    activeDrawable->release(point);
+    if (activeDrawable != NULL)
+        activeDrawable->release(point);
 }
 
 void Frame::mouseMoveEvent(cv::Point point){
 
+}
+
+void Frame::addDrawable(Drawable* newDrawable){
+    activeDrawable = newDrawable;
+    drawers.push_back(newDrawable);
 }

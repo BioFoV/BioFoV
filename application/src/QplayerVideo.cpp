@@ -10,7 +10,7 @@ VideoPlayer::VideoPlayer(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(&timer, SIGNAL(timeout()), this, SLOT(play()));
-    isClickable = false;
+
     setControlsEnabled(false);
     connect(ui->rewindButton, SIGNAL(clicked()),
             this, SLOT(stepBack()));
@@ -214,10 +214,10 @@ void VideoPlayer::setPlayMode(int mode){
 /*******************************************************************************
  * Mouse tracking
  ******************************************************************************/
-void VideoPlayer::setClickable(Drawable *draw){
-    isClickable = true;
-    drawer = draw;
-}
+//void VideoPlayer::setClickable(Drawable *draw){
+////    isClickable = true;
+//    drawer = draw;
+//}
 
 cv::Point VideoPlayer::qtPt_To_cvPt(QPoint in){
     double x_cv = frame.cols;
