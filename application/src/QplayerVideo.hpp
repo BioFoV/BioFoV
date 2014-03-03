@@ -53,6 +53,7 @@ public slots:
     void loadVid(Player* nextVid, int playerT, QTreeWidgetItem *item);
     void unload();
     void unload(Player* toUnload);
+    bool isloaded();
     int getPlayerType();
     void setPlayMode(int mode);
     void setClickable(Drawable* draw);

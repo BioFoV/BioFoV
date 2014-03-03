@@ -43,6 +43,8 @@ void VideoPlayer::pause(){
 }
 
 void VideoPlayer::playOrPause(){
+    if (!isloaded())
+        return;
     if(!isplaying){
         isplaying = true;
         //future = QtConcurrent::run(this,&VideoPlayer::play);
@@ -54,6 +56,8 @@ void VideoPlayer::playOrPause(){
 }
 
 bool VideoPlayer::stepBack(){
+    if (!isloaded())
+        return false;
     if(currentPlayer->getPrevFrame(frame)) {
         showImage(frame);
         return true;
@@ -65,6 +69,8 @@ bool VideoPlayer::stepBack(){
 }
 
 bool VideoPlayer::stepForward(){
+    if (!isloaded())
+        return false;
     // Check if there is a next frame
     if(currentPlayer->getNextFrame(frame)) {
         showImage(frame);
@@ -110,7 +116,7 @@ void VideoPlayer::loadVid(Player* nextVid, int playerT, QTreeWidgetItem* item){
 }
 
 void VideoPlayer::unload(){
-    //delete currentVid;
+    currentPlayer = NULL;
     qDebug("unloaded video to player");
 }
 
@@ -119,6 +125,10 @@ void VideoPlayer::unload(Player* toUnload){
         pause();
         unload();
     }
+}
+
+bool VideoPlayer::isloaded(){
+    return !(currentPlayer == NULL);
 }
 
 /*******************************************************************************
