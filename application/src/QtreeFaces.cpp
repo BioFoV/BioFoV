@@ -7,7 +7,7 @@ QtreeFaces::QtreeFaces(QWidget *parent) :
             this, SLOT(on_item_pressed(QTreeWidgetItem*,int)));
 }
 
-void QtreeFaces::on_item_pressed(QTreeWidgetItem *item, int column){
+void QtreeFaces::on_item_pressed(QTreeWidgetItem *item, int /*column - unused*/){
     if(SnapshotItem* snapitem = dynamic_cast< SnapshotItem * >( item )){
         showStillImage(snapitem->getSnapshot()->getMasked());
     }

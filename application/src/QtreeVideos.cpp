@@ -134,7 +134,7 @@ void QtreeVideos::on_delete_event()
     }
 }
 
-void QtreeVideos::on_item_doubleclicked(QTreeWidgetItem *item, int column){
+void QtreeVideos::on_item_doubleclicked(QTreeWidgetItem *item, int /*column - unused*/){
     showMessage(tr("Loaded ") + item->text(0));
     if (VideoItem* vItem = dynamic_cast< VideoItem * >( item )){
         setPlaybackEnabled(false);

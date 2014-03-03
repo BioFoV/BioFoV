@@ -77,7 +77,7 @@ public slots:
     /// \brief Double click an item on the video/event list.
     /// \param item Pointer to the item which was double clicked.
     /// \param column Index of the clicked column (not used).
-    void on_item_doubleclicked(QTreeWidgetItem* item, int column);
+    void on_item_doubleclicked(QTreeWidgetItem* item, int);
 
     /// \brief Changed selection in the video/event list.
     /// Updates the statistics for the selected events.

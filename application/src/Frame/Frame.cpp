@@ -55,7 +55,7 @@ bool Frame::check_cap(){
     return true;
 }
 
-bool Frame::setFramePos(double frameNum){
+bool Frame::setFramePos(double /*frameNum - unused*/){
     return true;
 }
 

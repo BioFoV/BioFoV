@@ -23,7 +23,7 @@ signals:
     void showMessage(QString message);
 public slots:
     void on_item_delete();
-    void on_item_pressed(QTreeWidgetItem *item, int column);
+    void on_item_pressed(QTreeWidgetItem *item, int);
     void newFaceGroup();
 };
 
