@@ -50,7 +50,6 @@
 #endif
 
 #include "Drawables/rectanglemask.hpp"
-#include "Drawables/drawheight.hpp"
 #include "Feature/faces.hpp"
 
 namespace Ui {
@@ -157,9 +156,6 @@ private slots:
     /// \brief Exclude action.
     /// Start excluding a rectangular section of the video.
     void on_actionExclude_rectangle_triggered();
-
-    /// \brief Calculates the height of something.
-    void on_actionHeight_triggered();
 
     void on_actionDetect_Faces_triggered();
 

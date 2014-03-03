@@ -87,6 +87,8 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->videoList, SLOT(on_delete_event()));
     connect(ui->actionDiscard_Calibration, SIGNAL(triggered()),
             ui->videoList, SLOT(on_discard_calibration()));
+    connect(ui->actionHeight, SIGNAL(triggered()),
+            ui->videoList, SLOT(on_height()));
 
     connect(ui->videoList, SIGNAL(removePlayer(Player*)),
             ui->player, SLOT(unload(Player*)));
@@ -96,6 +98,8 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->player, SLOT(setPlayMode(int)));
     connect(ui->videoList, SIGNAL(playOrPause()),
             ui->player, SLOT(playOrPause()));
+    connect(ui->videoList, SIGNAL(pause()),
+            ui->player, SLOT(pause()));
 
     connect(ui->videoList, SIGNAL(setSelectedText(QString)),
             ui->labelSelected, SLOT(setText(QString)));
@@ -113,6 +117,8 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->player, SLOT(getCurrentItem()));
     connect(ui->videoList, SIGNAL(getFrameRef()),
             ui->player, SLOT(getCurrentFrameRef()));
+    connect(ui->videoList, SIGNAL(setClickable(Drawable*)),
+            ui->player, SLOT(setClickable(Drawable*)));
 }
 
 MainWindow::~MainWindow()
@@ -246,13 +252,6 @@ void MainWindow::on_actionExclude_rectangle_triggered()
     ui->player->pause();
     showMessage(tr("Select a rectangle to zoneout in the player"));
     ui->player->setClickable((Drawable*)new RectangleMask());
-}
-
-void MainWindow::on_actionHeight_triggered()
-{
-    ui->player->pause();
-    showMessage(tr("Select 4 points in the player"));
-    ui->player->setClickable((Drawable*)new DrawHeight());
 }
 
 void MainWindow::on_actionDetect_Faces_triggered()

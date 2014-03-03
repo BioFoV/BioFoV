@@ -28,6 +28,7 @@
 #include "QdialogSettings.hpp"
 #endif
 
+#include "Drawables/drawheight.hpp"
 #include "QdialogCalibration.hpp"
 #include "QplayerVideo.hpp"
 
@@ -49,7 +50,9 @@ signals:
     int getPlayMode();
     void setPlaybackMode(int);
     void playOrPause();
-    void pause(); // FIXME connect
+    void pause();
+
+    void setClickable(Drawable*);
 
     void setSelectedText(QString);
     void setTotalFramesText(QString);
@@ -104,6 +107,9 @@ public slots:
     /// \brief Crop action.
     /// Start cropping the video.
     void on_crop();
+
+    /// \brief Calculates the height of something.
+    void on_height();
 
 private:
     uint nEvent;

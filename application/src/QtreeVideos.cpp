@@ -310,10 +310,21 @@ void QtreeVideos::on_merge()
 }
 
 void QtreeVideos::on_crop() {
+    pause();
     QTreeWidgetItem* qitem = getCurrentItem();
     FrameItem* fitem = new FrameItem((Frame*)getFrameRef());
     qitem->addChild(fitem);
-//    loadVid(fitem->getFrameRef(), PLAYER_FRAME, fitem);
-    pause();
+    loadVid(fitem->getFrameRef(), PLAYER_FRAME, fitem);
     showMessage(tr("Select the area to crop in the player"));
+}
+
+void QtreeVideos::on_height()
+{
+    pause();
+    QTreeWidgetItem* qitem = getCurrentItem();
+    FrameItem* fitem = new FrameItem((Frame*)getFrameRef());
+    qitem->addChild(fitem);
+    loadVid(fitem->getFrameRef(), PLAYER_FRAME, fitem);
+    showMessage(tr("Select 4 points in the player"));
+    setClickable((Drawable*)new DrawHeight());
 }
