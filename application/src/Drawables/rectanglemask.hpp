@@ -31,7 +31,7 @@ public:
     /// \brief Stores the 2nd Point.
     /// \param pi2 Point where the left mouse button was released.
     /// \return Always returns false since there is not needed any more Points.
-    bool release(cv::Point pi2);
+    void release(cv::Point pi2);
 
     // Draw
     /// \brief Draws the rectangle in the image.
@@ -39,6 +39,8 @@ public:
     void draw(cv::Mat& frame);
 
     void move(cv::Point point);
+
+    bool isDone();
 };
 
 #endif // RECTANGLEMASK_HPP

@@ -20,7 +20,7 @@ public:
     /// \brief Function to be called on cursor release.
     /// \param pi2 Point where cursor was released.
     /// \return Whether there is the need for more points or not.
-    virtual bool release(cv::Point pi2) = 0;
+    virtual void release(cv::Point pi2) = 0;
 
     /// \brief Draw something.
     /// \param pi2 Point where mouse is at the moment of draw.
@@ -28,6 +28,8 @@ public:
     virtual void draw(cv::Mat& frame) = 0;
 
     virtual void move(cv::Point point) = 0;
+
+    virtual bool isDone() = 0;
 };
 
 #endif // DRAWABLE_HPP

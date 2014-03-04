@@ -26,15 +26,16 @@ private:
     ///Store the four reference points plus the height point.
     cv::Point2f points[5];
     /// \brief Number of points inserted so far.
-    unsigned int npoints;
+    int npoints;
 public:
     /// \brief Simple constructor.
     DrawHeight();
     ~DrawHeight();
     void press(cv::Point pi1);
-    bool release(cv::Point pi2);
+    void release(cv::Point pi2);
     void draw(cv::Mat& frame);
     void move(cv::Point);
+    bool isDone();
 
     void undistort(cv::Mat& frame, int rad);
 };

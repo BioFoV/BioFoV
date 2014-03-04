@@ -12,16 +12,11 @@ void DrawHeight::press(cv::Point pi1){
 
 }
 
-bool DrawHeight::release(cv::Point pi2){
+void DrawHeight::release(cv::Point pi2){
+    if (isDone())
+        return;
     npoints ++;
     points[npoints] = pi2;
-
-    if (npoints < 4){
-        return true;
-    }
-    else {
-        return false;
-    }
 }
 
 void DrawHeight::draw(cv::Mat& frame){
@@ -32,7 +27,6 @@ void DrawHeight::draw(cv::Mat& frame){
     switch (npoints) {
     case 4: // height point
         undistort(frame, rad);
-
     case 3: // last rectangle point
         cv::line(frame, points[3], points[1], cv::Scalar( 0, 255, 0), thick, CV_AA);
         cv::circle(frame, points[3], rad, cv::Scalar( 0, 0, 255), -1, CV_AA, 0);
@@ -98,4 +92,8 @@ void DrawHeight::undistort(cv::Mat& frame,  int rad){
 
     cv::putText(frame, s.str(),cv::Point(0,50), cv::FONT_HERSHEY_SIMPLEX,
         1, cv::Scalar(255,0,0));
+}
+
+bool DrawHeight::isDone(){
+    return (npoints >= 4);
 }
