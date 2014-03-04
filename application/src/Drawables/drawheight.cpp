@@ -104,12 +104,6 @@ void DrawHeight::undistort(cv::Mat& frame){
                         persptransf, // transformation
                         cv::Size(frame.cols, frame.rows)); // size of the output
                                                            //image
-
-    std::stringstream s;
-    s << "(" << result << ")";
-
-    cv::putText(frame, s.str(),cv::Point(0,50), cv::FONT_HERSHEY_SIMPLEX,
-        1, cv::Scalar(255,0,0));
 }
 
 bool DrawHeight::isDone(){
