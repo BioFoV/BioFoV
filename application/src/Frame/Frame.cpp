@@ -113,6 +113,8 @@ void Frame::mousePressEvent(cv::Point point){
 void Frame::mouseReleaseEvent(cv::Point point){
     if (activeDrawable != NULL)
         activeDrawable->release(point);
+    if (activeDrawable->isDone())
+        activeDrawable = NULL;
 }
 
 void Frame::mouseMoveEvent(cv::Point point){
