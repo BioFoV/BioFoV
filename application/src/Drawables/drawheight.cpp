@@ -26,7 +26,7 @@ void DrawHeight::draw(cv::Mat& frame){
 
     switch (npoints) {
     case 4: // height point
-        undistort(frame, rad);
+        cv::circle(frame, points[4], rad, cv::Scalar( 0, 255, 255), -1, CV_AA, 0);
     case 3: // last rectangle point
         cv::line(frame, points[3], points[1], cv::Scalar( 0, 255, 0), thick, CV_AA);
         cv::circle(frame, points[3], rad, cv::Scalar( 0, 0, 255), -1, CV_AA, 0);
@@ -42,14 +42,17 @@ void DrawHeight::draw(cv::Mat& frame){
     default:
         break;
     }
+
+    if (isDone()){
+        undistort(frame);
+    }
 }
 
 void DrawHeight::move(cv::Point /*point - unused*/){
 
 }
 
-void DrawHeight::undistort(cv::Mat& frame,  int rad){
-    cv::circle(frame, points[4], rad, cv::Scalar( 0, 255, 255), -1, CV_AA, 0);
+void DrawHeight::undistort(cv::Mat& frame){
     // average the position of the points to get a good undistortion without the
     //image getting out of the frame.
     double c1 = (points[0].x + points[2].x)/2;

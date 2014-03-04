@@ -37,7 +37,7 @@ public:
     void move(cv::Point);
     bool isDone();
 
-    void undistort(cv::Mat& frame, int rad);
+    void undistort(cv::Mat& frame);
 };
 
 #endif // DRAWHEIGHT_HPP
