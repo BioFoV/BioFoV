@@ -56,7 +56,6 @@ public slots:
     bool isloaded();
     int getPlayerType();
     void setPlayMode(int mode);
-//    void setClickable(Drawable* draw);
 
     /// \brief Print the current frame with any of the system configured
     ///printers.
@@ -90,7 +89,6 @@ private slots:
     void on_posSlider_sliderPressed();
     void on_posSlider_sliderReleased();
     void on_posSlider_sliderMoved(int position);
-//    void on_posSlider_valueChanged(int value);
     void on_speedSlider_sliderMoved(int position);
 
     void setControlsEnabled(bool status);

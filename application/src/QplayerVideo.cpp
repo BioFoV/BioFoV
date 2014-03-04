@@ -185,13 +185,6 @@ void VideoPlayer::on_posSlider_sliderMoved(int position)
 {
     goTo(position);
 }
-/* Function slows down video playback
- *
-void VideoPlayer::on_posSlider_valueChanged(int value)
-{
-    currentVid->setFramePos(value);
-}
-*/
 
 void VideoPlayer::on_speedSlider_sliderMoved(int position)
 {
@@ -214,10 +207,6 @@ void VideoPlayer::setPlayMode(int mode){
 /*******************************************************************************
  * Mouse tracking
  ******************************************************************************/
-//void VideoPlayer::setClickable(Drawable *draw){
-////    isClickable = true;
-//    drawer = draw;
-//}
 
 cv::Point VideoPlayer::qtPt_To_cvPt(QPoint in){
     double x_cv = frame.cols;
@@ -243,37 +232,12 @@ void VideoPlayer::mouseReleaseEvent(QMouseEvent *event){
     getCurrentPlayer()->mouseReleaseEvent(qtPt_To_cvPt(event->pos()));
     getCurrentPlayer()->getFrame(frame);
     showImage(frame);
-
-//    cv::Mat _tmp2 = frame.clone();
-//    drawer->draw(qtPt_To_cvPt(event->pos()),_tmp2);
-//    showImage(_tmp2);
-
-//    // check if no more user input is needed and it can proceed to the
-//    //calculation.
-//    if (!isClickable) {
-//        double result = drawer->apply(_tmp2);
-
-//        std::stringstream s;
-//        s << "(" << result << ")";
-
-//        cv::putText(_tmp2, s.str(),cv::Point(0,50), cv::FONT_HERSHEY_SIMPLEX,
-//                    1, cv::Scalar(255,0,0));
-//        showImage(_tmp2);
-//        delete drawer;
-//    }
 }
 
 void VideoPlayer::mouseMoveEvent(QMouseEvent *event){
     getCurrentPlayer()->mouseMoveEvent(qtPt_To_cvPt(event->pos()));
     getCurrentPlayer()->getFrame(frame);
     showImage(frame);
-//    if(isClickable){
-//        cv::Mat _tmp2 = frame.clone();
-
-//        drawer->draw(qtPt_To_cvPt(event->pos()),_tmp2);
-
-//        showImage(_tmp2);
-//    }
 }
 
 void VideoPlayer::print(){
