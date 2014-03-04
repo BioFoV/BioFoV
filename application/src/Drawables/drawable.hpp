@@ -25,12 +25,7 @@ public:
     /// \brief Draw something.
     /// \param pi2 Point where mouse is at the moment of draw.
     /// \param frame Reference to the image where to draw
-    virtual void draw(cv::Point pi2, cv::Mat& frame) = 0;
-
-    /// \brief Finishes up the drawer.
-    /// \param frame Reference to the image where to apply.
-    /// \return Result (value of some sort, height for eg).
-    virtual double apply(cv::Mat &frame) = 0;
+    virtual void draw(cv::Mat& frame) = 0;
 
     virtual void move(cv::Point point) = 0;
 };

@@ -24,14 +24,15 @@ bool DrawHeight::release(cv::Point pi2){
     }
 }
 
-void DrawHeight::draw(cv::Point pi2, cv::Mat& frame){
+void DrawHeight::draw(cv::Mat& frame){
     int largest = int(frame.rows<frame.cols?frame.rows:frame.cols);
     int rad = CIRCLE_RATIO * largest;
     int thick = LINE_RATIO * largest;
 
     switch (npoints) {
     case 4: // height point
-        cv::circle(frame, points[4], rad, cv::Scalar( 0, 255, 255), -1, CV_AA, 0);
+        undistort(frame, rad);
+
     case 3: // last rectangle point
         cv::line(frame, points[3], points[1], cv::Scalar( 0, 255, 0), thick, CV_AA);
         cv::circle(frame, points[3], rad, cv::Scalar( 0, 0, 255), -1, CV_AA, 0);
@@ -49,11 +50,12 @@ void DrawHeight::draw(cv::Point pi2, cv::Mat& frame){
     }
 }
 
-///
-/// \brief applies the transformation with the data previously inputed.
-/// \param frame on which to apply the transformation.
-///
-double DrawHeight::apply(cv::Mat& frame){
+void DrawHeight::move(cv::Point /*point - unused*/){
+
+}
+
+void DrawHeight::undistort(cv::Mat& frame,  int rad){
+    cv::circle(frame, points[4], rad, cv::Scalar( 0, 255, 255), -1, CV_AA, 0);
     // average the position of the points to get a good undistortion without the
     //image getting out of the frame.
     double c1 = (points[0].x + points[2].x)/2;
@@ -68,15 +70,12 @@ double DrawHeight::apply(cv::Mat& frame){
 
     cv::Mat persptransf = cv::getPerspectiveTransform(points,
                                                       ref);
-
     cv::Mat ftmp = frame.clone();
     cv::warpPerspective(ftmp, // input image
                         frame, // output image
                         persptransf, // transformation
                         cv::Size(frame.cols, frame.rows)); // size of the output
                                                            //image
-
-
     std::vector<cv::Point2f> a;
     std::vector<cv::Point2f> b;
     for (int i=0; i<=4; i++){
@@ -91,10 +90,12 @@ double DrawHeight::apply(cv::Mat& frame){
     r1 = (b.at(0).y + b.at(1).y)/2;
     r2 = (b.at(2).y + b.at(3).y)/2;
 
-    return std::abs(b.at(4).y-r2)/
+    double result = std::abs(b.at(4).y-r2)/
             std::abs(double(r2)-double(r1));
-}
 
-void DrawHeight::move(cv::Point point){
+    std::stringstream s;
+    s << "(" << result << ")";
 
+    cv::putText(frame, s.str(),cv::Point(0,50), cv::FONT_HERSHEY_SIMPLEX,
+        1, cv::Scalar(255,0,0));
 }

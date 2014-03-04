@@ -70,7 +70,7 @@ bool Frame::getFrame(cv::Mat &frame) {
     for (std::deque<Drawable*>::iterator drawIter = drawers.begin();
             drawIter != drawers.end();
             drawIter ++) {
-        (*drawIter)->apply(frame);
+        (*drawIter)->draw(frame);
     }
     return true;
 }

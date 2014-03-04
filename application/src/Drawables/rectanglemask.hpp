@@ -35,12 +35,8 @@ public:
 
     // Draw
     /// \brief Draws the rectangle in the image.
-    /// \param pi2 Point where the cursor is at the moment.
     /// \param frame Image on which to draw the rectangle.
-    void draw(cv::Point pi2, cv::Mat& frame);
-
-    // Apply
-    double apply(cv::Mat &frame);
+    void draw(cv::Mat& frame);
 
     void move(cv::Point point);
 };

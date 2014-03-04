@@ -19,13 +19,8 @@ bool RectangleMask::release(cv::Point pi2){
 }
 
 // Draw
-void RectangleMask::draw(cv::Point pi2, cv::Mat& frame){
-    cv::rectangle(frame, p[0], pi2, cv::Scalar( 0, 0, 255));
-}
-
-// Apply
-double RectangleMask::apply(cv::Mat &frame){
-
+void RectangleMask::draw(cv::Mat& frame){
+//    cv::rectangle(frame, p[0], pi2, cv::Scalar( 0, 0, 255));
 }
 
 void RectangleMask::move(cv::Point point){
