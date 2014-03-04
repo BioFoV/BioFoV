@@ -103,6 +103,8 @@ public slots:
 
     void on_import_camera();
 
+    FrameItem* getFrame();
+
     /// \brief Crop action.
     /// Start cropping the video.
     void on_crop();
