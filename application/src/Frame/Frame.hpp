@@ -98,5 +98,7 @@ public:
     void mouseMoveEvent(cv::Point point);
 
     void addDrawable(Drawable* newDrawable);
+
+    TStrDoubleMap getValues();
 };
 #endif

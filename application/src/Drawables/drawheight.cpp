@@ -2,6 +2,7 @@
 
 DrawHeight::DrawHeight() {
     npoints = -1;
+    calculated = false;
 }
 
 DrawHeight::~DrawHeight() {
@@ -17,6 +18,11 @@ void DrawHeight::release(cv::Point pi2){
         return;
     npoints ++;
     points[npoints] = pi2;
+
+    if (isDone() && !isCalculated()){
+        calcUndistort();
+        values.insert(TStrDoublePair("Height",result));
+    }
 }
 
 void DrawHeight::draw(cv::Mat& frame){
@@ -52,7 +58,11 @@ void DrawHeight::move(cv::Point /*point - unused*/){
 
 }
 
-void DrawHeight::undistort(cv::Mat& frame){
+bool DrawHeight::isCalculated(){
+    return calculated;
+}
+
+void DrawHeight::calcUndistort(){
     // average the position of the points to get a good undistortion without the
     //image getting out of the frame.
     double c1 = (points[0].x + points[2].x)/2;
@@ -65,14 +75,8 @@ void DrawHeight::undistort(cv::Mat& frame){
     ref[2] = cv::Point2f(c1, r2);
     ref[3] = cv::Point2f(c2, r2);
 
-    cv::Mat persptransf = cv::getPerspectiveTransform(points,
-                                                      ref);
-    cv::Mat ftmp = frame.clone();
-    cv::warpPerspective(ftmp, // input image
-                        frame, // output image
-                        persptransf, // transformation
-                        cv::Size(frame.cols, frame.rows)); // size of the output
-                                                           //image
+    persptransf = cv::getPerspectiveTransform(points, ref);
+
     std::vector<cv::Point2f> a;
     std::vector<cv::Point2f> b;
     for (int i=0; i<=4; i++){
@@ -87,8 +91,19 @@ void DrawHeight::undistort(cv::Mat& frame){
     r1 = (b.at(0).y + b.at(1).y)/2;
     r2 = (b.at(2).y + b.at(3).y)/2;
 
-    double result = std::abs(b.at(4).y-r2)/
-            std::abs(double(r2)-double(r1));
+    result = std::abs(b.at(4).y-r2)/
+                std::abs(double(r2)-double(r1));
+
+    calculated = true;
+}
+
+void DrawHeight::undistort(cv::Mat& frame){
+    cv::Mat ftmp = frame.clone();
+    cv::warpPerspective(ftmp, // input image
+                        frame, // output image
+                        persptransf, // transformation
+                        cv::Size(frame.cols, frame.rows)); // size of the output
+                                                           //image
 
     std::stringstream s;
     s << "(" << result << ")";

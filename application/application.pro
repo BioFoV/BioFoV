@@ -48,7 +48,8 @@ SOURCES += \
     src/Drawables/rectanglemask.cpp \
     src/exclusionmod.cpp \
     src/Drawables/drawheight.cpp \
-    src/Feature/faces.cpp
+    src/Feature/faces.cpp \
+    src/Drawables/drawable.cpp
 
 # UI related source files
 SOURCES += \

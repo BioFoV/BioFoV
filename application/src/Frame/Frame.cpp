@@ -111,10 +111,13 @@ void Frame::mousePressEvent(cv::Point point){
 }
 
 void Frame::mouseReleaseEvent(cv::Point point){
-    if (activeDrawable != NULL)
+    if (activeDrawable != NULL){
         activeDrawable->release(point);
-    if (activeDrawable->isDone())
-        activeDrawable = NULL;
+        if (activeDrawable->isDone()){
+            activeDrawable = NULL;
+        }
+    }
+
 }
 
 void Frame::mouseMoveEvent(cv::Point point){
@@ -125,4 +128,18 @@ void Frame::mouseMoveEvent(cv::Point point){
 void Frame::addDrawable(Drawable* newDrawable){
     activeDrawable = newDrawable;
     drawers.push_back(newDrawable);
+}
+
+TStrDoubleMap Frame::getValues(){
+    TStrDoubleMap ret;
+    TStrDoubleMap temp;
+    for (std::deque<Drawable*>::iterator iter = drawers.begin();
+         iter != drawers.end();
+         iter ++) {
+        if((*iter)->isDone()){
+            temp = (*iter)->getValues();
+            ret.insert(temp.begin(), temp.end());
+        }
+    }
+    return ret;
 }

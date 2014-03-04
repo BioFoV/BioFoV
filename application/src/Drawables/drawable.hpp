@@ -7,6 +7,9 @@
 #include <opencv2/opencv.hpp>
 #endif
 
+typedef std::map<std::string, uint> TStrDoubleMap;
+typedef std::pair<std::string, uint> TStrDoublePair;
+
 ///
 /// \brief The Drawable class implements a point and click modifier to allow
 ///measurements or input by the user in the Player.
@@ -30,6 +33,11 @@ public:
     virtual void move(cv::Point point) = 0;
 
     virtual bool isDone() = 0;
+
+    TStrDoubleMap getValues();
+
+protected:
+    TStrDoubleMap values;
 };
 
 #endif // DRAWABLE_HPP

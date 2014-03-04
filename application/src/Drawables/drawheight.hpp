@@ -27,6 +27,10 @@ private:
     cv::Point2f points[5];
     /// \brief Number of points inserted so far.
     int npoints;
+
+    bool calculated;
+    cv::Mat persptransf;
+    double result;
 public:
     /// \brief Simple constructor.
     DrawHeight();
@@ -37,6 +41,8 @@ public:
     void move(cv::Point);
     bool isDone();
 
+    bool isCalculated();
+    void calcUndistort();
     void undistort(cv::Mat& frame);
 };
 
