@@ -76,12 +76,12 @@ bool Frame::getFrame(cv::Mat &frame) {
 }
 
 bool Frame::getPrevFrame(cv::Mat &frame){
-    frame = getImage();
+    getFrame(frame);
     return true;
 }
 
 bool Frame::getNextFrame(cv::Mat &frame){
-    frame = getImage();
+    getFrame(frame);
     return true;
 }
 
