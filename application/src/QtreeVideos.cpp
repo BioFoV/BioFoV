@@ -316,6 +316,7 @@ FrameItem* QtreeVideos::getFrame(){
         fitem = new FrameItem((Frame*)getFrameRef());
         qitem->addChild(fitem);
         loadVid(fitem->getFrameRef(), PLAYER_FRAME, fitem);
+        qitem->setExpanded(true);
     } else {
         fitem = (FrameItem*) qitem;
     }
@@ -363,4 +364,5 @@ void QtreeVideos::updateValues(){
         newChild->setText(1,QString("%1").arg(iter->second));
         current->addChild(newChild);
     }
+    current->setExpanded(true);
 }
