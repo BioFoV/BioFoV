@@ -27,3 +27,7 @@ void RectangleMask::draw(cv::Point pi2, cv::Mat& frame){
 double RectangleMask::apply(cv::Mat &frame){
 
 }
+
+void RectangleMask::move(cv::Point point){
+
+}

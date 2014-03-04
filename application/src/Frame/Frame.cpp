@@ -116,7 +116,8 @@ void Frame::mouseReleaseEvent(cv::Point point){
 }
 
 void Frame::mouseMoveEvent(cv::Point point){
-
+    if (activeDrawable != NULL)
+        activeDrawable->move(point);
 }
 
 void Frame::addDrawable(Drawable* newDrawable){

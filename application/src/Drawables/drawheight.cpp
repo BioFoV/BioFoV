@@ -94,3 +94,7 @@ double DrawHeight::apply(cv::Mat& frame){
     return std::abs(b.at(4).y-r2)/
             std::abs(double(r2)-double(r1));
 }
+
+void DrawHeight::move(cv::Point point){
+
+}

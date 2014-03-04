@@ -311,20 +311,30 @@ void QtreeVideos::on_merge()
 
 void QtreeVideos::on_crop() {
     pause();
+    FrameItem* fitem ;
     QTreeWidgetItem* qitem = getCurrentItem();
-    FrameItem* fitem = new FrameItem((Frame*)getFrameRef());
-    qitem->addChild(fitem);
-    loadVid(fitem->getFrameRef(), PLAYER_FRAME, fitem);
+    if (dynamic_cast< FrameItem * >( qitem ) == NULL){
+        fitem = new FrameItem((Frame*)getFrameRef());
+        qitem->addChild(fitem);
+        loadVid(fitem->getFrameRef(), PLAYER_FRAME, fitem);
+    } else {
+        fitem = (FrameItem*) qitem;
+    }
     showMessage(tr("Select the area to crop in the player"));
 }
 
 void QtreeVideos::on_height()
 {
     pause();
+    FrameItem* fitem;
     QTreeWidgetItem* qitem = getCurrentItem();
-    FrameItem* fitem = new FrameItem((Frame*)getFrameRef());
-    qitem->addChild(fitem);
-    loadVid(fitem->getFrameRef(), PLAYER_FRAME, fitem);
+    if (dynamic_cast< FrameItem * >( qitem ) == NULL){
+        fitem = new FrameItem((Frame*)getFrameRef());
+        qitem->addChild(fitem);
+        loadVid(fitem->getFrameRef(), PLAYER_FRAME, fitem);
+    } else {
+        fitem = (FrameItem*) qitem;
+    }
     showMessage(tr("Select 4 points in the player"));
     fitem->getFrameRef()->addDrawable((Drawable*)new DrawHeight());
 }
@@ -332,10 +342,15 @@ void QtreeVideos::on_height()
 void QtreeVideos::on_exclude_rectangle()
 {
     pause();
+    FrameItem* fitem;
     QTreeWidgetItem* qitem = getCurrentItem();
-    FrameItem* fitem = new FrameItem((Frame*)getFrameRef());
-    qitem->addChild(fitem);
-    loadVid(fitem->getFrameRef(), PLAYER_FRAME, fitem);
+    if (dynamic_cast< FrameItem * >( qitem ) == NULL){
+        fitem = new FrameItem((Frame*)getFrameRef());
+        qitem->addChild(fitem);
+        loadVid(fitem->getFrameRef(), PLAYER_FRAME, fitem);
+    } else {
+        fitem = (FrameItem*) qitem;
+    }
     showMessage(tr("Select a rectangle to zoneout in the player"));
     fitem->getFrameRef()->addDrawable((Drawable*)new RectangleMask());
 }

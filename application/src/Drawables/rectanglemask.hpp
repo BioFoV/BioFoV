@@ -41,6 +41,8 @@ public:
 
     // Apply
     double apply(cv::Mat &frame);
+
+    void move(cv::Point point);
 };
 
 #endif // RECTANGLEMASK_HPP

@@ -35,6 +35,7 @@ public:
     bool release(cv::Point pi2);
     void draw(cv::Point pi2, cv::Mat& frame);
     double apply(cv::Mat &frame);
+    void move(cv::Point point);
 };
 
 #endif // DRAWHEIGHT_HPP

@@ -31,6 +31,8 @@ public:
     /// \param frame Reference to the image where to apply.
     /// \return Result (value of some sort, height for eg).
     virtual double apply(cv::Mat &frame) = 0;
+
+    virtual void move(cv::Point point) = 0;
 };
 
 #endif // DRAWABLE_HPP
