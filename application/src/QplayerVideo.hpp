@@ -27,6 +27,8 @@
 
 #include "Drawables/drawable.hpp"
 
+#include "player.hpp"
+
 #define PLAYER_VID 0
 #define PLAYER_EV  1
 #define PLAYER_FRAME 2

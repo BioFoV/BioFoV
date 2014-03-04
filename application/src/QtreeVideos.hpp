@@ -28,6 +28,7 @@
 #include "QdialogSettings.hpp"
 #endif
 
+#include "Drawables/drawable.hpp"
 #include "Drawables/drawheight.hpp"
 #include "Drawables/rectanglemask.hpp"
 #include "QdialogCalibration.hpp"
@@ -115,6 +116,8 @@ public slots:
     /// \brief Exclude action.
     /// Start excluding a rectangular section of the video.
     void on_exclude_rectangle();
+
+    void updateValues();
 
 private:
     uint nEvent;

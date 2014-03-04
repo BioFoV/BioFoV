@@ -31,13 +31,17 @@
 
 #define IMG_EXT ".image.png"
 
+#include <QObject>
+
 class Video;
 class Snapshot;
 
 ///
 /// \brief Class that represents Frames.
 ///
-class Frame : public Player {
+class Frame : public QObject , public Player {
+    Q_OBJECT
+
 private:
     /// \brief Video object from which this Frame was extracted.
 	Video *vid;
@@ -100,5 +104,8 @@ public:
     void addDrawable(Drawable* newDrawable);
 
     TStrDoubleMap getValues();
+
+signals:
+    void updateValues();
 };
 #endif

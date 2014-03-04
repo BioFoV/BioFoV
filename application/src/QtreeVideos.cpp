@@ -319,6 +319,8 @@ FrameItem* QtreeVideos::getFrame(){
     } else {
         fitem = (FrameItem*) qitem;
     }
+    connect(fitem->getFrameRef(), SIGNAL(updateValues()),
+            this, SLOT(updateValues()));
     return fitem;
 }
 
@@ -342,4 +344,23 @@ void QtreeVideos::on_exclude_rectangle()
     FrameItem* fitem = getFrame();
     showMessage(tr("Select a rectangle to zoneout in the player"));
     fitem->getFrameRef()->addDrawable((Drawable*)new RectangleMask());
+}
+
+void QtreeVideos::updateValues(){
+    QTreeWidgetItem* newChild;
+    std::string buffer;
+
+    QTreeWidgetItem* current = getCurrentItem();
+    current->takeChildren();
+
+    TStrDoubleMap map = ((Frame*)getFrameRef())->getValues();
+    for (TStrDoubleMap::iterator iter = map.begin();
+         iter != map.end();
+         iter ++) {
+        newChild = new QTreeWidgetItem();
+        buffer = iter->first;
+        newChild->setText(0,QString(buffer.c_str()));
+        newChild->setText(1,QString("%1").arg(iter->second));
+        current->addChild(newChild);
+    }
 }

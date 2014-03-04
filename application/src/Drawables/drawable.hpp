@@ -7,8 +7,8 @@
 #include <opencv2/opencv.hpp>
 #endif
 
-typedef std::map<std::string, uint> TStrDoubleMap;
-typedef std::pair<std::string, uint> TStrDoublePair;
+typedef std::map<std::string, double> TStrDoubleMap;
+typedef std::pair<std::string, double> TStrDoublePair;
 
 ///
 /// \brief The Drawable class implements a point and click modifier to allow
