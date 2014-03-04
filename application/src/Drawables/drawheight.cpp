@@ -8,7 +8,7 @@ DrawHeight::~DrawHeight() {
 
 }
 
-void DrawHeight::press(cv::Point pi1){
+void DrawHeight::press(cv::Point){
 
 }
 

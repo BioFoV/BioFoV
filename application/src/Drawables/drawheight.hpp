@@ -31,7 +31,7 @@ public:
     /// \brief Simple constructor.
     DrawHeight();
     ~DrawHeight();
-    void press(cv::Point pi1);
+    void press(cv::Point);
     void release(cv::Point pi2);
     void draw(cv::Mat& frame);
     void move(cv::Point);
