@@ -112,3 +112,7 @@ void DrawHeight::undistort(cv::Mat& frame){
 bool DrawHeight::isDone(){
     return (npoints >= 4);
 }
+
+std::string DrawHeight::getDescription(){
+    return std::string("Height");
+}

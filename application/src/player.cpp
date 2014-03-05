@@ -12,3 +12,7 @@ void Player::applyDrawables(cv::Mat& frame){
         (*drawIter)->draw(frame);
     }
 }
+
+std::deque<Drawable *> Player::getDrawables(){
+    return drawers;
+}

@@ -31,6 +31,7 @@ public:
     void move(cv::Point);
     bool isDone();
 
+    std::string getDescription();
 };
 
 #endif // DRAWLENGTH_HPP

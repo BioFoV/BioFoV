@@ -44,6 +44,8 @@ public:
     void move(cv::Point);
     bool isDone();
 
+    std::string getDescription();
+
     bool isCalculated();
     void calcUndistort();
     void undistort(cv::Mat& frame);

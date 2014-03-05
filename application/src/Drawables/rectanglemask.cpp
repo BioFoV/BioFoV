@@ -32,3 +32,7 @@ void RectangleMask::move(cv::Point point){
 bool RectangleMask::isDone(){
     return finished;
 }
+
+std::string RectangleMask::getDescription(){
+    return std::string("mask");
+}

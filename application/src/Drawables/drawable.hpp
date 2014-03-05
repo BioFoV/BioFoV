@@ -17,6 +17,7 @@ typedef std::deque<TStrDoublePair> TStrDoubleMap;
 class Drawable
 {
 public:
+    Drawable();
     /// \brief Function to be called on cursor press.
     /// \param pi1 Point where cursor was pressed.
     virtual void press(cv::Point pi1) = 0;
@@ -34,10 +35,16 @@ public:
 
     virtual bool isDone() = 0;
 
+    virtual std::string getDescription() = 0;
+
     TStrDoubleMap getValues();
+
+    bool isVisible();
+    void setVisible(bool value);
 
 protected:
     TStrDoubleMap values;
+    bool visible;
 };
 
 #endif // DRAWABLE_HPP

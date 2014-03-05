@@ -42,6 +42,8 @@ public:
     void move(cv::Point point);
 
     bool isDone();
+
+    std::string getDescription();
 };
 
 #endif // RECTANGLEMASK_HPP

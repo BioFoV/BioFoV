@@ -76,6 +76,7 @@ public:
 
     void addDrawable(Drawable* newDrawable);
     void applyDrawables(cv::Mat& frame);
+    std::deque<Drawable *> getDrawables();
 
     Drawable* activeDrawable;
     std::deque<Drawable *> drawers;

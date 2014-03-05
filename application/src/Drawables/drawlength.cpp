@@ -49,3 +49,7 @@ void DrawLength::move(cv::Point){
 bool DrawLength::isDone(){
     return (npoints >= 1);
 }
+
+std::string DrawLength::getDescription(){
+    return std::string("Length");
+}
