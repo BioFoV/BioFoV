@@ -105,10 +105,10 @@ bool Video::getNextFrame(cv::Mat &frame){
         return false;
     }
     if(cap.read(frame)){
-        applyDrawables(frame);
         if(isCalibrated()){
             frame = cam->undistort(frame);
         }
+        applyDrawables(frame);
         return true;
     }
     else{
