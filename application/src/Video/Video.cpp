@@ -109,6 +109,11 @@ bool Video::getNextFrame(cv::Mat &frame){
         return false;
     }
     if(cap.read(frame)){
+        for (std::deque<Drawable*>::iterator drawIter = drawers.begin();
+                drawIter != drawers.end();
+                drawIter ++) {
+            (*drawIter)->draw(frame);
+        }
         if(isCalibrated()){
             frame = cam->undistort(frame);
         }
