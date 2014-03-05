@@ -126,6 +126,7 @@ void VideoPlayer::loadVid(Player* nextVid, int playerT, QTreeWidgetItem* item){
     speed = 1;
     ui->speedSlider->setValue(speed*10);
     setControlsEnabled(true);
+    refresh();
 }
 
 void VideoPlayer::unload(){
