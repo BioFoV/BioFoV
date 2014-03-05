@@ -183,6 +183,7 @@ void QtreeVideos::flip_horizontally(){
             showMessage(tr("Flipped selected Video."));
         }
     }
+    refreshPlayer();
 }
 
 void QtreeVideos::flip_vertically(){
@@ -194,6 +195,7 @@ void QtreeVideos::flip_vertically(){
             showMessage(tr("Flipped selected Video."));
         }
     }
+    refreshPlayer();
 }
 
 void QtreeVideos::on_calibrate()
