@@ -21,7 +21,7 @@ void DrawLength::release(cv::Point pi2){
 
     if (isDone()){
         result = cv::norm(points[1]-points[0]);
-        values.insert(TStrDoublePair("Length",result));
+        values.push_back(TStrDoublePair("Length",result));
     }
 }
 

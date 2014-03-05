@@ -21,9 +21,9 @@ void DrawHeight::release(cv::Point pi2){
 
     if (isDone() && !isCalculated()){
         calcUndistort();
-        values.insert(TStrDoublePair("Referential",referential));
-        values.insert(TStrDoublePair("Height",height));
-        values.insert(TStrDoublePair("Ratio",ratio));
+        values.push_back(TStrDoublePair("Referential",referential));
+        values.push_back(TStrDoublePair("Height",height));
+        values.push_back(TStrDoublePair("Ratio",ratio));
     }
 }
 

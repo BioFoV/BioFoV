@@ -129,7 +129,11 @@ TStrDoubleMap Frame::getValues(){
          iter ++) {
         if((*iter)->isDone()){
             temp = (*iter)->getValues();
-            ret.insert(temp.begin(), temp.end());
+            for (TStrDoubleMap::iterator iter2 = temp.begin();
+                 iter2 != temp.end();
+                 iter2 ++){
+                ret.push_back(*iter2);
+            }
         }
     }
     return ret;
