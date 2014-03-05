@@ -114,7 +114,6 @@ void Frame::mouseReleaseEvent(cv::Point point){
             updateValues();
         }
     }
-
 }
 
 void Frame::mouseMoveEvent(cv::Point point){

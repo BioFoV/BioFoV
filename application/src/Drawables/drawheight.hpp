@@ -30,7 +30,10 @@ private:
 
     bool calculated;
     cv::Mat persptransf;
-    double result;
+
+    double referential;
+    double height;
+    double ratio;
 public:
     /// \brief Simple constructor.
     DrawHeight();

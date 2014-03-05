@@ -85,8 +85,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>98</width>
-             <height>86</height>
+             <width>769</width>
+             <height>257</height>
             </rect>
            </property>
            <attribute name="label">
@@ -135,8 +135,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>98</width>
-             <height>86</height>
+             <width>769</width>
+             <height>257</height>
             </rect>
            </property>
            <attribute name="label">
@@ -382,6 +382,7 @@
       <string>Measures</string>
      </property>
      <addaction name="actionHeight"/>
+     <addaction name="actionLength"/>
     </widget>
     <addaction name="actionNewIndividual"/>
     <addaction name="actionDeleteIndividual"/>
@@ -647,6 +648,11 @@
   <action name="actionDiscard_Calibration">
    <property name="text">
     <string>Discard Calibration</string>
+   </property>
+  </action>
+  <action name="actionLength">
+   <property name="text">
+    <string>Length</string>
    </property>
   </action>
  </widget>

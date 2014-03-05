@@ -21,7 +21,9 @@ void DrawHeight::release(cv::Point pi2){
 
     if (isDone() && !isCalculated()){
         calcUndistort();
-        values.insert(TStrDoublePair("Height",result));
+        values.insert(TStrDoublePair("Referential",referential));
+        values.insert(TStrDoublePair("Height",height));
+        values.insert(TStrDoublePair("Ratio",ratio));
     }
 }
 
@@ -91,8 +93,9 @@ void DrawHeight::calcUndistort(){
     r1 = (b.at(0).y + b.at(1).y)/2;
     r2 = (b.at(2).y + b.at(3).y)/2;
 
-    result = std::abs(b.at(4).y-r2)/
-                std::abs(double(r2)-double(r1));
+    referential = std::abs(double(r2)-double(r1));
+    height = std::abs(b.at(4).y-r2);
+    ratio = height/referential;
 
     calculated = true;
 }

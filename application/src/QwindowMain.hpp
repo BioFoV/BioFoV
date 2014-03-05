@@ -153,8 +153,6 @@ private slots:
 
     void on_actionDetect_Faces_triggered();
 
-//    void on_faceList_itemPressed(QTreeWidgetItem *item, int column);
-
 private:
     /// \brief UI created by Qt.
     ///Points to a class that contains everything that was defined in the

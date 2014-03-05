@@ -50,7 +50,8 @@ SOURCES += \
     src/Drawables/drawheight.cpp \
     src/Feature/faces.cpp \
     src/Drawables/drawable.cpp \
-    src/player.cpp
+    src/player.cpp \
+    src/Drawables/drawlength.cpp
 
 # UI related source files
 SOURCES += \
@@ -83,7 +84,8 @@ HEADERS += \
     src/modifier.hpp \
     src/exclusionmod.hpp \
     src/Drawables/drawheight.hpp \
-    src/Feature/faces.hpp
+    src/Feature/faces.hpp \
+    src/Drawables/drawlength.hpp
 
 # UI related headers
 HEADERS += \

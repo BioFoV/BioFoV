@@ -339,6 +339,13 @@ void QtreeVideos::on_height()
     fitem->getFrameRef()->addDrawable((Drawable*)new DrawHeight());
 }
 
+void QtreeVideos::on_length() {
+    pause();
+    FrameItem* fitem = getFrame();
+    showMessage(tr("Select 2 points in the player"));
+    fitem->getFrameRef()->addDrawable((Drawable*)new DrawLength());
+}
+
 void QtreeVideos::on_exclude_rectangle()
 {
     pause();
