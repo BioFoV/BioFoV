@@ -51,7 +51,8 @@ SOURCES += \
     src/Feature/faces.cpp \
     src/Drawables/drawable.cpp \
     src/player.cpp \
-    src/Drawables/drawlength.cpp
+    src/Drawables/drawlength.cpp \
+    src/QitemDrawable.cpp
 
 # UI related source files
 SOURCES += \
@@ -85,7 +86,8 @@ HEADERS += \
     src/exclusionmod.hpp \
     src/Drawables/drawheight.hpp \
     src/Feature/faces.hpp \
-    src/Drawables/drawlength.hpp
+    src/Drawables/drawlength.hpp \
+    src/QitemDrawable.hpp
 
 # UI related headers
 HEADERS += \

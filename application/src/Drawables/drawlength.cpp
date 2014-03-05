@@ -30,6 +30,9 @@ void DrawLength::draw(cv::Mat& frame){
     int rad = CIRCLE_RATIO * largest;
     int thick = LINE_RATIO * largest;
 
+    if(!isVisible())
+        return;
+
     switch (npoints) {
     case 1: // 2nd point
         cv::circle(frame, points[1], rad, cv::Scalar( 0, 0, 255), -1, CV_AA, 0);

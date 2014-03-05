@@ -9,6 +9,8 @@ QtreeVideos::QtreeVideos(QWidget *parent) :
             this, SLOT(on_item_doubleclicked(QTreeWidgetItem*,int)));
     connect(this, SIGNAL(itemSelectionChanged()),
             this, SLOT(on_item_selection_changed()));
+    connect(this, SIGNAL(itemChanged(QTreeWidgetItem*,int)),
+            this, SLOT(itemChanged(QTreeWidgetItem*,int)));
 }
 
 void QtreeVideos::on_add_video_file(){
@@ -360,7 +362,7 @@ void QtreeVideos::on_exclude_rectangle()
 }
 
 void QtreeVideos::updateValues(){
-    QTreeWidgetItem* newChild;
+    QitemDrawable* newChild;
     QTreeWidgetItem* newSubChild;
     std::string buffer;
     Drawable* drawBuff;
@@ -375,8 +377,8 @@ void QtreeVideos::updateValues(){
     for (std::deque<Drawable*>::iterator iter = map.begin();
          iter != map.end();
          iter ++) {
-        newChild = new QTreeWidgetItem();
         drawBuff = (*iter);
+        newChild = new QitemDrawable(drawBuff);
         newChild->setText(0, QString(drawBuff->getDescription().c_str()));
         newChild->setFlags(newChild->flags() | Qt::ItemIsUserCheckable);
         if(drawBuff->isVisible()){
@@ -384,7 +386,7 @@ void QtreeVideos::updateValues(){
         } else {
             checkedState = Qt::Unchecked;
         }
-        newChild->setCheckState(0,checkedState);
+        newChild->setCheckState(1,checkedState);
         valuesBuff = drawBuff->getValues();
         for (TStrDoubleMap::iterator iterVal= valuesBuff.begin();
              iterVal != valuesBuff.end();
@@ -399,4 +401,14 @@ void QtreeVideos::updateValues(){
         newChild->setExpanded(true);
     }
     current->setExpanded(true);
+}
+
+void QtreeVideos::itemChanged(QTreeWidgetItem *item, int){
+    if(QitemDrawable* drawIt = dynamic_cast< QitemDrawable * >(item)){
+        if (drawIt->checkState(1) == Qt::Checked)
+            drawIt->getDrawable()->setVisible(true);
+        else
+            drawIt->getDrawable()->setVisible(false);
+        refreshPlayer();
+    }
 }

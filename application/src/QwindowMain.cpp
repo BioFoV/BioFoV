@@ -105,6 +105,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->videoList, SIGNAL(pause()),
             ui->player, SLOT(pause()));
 
+    connect(ui->videoList, SIGNAL(refreshPlayer()),
+            ui->player, SLOT(refresh()));
+
     connect(ui->videoList, SIGNAL(setSelectedText(QString)),
             ui->labelSelected, SLOT(setText(QString)));
     connect(ui->videoList, SIGNAL(setTotalFramesText(QString)),

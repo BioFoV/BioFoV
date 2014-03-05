@@ -22,6 +22,9 @@ void RectangleMask::release(cv::Point pi2){
 
 // Draw
 void RectangleMask::draw(cv::Mat& frame){
+    if(!isVisible())
+        return;
+
     cv::rectangle(frame, p[0], p[1], cv::Scalar( 0, 0, 255));
 }
 

@@ -32,6 +32,9 @@ void DrawHeight::draw(cv::Mat& frame){
     int rad = CIRCLE_RATIO * largest;
     int thick = LINE_RATIO * largest;
 
+    if(!isVisible())
+        return;
+
     switch (npoints) {
     case 4: // height point
         cv::circle(frame, points[4], rad, cv::Scalar( 0, 255, 255), -1, CV_AA, 0);

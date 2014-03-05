@@ -18,6 +18,8 @@
 #include "QitemFrame.hpp"
 #endif
 
+#include "QitemDrawable.hpp"
+
 #ifndef INC_SPLITDIALOG
 #define INC_SPLITDIALOG
 #include "QdialogSplit.hpp"
@@ -54,6 +56,7 @@ signals:
     void setPlaybackMode(int);
     void playOrPause();
     void pause();
+    void refreshPlayer();
 
     void setSelectedText(QString);
     void setTotalFramesText(QString);
@@ -121,6 +124,8 @@ public slots:
     void on_exclude_rectangle();
 
     void updateValues();
+
+    void itemChanged(QTreeWidgetItem *item, int);
 
 private:
     uint nEvent;

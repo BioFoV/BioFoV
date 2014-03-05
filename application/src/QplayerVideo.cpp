@@ -55,6 +55,19 @@ void VideoPlayer::playOrPause(){
     }
 }
 
+bool VideoPlayer::refresh(){
+    if (!isloaded())
+        return false;
+    if(currentPlayer->getFrame(frame)) {
+        showImage(frame);
+        return true;
+    } else {
+        qDebug("could not get frame");
+        pause();
+        return false;
+    }
+}
+
 bool VideoPlayer::stepBack(){
     if (!isloaded())
         return false;

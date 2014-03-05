@@ -51,6 +51,7 @@ public slots:
     void play();
     void pause();
     void playOrPause();
+    bool refresh();
     bool stepBack();
     bool stepForward();
     void goTo(double nthFrame);
