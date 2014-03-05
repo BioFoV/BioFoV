@@ -78,11 +78,11 @@ bool Video::getFrame(cv::Mat &frame){
 		return false;
 	}
 	if(cap.read(frame)){
-        applyDrawables(frame);
         setFramePos(getFramePos()-1);
         if(isCalibrated()){
             frame = cam->undistort(frame);
         }
+        applyDrawables(frame);
         return true;
 	}
     else{
