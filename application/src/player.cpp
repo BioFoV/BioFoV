@@ -4,3 +4,11 @@ void Player::addDrawable(Drawable* newDrawable){
     activeDrawable = newDrawable;
     drawers.push_back(newDrawable);
 }
+
+void Player::applyDrawables(cv::Mat& frame){
+    for (std::deque<Drawable*>::iterator drawIter = drawers.begin();
+            drawIter != drawers.end();
+            drawIter ++) {
+        (*drawIter)->draw(frame);
+    }
+}

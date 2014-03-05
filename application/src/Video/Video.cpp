@@ -78,11 +78,7 @@ bool Video::getFrame(cv::Mat &frame){
 		return false;
 	}
 	if(cap.read(frame)){
-        for (std::deque<Drawable*>::iterator drawIter = drawers.begin();
-                drawIter != drawers.end();
-                drawIter ++) {
-            (*drawIter)->draw(frame);
-        }
+        applyDrawables(frame);
         setFramePos(getFramePos()-1);
         if(isCalibrated()){
             frame = cam->undistort(frame);
@@ -109,11 +105,7 @@ bool Video::getNextFrame(cv::Mat &frame){
         return false;
     }
     if(cap.read(frame)){
-        for (std::deque<Drawable*>::iterator drawIter = drawers.begin();
-                drawIter != drawers.end();
-                drawIter ++) {
-            (*drawIter)->draw(frame);
-        }
+        applyDrawables(frame);
         if(isCalibrated()){
             frame = cam->undistort(frame);
         }

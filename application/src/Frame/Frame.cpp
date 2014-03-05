@@ -67,11 +67,7 @@ double Frame::getFramePos(){
 
 bool Frame::getFrame(cv::Mat &frame) {
     frame = getImage();
-    for (std::deque<Drawable*>::iterator drawIter = drawers.begin();
-            drawIter != drawers.end();
-            drawIter ++) {
-        (*drawIter)->draw(frame);
-    }
+    applyDrawables(frame);
     return true;
 }
 

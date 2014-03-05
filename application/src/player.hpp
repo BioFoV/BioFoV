@@ -75,6 +75,7 @@ public:
     virtual void mouseMoveEvent(cv::Point point) = 0;
 
     void addDrawable(Drawable* newDrawable);
+    void applyDrawables(cv::Mat& frame);
 
     Drawable* activeDrawable;
     std::deque<Drawable *> drawers;
