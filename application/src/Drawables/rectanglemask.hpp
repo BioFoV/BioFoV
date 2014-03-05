@@ -18,6 +18,7 @@ class RectangleMask : public Drawable
 private:
     /// \brief p Points that define the rectangle.
     cv::Point p[2];
+    bool finished;
 
 public:
     /// \brief Simple Constructor.

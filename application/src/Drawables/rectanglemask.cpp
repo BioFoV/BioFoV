@@ -2,6 +2,7 @@
 
 RectangleMask::RectangleMask()
 {
+    finished = false;
 }
 
 RectangleMask::~RectangleMask()
@@ -15,7 +16,8 @@ void RectangleMask::press(cv::Point pi1){
 }
 
 void RectangleMask::release(cv::Point pi2){
-
+    p[1] = pi2;
+    finished = true;
 }
 
 // Draw
@@ -28,5 +30,5 @@ void RectangleMask::move(cv::Point point){
 }
 
 bool RectangleMask::isDone(){
-    return false; //FIXME This is just a placeholder
+    return finished;
 }
