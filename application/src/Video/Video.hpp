@@ -47,6 +47,8 @@
 #include "QdialogSettings.hpp"
 #endif
 
+#include "QitemVideo.hpp"
+
 #define NOTCALIBRATED -1
 
 #include <QObject>
@@ -146,9 +148,9 @@ public:
     double getLengthTime();
     double getLengthFrames();
 
-    void mousePressEvent(cv::Point){}
-    void mouseReleaseEvent(cv::Point){}
-    void mouseMoveEvent(cv::Point){}
+    void mousePressEvent(cv::Point);
+    void mouseReleaseEvent(cv::Point);
+    void mouseMoveEvent(cv::Point);
 
     cv::Size getSize();
     bool isCalibrated();

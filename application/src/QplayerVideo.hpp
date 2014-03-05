@@ -25,6 +25,8 @@
 #include "Video/Video.hpp"
 #endif
 
+#include "QitemVideo.hpp"
+
 #include "Drawables/drawable.hpp"
 
 #include "player.hpp"

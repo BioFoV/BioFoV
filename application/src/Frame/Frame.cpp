@@ -126,11 +126,6 @@ void Frame::mouseMoveEvent(cv::Point point){
         activeDrawable->move(point);
 }
 
-void Frame::addDrawable(Drawable* newDrawable){
-    activeDrawable = newDrawable;
-    drawers.push_back(newDrawable);
-}
-
 TStrDoubleMap Frame::getValues(){
     TStrDoubleMap ret;
     TStrDoubleMap temp;

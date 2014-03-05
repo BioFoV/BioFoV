@@ -1,10 +1,7 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
-#ifndef INC_FRAME
-#define INC_FRAME
-#include "Frame/Frame.hpp"
-#endif
+#include "Drawables/drawable.hpp"
 
 // OpenCV
 #ifndef OPENCV_INC
@@ -76,6 +73,11 @@ public:
     virtual void mousePressEvent(cv::Point point) = 0;
     virtual void mouseReleaseEvent(cv::Point point) = 0;
     virtual void mouseMoveEvent(cv::Point point) = 0;
+
+    void addDrawable(Drawable* newDrawable);
+
+    Drawable* activeDrawable;
+    std::deque<Drawable *> drawers;
 };
 
 #endif // PLAYER_HPP

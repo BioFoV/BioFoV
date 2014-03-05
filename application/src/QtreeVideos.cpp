@@ -342,9 +342,14 @@ void QtreeVideos::on_height()
 void QtreeVideos::on_exclude_rectangle()
 {
     pause();
-    FrameItem* fitem = getFrame();
-    showMessage(tr("Select a rectangle to zoneout in the player"));
-    fitem->getFrameRef()->addDrawable((Drawable*)new RectangleMask());
+    QTreeWidgetItem* current = getCurrentItem();
+    if (VideoItem* videoIt = dynamic_cast< VideoItem * >(current)){
+        videoIt->getVideo()->addDrawable((Drawable*)new RectangleMask());
+        showMessage(tr("Select a rectangle to zoneout in the player"));
+    } else {
+        showMessage(tr("Exclude areas in Videos"));
+        return;
+    }
 }
 
 void QtreeVideos::updateValues(){

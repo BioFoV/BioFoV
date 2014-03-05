@@ -5,12 +5,13 @@
  ******************************************************************************/
 Video::Video(){
 	bg = NULL;
-	return;
+    activeDrawable = NULL;
 }
 
 Video::Video(cv::VideoCapture capture){
 	bg = NULL;
 	cap = capture;
+    activeDrawable = NULL;
 }
 
 Video::Video(std::string name){
@@ -21,6 +22,7 @@ Video::Video(std::string name){
     resolution.width = cap.get(CV_CAP_PROP_FRAME_WIDTH);
     resolution.height = cap.get(CV_CAP_PROP_FRAME_HEIGHT);
     cam = NULL;
+    activeDrawable = NULL;
 }
 
 /*******************************************************************************
@@ -76,6 +78,11 @@ bool Video::getFrame(cv::Mat &frame){
 		return false;
 	}
 	if(cap.read(frame)){
+        for (std::deque<Drawable*>::iterator drawIter = drawers.begin();
+                drawIter != drawers.end();
+                drawIter ++) {
+            (*drawIter)->draw(frame);
+        }
         setFramePos(getFramePos()-1);
         if(isCalibrated()){
             frame = cam->undistort(frame);
@@ -298,4 +305,24 @@ void Video::importCamera(){
     cam = new Camera(this);
 
     cam->read_file();
+}
+
+void Video::mousePressEvent(cv::Point point){
+    if (activeDrawable != NULL)
+        activeDrawable->press(point);
+}
+
+void Video::mouseReleaseEvent(cv::Point point){
+    if (activeDrawable != NULL){
+        activeDrawable->release(point);
+        if (activeDrawable->isDone()){
+            activeDrawable = NULL;
+//            updateValues();
+        }
+    }
+}
+
+void Video::mouseMoveEvent(cv::Point point){
+    if (activeDrawable != NULL)
+        activeDrawable->move(point);
 }

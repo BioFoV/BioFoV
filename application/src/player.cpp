@@ -1,5 +1,6 @@
 #include "player.hpp"
 
-Player::Player()
-{
+void Player::addDrawable(Drawable* newDrawable){
+    activeDrawable = newDrawable;
+    drawers.push_back(newDrawable);
 }

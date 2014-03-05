@@ -51,10 +51,6 @@ private:
     std::string filename;
     /// \brief Deque of Snapshot that relate to this Frame.
     std::deque<Snapshot *> snap;
-
-    std::deque<Drawable *> drawers;
-
-    Drawable* activeDrawable;
 	
 public:
 	// Constructors
@@ -100,8 +96,6 @@ public:
     void mousePressEvent(cv::Point point);
     void mouseReleaseEvent(cv::Point point);
     void mouseMoveEvent(cv::Point point);
-
-    void addDrawable(Drawable* newDrawable);
 
     TStrDoubleMap getValues();
 

@@ -49,7 +49,8 @@ SOURCES += \
     src/exclusionmod.cpp \
     src/Drawables/drawheight.cpp \
     src/Feature/faces.cpp \
-    src/Drawables/drawable.cpp
+    src/Drawables/drawable.cpp \
+    src/player.cpp
 
 # UI related source files
 SOURCES += \
