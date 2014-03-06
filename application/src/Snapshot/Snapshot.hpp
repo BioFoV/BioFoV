@@ -51,7 +51,7 @@ public:
     ///to, and the image mask.
     /// \param img Pointer to the refered Frame.
     /// \param inmask Mask that defines where something is.
-    Snapshot(Frame *img, cv::Mat inmask);
+    Snapshot(Frame *img, cv::Mat inmask, std::string path);
 
     Snapshot(Frame *img, cv::Rect inrect);
 

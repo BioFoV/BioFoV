@@ -11,11 +11,11 @@ Snapshot::Snapshot(Frame *img){
 	image = img;
 }
 
-Snapshot::Snapshot(Frame *img, cv::Mat inmask){
+Snapshot::Snapshot(Frame *img, cv::Mat inmask, std::string path){
     const void * address = static_cast<const void*>(this);
     std::stringstream ss;
     ss << address;
-    filename = ss.str() + SNAP_EXT;
+    filename = path + ss.str() + SNAP_EXT;
 
     image = img;
     cv::imwrite( filename, inmask );
