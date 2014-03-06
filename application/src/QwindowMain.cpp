@@ -336,22 +336,26 @@ void MainWindow::on_actionExport_Event_triggered()
     QTreeWidgetItem* item;
     EventItem* evItem;
 
-    if (items.length() != 1){
+    if (items.length() == 0){
         showMessage(tr("Select one event."));
+        return;
     }
-
-    item = items.at(0);
-
-    if (dynamic_cast<EventItem*>(item) == NULL){
-        showMessage(tr("Select one event."));
-    }
-
-    evItem = (EventItem*)item;
 
     if(getDirDialog.exec()) {
         fileNames = getDirDialog.selectedFiles();
         foreach (QString fileName, fileNames) {
-            evItem->getEvent()->saveAsVideo(fileName.toStdString());
+            foreach (QTreeWidgetItem* item, items){
+                if (dynamic_cast<EventItem*>(item) == NULL){
+                    showMessage(tr("Selection is not an Event"));
+                    continue;
+                }
+                evItem = (EventItem*)item;
+                showMessage(tr("Saving %1").arg(evItem->text(0)));
+                evItem->getEvent()->saveAsVideo(
+                            fileName.toStdString() + "-" +
+                            evItem->text(0).toStdString());
+            }
         }
     }
+    showMessage(tr("Done saving Event(s)"));
 }
