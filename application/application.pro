@@ -51,8 +51,7 @@ SOURCES += \
     src/Feature/faces.cpp \
     src/Drawables/drawable.cpp \
     src/player.cpp \
-    src/Drawables/drawlength.cpp \
-    src/QitemDrawable.cpp
+    src/Drawables/drawlength.cpp
 
 # UI related source files
 SOURCES += \
@@ -67,7 +66,8 @@ SOURCES += \
     src/QdialogSettings.cpp \
     src/QtreeFaces.cpp \
     src/QtreeVideos.cpp \
-    src/QitemFrame.cpp
+    src/QitemFrame.cpp \
+    src/QitemDrawable.cpp
 
 # General purpose headers
 HEADERS += \
@@ -86,8 +86,7 @@ HEADERS += \
     src/exclusionmod.hpp \
     src/Drawables/drawheight.hpp \
     src/Feature/faces.hpp \
-    src/Drawables/drawlength.hpp \
-    src/QitemDrawable.hpp
+    src/Drawables/drawlength.hpp
 
 # UI related headers
 HEADERS += \
@@ -102,7 +101,8 @@ HEADERS += \
     src/QdialogSettings.hpp \
     src/QtreeFaces.hpp \
     src/QtreeVideos.hpp \
-    src/QitemFrame.hpp
+    src/QitemFrame.hpp \
+    src/QitemDrawable.hpp
 
 # UI forms (XML files)
 FORMS    += $$files(ui/*.ui)
