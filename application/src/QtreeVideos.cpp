@@ -50,6 +50,8 @@ void QtreeVideos::on_auto_detect_events(){
     std::deque<Event*> events;
     EventItem* newEvent;
 
+    QElapsedTimer timer;
+
     unsigned int j;
 
     SplitDialog split;
@@ -74,7 +76,7 @@ void QtreeVideos::on_auto_detect_events(){
                     this, SIGNAL(startProgress(uint,uint)));
             connect(videoiter->getVideo(), SIGNAL(progressChanged(uint)),
                     this, SIGNAL(progressChanged(uint)));
-
+            timer.start();
             events = videoiter->getVideo()->autoDetectEvents(split.getThreshold(),
                                                              split.getMaxFrames(),
                                                              split.getMinFrames(),
@@ -104,6 +106,7 @@ void QtreeVideos::on_auto_detect_events(){
             continue;
         }
     }
+    showMessage(tr("Finished in %1s").arg(timer.elapsed()/1000));
 }
 
 void QtreeVideos::on_remove_from_project()
@@ -127,7 +130,7 @@ void QtreeVideos::on_delete_event()
         foreach(QTreeWidgetItem* item, selectedItems()){
             if(EventItem* evItem = dynamic_cast< EventItem * >( item )){
                 removePlayer((Player *) evItem->getEvent());
-                delete item;
+                delete evItem;
             }
             else {
                 showMessage(tr("Item selected is not an Event"));
