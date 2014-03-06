@@ -134,5 +134,7 @@ public:
 
     // Playback modifier
     void setPlaybackMode(int mode);
+
+    bool saveAsVideo(std::string filename);
 };
 #endif 

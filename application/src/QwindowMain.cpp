@@ -323,3 +323,35 @@ void MainWindow::keyPressEvent(QKeyEvent *ev){
 QdialogSettings* MainWindow::getSettings(){
     return settings;
 }
+
+void MainWindow::on_actionExport_Event_triggered()
+{
+    QFileDialog getDirDialog(this);
+    getDirDialog.setDirectory(QDir::homePath());
+    getDirDialog.setAcceptMode(QFileDialog::AcceptSave);
+
+    QStringList fileNames;
+
+    QList<QTreeWidgetItem*> items = ui->videoList->selectedItems();
+    QTreeWidgetItem* item;
+    EventItem* evItem;
+
+    if (items.length() != 1){
+        showMessage(tr("Select one event."));
+    }
+
+    item = items.at(0);
+
+    if (dynamic_cast<EventItem*>(item) == NULL){
+        showMessage(tr("Select one event."));
+    }
+
+    evItem = (EventItem*)item;
+
+    if(getDirDialog.exec()) {
+        fileNames = getDirDialog.selectedFiles();
+        foreach (QString fileName, fileNames) {
+            evItem->getEvent()->saveAsVideo(fileName.toStdString());
+        }
+    }
+}

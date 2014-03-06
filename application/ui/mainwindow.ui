@@ -372,6 +372,7 @@
     <addaction name="separator"/>
     <addaction name="menuPlayback_Mode"/>
     <addaction name="menuOperations"/>
+    <addaction name="actionExport_Event"/>
    </widget>
    <widget class="QMenu" name="menuIndividual">
     <property name="title">
@@ -653,6 +654,11 @@
   <action name="actionLength">
    <property name="text">
     <string>Length</string>
+   </property>
+  </action>
+  <action name="actionExport_Event">
+   <property name="text">
+    <string>Export Event</string>
    </property>
   </action>
  </widget>

@@ -220,3 +220,29 @@ double Event::getLengthFrames(){
 void Event::setPlaybackMode(int mode){
     playMode = mode;
 }
+
+bool Event::saveAsVideo(std::string filename){
+    int fourcc = CV_FOURCC('H','F','Y','U');
+    double fps = vid->getFPS();
+    cv::Size frameSize = vid->getSize();
+    bool isColor = true;
+
+    cv::VideoWriter vidW(filename, fourcc, fps, frameSize, isColor);
+
+    if (!vidW.isOpened()){
+        return false;
+    }
+
+    int tmpPos = getFramePos();
+    setFramePos(0);
+
+    cv::Mat buffer;
+    while (getNextFrame(buffer)){
+        vidW << buffer;
+    }
+
+    vidW.release();
+
+    setFramePos(tmpPos);
+    return true;
+}
