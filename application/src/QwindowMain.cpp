@@ -333,7 +333,6 @@ void MainWindow::on_actionExport_Event_triggered()
     QStringList fileNames;
 
     QList<QTreeWidgetItem*> items = ui->videoList->selectedItems();
-    QTreeWidgetItem* item;
     EventItem* evItem;
 
     if (items.length() == 0){
