@@ -225,7 +225,7 @@ bool Event::saveAsVideo(std::string filename){
     int fourcc = CV_FOURCC('H','F','Y','U');
     double fps = vid->getFPS();
     cv::Size frameSize = vid->getSize();
-    bool isColor = true;
+    bool isColor = !(playMode == PLAY_MASK);
 
     cv::VideoWriter vidW(filename, fourcc, fps, frameSize, isColor);
 
