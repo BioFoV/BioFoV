@@ -222,7 +222,7 @@ void Event::setPlaybackMode(int mode){
 }
 
 bool Event::saveAsVideo(std::string filename){
-    int fourcc = CV_FOURCC('H','F','Y','U');
+    int fourcc = CV_FOURCC('X','V','I','D');
     double fps = vid->getFPS();
     cv::Size frameSize = vid->getSize();
     bool isColor = !(playMode == PLAY_MASK);
