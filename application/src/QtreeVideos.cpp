@@ -30,6 +30,12 @@ void QtreeVideos::on_add_video_file(){
         } // No file name provided
         foreach (QString fileName, fileNames) {
             last = new VideoItem(fileName);
+            if(last->getVideo()->getFPS() == 0){
+                showMessage(tr("Failed to load %1").arg(fileName));
+                delete last;
+                last = NULL;
+                continue;
+            }
             connect(last->getVideo(),SIGNAL(getSettings()),
                     this, SIGNAL(getSettings()));
             addTopLevelItem(last);
@@ -106,7 +112,10 @@ void QtreeVideos::on_auto_detect_events(){
             continue;
         }
     }
-    showMessage(tr("Finished in %1s").arg(timer.elapsed()/1000));
+    if(timer.elapsed()>0){
+        showMessage(tr("Finished in %1s").arg(timer.elapsed()/1000));
+        std::cout << timer.elapsed() << std::endl;
+    }
 }
 
 void QtreeVideos::on_remove_from_project()
