@@ -173,9 +173,19 @@ void VideoPlayer::paintEvent(QPaintEvent* /*event*/) {
     // Display the image
     QPainter painter(this);
     _qimage = QImage(_tmp.data, _tmp.cols, _tmp.rows, _tmp.cols*3, QImage::Format_RGB888);
+    int x0 = 0;
+    int y0 = 0;
+
     if (!_qimage.isNull()){
         _qimage = _qimage.scaled(ui->player->size().width(),ui->player->size().height(),Qt::KeepAspectRatio);
-        painter.drawImage(QPoint(0,0), _qimage);
+
+        if(_qimage.width() < ui->player->size().width()){
+            x0 = (ui->player->width() - _qimage.width())/2;
+        }
+        if (_qimage.height() < ui->player->size().height()){
+            y0 = (ui->player->height() - _qimage.height())/2;
+        }
+        painter.drawImage(QPoint(x0,y0), _qimage);
     }
     painter.end();
 }
