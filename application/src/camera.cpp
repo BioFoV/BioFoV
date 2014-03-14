@@ -68,7 +68,7 @@ int Camera::addSeveralChessboardPoints(
     return successes;
 }
 
-std::vector<cv::Point2f> Camera::addChessboardPoints(
+bool Camera::addChessboardPoints(
     const cv::Mat image) {
 
     cv::Mat gray_image;
@@ -76,12 +76,14 @@ std::vector<cv::Point2f> Camera::addChessboardPoints(
     std::vector<cv::Point2f> imageCorners;
     std::vector<cv::Point3f> objectCorners;
 
+    cvtColor(image, gray_image, CV_BGR2GRAY);
+
     // Get the chessboard corners
     bool found = cv::findChessboardCorners(
-        image, boardSize, imageCorners);
+        gray_image, boardSize, imageCorners);
 
     if (!found){
-        return imageCorners;
+        return false;
     }
 
     // 3D Scene Points:
@@ -94,7 +96,6 @@ std::vector<cv::Point2f> Camera::addChessboardPoints(
         }
     }
 
-    cvtColor(image, gray_image, CV_BGR2GRAY);
     // Get subpixel accuracy on the corners
     cv::cornerSubPix(gray_image, imageCorners,
         cv::Size(5,5),
@@ -107,9 +108,10 @@ std::vector<cv::Point2f> Camera::addChessboardPoints(
     if (imageCorners.size() == (unsigned)boardSize.area()) {
         // Add image and scene points from one view
         addPoints(imageCorners, objectCorners);
+        return true;
+    } else {
+        return false;
     }
-
-    return imageCorners;
 }
 
 void Camera::addPoints(const std::vector<cv::Point2f> &imageCorners,
@@ -122,7 +124,7 @@ void Camera::addPoints(const std::vector<cv::Point2f> &imageCorners,
 }
 
 double Camera::calibrate(int nBoards, int frameStep, int iterations) {
-    std::vector<cv::Point2f> corners;
+    bool cornersfound;
     int successes = 0;
     int frame = 0;
 
@@ -141,10 +143,10 @@ double Camera::calibrate(int nBoards, int frameStep, int iterations) {
 
         //Skip frames if needed
         if((frame++ % frameStep) == 0){
-            corners = addChessboardPoints(image);
+            cornersfound = addChessboardPoints(image);
 
             // If we got a good board, add it to our data
-            if( corners.size() == boardTotal){
+            if( cornersfound ){
                 successes++;
             }
         }

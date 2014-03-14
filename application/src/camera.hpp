@@ -91,7 +91,7 @@ public:
     /// \brief Given an image extract corner points.
     /// \param image
     /// \return
-    std::vector<cv::Point2f> addChessboardPoints(const cv::Mat image);
+    bool addChessboardPoints(const cv::Mat image);
 
     /// \brief Add scene points and corresponding image points.
     /// \param imageCorners
