@@ -136,7 +136,7 @@ double Camera::calibrate(int nBoards, int frameStep, int iterations) {
 
     while(successes < nBoards){
         //Get next image
-        if (! vid->getFrame(image)){
+        if (! vid->getNextFrame(image)){
             nBoards = successes;
             break;
         }
