@@ -127,7 +127,6 @@ void Camera::addPoints(const std::vector<cv::Point2f> &imageCorners,
 }
 
 double Camera::calibrate(int nBoards, int frameStep, int iterations) {
-    bool cornersfound;
     int successes = 0;
     int frame = 0;
 
@@ -146,12 +145,9 @@ double Camera::calibrate(int nBoards, int frameStep, int iterations) {
 
         //Skip frames if needed
         if((frame++ % frameStep) == 0){
-            cornersfound = addChessboardPoints(image);
-
             // If we got a good board, add it to our data
-            if( cornersfound ){
+            if (addChessboardPoints(image))
                 successes++;
-            }
         }
     }
 
