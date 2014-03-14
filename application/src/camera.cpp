@@ -80,7 +80,10 @@ bool Camera::addChessboardPoints(
 
     // Get the chessboard corners
     bool found = cv::findChessboardCorners(
-        gray_image, boardSize, imageCorners);
+        gray_image, boardSize, imageCorners,
+        cv::CALIB_CB_ADAPTIVE_THRESH +
+        cv::CALIB_CB_NORMALIZE_IMAGE +
+        cv::CALIB_CB_FAST_CHECK);
 
     if (!found){
         return false;
