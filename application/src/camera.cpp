@@ -155,8 +155,7 @@ double Camera::calibrate(int nBoards, int frameStep, int iterations) {
         return -1;
     }
 
-    set_calib_flags(CV_CALIB_FIX_PRINCIPAL_POINT |
-                    CV_CALIB_FIX_K3|CV_CALIB_FIX_K4|CV_CALIB_FIX_K5);
+    set_calib_flags(CV_CALIB_FIX_K4|CV_CALIB_FIX_K5);
 
     maxIter = iterations;
 
@@ -185,7 +184,9 @@ cv::Mat Camera::undistort(const cv::Mat &image) {
 
     cv::Mat undistorted;
 
-    cv::undistort(image, undistorted, cameraMatrix, distCoeffs, cameraMatrix*posCameraMatrix);
+    cv::undistort(image, undistorted, cameraMatrix, distCoeffs,
+                  cv::getOptimalNewCameraMatrix(cameraMatrix, distCoeffs,
+                                                image.size(), 1));
 
     return undistorted;
 }
