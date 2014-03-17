@@ -151,17 +151,17 @@ void QtreeVideos::on_delete_event()
 void QtreeVideos::on_item_doubleclicked(QTreeWidgetItem *item, int /*column - unused*/){
     showMessage(tr("Loaded ") + item->text(0));
     if (VideoItem* vItem = dynamic_cast< VideoItem * >( item )){
-        setPlaybackEnabled(false);
         loadVid(vItem->getVideo(), PLAYER_VID, vItem);
+        setPlaybackEnabled(false);
     } else if (EventItem* eItem = dynamic_cast< EventItem * >( item )){
         Event* ev = eItem->getEvent();
+        loadVid(ev, PLAYER_EV, eItem);
         setPlaybackMode(getPlayMode());
         setPlaybackEnabled(true);
-        loadVid(ev, PLAYER_EV, eItem);
     } else if (FrameItem* fItem = dynamic_cast< FrameItem * >( item )) {
         Frame* fr = fItem->getFrameRef();
-        setPlaybackEnabled(false);
         loadVid(fr, PLAYER_FRAME, fItem);
+        setPlaybackEnabled(false);
     }
     playOrPause();
 }
