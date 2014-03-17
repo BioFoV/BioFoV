@@ -43,6 +43,7 @@ private:
     /// \brief The camera matrix itself.
     cv::Mat cameraMatrix;
 
+    /// \brief Matrix for simple distortions (flips).
     cv::Mat posCameraMatrix;
 
     /// \brief Distortion coeficients.
@@ -66,6 +67,7 @@ private:
     /// \brief Is calibrated.
     bool calibrated;
 
+    /// \brief Initialize the camera matrix.
     void initCamera();
 
 public:
@@ -73,6 +75,8 @@ public:
     /// \brief Simple Camera constructor.
     Camera();
 
+    /// \brief Camera constructor relative to a Video.
+    /// \param iVid Video to which this object relates to.
     Camera(Video* iVid);
 
     /// \brief Camera constructor using the board dimentions and Video
@@ -106,6 +110,8 @@ public:
     /// \return re-projection error.
     double calibrate(int nBoards, int frameStep, int iterations);
 
+    /// \brief Checks if the camera is calibrated.
+    /// \return Calibrated or not.
     bool isCalibrated();
 
     /// \brief Remove distortion in an image (after calibration).
@@ -122,6 +128,8 @@ public:
     /// \return File write succcessful or not.
     bool write_file();
 
+    /// \brief Imports a camera from a file.
+    /// \return Success value.
     bool read_file();
 
     /// \brief Flips the calibration horizontally.

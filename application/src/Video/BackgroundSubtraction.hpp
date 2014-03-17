@@ -38,7 +38,12 @@ private:
 	
 public:
 	// Constructors
+    /// \brief Simple constructor.
 	BackgroundSubtractor();
+    /// \brief Constructor.
+    /// \param hist
+    /// \param varThresh
+    /// \param bShadowDet
 	BackgroundSubtractor(int hist, int varThresh, bool bShadowDet);
 	
 	// Get foreground, background and contours functions
