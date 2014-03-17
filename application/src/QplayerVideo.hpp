@@ -91,6 +91,10 @@ private:
 private slots:
     void showImage(const cv::Mat& image);
     void paintEvent(QPaintEvent* /*event*/);
+
+    int x_origin();
+    int y_origin();
+
     void on_posSlider_sliderPressed();
     void on_posSlider_sliderReleased();
     void on_posSlider_sliderMoved(int position);

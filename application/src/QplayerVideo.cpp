@@ -179,15 +179,25 @@ void VideoPlayer::paintEvent(QPaintEvent* /*event*/) {
     if (!_qimage.isNull()){
         _qimage = _qimage.scaled(ui->player->size().width(),ui->player->size().height(),Qt::KeepAspectRatio);
 
-        if(_qimage.width() < ui->player->size().width()){
-            x0 = (ui->player->width() - _qimage.width())/2;
-        }
-        if (_qimage.height() < ui->player->size().height()){
-            y0 = (ui->player->height() - _qimage.height())/2;
-        }
+        x0 = x_origin();
+        y0 = y_origin();
         painter.drawImage(QPoint(x0,y0), _qimage);
     }
     painter.end();
+}
+
+int VideoPlayer::x_origin(){
+    if(_qimage.width() < ui->player->size().width()){
+        return (ui->player->width() - _qimage.width())/2;
+    }
+    return 0;
+}
+
+int VideoPlayer::y_origin(){
+    if (_qimage.height() < ui->player->size().height()){
+        return (ui->player->height() - _qimage.height())/2;
+    }
+    return 0;
 }
 
 /*******************************************************************************
@@ -247,19 +257,22 @@ cv::Point VideoPlayer::qtPt_To_cvPt(QPoint in){
 }
 
 void VideoPlayer::mousePressEvent(QMouseEvent *event){
-    getCurrentPlayer()->mousePressEvent(qtPt_To_cvPt(event->pos()));
+    QPoint ptTmp = event->pos() - QPoint(x_origin(),y_origin());
+    getCurrentPlayer()->mousePressEvent(qtPt_To_cvPt(ptTmp));
     getCurrentPlayer()->getFrame(frame);
     showImage(frame);
 }
 
 void VideoPlayer::mouseReleaseEvent(QMouseEvent *event){
-    getCurrentPlayer()->mouseReleaseEvent(qtPt_To_cvPt(event->pos()));
+    QPoint ptTmp = event->pos() - QPoint(x_origin(),y_origin());
+    getCurrentPlayer()->mouseReleaseEvent(qtPt_To_cvPt(ptTmp));
     getCurrentPlayer()->getFrame(frame);
     showImage(frame);
 }
 
 void VideoPlayer::mouseMoveEvent(QMouseEvent *event){
-    getCurrentPlayer()->mouseMoveEvent(qtPt_To_cvPt(event->pos()));
+    QPoint ptTmp = event->pos() - QPoint(x_origin(),y_origin());
+    getCurrentPlayer()->mouseMoveEvent(qtPt_To_cvPt(ptTmp));
     getCurrentPlayer()->getFrame(frame);
     showImage(frame);
 }
