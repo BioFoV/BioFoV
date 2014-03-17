@@ -42,6 +42,7 @@ Face* FaceItem::getFace(){
 
 void FaceItem::updateCounter(){
     setCounter(childCount());
+    std::cout << childCount() << std::endl;
 }
 
 void FaceItem::setCounter(uint count){
