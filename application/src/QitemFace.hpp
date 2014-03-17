@@ -21,6 +21,7 @@ public:
     // Functions
     Face* getFace();
 
+    void updateCounter();
     void setCounter(uint count);
 
 private:

@@ -32,6 +32,11 @@ void QtreeFaces::on_item_delete(){
                 showMessage(tr("Item selected is not a Face"));
             }
         }
+        for(int a = 0; a <= topLevelItemCount(); a++){
+            if(FaceItem* faceitem = dynamic_cast< FaceItem* > (topLevelItem(a))){
+                faceitem->updateCounter();
+            }
+        }
     }
 }
 

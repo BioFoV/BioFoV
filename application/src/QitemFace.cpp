@@ -40,6 +40,10 @@ Face* FaceItem::getFace(){
     return face;
 }
 
+void FaceItem::updateCounter(){
+    setCounter(childCount());
+}
+
 void FaceItem::setCounter(uint count){
     std::ostringstream ss;
     ss << count;
