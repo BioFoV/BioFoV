@@ -19,11 +19,9 @@ FaceItem::FaceItem(QString facename, Face* inface, QTreeWidget *parent) :
     QTreeWidgetItem(parent)
 {
     setText(0, facename);
-    std::ostringstream ss;
-    ss << inface->faceNumber();
-    setText(1, ss.str().c_str());
+    setCounter(inface->faceNumber());
 
-    for (unsigned int i=0; i<inface->faceNumber()-1; i++){
+    for (unsigned int i=0; i<inface->faceNumber(); i++){
         SnapshotItem * newsnap = new SnapshotItem(inface->getFaceAt(i));
         newsnap->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable |
                           Qt::ItemIsDragEnabled | Qt::ItemIsEnabled);
@@ -40,6 +38,12 @@ FaceItem::~FaceItem(){
 
 Face* FaceItem::getFace(){
     return face;
+}
+
+void FaceItem::setCounter(uint count){
+    std::ostringstream ss;
+    ss << count;
+    setText(1, ss.str().c_str());
 }
 
 ////////////////////////////////////////////////////////////////////////////////
