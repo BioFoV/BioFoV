@@ -271,6 +271,7 @@ void VideoPlayer::print(){
         QPainter printerPainter(&printer);
         QImage _qimage(_tmp.data, _tmp.cols, _tmp.rows,
                        _tmp.cols*3, QImage::Format_RGB888);
+        _qimage = _qimage.scaled(QSize(printer.width(),printer.height()),Qt::KeepAspectRatio);
         printerPainter.drawImage(QPoint(0,0), _qimage);
         printerPainter.end();
     }
