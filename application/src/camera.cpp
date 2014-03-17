@@ -248,12 +248,12 @@ void Camera::initCamera(){
 
 void Camera::flip_horizontal(){
     initCamera();
-    posCameraMatrix.col(0) *= -1.0;
+    cameraMatrix.col(0) *= -1.0;
 }
 
 void Camera::flip_vertical(){
     initCamera();
-    posCameraMatrix.col(1) *= -1.0;
+    cameraMatrix.col(1) *= -1.0;
 }
 
 bool Camera::isCalibrated(){
