@@ -198,6 +198,7 @@ Event* Video::convertToEvent(std::string path){
         // add frame to event
         event->addFrame(frame);
         framecount ++;
+        j++;
     }
 
     return event;
