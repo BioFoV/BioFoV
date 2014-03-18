@@ -165,6 +165,8 @@ public:
     /// \brief Purges the CV background subtractor object linked to this Video.
 	void bgSubDelete();
 
+    Event* convertToEvent(std::string path);
+
     // Event autoDetection
     /// \brief Automatically splits the video into several events provided the
     /// given parameters.

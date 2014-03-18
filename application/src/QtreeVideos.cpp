@@ -52,6 +52,47 @@ void QtreeVideos::on_add_video_file(){
     return;
 }
 
+void QtreeVideos::on_video_to_event(){
+    Event* event;
+    EventItem* newEventItem;
+
+    if (selectedItems().isEmpty()){
+        showMessage(tr("Select at least one Video"));
+        return;
+    }
+
+    foreach (QTreeWidgetItem* item, selectedItems()){
+        if (VideoItem* videoiter = dynamic_cast< VideoItem * >( item )){
+            showMessage(tr("Analyzing Video %1").arg(item->text(0)));
+
+            // Progress bar signals and slots
+            connect(videoiter->getVideo(), SIGNAL(startProgress(uint, uint)),
+                    this, SIGNAL(startProgress(uint,uint)));
+            connect(videoiter->getVideo(), SIGNAL(progressChanged(uint)),
+                    this, SIGNAL(progressChanged(uint)));
+
+            event = videoiter->getVideo()->convertToEvent(
+                    (getSettings()->getCacheDir().append("/")).toStdString());
+
+            disconnect(videoiter->getVideo(), SIGNAL(startProgress(uint, uint)),
+                       this, SIGNAL(startProgress(uint,uint)));
+            disconnect(videoiter->getVideo(), SIGNAL(progressChanged(uint)),
+                       this, SIGNAL(progressChanged(uint)));
+
+            resetProgress();
+
+            showMessage(tr("Found Event %1").arg(nEvent));
+            newEventItem = new EventItem(QString("E%1").arg(nEvent));;
+            newEventItem->setEvent(event);
+            nEvent ++;
+            videoiter->addChild(newEventItem);
+        } else {
+            showMessage(tr("Item selected is not a video"));
+            continue;
+        }
+    }
+}
+
 void QtreeVideos::on_auto_detect_events(){
     std::deque<Event*> events;
     EventItem* newEvent;

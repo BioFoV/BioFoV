@@ -174,6 +174,35 @@ void Video::bgSubDelete(){
 /*******************************************************************************
  * Event autoDetection
  ******************************************************************************/
+
+Event* Video::convertToEvent(std::string path){
+    cv::Mat shot;
+    Frame *frame;
+    Event *event = NULL;
+
+    unsigned int j=0;
+    int framecount=0;
+
+    setFramePos(0);
+
+    emit startProgress(0, (uint) getLengthFrames());
+
+    while(getNextFrame(shot)){
+        emit progressChanged(j);
+
+        if (event == NULL){
+            event = new Event(this);
+        }
+        // create new frame
+        frame = new Frame(this, shot, path);
+        // add frame to event
+        event->addFrame(frame);
+        framecount ++;
+    }
+
+    return event;
+}
+
 std::deque<Event*> Video::autoDetectEvents(double threshold,
                                            double maxcount,
                                            double mincount,

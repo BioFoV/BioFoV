@@ -48,6 +48,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->actionAdd_Video_File, SIGNAL(triggered()),
             ui->videoList, SLOT(on_add_video_file()));
+    connect(ui->actionConvert_Video_to_Event, SIGNAL(triggered()),
+            ui->videoList, SLOT(on_video_to_event()));
     connect(ui->actionAuto_Detect_Events, SIGNAL(triggered()),
             ui->videoList, SLOT(on_auto_detect_events()));
 

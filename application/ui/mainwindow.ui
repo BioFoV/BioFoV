@@ -337,6 +337,7 @@
      <addaction name="actionExport_camera"/>
     </widget>
     <addaction name="actionAdd_Video_File"/>
+    <addaction name="actionConvert_Video_to_Event"/>
     <addaction name="action_Remove_From_Project"/>
     <addaction name="separator"/>
     <addaction name="menuTransformations"/>
@@ -659,6 +660,11 @@
   <action name="actionExport_Event">
    <property name="text">
     <string>Export Event</string>
+   </property>
+  </action>
+  <action name="actionConvert_Video_to_Event">
+   <property name="text">
+    <string>Convert Video to Event</string>
    </property>
   </action>
  </widget>

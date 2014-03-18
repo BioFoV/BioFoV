@@ -70,6 +70,9 @@ public slots:
     /// Add a video file dialog and import wizard.
     void on_add_video_file();
 
+    /// \brief Convert video directly to Event.
+    void on_video_to_event();
+
     /// \brief Auto detect events in video.
     /// For each video in the video list split them into events accordingly with the
     ///given parameters in the split window that is used.
