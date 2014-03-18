@@ -63,7 +63,7 @@ SnapshotItem::SnapshotItem(Snapshot *insnap, QTreeWidget *parent) :
     QTreeWidgetItem(parent)
 {
     snap = insnap;
-    setText(0, QString("Frame %1").arg(insnap->getFrame()->getNumber()));
+    setText(0, QString("Frame %1").arg(insnap->getFrame()->getNumber(),5,10,QChar('0')));
 }
 
 SnapshotItem::~SnapshotItem(){
