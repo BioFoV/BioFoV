@@ -97,7 +97,7 @@ void DrawHeight::calcUndistort(){
     r2 = (b.at(2).y + b.at(3).y)/2;
 
     referential = std::abs(double(r2)-double(r1));
-    height = std::abs(b.at(4).y-r2);
+    height = std::abs(b.at(4).y-r1);
     ratio = height/referential;
 
     calculated = true;
