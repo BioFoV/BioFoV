@@ -83,7 +83,7 @@ void QtreeVideos::on_auto_detect_events(){
             connect(videoiter->getVideo(), SIGNAL(progressChanged(uint)),
                     this, SIGNAL(progressChanged(uint)));
             timer.start();
-            events = videoiter->getVideo()->autoDetectEvents(split.getThreshold(),
+            events = videoiter->getVideo()->autoDetectEvents(split.getThreshold()/10.0,
                                                              split.getMaxFrames(),
                                                              split.getMinFrames(),
                                                              split.getHistory(),
