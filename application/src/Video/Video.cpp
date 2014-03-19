@@ -76,7 +76,7 @@ bool Video::setFramePos(double frameNum){
 bool Video::getFrame(cv::Mat &frame){
 	if(!check_cap()){
 		return false;
-	}
+    }
     setFramePos(getFramePos()-1);
 	if(cap.read(frame)){
         if(isCalibrated()){
@@ -220,7 +220,9 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
     int emptycount=0;
     int framecount=0;
     int value;
+    int absoluteThreshold = threshold/100*resolution.width*resolution.height;
     int i;
+
 
     // Initialization of background subtraction
     bgSubInit(history, varThreshold, bShadowDetection);
@@ -236,7 +238,7 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
         value = cv::countNonZero(bg->Foreground());
 
         // Detected change
-        if ( value > threshold/100*resolution.width*resolution.height ){
+        if ( value > absoluteThreshold ){
             if (event == NULL){
                 event = new Event(this);
             }
