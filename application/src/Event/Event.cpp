@@ -214,6 +214,10 @@ double Event::getLengthFrames(){
     return frames.size();
 }
 
+uint Event::getCurrentFrameNumber(){
+    return frames.at(position)->getCurrentFrameNumber();
+}
+
 /*******************************************************************************
  * Playback modifier
  ******************************************************************************/

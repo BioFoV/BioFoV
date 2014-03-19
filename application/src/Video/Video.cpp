@@ -355,3 +355,7 @@ void Video::mouseMoveEvent(cv::Point point){
     if (activeDrawable != NULL)
         activeDrawable->move(point);
 }
+
+uint Video::getCurrentFrameNumber(){
+    return getFramePos();
+}

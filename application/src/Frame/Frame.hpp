@@ -86,6 +86,7 @@ public:
     bool getPrevFrame(cv::Mat &frame);
     bool getNextFrame(cv::Mat &frame);
     void *getCurrentFrameRef();
+    uint getCurrentFrameNumber();
 
     // Properties
     double getFrameInt();

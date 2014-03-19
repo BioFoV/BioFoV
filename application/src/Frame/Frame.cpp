@@ -101,6 +101,10 @@ double Frame::getLengthFrames(){
     return 1;
 }
 
+uint Frame::getCurrentFrameNumber(){
+    return frameNumber;
+}
+
 void Frame::mousePressEvent(cv::Point point){
     if (activeDrawable != NULL)
         activeDrawable->press(point);

@@ -73,6 +73,7 @@ bool VideoPlayer::stepBack(){
         return false;
     if(currentPlayer->getPrevFrame(frame)) {
         showImage(frame);
+        updateFrameNumber();
         return true;
     } else {
         qDebug("could not get frame");
@@ -87,6 +88,7 @@ bool VideoPlayer::stepForward(){
     // Check if there is a next frame
     if(currentPlayer->getNextFrame(frame)) {
         showImage(frame);
+        updateFrameNumber();
         return true;
     } else {
         qDebug("could not get frame");
@@ -224,6 +226,11 @@ void VideoPlayer::on_speedSlider_sliderMoved(int position)
 {
     speed = position/10.0;
     timer.setInterval(frameInt/speed);
+}
+
+void VideoPlayer::updateFrameNumber()
+{
+    ui->frameIndex->setText(QString("%1").arg(currentPlayer->getCurrentFrameNumber()));
 }
 
 /*******************************************************************************
