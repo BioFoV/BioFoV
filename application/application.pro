@@ -3,6 +3,8 @@ INCLUDEPATH += . src
 # Just to get all the warnings on compilation.
 WARNINGS += -Wall
 
+QMAKE_CXXFLAGS_RELEASE *= -O3
+
 TEMPLATE = app
 
 # The following keeps the generated files at least somewhat separate 
