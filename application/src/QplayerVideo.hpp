@@ -100,6 +100,7 @@ private slots:
     void on_posSlider_sliderMoved(int position);
     void on_speedSlider_sliderMoved(int position);
     void updateFrameNumber();
+    void updateSliderPos();
 
     void setControlsEnabled(bool status);
 

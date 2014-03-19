@@ -34,7 +34,6 @@ void VideoPlayer::play(){
     if(!stepForward()){
         timer.stop();
     }
-    ui->posSlider->setValue(currentPlayer->getFramePos());
 }
 
 void VideoPlayer::pause(){
@@ -74,6 +73,7 @@ bool VideoPlayer::stepBack(){
     if(currentPlayer->getPrevFrame(frame)) {
         showImage(frame);
         updateFrameNumber();
+        updateSliderPos();
         return true;
     } else {
         qDebug("could not get frame");
@@ -89,6 +89,7 @@ bool VideoPlayer::stepForward(){
     if(currentPlayer->getNextFrame(frame)) {
         showImage(frame);
         updateFrameNumber();
+        updateSliderPos();
         return true;
     } else {
         qDebug("could not get frame");
@@ -231,6 +232,11 @@ void VideoPlayer::on_speedSlider_sliderMoved(int position)
 void VideoPlayer::updateFrameNumber()
 {
     ui->frameIndex->setText(QString("%1").arg(currentPlayer->getCurrentFrameNumber()));
+}
+
+void VideoPlayer::updateSliderPos()
+{
+    ui->posSlider->setValue(currentPlayer->getFramePos()-1);
 }
 
 /*******************************************************************************

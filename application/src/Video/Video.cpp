@@ -77,8 +77,8 @@ bool Video::getFrame(cv::Mat &frame){
 	if(!check_cap()){
 		return false;
 	}
+    setFramePos(getFramePos()-1);
 	if(cap.read(frame)){
-        setFramePos(getFramePos()-1);
         if(isCalibrated()){
             frame = cam->undistort(frame);
         }
