@@ -48,6 +48,7 @@ public:
 	
 	// Get foreground, background and contours functions
     void NewFrame(cv::Mat img);
+    void Denoise();
 	cv::Mat Foreground();
 	cv::Mat Background();
 	cv::Mat Contours();

@@ -31,6 +31,11 @@ void BackgroundSubtractor::NewFrame(cv::Mat img){
     bgsub(img,fore);
 }
 
+void BackgroundSubtractor::Denoise(){
+    cv::erode(fore,fore,cv::Mat());
+    cv::dilate(fore,fore,cv::Mat());
+}
+
 cv::Mat BackgroundSubtractor::Foreground(){
     return fore;
 }

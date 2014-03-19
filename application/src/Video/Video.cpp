@@ -220,6 +220,7 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
     int emptycount=0;
     int framecount=0;
     int value;
+    int i;
 
     // Initialization of background subtraction
     bgSubInit(history, varThreshold, bShadowDetection);
@@ -230,6 +231,7 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
 
     while(getNextFrame(shot)){
         bg->NewFrame(shot);
+        bg->Denoise();
         emit progressChanged(j);
         value = cv::countNonZero(bg->Foreground());
 
@@ -262,7 +264,7 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
             if(emptycount > maxcount){
                 if (framecount - emptycount > mincount){
                     // remove extra frames with no movement
-                    for (int i = 0; i < maxcount; i++){
+                    for (i = 0; i < maxcount; i++){
                         event->remLastFrame();
                         event->remLastSnapshot();
                     }
