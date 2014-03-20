@@ -225,8 +225,14 @@ void Event::setPlaybackMode(int mode){
     playMode = mode;
 }
 
-bool Event::saveAsVideo(std::string filename){
-    int fourcc = CV_FOURCC('X','V','I','D');
+bool Event::saveAsVideo(std::string filename, std::string encoder){
+    int fourcc;
+
+    if(encoder == "XVID")
+        fourcc = CV_FOURCC('X','V','I','D');
+    else if(encoder == "HFYU")
+        fourcc = CV_FOURCC('H','F','Y','U');
+
     double fps = vid->getFPS();
     cv::Size frameSize = vid->getSize();
     bool isColor = !(playMode == PLAY_MASK);

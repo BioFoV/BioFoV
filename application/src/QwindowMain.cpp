@@ -335,6 +335,10 @@ void MainWindow::on_actionExport_Event_triggered()
     getDirDialog.setDirectory(QDir::homePath());
     getDirDialog.setAcceptMode(QFileDialog::AcceptSave);
 
+    QStringList encoders;
+    encoders << tr("XVID") << tr("HFYU");
+    bool ok;
+
     QStringList fileNames;
 
     QList<QTreeWidgetItem*> items = ui->videoList->selectedItems();
@@ -347,6 +351,14 @@ void MainWindow::on_actionExport_Event_triggered()
 
     if(getDirDialog.exec()) {
         fileNames = getDirDialog.selectedFiles();
+        QString encoder = QInputDialog::getItem(this, tr("Choose an Encoder"),
+                                             tr("Encoder"), encoders, 0, false,
+                                             &ok);
+        if (!ok) {
+            showMessage(tr("Export action canceled!"));
+            return;
+        }
+
         foreach (QString fileName, fileNames) {
             foreach (QTreeWidgetItem* item, items){
                 if (dynamic_cast<EventItem*>(item) == NULL){
@@ -355,9 +367,11 @@ void MainWindow::on_actionExport_Event_triggered()
                 }
                 evItem = (EventItem*)item;
                 showMessage(tr("Saving %1").arg(evItem->text(0)));
+
                 evItem->getEvent()->saveAsVideo(
                             fileName.toStdString() + "-" +
-                            evItem->text(0).toStdString());
+                            evItem->text(0).toStdString(),
+                            encoder.toStdString());
             }
         }
     }
