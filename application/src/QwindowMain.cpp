@@ -233,6 +233,7 @@ void MainWindow::on_actionNormal_toggled(bool arg1)
     if (arg1) {
         playMode = PLAY_FRAMES;
         ui->player->setPlayMode(playMode);
+        ui->player->refresh();
     }
 }
 
@@ -242,6 +243,7 @@ void MainWindow::on_actionMask_toggled(bool arg1)
     if (arg1) {
         playMode = PLAY_MASK;
         ui->player->setPlayMode(playMode);
+        ui->player->refresh();
     }
 }
 
@@ -251,6 +253,7 @@ void MainWindow::on_actionMasked_Video_toggled(bool arg1)
     if (arg1) {
         playMode = PLAY_MASKED_FRAMES;
         ui->player->setPlayMode(playMode);
+        ui->player->refresh();
     }
 }
 
