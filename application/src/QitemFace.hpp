@@ -40,7 +40,6 @@ public:
 
 private:
     Snapshot* snap;
-    FaceItem* face;
 };
 
 #endif // FACEITEM_HPP
