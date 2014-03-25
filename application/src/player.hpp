@@ -70,7 +70,7 @@ public:
 
     virtual void* getCurrentFrameRef() = 0;
 
-    virtual uint getCurrentFrameNumber() = 0;
+    virtual unsigned int getCurrentFrameNumber() = 0;
 
     virtual void mousePressEvent(cv::Point point) = 0;
     virtual void mouseReleaseEvent(cv::Point point) = 0;
