@@ -45,7 +45,7 @@ Em window$:
 se não correr é porque me enganei no nome do programa e é algo parecido com isto.
 11) instalar com
   C:\MinGW\bin\mingw32_make.exe install
-12) adicionar o algures\opencv\build\bin à path do windows
+12) adicionar o algures\opencv\build\install\...\x86\bin à path do windows
 13) abrir o projecto com o qt creator
 14) compilar
 
