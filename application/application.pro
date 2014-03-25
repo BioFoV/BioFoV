@@ -30,7 +30,7 @@ unix {
 
 # Configurations for MS Windows
 win32 {
-    LIBS += -L C:\opencv-2.4.8.2\build\install\x64\mingw\bin
+    LIBS += -L C:\opencv-2.4.8.2\build\install\x86\mingw\bin
     LIBS += -lopencv_core248 -lopencv_highgui248 -lopencv_video248 -lz
     LIBS += -lopencv_imgproc248 -lopencv_calib3d248 -lopencv_contrib248 -lopencv_objdetect248
     INCLUDEPATH += C:\opencv-2.4.8.2\build\install\include
