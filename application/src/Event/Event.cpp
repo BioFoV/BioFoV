@@ -248,7 +248,7 @@ bool Event::saveAsVideo(std::string filename, std::string encoder){
 
     cv::Mat buffer;
     while (getNextFrame(buffer)){
-        vidW << buffer;
+        vidW.write(buffer);
     }
 
     vidW.release();
