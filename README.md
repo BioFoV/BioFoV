@@ -27,22 +27,25 @@ Em debian like distros de linux:
 cmake ..
 make
 sudo make install
-4) sacar e instalar Qt5.1.1
+4) sacar e instalar Qt5.2
 
 Em window$:
-1) instalar Qt5.1.1
+1) instalar Qt5.2
 2) reboot
-3) instalar cmake
-4) sacar opencv 2.7
-5) descompimir opencv algures\opencv
-6) abrir o cmake com source em algures\opencv e build em algures\opencv\build
-7) carregar em configure e depois generate
-8) abrir uma command terminal e ir até algures\opencv\build
-9) correr o seguinte comando:
-  C:\MinGW\bin\mingw32_make.exe
+3) instalar cmake e acrescentar o bin à path
+4) instalar o MinGW e instalar o gcc e o g++ e acrescentar o bin à path
+5) sacar opencv 2.4.8.2 do tag do GITHub! Não tirar dos downloads do site do opencv, esses já vêm mastigados.
+6) descompimir opencv algures\opencv
+7) abrir o cmake com source em algures\opencv e build em algures\opencv\build
+8) carregar em configure, expecificar para usar o toolchain do mingw instalado no ponto 4 e depois carregar generate
+9) abrir uma powershell e ir até algures\opencv\build
+10) correr o seguinte comando:
+  C:\MinGW\bin\mingw32_make.exe -jX
+   - X é o numero de threads a usar para compilar.
 se não correr é porque me enganei no nome do programa e é algo parecido com isto.
-10) ir almoçar
-11) adicionar o algures\opencv\build\bin à path do windows
-12) abrir o projecto com o qt creator
-13) compilar
+11) instalar com
+  C:\MinGW\bin\mingw32_make.exe install
+12) adicionar o algures\opencv\build\bin à path do windows
+13) abrir o projecto com o qt creator
+14) compilar
 
