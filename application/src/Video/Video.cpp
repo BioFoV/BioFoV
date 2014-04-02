@@ -116,7 +116,7 @@ bool Video::getNextFrame(cv::Mat &frame){
     }
 }
 
-void *Video::getCurrentFrameRef(){
+Frame *Video::getCurrentFrameRef(){
     cv::Mat shot;
     getFrame(shot);
     return new Frame(this, shot, getCacheDir());
@@ -360,4 +360,8 @@ void Video::mouseMoveEvent(cv::Point point){
 
 uint Video::getCurrentFrameNumber(){
     return getFramePos();
+}
+
+void Video::save(std::string fname){
+    //FIXME - not implemented
 }

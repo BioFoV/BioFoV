@@ -61,6 +61,57 @@ cv::Mat Snapshot::getMasked(){
     }
 }
 
-Frame* Snapshot::getFrame(){
+bool Snapshot::check_cap(){
+    return true;
+}
+
+bool Snapshot::setFramePos(double){
+    return true;
+}
+
+double Snapshot::getFramePos(){
+    return 0;
+}
+
+bool Snapshot::getFrame(cv::Mat &frame){
+    getFrame(frame);
+    return true;
+}
+
+bool Snapshot::getNextFrame(cv::Mat &frame){
+    getFrame(frame);
+    return true;
+}
+
+bool Snapshot::getPrevFrame(cv::Mat &frame){
+    getFrame(frame);
+    return true;
+}
+
+double Snapshot::getFrameInt(){
+    return 0;
+}
+
+double Snapshot::getFPS(){
+    return 0;
+}
+
+double Snapshot::getLengthTime(){
+    return 0;
+}
+
+double Snapshot::getLengthFrames(){
+    return 0;
+}
+
+Frame *Snapshot::getCurrentFrameRef(){
     return image;
+}
+
+unsigned int Snapshot::getCurrentFrameNumber(){
+    return image->getCurrentFrameNumber();
+}
+
+void Snapshot::save(std::string fname){
+    cv::imwrite( fname + ".png", getMasked());
 }

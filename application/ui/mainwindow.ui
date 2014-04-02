@@ -400,6 +400,7 @@
     <addaction name="actionDetect_Faces"/>
     <addaction name="separator"/>
     <addaction name="actionDeleteFace"/>
+    <addaction name="actionSave_Faces_As_Images"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuVideo"/>
@@ -671,6 +672,11 @@
   <action name="actionSave_Current_Player_Image">
    <property name="text">
     <string>Save Current Player Image</string>
+   </property>
+  </action>
+  <action name="actionSave_Faces_As_Images">
+   <property name="text">
+    <string>Save Faces As Images</string>
    </property>
   </action>
  </widget>

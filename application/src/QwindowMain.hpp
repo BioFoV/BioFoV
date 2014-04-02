@@ -157,6 +157,8 @@ private slots:
 
     void on_actionSave_Current_Player_Image_triggered();
 
+    void on_actionSave_Faces_As_Images_triggered();
+
 private:
     /// \brief UI created by Qt.
     ///Points to a class that contains everything that was defined in the

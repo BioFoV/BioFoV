@@ -12,6 +12,8 @@
 #include "../Frame/Frame.hpp"
 #endif
 
+#include "../player.hpp"
+
 #ifndef INC_STDIO
 #define INC_STDIO
 #include <stdio.h>
@@ -25,7 +27,7 @@ class Frame;
 /// \brief Class that associated with a Frame represents an area of interest in
 ///a frame.
 ///
-class Snapshot{
+class Snapshot : public Player {
 private:
     /// \brief External Frame reference.
 	Frame *image;
@@ -59,6 +61,34 @@ public:
     cv::Mat getMask();
     cv::Mat getMasked();
 
-    Frame* getFrame();
+    bool check_cap();
+
+    bool setFramePos(double frameNum);
+
+    double getFramePos();
+
+    bool getFrame(cv::Mat &frame);
+
+    bool getNextFrame(cv::Mat &frame);
+
+    bool getPrevFrame(cv::Mat &frame);
+
+    double getFrameInt();
+
+    double getFPS();
+
+    double getLengthTime();
+
+    double getLengthFrames();
+
+    Frame *getCurrentFrameRef();
+
+    unsigned int getCurrentFrameNumber();
+
+    void mousePressEvent(cv::Point){}
+    void mouseReleaseEvent(cv::Point){}
+    void mouseMoveEvent(cv::Point){}
+
+    void save(std::string fname);
 };
 #endif
