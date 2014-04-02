@@ -82,6 +82,8 @@ public:
 
     Drawable* activeDrawable;
     std::deque<Drawable *> drawers;
+
+    void saveFrame(std::string fname);
 };
 
 #endif // PLAYER_HPP
