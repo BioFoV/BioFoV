@@ -18,6 +18,7 @@ VideoPlayer::VideoPlayer(QWidget *parent) :
             this, SLOT(playOrPause()));
     connect(ui->stepButton, SIGNAL(clicked()),
             this, SLOT(stepForward()));
+    currentPlayer = NULL;
 }
 
 /*******************************************************************************

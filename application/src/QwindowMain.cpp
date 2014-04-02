@@ -374,6 +374,31 @@ void MainWindow::on_actionExport_Event_triggered()
                             encoder.toStdString());
             }
         }
+    } else {
+        showMessage(tr("Action canceled"));
     }
     showMessage(tr("Done saving Event(s)"));
+}
+
+void MainWindow::on_actionSave_Current_Player_Image_triggered()
+{
+    if (!ui->player->getCurrentPlayer()){
+        showMessage(tr("Nothing loaded in the player"));
+        return;
+    }
+    QFileDialog getDirDialog(this);
+    getDirDialog.setDirectory(QDir::homePath());
+    getDirDialog.setAcceptMode(QFileDialog::AcceptSave);
+    QStringList fileNames;
+
+    if(getDirDialog.exec()) {
+        fileNames = getDirDialog.selectedFiles();
+
+        foreach (QString fileName, fileNames) {
+            ui->player->getCurrentPlayer()->saveFrame(fileName.toStdString() + ".png");
+        }
+    } else {
+        showMessage(tr("Action canceled"));
+    }
+    showMessage(tr("Done saving Image"));
 }
