@@ -370,7 +370,7 @@ FrameItem* QtreeVideos::getFrame(){
     FrameItem* fitem ;
     QTreeWidgetItem* qitem = getCurrentItem();
     if (dynamic_cast< FrameItem * >( qitem ) == NULL){
-        fitem = new FrameItem((Frame*)getFrameRef());
+        fitem = new FrameItem(getFrameRef());
         qitem->addChild(fitem);
         loadVid(fitem->getFrameRef(), PLAYER_FRAME, fitem);
         qitem->setExpanded(true);
@@ -428,7 +428,7 @@ void QtreeVideos::updateValues(){
     QTreeWidgetItem* current = getCurrentItem();
     current->takeChildren();
 
-    std::deque<Drawable*> map = ((Frame*)getFrameRef())->getDrawables();
+    std::deque<Drawable*> map = getFrameRef()->getDrawables();
     for (std::deque<Drawable*>::iterator iter = map.begin();
          iter != map.end();
          iter ++) {
