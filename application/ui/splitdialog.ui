@@ -113,7 +113,7 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string notr="true">1</string>
+            <string notr="true">10</string>
            </property>
           </widget>
          </item>
