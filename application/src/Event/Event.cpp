@@ -226,7 +226,7 @@ void Event::setPlaybackMode(int mode){
 }
 
 bool Event::saveAsVideo(std::string filename, std::string encoder){
-    int fourcc;
+    int fourcc = 0;
 
     if(encoder == "XVID")
         fourcc = CV_FOURCC('X','V','I','D');
