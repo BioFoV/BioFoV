@@ -85,7 +85,7 @@ public:
     bool getFrame(cv::Mat &frame);
     bool getPrevFrame(cv::Mat &frame);
     bool getNextFrame(cv::Mat &frame);
-    void *getCurrentFrameRef();
+    Frame *getCurrentFrameRef();
     uint getCurrentFrameNumber();
 
     // Properties
@@ -97,6 +97,8 @@ public:
     void mousePressEvent(cv::Point point);
     void mouseReleaseEvent(cv::Point point);
     void mouseMoveEvent(cv::Point point);
+
+    void save(std::string fname);
 
     TStrDoubleMap getValues();
 

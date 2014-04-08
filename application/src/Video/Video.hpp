@@ -140,7 +140,7 @@ public:
     bool getFrame(cv::Mat &frame);
     bool getPrevFrame(cv::Mat &frame);
     bool getNextFrame(cv::Mat &frame);
-    void* getCurrentFrameRef();
+    Frame* getCurrentFrameRef();
     uint getCurrentFrameNumber();
 
     // Properties
@@ -152,6 +152,8 @@ public:
     void mousePressEvent(cv::Point);
     void mouseReleaseEvent(cv::Point);
     void mouseMoveEvent(cv::Point);
+
+    void save(std::string fname);
 
     cv::Size getSize();
     bool isCalibrated();

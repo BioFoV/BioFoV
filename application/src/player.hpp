@@ -9,6 +9,7 @@
 #include <opencv2/opencv.hpp>
 #endif
 
+class Frame;
 ///
 /// \brief Interface for VideoPlayer.
 /// The Player class functions as a purelly virtual class intended to
@@ -68,13 +69,17 @@ public:
     /// \return Length of the video in frames.
     virtual double getLengthFrames() = 0;
 
-    virtual void* getCurrentFrameRef() = 0;
+    virtual Frame* getCurrentFrameRef() = 0;
 
     virtual unsigned int getCurrentFrameNumber() = 0;
 
     virtual void mousePressEvent(cv::Point point) = 0;
     virtual void mouseReleaseEvent(cv::Point point) = 0;
     virtual void mouseMoveEvent(cv::Point point) = 0;
+
+    virtual void save(std::string fname) = 0;
+
+    void saveFrame(std::string fname);
 
     void addDrawable(Drawable* newDrawable);
     void applyDrawables(cv::Mat& frame);

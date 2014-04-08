@@ -372,6 +372,65 @@ void MainWindow::on_actionExport_Event_triggered()
                             encoder.toStdString());
             }
         }
+    } else {
+        showMessage(tr("Action canceled"));
+    }
+    showMessage(tr("Done saving Event(s)"));
+}
+
+void MainWindow::on_actionSave_Current_Player_Image_triggered()
+{
+    if (!ui->player->getCurrentPlayer()){
+        showMessage(tr("Nothing loaded in the player"));
+        return;
+    }
+    QFileDialog getDirDialog(this);
+    getDirDialog.setDirectory(QDir::homePath());
+    getDirDialog.setAcceptMode(QFileDialog::AcceptSave);
+    QStringList fileNames;
+
+    if(getDirDialog.exec()) {
+        fileNames = getDirDialog.selectedFiles();
+
+        foreach (QString fileName, fileNames) {
+            ui->player->getCurrentPlayer()->saveFrame(fileName.toStdString() + ".png");
+        }
+    } else {
+        showMessage(tr("Action canceled"));
+    }
+    showMessage(tr("Done saving Image"));
+}
+
+void MainWindow::on_actionSave_Faces_As_Images_triggered()
+{
+    QFileDialog getDirDialog(this);
+    getDirDialog.setDirectory(QDir::homePath());
+    getDirDialog.setAcceptMode(QFileDialog::AcceptSave);
+
+    QStringList fileNames;
+
+    QList<QTreeWidgetItem*> items = ui->faceList->selectedItems();
+    SnapshotItem* snapItem;
+
+    if(getDirDialog.exec()) {
+        fileNames = getDirDialog.selectedFiles();
+
+        foreach (QString fileName, fileNames) {
+            foreach (QTreeWidgetItem* item, items){
+                if (dynamic_cast<SnapshotItem*>(item) == NULL){
+                    showMessage(tr("Selection is not an Face"));
+                    continue;
+                }
+                snapItem = (SnapshotItem*)item;
+                showMessage(tr("Saving %1").arg(snapItem->text(0)));
+
+                snapItem->getSnapshot()->save((fileName + "-"
+                    + QString("%1").arg(snapItem->getSnapshot()->getCurrentFrameNumber())
+                    + ".png").toStdString());
+            }
+        }
+    } else {
+        showMessage(tr("Action canceled"));
     }
     showMessage(tr("Done saving Event(s)"));
 }

@@ -8,6 +8,8 @@
 #include "Feature/faces.hpp"
 #endif
 
+#include "Snapshot/Snapshot.hpp"
+
 class FaceItem : public QTreeWidgetItem
 {
 public:

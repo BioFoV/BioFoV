@@ -63,7 +63,7 @@ signals:
     void setTotalTimeText(QString);
 
     QTreeWidgetItem* getCurrentItem();
-    void* getFrameRef(); // FIXME connect
+    Frame* getFrameRef();
 
 public slots:
     /// \brief Add video file.

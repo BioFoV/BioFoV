@@ -81,7 +81,7 @@ bool Frame::getNextFrame(cv::Mat &frame){
     return true;
 }
 
-void* Frame::getCurrentFrameRef(){
+Frame *Frame::getCurrentFrameRef(){
     return this;
 }
 
@@ -123,6 +123,12 @@ void Frame::mouseReleaseEvent(cv::Point point){
 void Frame::mouseMoveEvent(cv::Point point){
     if (activeDrawable != NULL)
         activeDrawable->move(point);
+}
+
+void Frame::save(std::string fname){
+    cv::Mat buff;
+    getFrame(buff);
+    cv::imwrite( fname + ".png", buff);
 }
 
 TStrDoubleMap Frame::getValues(){

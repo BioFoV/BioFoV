@@ -191,7 +191,7 @@ bool Event::getNextFrame(cv::Mat &frame){
     }
 }
 
-void *Event::getCurrentFrameRef(){
+Frame *Event::getCurrentFrameRef(){
     return frames.at(position);
 }
 
@@ -255,4 +255,8 @@ bool Event::saveAsVideo(std::string filename, std::string encoder){
 
     setFramePos(tmpPos);
     return true;
+}
+
+void Event::save(std::string fname){
+    saveAsVideo(fname+".avi", "HFYU");
 }
