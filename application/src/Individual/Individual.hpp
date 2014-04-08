@@ -40,13 +40,13 @@ class Feature;
 class Individual{
 private:
     /// \brief List of Event where this individual shows up.
-	std::list<Event> events;
+    std::deque<Event *> events;
 
     /// \brief List of Snapshots of this individual.
-	std::list<Snapshot> snapshots;
+    std::deque<Snapshot *> snapshots;
 
     /// \brief List of Features for this individual.
-	std::list<Feature> features;
+    std::deque<Feature *> features;
 	
 public:
     /// \brief Simple constructor.
