@@ -85,8 +85,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>769</width>
-             <height>257</height>
+             <width>98</width>
+             <height>86</height>
             </rect>
            </property>
            <attribute name="label">
@@ -135,8 +135,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>769</width>
-             <height>257</height>
+             <width>98</width>
+             <height>86</height>
             </rect>
            </property>
            <attribute name="label">
@@ -324,7 +324,6 @@
      <property name="title">
       <string>Filter</string>
      </property>
-     <addaction name="actionCrop"/>
      <addaction name="actionExclude_rectangle"/>
     </widget>
     <widget class="QMenu" name="menuCalibration">
@@ -569,14 +568,6 @@
    </property>
    <property name="text">
     <string>Masked Video</string>
-   </property>
-  </action>
-  <action name="actionCrop">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Crop</string>
    </property>
   </action>
   <action name="actionExclude_rectangle">

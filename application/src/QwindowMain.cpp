@@ -120,8 +120,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionPrint, SIGNAL(triggered()),
             ui->player, SLOT(print()));
 
-    connect(ui->actionCrop, SIGNAL(triggered()),
-            ui->videoList, SLOT(on_crop()));
     connect(ui->videoList, SIGNAL(getCurrentItem()),
             ui->player, SLOT(getCurrentItem()));
     connect(ui->videoList, SIGNAL(getFrameRef()),

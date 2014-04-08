@@ -382,12 +382,6 @@ FrameItem* QtreeVideos::getFrame(){
     return fitem;
 }
 
-void QtreeVideos::on_crop() {
-    pause();
-    FrameItem* fitem = getFrame();
-    showMessage(tr("Select the area to crop in the player"));
-}
-
 void QtreeVideos::on_height()
 {
     pause();

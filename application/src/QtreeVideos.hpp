@@ -113,10 +113,6 @@ public slots:
 
     FrameItem* getFrame();
 
-    /// \brief Crop action.
-    /// Start cropping the video.
-    void on_crop();
-
     /// \brief Calculates the height of something.
     void on_height();
 
