@@ -36,6 +36,9 @@
 class Video;
 class Snapshot;
 
+class Frame;
+typedef QSharedPointer<Frame> FramePtr;
+
 ///
 /// \brief Class that represents Frames.
 ///
@@ -64,7 +67,7 @@ public:
 
     // Destructor
     /// \brief Simple destructor.
-    ~Frame();
+    virtual ~Frame();
 
     // Functions
     /// \brief Sets the image of the Frame.

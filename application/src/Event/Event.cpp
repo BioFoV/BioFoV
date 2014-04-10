@@ -44,7 +44,7 @@ Event& Event::operator +=(const Event& ev1){
  * Functions
  ******************************************************************************/
 void Event::addFrame(Frame* inFrame){
-    frames.push_back(inFrame);
+    frames.push_back(FramePtr(inFrame));
 }
 
 void Event::addSnapshot(Snapshot* inSnap){
@@ -83,7 +83,7 @@ std::deque<Event*> Event::splitEvent(double threshold, double maxcount,
             if (newEvent == NULL){
                 newEvent = new Event(vid);
             }
-            newEvent->addFrame(frames.at(j));
+            newEvent->addFrame(frames.at(j).data());
             newEvent->addSnapshot(snapshots.at(j));
             framecount ++;
             emptycount = 0;
@@ -111,7 +111,7 @@ std::deque<Event*> Event::splitEvent(double threshold, double maxcount,
 
 bool Event::getFrameObject(Frame **outFrame){
     try {
-        *outFrame = frames.at(position);
+        *outFrame = frames.at(position).data();
     }
     catch (const std::out_of_range& oor) {
         return false;
@@ -141,7 +141,7 @@ bool Event::getFrame(cv::Mat &frame){
     if (playMode == PLAY_FRAMES){
         Frame* tmpFrame;
         try {
-            tmpFrame = frames.at(position);
+            tmpFrame = frames.at(position).data();
         }
         catch (const std::out_of_range& oor) {
             return false;
@@ -192,7 +192,7 @@ bool Event::getNextFrame(cv::Mat &frame){
 }
 
 Frame *Event::getCurrentFrameRef(){
-    return frames.at(position);
+    return frames.at(position).data();
 }
 
 /*******************************************************************************

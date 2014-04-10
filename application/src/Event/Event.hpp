@@ -38,6 +38,8 @@
 #include <QObject>
 
 class Frame;
+typedef QSharedPointer<Frame> FramePtr;
+
 class Snapshot;
 class Individual;
 class Video;
@@ -57,7 +59,7 @@ protected:
     /// \brief Video from which the Frames in this Event were extracted.
 	Video* vid;
     /// \brief Deque of Frames that define this Event.
-    std::deque<Frame*> frames;
+    std::deque<FramePtr> frames;
     /// \brief Deque of Individual that show up in this Event.
     std::deque<Individual*> individuals;
     /// \brief Deque of Snapshots.
