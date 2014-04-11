@@ -324,6 +324,6 @@ QTreeWidgetItem* VideoPlayer::getCurrentItem(){
     return Qitem;
 }
 
-Frame* VideoPlayer::getCurrentFrameRef(){
-    return (Frame*)getCurrentPlayer()->getCurrentFrameRef();
+FramePtr VideoPlayer::getCurrentFrameRef(){
+    return getCurrentPlayer()->getCurrentFrameRef();
 }

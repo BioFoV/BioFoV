@@ -5,6 +5,7 @@
  ******************************************************************************/
 Frame::Frame(){
 	vid = NULL;
+//    thisPtr = FramePtr(this);
 }
 
 Frame::Frame(Video *source_vid, cv::Mat shot, std::string path){
@@ -20,6 +21,8 @@ Frame::Frame(Video *source_vid, cv::Mat shot, std::string path){
     cv::imwrite( filename, shot );
 
     activeDrawable = NULL;
+
+//    thisPtr = FramePtr(this);
 }
 
 /*******************************************************************************
@@ -74,8 +77,10 @@ bool Frame::getNextFrame(cv::Mat &frame){
     return true;
 }
 
-Frame *Frame::getCurrentFrameRef(){
-    return this;
+FramePtr Frame::getCurrentFrameRef(){
+    //FIXME this is NOT how it should be done!
+    FramePtr thisPtr = FramePtr(this);
+    return thisPtr;
 }
 
 double Frame::getFrameInt(){

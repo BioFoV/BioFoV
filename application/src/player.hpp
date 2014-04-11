@@ -9,7 +9,11 @@
 #include <opencv2/opencv.hpp>
 #endif
 
+
 class Frame;
+#include <QSharedPointer>
+typedef QSharedPointer<Frame> FramePtr;
+
 ///
 /// \brief Interface for VideoPlayer.
 /// The Player class functions as a purelly virtual class intended to
@@ -69,7 +73,7 @@ public:
     /// \return Length of the video in frames.
     virtual double getLengthFrames() = 0;
 
-    virtual Frame* getCurrentFrameRef() = 0;
+    virtual FramePtr getCurrentFrameRef() = 0;
 
     virtual unsigned int getCurrentFrameNumber() = 0;
 

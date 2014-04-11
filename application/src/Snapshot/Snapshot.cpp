@@ -7,11 +7,11 @@ Snapshot::Snapshot(){
 	
 }
 
-Snapshot::Snapshot(FramePtr& img){
+Snapshot::Snapshot(FramePtr img){
     image = img;
 }
 
-Snapshot::Snapshot(FramePtr& img, cv::Mat inmask, std::string path){
+Snapshot::Snapshot(FramePtr img, cv::Mat inmask, std::string path){
     const void * address = static_cast<const void*>(this);
     std::stringstream ss;
     ss << address;
@@ -21,7 +21,7 @@ Snapshot::Snapshot(FramePtr& img, cv::Mat inmask, std::string path){
     cv::imwrite( filename, inmask );
 }
 
-Snapshot::Snapshot(FramePtr& img, cv::Rect inrect){
+Snapshot::Snapshot(FramePtr img, cv::Rect inrect){
     image = img;
     rect = inrect;
 }
@@ -104,8 +104,8 @@ double Snapshot::getLengthFrames(){
     return 0;
 }
 
-Frame *Snapshot::getCurrentFrameRef(){
-    return image.data();
+FramePtr Snapshot::getCurrentFrameRef(){
+    return image;
 }
 
 unsigned int Snapshot::getCurrentFrameNumber(){

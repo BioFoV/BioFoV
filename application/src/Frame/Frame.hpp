@@ -17,11 +17,6 @@
 #include "../player.hpp"
 #endif
 
-#ifndef INC_SNAPSHOT
-#define INC_SNAPSHOT
-#include "../Snapshot/Snapshot.hpp"
-#endif
-
 #ifndef INC_STDIO
 #define INC_STDIO
 #include <stdio.h>
@@ -34,7 +29,6 @@
 #include <QObject>
 
 class Video;
-class Snapshot;
 
 class Frame;
 typedef QSharedPointer<Frame> FramePtr;
@@ -52,6 +46,8 @@ private:
     unsigned int frameNumber;
     /// \brief Filename of the Frame.
     std::string filename;
+
+//    FramePtr thisPtr;
 	
 public:
 	// Constructors
@@ -84,7 +80,7 @@ public:
     bool getFrame(cv::Mat &frame);
     bool getPrevFrame(cv::Mat &frame);
     bool getNextFrame(cv::Mat &frame);
-    Frame *getCurrentFrameRef();
+    FramePtr getCurrentFrameRef();
     uint getCurrentFrameNumber();
 
     // Properties

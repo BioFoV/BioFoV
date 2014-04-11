@@ -191,8 +191,8 @@ bool Event::getNextFrame(cv::Mat &frame){
     }
 }
 
-Frame *Event::getCurrentFrameRef(){
-    return frames.at(position).data();
+FramePtr Event::getCurrentFrameRef(){
+    return frames.at(position);
 }
 
 /*******************************************************************************

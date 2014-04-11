@@ -69,7 +69,7 @@ public slots:
     void showStillImage(const cv::Mat& image);
 
     Player* getCurrentPlayer();
-    Frame* getCurrentFrameRef();
+    FramePtr getCurrentFrameRef();
     QTreeWidgetItem* getCurrentItem();
 private:
     Ui::VideoPlayer *ui;
