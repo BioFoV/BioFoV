@@ -43,11 +43,11 @@ Event& Event::operator +=(const Event& ev1){
 /*******************************************************************************
  * Functions
  ******************************************************************************/
-void Event::addFrame(Frame* inFrame){
-    frames.push_back(FramePtr(inFrame));
+void Event::addFrame(FramePtr inFrame){
+    frames.push_back(inFrame);
 }
 
-void Event::addSnapshot(Snapshot* inSnap){
+void Event::addSnapshot(SnapshotPtr inSnap){
     snapshots.push_back(inSnap);
 }
 
@@ -83,7 +83,7 @@ std::deque<Event*> Event::splitEvent(double threshold, double maxcount,
             if (newEvent == NULL){
                 newEvent = new Event(vid);
             }
-            newEvent->addFrame(frames.at(j).data());
+            newEvent->addFrame(frames.at(j));
             newEvent->addSnapshot(snapshots.at(j));
             framecount ++;
             emptycount = 0;
@@ -109,9 +109,9 @@ std::deque<Event*> Event::splitEvent(double threshold, double maxcount,
     return events;
 }
 
-bool Event::getFrameObject(Frame **outFrame){
+bool Event::getFrameObject(FramePtr outFrame){
     try {
-        *outFrame = frames.at(position).data();
+        outFrame = frames.at(position);
     }
     catch (const std::out_of_range& oor) {
         return false;
@@ -148,7 +148,7 @@ bool Event::getFrame(cv::Mat &frame){
         }
         frame = tmpFrame->getImage();
     } else if (playMode == PLAY_MASK){
-        Snapshot* tmpSnap;
+        SnapshotPtr tmpSnap;
         try {
             tmpSnap = snapshots.at(position);
         }
@@ -157,7 +157,7 @@ bool Event::getFrame(cv::Mat &frame){
         }
         frame = tmpSnap->getMask();
     } else if (playMode == PLAY_MASKED_FRAMES){
-        Snapshot* tmpSnap;
+        SnapshotPtr tmpSnap;
         try {
             tmpSnap = snapshots.at(position);
         }

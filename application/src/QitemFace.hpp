@@ -41,7 +41,7 @@ public:
     Snapshot* getSnapshot();
 
 private:
-    Snapshot* snap;
+    SnapshotPtr snap;
 };
 
 #endif // FACEITEM_HPP

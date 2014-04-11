@@ -27,9 +27,6 @@ Frame::Frame(Video *source_vid, cv::Mat shot, std::string path){
  ******************************************************************************/
 Frame::~Frame(){
     remove(filename.c_str());
-    for (unsigned int i=0; i<snap.size(); i++){
-        snap.pop_back();
-    }
 }
 
 /*******************************************************************************
@@ -37,10 +34,6 @@ Frame::~Frame(){
  ******************************************************************************/
 void Frame::setImage(cv::Mat shot){
     imwrite( filename, shot);
-}
-
-void Frame::setSnapshot(Snapshot *insnap){
-    snap.push_back(insnap);
 }
 
 cv::Mat Frame::getImage(){

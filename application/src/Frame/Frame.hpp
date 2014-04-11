@@ -52,8 +52,6 @@ private:
     unsigned int frameNumber;
     /// \brief Filename of the Frame.
     std::string filename;
-    /// \brief Deque of Snapshot that relate to this Frame.
-    std::deque<Snapshot *> snap;
 	
 public:
 	// Constructors
@@ -74,9 +72,7 @@ public:
     ///Use this if you didn't specify it in the constructor.
     /// \param shot Image of the Frame.
     void setImage(cv::Mat shot);
-    /// \brief Adds a Snapshot to the Frame.
-    /// \param insnap Snapshot to be added to the deque of this Frame.
-    void setSnapshot(Snapshot *insnap);
+
     cv::Mat getImage();
 
     unsigned int getNumber();

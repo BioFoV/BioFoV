@@ -177,7 +177,7 @@ void Video::bgSubDelete(){
 
 Event* Video::convertToEvent(std::string path){
     cv::Mat shot;
-    Frame *frame;
+    FramePtr frame;
     Event *event = NULL;
 
     unsigned int j=0;
@@ -194,7 +194,7 @@ Event* Video::convertToEvent(std::string path){
             event = new Event(this);
         }
         // create new frame
-        frame = new Frame(this, shot, path);
+        frame = FramePtr(new Frame(this, shot, path));
         // add frame to event
         event->addFrame(frame);
         framecount ++;
@@ -212,8 +212,8 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
                                            bool bShadowDetection,
                                            std::string path){
     cv::Mat shot;
-    Frame *frame;
-    Snapshot *snap;
+    FramePtr frame;
+    SnapshotPtr snap;
     Event *event = NULL;
 
     unsigned int j=0;
@@ -243,9 +243,8 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
                 event = new Event(this);
             }
             // create new frame
-            frame = new Frame(this, shot, path);
-            snap = new Snapshot(frame, bg->Foreground(), path);
-            frame->setSnapshot(snap);
+            frame = FramePtr(new Frame(this, shot, path));
+            snap = SnapshotPtr(new Snapshot(frame, bg->Foreground(), path));
             // add frame to event
             event->addFrame(frame);
             event->addSnapshot(snap);
@@ -256,9 +255,8 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
         else if (event != NULL){
             emptycount ++;
             // create new frame
-            frame = new Frame(this, shot, path);
-            snap = new Snapshot(frame, bg->Foreground(), path);
-            frame->setSnapshot(snap);
+            frame = FramePtr(new Frame(this, shot, path));
+            snap = SnapshotPtr(new Snapshot(frame, bg->Foreground(), path));
             // add frame to event
             event->addFrame(frame);
             event->addSnapshot(snap);

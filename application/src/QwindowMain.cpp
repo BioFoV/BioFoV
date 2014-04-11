@@ -279,12 +279,12 @@ void MainWindow::on_actionDetect_Faces_triggered()
             }
             foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
                 Event* ev = ((EventItem*)item)->getEvent();
-                Frame * face_frame;
+                FramePtr face_frame;
                 // rewind event
                 ev->setFramePos(0);
                 enableProgress(0, ev->getLengthFrames());
                 for (;;){
-                    if(!ev->getFrameObject(&face_frame))
+                    if(!ev->getFrameObject(face_frame))
                         break;
                     setProgress(ev->getFramePos());
                     face->findFaces(face_frame);

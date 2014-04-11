@@ -41,6 +41,8 @@ class Frame;
 typedef QSharedPointer<Frame> FramePtr;
 
 class Snapshot;
+typedef QSharedPointer<Snapshot> SnapshotPtr;
+
 class Individual;
 class Video;
 
@@ -63,7 +65,7 @@ protected:
     /// \brief Deque of Individual that show up in this Event.
     std::deque<Individual*> individuals;
     /// \brief Deque of Snapshots.
-    std::deque<Snapshot*> snapshots;
+    std::deque<SnapshotPtr> snapshots;
 
 private:
     /// \brief Player position.
@@ -92,11 +94,11 @@ public:
     // Functions
     /// \brief Adds another Frame to this Event.
     /// \param inFrame Frame to be added to this Event.
-    void addFrame(Frame* inFrame);
+    void addFrame(FramePtr inFrame);
 
     /// \brief Adds another Snapshot to this Event.
     /// \param inSnap Snapshot to be added to this Event.
-    void addSnapshot(Snapshot* inSnap);
+    void addSnapshot(SnapshotPtr inSnap);
 
     /// \brief Pop last Frame.
     void remLastFrame();
@@ -113,7 +115,7 @@ public:
     /// \return Deque of the singular Event FIXME.
     std::deque<Event*> splitEvent(double threshold, double maxcount, double mincount);
 
-    bool getFrameObject(Frame** outFrame);
+    bool getFrameObject(FramePtr outFrame);
 
     // Capture functions
     bool check_cap();

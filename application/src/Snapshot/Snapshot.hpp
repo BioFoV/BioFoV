@@ -21,7 +21,13 @@
 
 #define SNAP_EXT ".snap.png"
 
+#include <QSharedPointer>
+
 class Frame;
+typedef QSharedPointer<Frame> FramePtr;
+
+class Snapshot;
+typedef QSharedPointer<Snapshot> SnapshotPtr;
 
 ///
 /// \brief Class that associated with a Frame represents an area of interest in
@@ -30,7 +36,7 @@ class Frame;
 class Snapshot : public Player {
 private:
     /// \brief External Frame reference.
-	Frame *image;
+    FramePtr image;
 
     cv::Rect rect;
 
@@ -42,20 +48,20 @@ public:
 	Snapshot();
 
     /// \brief Simple destructor.
-    ~Snapshot();
+    virtual ~Snapshot();
 
     /// \brief Constructor with a reference to the Frame this Snapshot relates
     ///to.
     /// \param img Pointer to the refered Frame.
-	Snapshot(Frame *img);
+    Snapshot(FramePtr &img);
 
     /// \brief Constructor with a reference to the Frame this Snapshot relates
     ///to, and the image mask.
     /// \param img Pointer to the refered Frame.
     /// \param inmask Mask that defines where something is.
-    Snapshot(Frame *img, cv::Mat inmask, std::string path);
+    Snapshot(FramePtr &img, cv::Mat inmask, std::string path);
 
-    Snapshot(Frame *img, cv::Rect inrect);
+    Snapshot(FramePtr &img, cv::Rect inrect);
 
     // Functions
     cv::Mat getMask();

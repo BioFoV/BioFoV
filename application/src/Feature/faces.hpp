@@ -32,11 +32,11 @@ private:
     cv::Ptr<cv::FaceRecognizer> model;
     cv::CascadeClassifier haar_cascade;
     std::deque<Event *> events;
-    std::deque<Snapshot *> snapshots;
+    std::deque<SnapshotPtr> snapshots;
 public:
     Face(std::string haar_filename);
     ~Face();
-    void findFaces(Frame * newFrame);
+    void findFaces(FramePtr newFrame);
     void addEvent(Event * newEvent);
     unsigned int faceNumber();
     Snapshot * getFaceAt(unsigned int i);
