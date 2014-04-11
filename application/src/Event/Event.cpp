@@ -13,11 +13,7 @@ Event::Event(Video* iVid){
  * Destructor
  ******************************************************************************/
 Event::~Event(){
-    // FIXME: deletion is not done due to merging.
-//    for(std::deque<Frame*>::iterator ftmp = frames.begin();
-//        ftmp != frames.end(); ftmp++){
-//        delete *ftmp;
-//    }
+
 }
 
 /*******************************************************************************
