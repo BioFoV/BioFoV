@@ -189,6 +189,8 @@ public:
                                          bool bShadowDetection,
                                          std::string path);
 
+    void removeEvent(Event* eToRm);
+
     // Calibration
     /// \brief Calibrates the camera based on this Video.
     /// If this Video has enough chessboard pattern frames on it, and they are

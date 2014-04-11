@@ -291,6 +291,17 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
     return events;
 }
 
+void Video::removeEvent(Event* eToRm){
+    for (std::deque<Event*>::iterator iter = events.begin();
+         iter != events.end();
+         iter ++) {
+        if (*iter == eToRm){
+            events.erase(iter);
+            break;
+        }
+    }
+}
+
 void Video::calibrate(int nBoards, int frameStep, int boardW,
                       int boardH, int iterations) {
 
