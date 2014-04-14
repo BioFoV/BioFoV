@@ -77,9 +77,6 @@ private:
     /// \brief CV Capture interface of this Video.
     cv::VideoCapture cap;
 
-    /// \brief deque of the ordered events.
-    std::deque<EventPtr> events;
-
     /// \brief Video file name.
 	std::string filename;
 
@@ -190,8 +187,6 @@ public:
                                          int varThreshold,
                                          bool bShadowDetection,
                                          std::string path);
-
-    void removeEvent(EventPtr eToRm);
 
     // Calibration
     /// \brief Calibrates the camera based on this Video.

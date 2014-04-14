@@ -20,8 +20,7 @@ EventItem::EventItem(QString eventname, QTreeWidget *parent) :
  * Destructor
  ******************************************************************************/
 EventItem::~EventItem(){
-    Video * tmpVid = event->getVideo();
-//    tmpVid->removeEvent(event);
+
 }
 
 /*******************************************************************************

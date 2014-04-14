@@ -213,6 +213,7 @@ std::deque<EventPtr> Video::autoDetectEvents(double threshold,
     FramePtr frame;
     SnapshotPtr snap;
     EventPtr event;
+    std::deque<EventPtr> events;
 
     unsigned int j=0;
     int emptycount=0;
@@ -267,9 +268,8 @@ std::deque<EventPtr> Video::autoDetectEvents(double threshold,
                         event->remLastSnapshot();
                     }
                     events.push_back(event);
-                } else {
-                    event.clear();
                 }
+                event.clear();
                 emptycount = 0;
                 framecount = 0;
             }
@@ -285,17 +285,6 @@ std::deque<EventPtr> Video::autoDetectEvents(double threshold,
         }
     }
     return events;
-}
-
-void Video::removeEvent(EventPtr eToRm){
-    for (std::deque<EventPtr>::iterator iter = events.begin();
-         iter != events.end();
-         iter ++) {
-        if ((*iter) == eToRm){
-            events.erase(iter);
-            break;
-        }
-    }
 }
 
 void Video::calibrate(int nBoards, int frameStep, int boardW,
