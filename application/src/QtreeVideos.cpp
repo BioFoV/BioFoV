@@ -369,6 +369,8 @@ void QtreeVideos::on_merge()
 FrameItem* QtreeVideos::getFrame(){
     FrameItem* fitem ;
     QTreeWidgetItem* qitem = getCurrentItem();
+    if (qitem == NULL)
+        return NULL;
     if (dynamic_cast< FrameItem * >( qitem ) == NULL){
         fitem = new FrameItem(getFrameRef());
         qitem->addChild(fitem);
@@ -386,6 +388,10 @@ void QtreeVideos::on_height()
 {
     pause();
     FrameItem* fitem = getFrame();
+    if (fitem == NULL){
+        showMessage(tr("There is no loaded player"));
+        return;
+    }
     showMessage(tr("Select 4 points in the player"));
     fitem->getFrameRef()->addDrawable((Drawable*)new DrawHeight());
 }
@@ -393,6 +399,10 @@ void QtreeVideos::on_height()
 void QtreeVideos::on_length() {
     pause();
     FrameItem* fitem = getFrame();
+    if (fitem == NULL){
+        showMessage(tr("There is no loaded player"));
+        return;
+    }
     showMessage(tr("Select 2 points in the player"));
     fitem->getFrameRef()->addDrawable((Drawable*)new DrawLength());
 }

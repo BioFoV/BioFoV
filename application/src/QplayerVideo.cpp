@@ -100,7 +100,11 @@ bool VideoPlayer::stepForward(){
 }
 
 void VideoPlayer::goTo(double nthFrame){
-    currentPlayer->setFramePos(nthFrame);
+    PlayerPtr tmpPlayer = getCurrentPlayer();
+    if (tmpPlayer.isNull()){
+        return;
+    }
+    tmpPlayer->setFramePos(nthFrame);
     stepForward();
 }
 
@@ -135,6 +139,7 @@ void VideoPlayer::loadVid(PlayerPtr nextVid, int playerT, QTreeWidgetItem* item)
 
 void VideoPlayer::unload(){
     currentPlayer.clear();
+    Qitem = NULL;
     qDebug("unloaded video to player");
 }
 
@@ -274,22 +279,34 @@ cv::Point VideoPlayer::qtPt_To_cvPt(QPoint in){
 
 void VideoPlayer::mousePressEvent(QMouseEvent *event){
     QPoint ptTmp = event->pos() - QPoint(x_origin(),y_origin());
-    getCurrentPlayer()->mousePressEvent(qtPt_To_cvPt(ptTmp));
-    getCurrentPlayer()->getFrame(frame);
+    PlayerPtr tmpPlayer = getCurrentPlayer();
+    if (tmpPlayer.isNull()){
+        return;
+    }
+    tmpPlayer->mousePressEvent(qtPt_To_cvPt(ptTmp));
+    tmpPlayer->getFrame(frame);
     showImage(frame);
 }
 
 void VideoPlayer::mouseReleaseEvent(QMouseEvent *event){
     QPoint ptTmp = event->pos() - QPoint(x_origin(),y_origin());
-    getCurrentPlayer()->mouseReleaseEvent(qtPt_To_cvPt(ptTmp));
-    getCurrentPlayer()->getFrame(frame);
+    PlayerPtr tmpPlayer = getCurrentPlayer();
+    if (tmpPlayer.isNull()){
+        return;
+    }
+    tmpPlayer->mouseReleaseEvent(qtPt_To_cvPt(ptTmp));
+    tmpPlayer->getFrame(frame);
     showImage(frame);
 }
 
 void VideoPlayer::mouseMoveEvent(QMouseEvent *event){
     QPoint ptTmp = event->pos() - QPoint(x_origin(),y_origin());
-    getCurrentPlayer()->mouseMoveEvent(qtPt_To_cvPt(ptTmp));
-    getCurrentPlayer()->getFrame(frame);
+    PlayerPtr tmpPlayer = getCurrentPlayer();
+    if (tmpPlayer.isNull()){
+        return;
+    }
+    tmpPlayer->mouseMoveEvent(qtPt_To_cvPt(ptTmp));
+    tmpPlayer->getFrame(frame);
     showImage(frame);
 }
 
