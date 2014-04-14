@@ -32,8 +32,6 @@ Video::~Video(){
     if (bg != NULL){
         delete bg;
     }
-    frames.clear();
-    events.clear();
 }
 
 /*
@@ -175,10 +173,10 @@ void Video::bgSubDelete(){
  * Event autoDetection
  ******************************************************************************/
 
-Event* Video::convertToEvent(std::string path){
+EventPtr Video::convertToEvent(std::string path){
     cv::Mat shot;
     FramePtr frame;
-    Event *event = NULL;
+    EventPtr event;
 
     unsigned int j=0;
     int framecount=0;
@@ -190,8 +188,8 @@ Event* Video::convertToEvent(std::string path){
     while(getNextFrame(shot)){
         emit progressChanged(j);
 
-        if (event == NULL){
-            event = new Event(this);
+        if (event.isNull()){
+            event = EventPtr(new Event(this));
         }
         // create new frame
         frame = FramePtr(new Frame(this, shot, path));
@@ -204,7 +202,7 @@ Event* Video::convertToEvent(std::string path){
     return event;
 }
 
-std::deque<Event*> Video::autoDetectEvents(double threshold,
+std::deque<EventPtr> Video::autoDetectEvents(double threshold,
                                            double maxcount,
                                            double mincount,
                                            int history,
@@ -214,7 +212,7 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
     cv::Mat shot;
     FramePtr frame;
     SnapshotPtr snap;
-    Event *event = NULL;
+    EventPtr event;
 
     unsigned int j=0;
     int emptycount=0;
@@ -239,8 +237,8 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
 
         // Detected change
         if ( value > absoluteThreshold ){
-            if (event == NULL){
-                event = new Event(this);
+            if (event.isNull()){
+                event = EventPtr(new Event(this));
             }
             // create new frame
             frame = FramePtr(new Frame(this, shot, path));
@@ -252,7 +250,7 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
             emptycount = 0;
         }
         // Did not detect change
-        else if (event != NULL){
+        else if (!event.isNull()){
             emptycount ++;
             // create new frame
             frame = FramePtr(new Frame(this, shot, path));
@@ -270,9 +268,8 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
                     }
                     events.push_back(event);
                 } else {
-                    delete event;
+                    event.clear();
                 }
-                event = NULL;
                 emptycount = 0;
                 framecount = 0;
             }
@@ -280,22 +277,21 @@ std::deque<Event*> Video::autoDetectEvents(double threshold,
         j++;
     }
     // Check if Video ended in the middle of an Event.
-    if (event != NULL){
+    if (!event.isNull()){
         if (framecount > mincount){
             events.push_back(event);
         } else {
-            delete event;
+            event.clear();
         }
     }
-
     return events;
 }
 
-void Video::removeEvent(Event* eToRm){
-    for (std::deque<Event*>::iterator iter = events.begin();
+void Video::removeEvent(EventPtr eToRm){
+    for (std::deque<EventPtr>::iterator iter = events.begin();
          iter != events.end();
          iter ++) {
-        if (*iter == eToRm){
+        if ((*iter) == eToRm){
             events.erase(iter);
             break;
         }

@@ -9,7 +9,7 @@ Face::~Face(){
 
 }
 
-void Face::addEvent(Event * newEvent){
+void Face::addEvent(EventPtr newEvent){
     events.push_back(newEvent);
 }
 
@@ -32,6 +32,6 @@ unsigned int Face::faceNumber(){
     return snapshots.size();
 }
 
-Snapshot* Face::getFaceAt(unsigned int i){
-    return snapshots.at(i).data();
+SnapshotPtr Face::getFaceAt(unsigned int i){
+    return snapshots.at(i);
 }

@@ -5,10 +5,13 @@
 
 #ifndef INC_FACES
 #define INC_FACES
-#include "Feature/faces.hpp"
+#include <Feature/faces.hpp>
 #endif
 
-#include "Snapshot/Snapshot.hpp"
+#ifndef INC_SNAPSHOT
+#define INC_SNAPSHOT
+#include <Snapshot/Snapshot.hpp>
+#endif
 
 class FaceItem : public QTreeWidgetItem
 {
@@ -34,11 +37,11 @@ class SnapshotItem : public QTreeWidgetItem
 {
 public:
     explicit SnapshotItem(QTreeWidgetItem *parent = 0);
-    SnapshotItem(Snapshot *insnap, QTreeWidget *parent = 0);
+    SnapshotItem(SnapshotPtr insnap, QTreeWidget *parent = 0);
 
     ~SnapshotItem();
 
-    Snapshot* getSnapshot();
+    SnapshotPtr getSnapshot();
 
 private:
     SnapshotPtr snap;

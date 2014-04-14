@@ -79,6 +79,7 @@ bool Frame::getNextFrame(cv::Mat &frame){
 
 FramePtr Frame::getCurrentFrameRef(){
     //FIXME this is NOT how it should be done!
+    qDebug("If you read this then something is wrong");
     FramePtr thisPtr = FramePtr(this);
     return thisPtr;
 }

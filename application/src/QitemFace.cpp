@@ -59,10 +59,10 @@ SnapshotItem::SnapshotItem(QTreeWidgetItem *parent) :
 
 }
 
-SnapshotItem::SnapshotItem(Snapshot *insnap, QTreeWidget *parent) :
+SnapshotItem::SnapshotItem(SnapshotPtr insnap, QTreeWidget *parent) :
     QTreeWidgetItem(parent)
 {
-    snap = SnapshotPtr(insnap);
+    snap = insnap;
     setText(0, QString("Frame %1").arg(insnap->getCurrentFrameRef()->getNumber(),5,10,QChar('0')));
 }
 
@@ -70,6 +70,6 @@ SnapshotItem::~SnapshotItem(){
     snap.clear();
 }
 
-Snapshot* SnapshotItem::getSnapshot(){
-    return snap.data();
+SnapshotPtr SnapshotItem::getSnapshot(){
+    return snap;
 }

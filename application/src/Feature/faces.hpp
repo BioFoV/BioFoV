@@ -9,37 +9,37 @@
 
 #ifndef INC_FEATURE
 #define INC_FEATURE
-#include "Feature.hpp"
+#include <Feature/Feature.hpp>
 #endif
 
 #ifndef INC_EVENT
 #define INC_EVENT
-#include "../Event/Event.hpp"
+#include <Event/Event.hpp>
 #endif
 
 #ifndef INC_SNAPSHOT
 #define INC_SNAPSHOT
-#include "../Snapshot/Snapshot.hpp"
+#include <Snapshot/Snapshot.hpp>
 #endif
 
 #ifndef INC_FRAME
 #define INC_FRAME
-#include "../Frame/Frame.hpp"
+#include <Frame/Frame.hpp>
 #endif
 
 class Face : public Feature {
 private:
     cv::Ptr<cv::FaceRecognizer> model;
     cv::CascadeClassifier haar_cascade;
-    std::deque<Event *> events;
+    std::deque<EventPtr> events;
     std::deque<SnapshotPtr> snapshots;
 public:
     Face(std::string haar_filename);
     ~Face();
     void findFaces(FramePtr newFrame);
-    void addEvent(Event * newEvent);
+    void addEvent(EventPtr newEvent);
     unsigned int faceNumber();
-    Snapshot * getFaceAt(unsigned int i);
+    SnapshotPtr getFaceAt(unsigned int i);
 };
 
 #endif // FACES_HPP

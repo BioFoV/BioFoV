@@ -11,6 +11,8 @@
 
 #define TAG_VIDEO "Video"
 
+typedef QSharedPointer<Video> VideoPtr;
+
 class VideoItem : public QTreeWidgetItem
 {
 public:
@@ -19,10 +21,10 @@ public:
     VideoItem(QString filename, QTreeWidget *parent = 0);
 
     // Functions
-    Video* getVideo();
+    VideoPtr getVideo();
 
 private:
-    Video *vid;
+    VideoPtr vid;
 };
 
 #endif // VIDEOITEM_HPP

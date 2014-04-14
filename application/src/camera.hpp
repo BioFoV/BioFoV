@@ -14,7 +14,7 @@
 
 #ifndef INC_VIDEO
 #define INC_VIDEO
-#include "Video/Video.hpp"
+#include <Video/Video.hpp>
 #endif
 
 #include <QDateTime>

@@ -13,12 +13,12 @@
 class FrameItem : public QTreeWidgetItem
 {
 public:
-    FrameItem(Frame* pframe);
+    FrameItem(FramePtr pframe);
 
-    Frame* getFrameRef();
+    FramePtr getFrameRef();
 
 private:
-    Frame* frame;
+    FramePtr frame;
 };
 
 #endif // QITEMFRAME_HPP

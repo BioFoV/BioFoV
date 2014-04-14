@@ -3,7 +3,7 @@
 
 #ifndef INC_INDIVIDUAL
 #define INC_INDIVIDUAL
-#include "../Individual/Individual.hpp"
+#include <Individual/Individual.hpp>
 #endif
 
 #ifndef INC_STRING

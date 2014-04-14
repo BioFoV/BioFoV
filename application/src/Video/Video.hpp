@@ -9,7 +9,7 @@
 
 #ifndef INC_FRAME
 #define INC_FRAME
-#include "../Frame/Frame.hpp"
+#include <Frame/Frame.hpp>
 #endif
 
 #ifndef INC_BGSUB
@@ -19,12 +19,12 @@
 
 #ifndef INC_EVENT
 #define INC_EVENT
-#include "../Event/Event.hpp"
+#include <Event/Event.hpp>
 #endif
 
 #ifndef INC_CAMERA
 #define INC_CAMERA
-#include "../camera.hpp"
+#include <camera.hpp>
 #endif
 
 //#ifndef INC_LIST
@@ -47,7 +47,7 @@
 #include "QdialogSettings.hpp"
 #endif
 
-#include "QitemVideo.hpp"
+//#include "QitemVideo.hpp"
 
 #define NOTCALIBRATED -1
 
@@ -55,7 +55,12 @@
 
 class Frame;
 class Event;
+typedef QSharedPointer<Event> EventPtr;
+
 class Camera;
+
+class Video;
+typedef QSharedPointer<Video> VideoPtr;
 
 ///
 /// \brief Class that holds the VideoCapture handler and that provides frames
@@ -72,11 +77,8 @@ private:
     /// \brief CV Capture interface of this Video.
     cv::VideoCapture cap;
 
-    /// \brief deque of the ordered frames.
-    std::deque<Frame*> frames;
-
     /// \brief deque of the ordered events.
-    std::deque<Event*> events;
+    std::deque<EventPtr> events;
 
     /// \brief Video file name.
 	std::string filename;
@@ -168,7 +170,7 @@ public:
     /// \brief Purges the CV background subtractor object linked to this Video.
 	void bgSubDelete();
 
-    Event* convertToEvent(std::string path);
+    EventPtr convertToEvent(std::string path);
 
     // Event autoDetection
     /// \brief Automatically splits the video into several events provided the
@@ -181,7 +183,7 @@ public:
     /// \param bShadowDetection
     /// \param path
     /// \return
-    std::deque<Event *> autoDetectEvents(double threshold,
+    std::deque<EventPtr> autoDetectEvents(double threshold,
                                          double maxcount,
                                          double mincount,
                                          int history,
@@ -189,7 +191,7 @@ public:
                                          bool bShadowDetection,
                                          std::string path);
 
-    void removeEvent(Event* eToRm);
+    void removeEvent(EventPtr eToRm);
 
     // Calibration
     /// \brief Calibrates the camera based on this Video.

@@ -43,8 +43,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->videoList, SIGNAL(showMessage(QString)),
             this, SLOT(showMessage(QString)));
 
-    connect(ui->videoList, SIGNAL(loadVid(Player*, int, QTreeWidgetItem*)),
-            ui->player, SLOT(loadVid(Player*,int, QTreeWidgetItem*)));
+    connect(ui->videoList, SIGNAL(loadVid(PlayerPtr, int, QTreeWidgetItem*)),
+            ui->player, SLOT(loadVid(PlayerPtr,int, QTreeWidgetItem*)));
 
     connect(ui->actionAdd_Video_File, SIGNAL(triggered()),
             ui->videoList, SLOT(on_add_video_file()));
@@ -96,8 +96,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionExclude_rectangle, SIGNAL(triggered()),
             ui->videoList, SLOT(on_exclude_rectangle()));
 
-    connect(ui->videoList, SIGNAL(removePlayer(Player*)),
-            ui->player, SLOT(unload(Player*)));
+    connect(ui->videoList, SIGNAL(removePlayer(PlayerPtr)),
+            ui->player, SLOT(unload(PlayerPtr)));
     connect(ui->videoList, SIGNAL(getPlayMode()),
             this, SLOT(getPlayMode()));
     connect(ui->videoList, SIGNAL(setPlaybackMode(int)),
@@ -124,6 +124,8 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->player, SLOT(getCurrentItem()));
     connect(ui->videoList, SIGNAL(getFrameRef()),
             ui->player, SLOT(getCurrentFrameRef()));
+    connect(ui->videoList, SIGNAL(getCurrentPlayer()),
+            ui->player, SLOT(getCurrentPlayer()));
 }
 
 MainWindow::~MainWindow()
@@ -141,12 +143,12 @@ void MainWindow::on_actionAuto_Split_triggered()
 {
     EventItem* eventIt;
     EventItem* newEventIt;
-    std::deque<Event*> events;
+    std::deque<EventPtr> events;
 
     foreach(QTreeWidgetItem* item, ui->videoList->selectedItems()){
         eventIt = (EventItem *) item;
         events = eventIt->getEvent()->splitEvent(200, 3, 5);
-        foreach(Event* event, events){
+        foreach(EventPtr event, events){
             showMessage(tr("Found Event %1").arg(nEvent));
             newEventIt = new EventItem(QString("E%1").arg(nEvent));
             newEventIt->setEvent(event);
@@ -278,7 +280,7 @@ void MainWindow::on_actionDetect_Faces_triggered()
                 face->addEvent(((EventItem* )item)->getEvent());
             }
             foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
-                Event* ev = ((EventItem*)item)->getEvent();
+                EventPtr ev = ((EventItem*)item)->getEvent();
                 FramePtr face_frame;
                 // rewind event
                 ev->setFramePos(0);

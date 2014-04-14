@@ -27,9 +27,15 @@
 
 #include "QitemVideo.hpp"
 
+#ifndef INC_DRAWABLE
+#define INC_DRAWABLE
 #include "Drawables/drawable.hpp"
+#endif
 
+#ifndef INC_PLAYER
+#define INC_PLAYER
 #include "player.hpp"
+#endif
 
 #define PLAYER_VID 0
 #define PLAYER_EV  1
@@ -55,9 +61,9 @@ public slots:
     bool stepBack();
     bool stepForward();
     void goTo(double nthFrame);
-    void loadVid(Player* nextVid, int playerT, QTreeWidgetItem *item);
+    void loadVid(PlayerPtr nextVid, int playerT, QTreeWidgetItem *item);
     void unload();
-    void unload(Player* toUnload);
+    void unload(PlayerPtr toUnload);
     bool isloaded();
     int getPlayerType();
     void setPlayMode(int mode);
@@ -68,12 +74,12 @@ public slots:
 
     void showStillImage(const cv::Mat& image);
 
-    Player* getCurrentPlayer();
+    PlayerPtr getCurrentPlayer();
     FramePtr getCurrentFrameRef();
     QTreeWidgetItem* getCurrentItem();
 private:
     Ui::VideoPlayer *ui;
-    Player* currentPlayer;
+    PlayerPtr currentPlayer;
     QImage _qimage;
     cv::Mat _tmp;
     cv::Mat frame;

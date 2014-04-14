@@ -36,7 +36,7 @@ void QtreeVideos::on_add_video_file(){
                 last = NULL;
                 continue;
             }
-            connect(last->getVideo(),SIGNAL(getSettings()),
+            connect(last->getVideo().data(),SIGNAL(getSettings()),
                     this, SIGNAL(getSettings()));
             addTopLevelItem(last);
             showMessage(tr("Loaded ") + fileName);
@@ -53,7 +53,7 @@ void QtreeVideos::on_add_video_file(){
 }
 
 void QtreeVideos::on_video_to_event(){
-    Event* event;
+    EventPtr event;
     EventItem* newEventItem;
 
     if (selectedItems().isEmpty()){
@@ -66,17 +66,17 @@ void QtreeVideos::on_video_to_event(){
             showMessage(tr("Analyzing Video %1").arg(item->text(0)));
 
             // Progress bar signals and slots
-            connect(videoiter->getVideo(), SIGNAL(startProgress(uint, uint)),
+            connect(videoiter->getVideo().data(), SIGNAL(startProgress(uint, uint)),
                     this, SIGNAL(startProgress(uint,uint)));
-            connect(videoiter->getVideo(), SIGNAL(progressChanged(uint)),
+            connect(videoiter->getVideo().data(), SIGNAL(progressChanged(uint)),
                     this, SIGNAL(progressChanged(uint)));
 
             event = videoiter->getVideo()->convertToEvent(
                     (getSettings()->getCacheDir().append("/")).toStdString());
 
-            disconnect(videoiter->getVideo(), SIGNAL(startProgress(uint, uint)),
+            disconnect(videoiter->getVideo().data(), SIGNAL(startProgress(uint, uint)),
                        this, SIGNAL(startProgress(uint,uint)));
-            disconnect(videoiter->getVideo(), SIGNAL(progressChanged(uint)),
+            disconnect(videoiter->getVideo().data(), SIGNAL(progressChanged(uint)),
                        this, SIGNAL(progressChanged(uint)));
 
             resetProgress();
@@ -94,7 +94,7 @@ void QtreeVideos::on_video_to_event(){
 }
 
 void QtreeVideos::on_auto_detect_events(){
-    std::deque<Event*> events;
+    std::deque<EventPtr> events;
     EventItem* newEvent;
 
     QElapsedTimer timer;
@@ -119,9 +119,9 @@ void QtreeVideos::on_auto_detect_events(){
             }
 
             // Progress bar signals and slots
-            connect(videoiter->getVideo(), SIGNAL(startProgress(uint, uint)),
+            connect(videoiter->getVideo().data(), SIGNAL(startProgress(uint, uint)),
                     this, SIGNAL(startProgress(uint,uint)));
-            connect(videoiter->getVideo(), SIGNAL(progressChanged(uint)),
+            connect(videoiter->getVideo().data(), SIGNAL(progressChanged(uint)),
                     this, SIGNAL(progressChanged(uint)));
             timer.start();
             events = videoiter->getVideo()->autoDetectEvents(split.getThreshold()/10.0,
@@ -132,9 +132,9 @@ void QtreeVideos::on_auto_detect_events(){
                                                              split.getbShadowDetection(),
                                                              (getSettings()->getCacheDir().append("/")).toStdString());
 
-            disconnect(videoiter->getVideo(), SIGNAL(startProgress(uint, uint)),
+            disconnect(videoiter->getVideo().data(), SIGNAL(startProgress(uint, uint)),
                        this, SIGNAL(startProgress(uint,uint)));
-            disconnect(videoiter->getVideo(), SIGNAL(progressChanged(uint)),
+            disconnect(videoiter->getVideo().data(), SIGNAL(progressChanged(uint)),
                        this, SIGNAL(progressChanged(uint)));
 
             resetProgress();
@@ -164,7 +164,7 @@ void QtreeVideos::on_remove_from_project()
     if(isVisible()){
         foreach(QTreeWidgetItem* item, selectedItems()){
             if (VideoItem* vItem = dynamic_cast< VideoItem * >( item )){
-                removePlayer((Player *) vItem->getVideo());
+                removePlayer(qSharedPointerCast<Player>(vItem->getVideo()));
                 delete item;
             }
             else {
@@ -179,7 +179,7 @@ void QtreeVideos::on_delete_event()
     if(isVisible()){
         foreach(QTreeWidgetItem* item, selectedItems()){
             if(EventItem* evItem = dynamic_cast< EventItem * >( item )){
-                removePlayer((Player *) evItem->getEvent());
+                removePlayer(qSharedPointerCast<Player>(evItem->getEvent()));
                 delete evItem;
             }
             else {
@@ -195,12 +195,12 @@ void QtreeVideos::on_item_doubleclicked(QTreeWidgetItem *item, int /*column - un
         loadVid(vItem->getVideo(), PLAYER_VID, vItem);
         setPlaybackEnabled(false);
     } else if (EventItem* eItem = dynamic_cast< EventItem * >( item )){
-        Event* ev = eItem->getEvent();
+        EventPtr ev = eItem->getEvent();
         loadVid(ev, PLAYER_EV, eItem);
         setPlaybackMode(getPlayMode());
         setPlaybackEnabled(true);
     } else if (FrameItem* fItem = dynamic_cast< FrameItem * >( item )) {
-        Frame* fr = fItem->getFrameRef();
+        FramePtr fr = fItem->getFrameRef();
         loadVid(fr, PLAYER_FRAME, fItem);
         setPlaybackEnabled(false);
     }
@@ -377,7 +377,7 @@ FrameItem* QtreeVideos::getFrame(){
     } else {
         fitem = (FrameItem*) qitem;
     }
-    connect(fitem->getFrameRef(), SIGNAL(updateValues()),
+    connect(fitem->getFrameRef().data(), SIGNAL(updateValues()),
             this, SLOT(updateValues()));
     return fitem;
 }
@@ -422,7 +422,7 @@ void QtreeVideos::updateValues(){
     QTreeWidgetItem* current = getCurrentItem();
     current->takeChildren();
 
-    std::deque<Drawable*> map = getFrameRef()->getDrawables();
+    std::deque<Drawable*> map = getCurrentPlayer()->getDrawables();
     for (std::deque<Drawable*>::iterator iter = map.begin();
          iter != map.end();
          iter ++) {

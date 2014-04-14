@@ -13,7 +13,7 @@ Event::Event(Video* iVid){
  * Destructor
  ******************************************************************************/
 Event::~Event(){
-    vid->removeEvent(this);
+//    vid->removeEvent(this);
 }
 
 /*******************************************************************************
@@ -61,11 +61,11 @@ void Event::remLastSnapshot(){
  *one
  * mincount -> minimum size of an event in frames
  */
-std::deque<Event*> Event::splitEvent(double threshold, double maxcount,
+std::deque<EventPtr> Event::splitEvent(double threshold, double maxcount,
                                      double mincount){
     double fTotal = getLengthFrames();
-    std::deque<Event*> events;
-    Event* newEvent = NULL;
+    std::deque<EventPtr> events;
+    EventPtr newEvent;
     int j=0;
     int emptycount=0;
     int framecount=0;
@@ -77,7 +77,7 @@ std::deque<Event*> Event::splitEvent(double threshold, double maxcount,
         // Detected change
         if ( value > threshold ){
             if (newEvent == NULL){
-                newEvent = new Event(vid);
+                newEvent = EventPtr(new Event(vid));
             }
             newEvent->addFrame(frames.at(j));
             newEvent->addSnapshot(snapshots.at(j));
@@ -92,9 +92,8 @@ std::deque<Event*> Event::splitEvent(double threshold, double maxcount,
                     if (framecount > mincount){
                         events.push_back(newEvent);
                     } else {
-                        delete newEvent;
+                        newEvent.clear();
                     }
-                    newEvent = NULL;
                     emptycount = 0;
                     framecount = 0;
                 }
@@ -255,4 +254,8 @@ bool Event::saveAsVideo(std::string filename, std::string encoder){
 
 void Event::save(std::string fname){
     saveAsVideo(fname+".avi", "HFYU");
+}
+
+Video* Event::getVideo(){
+    return vid;
 }

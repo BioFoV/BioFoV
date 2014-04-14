@@ -3,7 +3,10 @@
 
 #include <QTreeWidgetItem>
 
-#include "Drawables/drawable.hpp"
+#ifndef INC_DRAWABLE
+#define INC_DRAWABLE
+#include <Drawables/drawable.hpp>
+#endif
 
 class QitemDrawable : public QTreeWidgetItem
 {

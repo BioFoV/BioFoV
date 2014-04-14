@@ -12,7 +12,10 @@
 #include "../Frame/Frame.hpp"
 #endif
 
+#ifndef INC_PLAYER
+#define INC_PLAYER
 #include "../player.hpp"
+#endif
 
 #ifndef INC_STDIO
 #define INC_STDIO

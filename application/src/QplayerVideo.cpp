@@ -18,7 +18,7 @@ VideoPlayer::VideoPlayer(QWidget *parent) :
             this, SLOT(playOrPause()));
     connect(ui->stepButton, SIGNAL(clicked()),
             this, SLOT(stepForward()));
-    currentPlayer = NULL;
+    currentPlayer.clear();
 }
 
 /*******************************************************************************
@@ -107,7 +107,7 @@ void VideoPlayer::goTo(double nthFrame){
 /*******************************************************************************
  * Video loading functions
  ******************************************************************************/
-void VideoPlayer::loadVid(Player* nextVid, int playerT, QTreeWidgetItem* item){
+void VideoPlayer::loadVid(PlayerPtr nextVid, int playerT, QTreeWidgetItem* item){
     pause();
     unload();
     currentPlayer = nextVid;
@@ -134,11 +134,11 @@ void VideoPlayer::loadVid(Player* nextVid, int playerT, QTreeWidgetItem* item){
 }
 
 void VideoPlayer::unload(){
-    currentPlayer = NULL;
+    currentPlayer.clear();
     qDebug("unloaded video to player");
 }
 
-void VideoPlayer::unload(Player* toUnload){
+void VideoPlayer::unload(PlayerPtr toUnload){
     if(getCurrentPlayer() == toUnload){
         pause();
         unload();
@@ -248,8 +248,10 @@ int VideoPlayer::getPlayerType(){
 }
 
 void VideoPlayer::setPlayMode(int mode){
-    if (playerType == PLAYER_EV)
-        ((Event*)currentPlayer)->setPlaybackMode(mode);
+    if (playerType == PLAYER_EV){
+        EventPtr tmpEvent = qSharedPointerCast<Event> (currentPlayer);
+        tmpEvent->setPlaybackMode(mode);
+    }
 }
 
 /*******************************************************************************
@@ -316,7 +318,7 @@ void VideoPlayer::setControlsEnabled(bool status){
     ui->speedSlider->setEnabled(status);
 }
 
-Player* VideoPlayer::getCurrentPlayer(){
+PlayerPtr VideoPlayer::getCurrentPlayer(){
     return currentPlayer;
 }
 

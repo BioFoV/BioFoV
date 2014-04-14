@@ -9,12 +9,12 @@
 
 #ifndef INC_VIDEO
 #define INC_VIDEO
-#include "../Video/Video.hpp"
+#include <Video/Video.hpp>
 #endif
 
 #ifndef INC_PLAYER
 #define INC_PLAYER
-#include "../player.hpp"
+#include <player.hpp>
 #endif
 
 #ifndef INC_STDIO
@@ -22,7 +22,10 @@
 #include <stdio.h>
 #endif
 
-#include "Drawables/drawable.hpp"
+#ifndef INC_DRAWABLES
+#define INC_DRAWABLES
+#include <Drawables/drawable.hpp>
+#endif
 
 #define IMG_EXT ".image.png"
 

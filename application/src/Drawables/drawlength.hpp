@@ -7,7 +7,10 @@
 #include <opencv2/opencv.hpp>
 #endif
 
+#ifndef INC_DRAWABLE
+#define INC_DRAWABLE
 #include "drawable.hpp"
+#endif
 
 /// Defines the radius of the clicked point markers (independent of image
 ///resolution.

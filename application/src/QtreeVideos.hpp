@@ -45,13 +45,13 @@ public:
     
 signals:
     void showMessage(QString);
-    void loadVid(Player*, int, QTreeWidgetItem*);
+    void loadVid(PlayerPtr, int, QTreeWidgetItem*);
     void setPlaybackEnabled(bool);
     QdialogSettings* getSettings();
     void progressChanged(uint);
     void startProgress(uint, uint);
     void resetProgress();
-    void removePlayer(Player*);
+    void removePlayer(PlayerPtr);
     int getPlayMode();
     void setPlaybackMode(int);
     void playOrPause();
@@ -63,7 +63,8 @@ signals:
     void setTotalTimeText(QString);
 
     QTreeWidgetItem* getCurrentItem();
-    Frame* getFrameRef();
+    FramePtr getFrameRef();
+    PlayerPtr getCurrentPlayer();
 
 public slots:
     /// \brief Add video file.

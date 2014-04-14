@@ -1,7 +1,10 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
-#include "Drawables/drawable.hpp"
+#ifndef INC_DRAWABLE
+#define INC_DRAWABLE
+#include <Drawables/drawable.hpp>
+#endif
 
 // OpenCV
 #ifndef OPENCV_INC
@@ -9,10 +12,12 @@
 #include <opencv2/opencv.hpp>
 #endif
 
-
 class Frame;
 #include <QSharedPointer>
 typedef QSharedPointer<Frame> FramePtr;
+
+class Player;
+typedef QSharedPointer<Player> PlayerPtr;
 
 ///
 /// \brief Interface for VideoPlayer.

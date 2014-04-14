@@ -7,7 +7,10 @@
 #include <opencv2/opencv.hpp>
 #endif
 
+#ifndef INC_DRAWABLE
+#define INC_DRAWABLE
 #include "drawable.hpp"
+#endif
 
 ///
 /// \brief Select a rectangle area end exclude it from background subtraction.

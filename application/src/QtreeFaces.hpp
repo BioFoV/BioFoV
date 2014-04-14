@@ -8,7 +8,11 @@
 #endif
 
 #include "QitemFace.hpp"
+
+#ifndef INC_SNAPSHOT
+#define INC_SNAPSHOT
 #include "Snapshot/Snapshot.hpp"
+#endif
 
 #include <QTreeWidget>
 

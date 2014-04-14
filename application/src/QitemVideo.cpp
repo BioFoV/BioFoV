@@ -12,7 +12,7 @@ VideoItem::VideoItem(QTreeWidget *parent) :
 VideoItem::VideoItem(QString filename, QTreeWidget *parent) :
     QTreeWidgetItem(parent)
 {
-    vid = new Video(filename.toStdString());
+    vid = VideoPtr(new Video(filename.toStdString()));
     setText(0, filename.split(QDir::separator()).last());
     setText(1, TAG_VIDEO );
 }
@@ -20,6 +20,6 @@ VideoItem::VideoItem(QString filename, QTreeWidget *parent) :
 /*******************************************************************************
  * Functions
  ******************************************************************************/
-Video* VideoItem::getVideo(){
+VideoPtr VideoItem::getVideo(){
     return vid;
 }

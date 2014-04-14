@@ -8,6 +8,11 @@
 #include "Event/Event.hpp"
 #endif
 
+#ifndef INC_VIDEO
+#define INC_VIDEO
+#include "Video/Video.hpp"
+#endif
+
 #define TAG_EVENT "Event"
 
 class EventItem : public QTreeWidgetItem
@@ -21,10 +26,10 @@ public:
     ~EventItem();
 
     // Functions
-    Event* getEvent();
-    void setEvent(Event* inevent);
+    EventPtr getEvent();
+    void setEvent(EventPtr inevent);
 private:
-    Event* event;
+    EventPtr event;
 };
 
 #endif // EVENTITEM_HPP

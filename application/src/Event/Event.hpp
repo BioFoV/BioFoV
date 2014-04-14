@@ -3,22 +3,22 @@
 
 #ifndef INC_VIDEO
 #define INC_VIDEO
-#include "../Video/Video.hpp"
+#include <Video/Video.hpp>
 #endif
 
 #ifndef INC_FRAME
 #define INC_FRAME
-#include "../Frame/Frame.hpp"
+#include <Frame/Frame.hpp>
 #endif
 
 #ifndef INC_INDIVIDUAL
 #define INC_INDIVIDUAL
-#include "../Individual/Individual.hpp"
+#include <Individual/Individual.hpp>
 #endif
 
 #ifndef INC_PLAYER
 #define INC_PLAYER
-#include "../player.hpp"
+#include <player.hpp>
 #endif
 
 #ifndef INC_STDEXCEPT
@@ -46,6 +46,9 @@ typedef QSharedPointer<Snapshot> SnapshotPtr;
 class Individual;
 class Video;
 
+class Event;
+typedef QSharedPointer<Event> EventPtr;
+
 ///
 /// \brief Class that represents a contiguous set of frames with something
 ///interesting on them.
@@ -59,7 +62,7 @@ signals:
 protected:
 	// external references
     /// \brief Video from which the Frames in this Event were extracted.
-	Video* vid;
+    Video* vid;
     /// \brief Deque of Frames that define this Event.
     std::deque<FramePtr> frames;
     /// \brief Deque of Individual that show up in this Event.
@@ -113,7 +116,7 @@ public:
     /// \param maxcount
     /// \param mincount
     /// \return Deque of the singular Event FIXME.
-    std::deque<Event*> splitEvent(double threshold, double maxcount, double mincount);
+    std::deque<EventPtr> splitEvent(double threshold, double maxcount, double mincount);
 
     bool getFrameObject(FramePtr outFrame);
 
@@ -143,5 +146,7 @@ public:
     void setPlaybackMode(int mode);
 
     bool saveAsVideo(std::string filename, std::string encoder);
+
+    Video* getVideo();
 };
 #endif 

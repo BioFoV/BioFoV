@@ -9,17 +9,17 @@
 
 #ifndef INC_SNAPSHOT
 #define INC_SNAPSHOT
-#include "../Snapshot/Snapshot.hpp"
+#include <Snapshot/Snapshot.hpp>
 #endif
 
 #ifndef INC_EVENT
 #define INC_EVENT
-#include "../Event/Event.hpp"
+#include <Event/Event.hpp>
 #endif
 
 #ifndef INC_FEATURE
 #define INC_FEATURE
-#include "../Feature/Feature.hpp"
+#include <Feature/Feature.hpp>
 #endif
 
 #ifndef INC_LIST
