@@ -4,13 +4,13 @@
  * Constructors
  ******************************************************************************/
 EventItem::EventItem(QTreeWidget *parent) :
-    QTreeWidgetItem(parent)
+    PlayerItem(parent)
 {
 
 }
 
 EventItem::EventItem(QString eventname, QTreeWidget *parent) :
-    QTreeWidgetItem(parent)
+    PlayerItem(parent)
 {
     setText(0, eventname);
     setText(1, TAG_EVENT );
@@ -32,4 +32,15 @@ void EventItem::setEvent(EventPtr inevent){
 
 EventPtr EventItem::getEvent(){
     return event;
+}
+
+bool EventItem::setPlayer(PlayerPtr inPlayer){
+    event = qSharedPointerDynamicCast<Event>(inPlayer);
+    if (event.isNull())
+        return false;
+    return true;
+}
+
+PlayerPtr EventItem::getPlayer(){
+    return qSharedPointerDynamicCast<Player>(event);
 }

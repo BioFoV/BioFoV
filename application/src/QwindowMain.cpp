@@ -257,18 +257,18 @@ void MainWindow::on_actionDetect_Faces_triggered()
             Face* face = new Face(fileName.toStdString());
 
             foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
-                EventPtr ev = ((EventItem*)item)->getEvent();
+                PlayerPtr tmp_player = ((PlayerItem*)item)->getPlayer();
                 FramePtr face_frame;
                 // rewind event
-                ev->setFramePos(0);
-                enableProgress(0, ev->getLengthFrames());
+                tmp_player->setFramePos(0);
+                enableProgress(0, tmp_player->getLengthFrames());
                 for (;;){
-                    face_frame = ev->getCurrentFrameRef();
+                    face_frame = tmp_player->getCurrentFrameRef();
                     if(face_frame.isNull())
                         break;
-                    setProgress(ev->getFramePos());
+                    setProgress(tmp_player->getFramePos());
                     face->findFaces(face_frame);
-                    ev->stepForward();
+                    tmp_player->stepForward();
                 }
                 resetProgress();
                 if (face->faceNumber() == 0){
@@ -280,7 +280,7 @@ void MainWindow::on_actionDetect_Faces_triggered()
                     showMessage(tr("Found %1 faces").arg(face->faceNumber()));
                 }
                 // rewind event again
-                ev->setFramePos(0);
+                tmp_player->setFramePos(0);
             }
         }
     }

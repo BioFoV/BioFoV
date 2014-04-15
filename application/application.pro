@@ -69,7 +69,8 @@ SOURCES += \
     src/QtreeFaces.cpp \
     src/QtreeVideos.cpp \
     src/QitemFrame.cpp \
-    src/QitemDrawable.cpp
+    src/QitemDrawable.cpp \
+    src/QitemPlayer.cpp
 
 # General purpose headers
 HEADERS += \
@@ -104,7 +105,8 @@ HEADERS += \
     src/QtreeFaces.hpp \
     src/QtreeVideos.hpp \
     src/QitemFrame.hpp \
-    src/QitemDrawable.hpp
+    src/QitemDrawable.hpp \
+    src/QitemPlayer.hpp
 
 # UI forms (XML files)
 FORMS    += $$files(ui/*.ui)

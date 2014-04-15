@@ -8,9 +8,14 @@
 #include "Event/Event.hpp"
 #endif
 
+#ifndef INC_PLAYERITEM
+#define INC_PLAYERITEM
+#include <QitemPlayer.hpp>
+#endif
+
 #define TAG_EVENT "Event"
 
-class EventItem : public QTreeWidgetItem
+class EventItem : public PlayerItem
 {
 public:
     // Constructors
@@ -23,6 +28,9 @@ public:
     // Functions
     EventPtr getEvent();
     void setEvent(EventPtr inevent);
+
+    bool setPlayer(PlayerPtr inPlayer);
+    PlayerPtr getPlayer();
 private:
     EventPtr event;
 };
