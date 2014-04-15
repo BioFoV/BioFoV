@@ -1,6 +1,7 @@
 #include "QitemFrame.hpp"
 
-FrameItem::FrameItem(FramePtr pframe)
+FrameItem::FrameItem(FramePtr pframe, QTreeWidget *parent) :
+    PlayerItem(parent)
 {
     frame = pframe;
     setText(0,QString("%1").arg(frame->getNumber()));
@@ -9,4 +10,15 @@ FrameItem::FrameItem(FramePtr pframe)
 
 FramePtr FrameItem::getFrameRef(){
     return frame;
+}
+
+bool FrameItem::setPlayer(PlayerPtr inPlayer){
+    frame = qSharedPointerDynamicCast<Frame>(inPlayer);
+    if (frame.isNull())
+        return false;
+    return true;
+}
+
+PlayerPtr FrameItem::getPlayer(){
+    return qSharedPointerDynamicCast<Player>(frame);
 }

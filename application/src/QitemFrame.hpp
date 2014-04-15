@@ -6,17 +6,24 @@
 #include "Frame/Frame.hpp"
 #endif
 
+#ifndef INC_PLAYERITEM
+#define INC_PLAYERITEM
+#include <QitemPlayer.hpp>
+#endif
+
 #define TAG_FRAME "Frame"
 
 #include <QTreeWidgetItem>
 
-class FrameItem : public QTreeWidgetItem
+class FrameItem : public PlayerItem
 {
 public:
-    FrameItem(FramePtr pframe);
+    FrameItem(FramePtr pframe, QTreeWidget *parent = 0);
 
     FramePtr getFrameRef();
 
+    bool setPlayer(PlayerPtr inPlayer);
+    PlayerPtr getPlayer();
 private:
     FramePtr frame;
 };
