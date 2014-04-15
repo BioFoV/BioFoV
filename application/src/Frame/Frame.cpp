@@ -69,12 +69,12 @@ bool Frame::getFrame(cv::Mat &frame) {
 
 bool Frame::getPrevFrame(cv::Mat &frame){
     getFrame(frame);
-    return true;
+    return false;
 }
 
 bool Frame::getNextFrame(cv::Mat &frame){
     getFrame(frame);
-    return true;
+    return false;
 }
 
 FramePtr Frame::getCurrentFrameRef(){
