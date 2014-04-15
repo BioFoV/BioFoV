@@ -128,7 +128,7 @@ bool Event::getNextFrame(cv::Mat &frame){
 
 bool Event::stepForward(){
     position ++;
-    if (position > getLengthFrames())
+    if (position > getLengthFrames()-1)
         return false;
     return true;
 }
