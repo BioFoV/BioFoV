@@ -84,6 +84,14 @@ FramePtr Frame::getCurrentFrameRef(){
     return thisPtr;
 }
 
+bool Frame::stepForward(){
+    return false;
+}
+
+bool Frame::stepBackwards(){
+    return false;
+}
+
 double Frame::getFrameInt(){
     return 0;
 }

@@ -55,17 +55,6 @@ void Event::remLastSnapshot(){
     snapshots.pop_back();
 }
 
-bool Event::getFrameObject(FramePtr outFrame){
-    try {
-        outFrame = frames.at(position);
-    }
-    catch (const std::out_of_range& oor) {
-        return false;
-    }
-    position += 1;
-    return true;
-}
-
 /*******************************************************************************
  * Capture functions
  ******************************************************************************/
@@ -137,7 +126,23 @@ bool Event::getNextFrame(cv::Mat &frame){
     }
 }
 
+bool Event::stepForward(){
+    position ++;
+    if (position > getLengthFrames())
+        return false;
+    return true;
+}
+
+bool Event::stepBackwards(){
+    position --;
+    if (position < 0)
+        return false;
+    return true;
+}
+
 FramePtr Event::getCurrentFrameRef(){
+    if (position > getLengthFrames()-1)
+        return QSharedPointer<Frame>(NULL);
     return frames.at(position);
 }
 

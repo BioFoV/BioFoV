@@ -263,10 +263,12 @@ void MainWindow::on_actionDetect_Faces_triggered()
                 ev->setFramePos(0);
                 enableProgress(0, ev->getLengthFrames());
                 for (;;){
-                    if(!ev->getFrameObject(face_frame))
+                    face_frame = ev->getCurrentFrameRef();
+                    if(face_frame.isNull())
                         break;
                     setProgress(ev->getFramePos());
                     face->findFaces(face_frame);
+                    ev->stepForward();
                 }
                 resetProgress();
                 if (face->faceNumber() == 0){

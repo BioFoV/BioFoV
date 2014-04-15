@@ -142,6 +142,9 @@ public:
     FramePtr getCurrentFrameRef();
     uint getCurrentFrameNumber();
 
+    bool stepForward();
+    bool stepBackwards();
+
     // Properties
     double getFrameInt();
     double getFPS();

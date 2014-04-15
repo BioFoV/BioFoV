@@ -61,6 +61,9 @@ public:
     /// \return Wheather the Player was successful into fetching the new frame.
     virtual bool getPrevFrame(cv::Mat &frame) = 0;
 
+    virtual bool stepForward() = 0;
+    virtual bool stepBackwards() = 0;
+
     // Properties
     /// \brief Gets the interval between frames in seconds.
     /// \return Interval between frames in seconds.

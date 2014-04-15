@@ -82,6 +82,9 @@ public:
 
     bool getPrevFrame(cv::Mat &frame);
 
+    bool stepForward();
+    bool stepBackwards();
+
     double getFrameInt();
 
     double getFPS();

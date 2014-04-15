@@ -109,8 +109,6 @@ public:
     /// \brief Pop last Snapshot.
     void remLastSnapshot();
 
-    bool getFrameObject(FramePtr outFrame);
-
     // Capture functions
     bool check_cap();
     bool setFramePos(double frameNum);
@@ -120,6 +118,9 @@ public:
     bool getNextFrame(cv::Mat &frame);
     FramePtr getCurrentFrameRef();
     uint getCurrentFrameNumber();
+
+    bool stepForward();
+    bool stepBackwards();
 
     // Properties
     double getFrameInt();

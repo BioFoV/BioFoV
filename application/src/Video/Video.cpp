@@ -124,6 +124,14 @@ std::string Video::getCacheDir(){
     return getSettings()->getCacheDir().append("/").toStdString();
 }
 
+bool Video::stepForward(){
+    return setFramePos(getFramePos()+1);
+}
+
+bool Video::stepBackwards(){
+    return setFramePos(getFramePos()-1);
+}
+
 /*******************************************************************************
  * Properties
  ******************************************************************************/

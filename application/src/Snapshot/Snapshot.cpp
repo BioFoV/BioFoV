@@ -88,6 +88,14 @@ bool Snapshot::getPrevFrame(cv::Mat &frame){
     return true;
 }
 
+bool Snapshot::stepForward(){
+    return false;
+}
+
+bool Snapshot::stepBackwards(){
+    return false;
+}
+
 double Snapshot::getFrameInt(){
     return 0;
 }
