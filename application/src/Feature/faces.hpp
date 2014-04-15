@@ -31,13 +31,11 @@ class Face : public Feature {
 private:
     cv::Ptr<cv::FaceRecognizer> model;
     cv::CascadeClassifier haar_cascade;
-    std::deque<EventPtr> events;
     std::deque<SnapshotPtr> snapshots;
 public:
     Face(std::string haar_filename);
     ~Face();
     void findFaces(FramePtr newFrame);
-    void addEvent(EventPtr newEvent);
     unsigned int faceNumber();
     SnapshotPtr getFaceAt(unsigned int i);
 };

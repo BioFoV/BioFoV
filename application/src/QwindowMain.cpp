@@ -257,9 +257,6 @@ void MainWindow::on_actionDetect_Faces_triggered()
             Face* face = new Face(fileName.toStdString());
 
             foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
-                face->addEvent(((EventItem* )item)->getEvent());
-            }
-            foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
                 EventPtr ev = ((EventItem*)item)->getEvent();
                 FramePtr face_frame;
                 // rewind event

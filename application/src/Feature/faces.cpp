@@ -9,10 +9,6 @@ Face::~Face(){
 
 }
 
-void Face::addEvent(EventPtr newEvent){
-    events.push_back(newEvent);
-}
-
 void Face::findFaces(FramePtr newFrame){
     cv::Mat gray;
     SnapshotPtr newSnap;
