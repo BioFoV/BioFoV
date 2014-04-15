@@ -109,15 +109,6 @@ public:
     /// \brief Pop last Snapshot.
     void remLastSnapshot();
 
-    /// \brief Splits this Event into several based on the background
-    ///subtraction results.
-    /// TODO: Extensive description since this is an important method.
-    /// \param threshold
-    /// \param maxcount
-    /// \param mincount
-    /// \return Deque of the singular Event FIXME.
-    std::deque<EventPtr> splitEvent(double threshold, double maxcount, double mincount);
-
     bool getFrameObject(FramePtr outFrame);
 
     // Capture functions

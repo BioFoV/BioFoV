@@ -108,11 +108,6 @@ private slots:
     ///in the end it stayed.
     void openAbout();
 
-    /// \brief Automatically split an event.
-    /// This was sort of deprecated by the Auto Detect option, but it could still be
-    ///applied to Events.
-    void on_actionAuto_Split_triggered();
-
     /// \brief Changes the limits of progressBar.
     /// \param min Minimum value of progressBar.
     /// \param max Maximum value of progressBar.

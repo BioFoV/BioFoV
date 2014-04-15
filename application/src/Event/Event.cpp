@@ -55,55 +55,6 @@ void Event::remLastSnapshot(){
     snapshots.pop_back();
 }
 
-/* Splits an event into several based on background subtraction
- * threshold -> pixelcount for background subtraction difference
- * maxcount -> maximum distance in frames between events for them to be a single
- *one
- * mincount -> minimum size of an event in frames
- */
-std::deque<EventPtr> Event::splitEvent(double threshold, double maxcount,
-                                     double mincount){
-    double fTotal = getLengthFrames();
-    std::deque<EventPtr> events;
-    EventPtr newEvent;
-    int j=0;
-    int emptycount=0;
-    int framecount=0;
-    int value;
-
-    while(j < fTotal){
-        value = cv::countNonZero(snapshots.at(j)->getMask());
-
-        // Detected change
-        if ( value > threshold ){
-            if (newEvent == NULL){
-                newEvent = EventPtr(new Event(vid));
-            }
-            newEvent->addFrame(frames.at(j));
-            newEvent->addSnapshot(snapshots.at(j));
-            framecount ++;
-            emptycount = 0;
-        }
-        // Did not detect change
-        else {
-            if (newEvent != NULL){
-                emptycount ++;
-                if(emptycount > maxcount){
-                    if (framecount > mincount){
-                        events.push_back(newEvent);
-                    } else {
-                        newEvent.clear();
-                    }
-                    emptycount = 0;
-                    framecount = 0;
-                }
-            }
-        }
-        j++;
-    }
-    return events;
-}
-
 bool Event::getFrameObject(FramePtr outFrame){
     try {
         outFrame = frames.at(position);

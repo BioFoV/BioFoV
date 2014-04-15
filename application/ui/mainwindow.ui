@@ -85,7 +85,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>98</width>
+             <width>86</width>
              <height>86</height>
             </rect>
            </property>
@@ -135,7 +135,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>98</width>
+             <width>86</width>
              <height>86</height>
             </rect>
            </property>
@@ -367,7 +367,6 @@
      <addaction name="actionSplit_at_current_position"/>
     </widget>
     <addaction name="actionAuto_Detect_Events"/>
-    <addaction name="actionAuto_Split"/>
     <addaction name="separator"/>
     <addaction name="actionDeleteEvent"/>
     <addaction name="separator"/>
@@ -510,11 +509,6 @@
   <action name="actionDetect_Faces">
    <property name="text">
     <string>Detect &amp;Faces</string>
-   </property>
-  </action>
-  <action name="actionAuto_Split">
-   <property name="text">
-    <string>Auto &amp;Split</string>
    </property>
   </action>
   <action name="actionHorizontally">

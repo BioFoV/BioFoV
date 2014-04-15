@@ -139,26 +139,6 @@ void MainWindow::openAbout()
     about.exec();
 }
 
-void MainWindow::on_actionAuto_Split_triggered()
-{
-    EventItem* eventIt;
-    EventItem* newEventIt;
-    std::deque<EventPtr> events;
-
-    foreach(QTreeWidgetItem* item, ui->videoList->selectedItems()){
-        eventIt = (EventItem *) item;
-        events = eventIt->getEvent()->splitEvent(200, 3, 5);
-        foreach(EventPtr event, events){
-            showMessage(tr("Found Event %1").arg(nEvent));
-            newEventIt = new EventItem(QString("E%1").arg(nEvent));
-            newEventIt->setEvent(event);
-            nEvent ++;
-            eventIt->parent()->addChild(newEventIt);
-        }
-        ui->videoList->removeItemWidget(item,0);
-    }
-}
-
 void MainWindow::showMessage(QString text){
     ui->statusBar->showMessage(text);
 }
