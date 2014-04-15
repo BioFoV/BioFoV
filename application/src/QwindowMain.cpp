@@ -239,6 +239,8 @@ void MainWindow::on_actionMasked_Video_toggled(bool arg1)
 
 void MainWindow::on_actionDetect_Faces_triggered()
 {
+    uint i0, i1;
+
     QFileDialog getFileDialog(this);
     getFileDialog.setDirectory(QDir(settings->getHaarDir()));
     getFileDialog.setFileMode(QFileDialog::ExistingFiles);
@@ -262,13 +264,19 @@ void MainWindow::on_actionDetect_Faces_triggered()
                 // rewind event
                 tmp_player->setFramePos(0);
                 enableProgress(0, tmp_player->getLengthFrames());
+                i0 = 2;
                 for (;;){
+                    i1 = tmp_player->getCurrentFrameNumber();
+                    if(i0==i1)
+                        break;
+                    i0 = i1;
                     face_frame = tmp_player->getCurrentFrameRef();
                     if(face_frame.isNull())
                         break;
                     setProgress(tmp_player->getFramePos());
                     face->findFaces(face_frame);
-                    tmp_player->stepForward();
+                    if(!tmp_player->stepForward())
+                        break;
                 }
                 resetProgress();
                 if (face->faceNumber() == 0){

@@ -116,8 +116,9 @@ bool Video::getNextFrame(cv::Mat &frame){
 
 FramePtr Video::getCurrentFrameRef(){
     cv::Mat shot;
-    getFrame(shot);
-    return FramePtr(new Frame(this, shot, getCacheDir()));
+    if (getFrame(shot))
+        return FramePtr(new Frame(this, shot, getCacheDir()));
+    return FramePtr(NULL);
 }
 
 std::string Video::getCacheDir(){

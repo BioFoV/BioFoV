@@ -9,11 +9,16 @@
 #include "Video/Video.hpp"
 #endif
 
+#ifndef INC_PLAYERITEM
+#define INC_PLAYERITEM
+#include <QitemPlayer.hpp>
+#endif
+
 #define TAG_VIDEO "Video"
 
 typedef QSharedPointer<Video> VideoPtr;
 
-class VideoItem : public QTreeWidgetItem
+class VideoItem : public PlayerItem
 {
 public:
     // Constructors
@@ -23,6 +28,8 @@ public:
     // Functions
     VideoPtr getVideo();
 
+    bool setPlayer(PlayerPtr inPlayer);
+    PlayerPtr getPlayer();
 private:
     VideoPtr vid;
 };
