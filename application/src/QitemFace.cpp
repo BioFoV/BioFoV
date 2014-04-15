@@ -63,7 +63,6 @@ SnapshotItem::SnapshotItem(SnapshotPtr insnap, QTreeWidget *parent) :
 }
 
 SnapshotItem::~SnapshotItem(){
-    snap.clear();
 }
 
 SnapshotPtr SnapshotItem::getSnapshot(){

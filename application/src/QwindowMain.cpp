@@ -261,24 +261,33 @@ void MainWindow::on_actionDetect_Faces_triggered()
             foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
                 PlayerPtr tmp_player = ((PlayerItem*)item)->getPlayer();
                 FramePtr face_frame;
-                // rewind event
-                tmp_player->setFramePos(0);
-                enableProgress(0, tmp_player->getLengthFrames());
-                i0 = 2;
-                for (;;){
-                    i1 = tmp_player->getCurrentFrameNumber();
-                    if(i0==i1)
-                        break;
-                    i0 = i1;
-                    face_frame = tmp_player->getCurrentFrameRef();
-                    if(face_frame.isNull())
-                        break;
-                    setProgress(tmp_player->getFramePos());
+
+                // tmp_player is a frame
+                if (!qSharedPointerDynamicCast<Frame>(tmp_player).isNull()){
+                    face_frame = qSharedPointerDynamicCast<Frame>(tmp_player);
                     face->findFaces(face_frame);
-                    if(!tmp_player->stepForward())
-                        break;
                 }
-                resetProgress();
+                else{
+                    // rewind event
+                    tmp_player->setFramePos(0);
+                    enableProgress(0, tmp_player->getLengthFrames());
+                    i0 = 2;
+                    for (;;){
+                        i1 = tmp_player->getCurrentFrameNumber();
+                        if(i0==i1)
+                            break;
+                        i0 = i1;
+
+                        face_frame = tmp_player->getCurrentFrameRef();
+                        if(face_frame.isNull())
+                            break;
+                        setProgress(tmp_player->getFramePos());
+                        face->findFaces(face_frame);
+                        if(!tmp_player->stepForward())
+                            break;
+                    }
+                    resetProgress();
+                }
                 if (face->faceNumber() == 0){
                     showMessage(tr("No faces found"));
                     return;
