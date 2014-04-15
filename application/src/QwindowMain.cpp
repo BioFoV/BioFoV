@@ -256,7 +256,7 @@ void MainWindow::on_actionDetect_Faces_triggered()
         } // No file name provided
 
         foreach (QString fileName, fileNames) {
-            Face* face = new Face(fileName.toStdString());
+            FacePtr face = FacePtr(new Face(fileName.toStdString()));
 
             foreach (QTreeWidgetItem* item, ui->videoList->selectedItems()){
                 PlayerPtr tmp_player = ((PlayerItem*)item)->getPlayer();

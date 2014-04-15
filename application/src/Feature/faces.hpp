@@ -27,6 +27,9 @@
 #include <Frame/Frame.hpp>
 #endif
 
+class Face;
+typedef QSharedPointer<Face> FacePtr;
+
 class Face : public Feature {
 private:
     cv::Ptr<cv::FaceRecognizer> model;

@@ -18,19 +18,19 @@ class FaceItem : public QTreeWidgetItem
 public:
     explicit FaceItem(QTreeWidgetItem *parent = 0);
     FaceItem(QString facename, QTreeWidget *parent = 0);
-    FaceItem(QString facename, Face *inface, QTreeWidget *parent = 0);
+    FaceItem(QString facename, FacePtr inface, QTreeWidget *parent = 0);
 
     // Destructors
     ~FaceItem();
 
     // Functions
-    Face* getFace();
+    FacePtr getFace();
 
     void updateCounter();
     void setCounter(uint count);
 
 private:
-    Face * face;
+    FacePtr face;
 };
 
 class SnapshotItem : public QTreeWidgetItem
