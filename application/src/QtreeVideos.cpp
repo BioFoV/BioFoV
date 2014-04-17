@@ -86,6 +86,7 @@ void QtreeVideos::on_video_to_event(){
             newEventItem->setEvent(event);
             nEvent ++;
             videoiter->addChild(newEventItem);
+            videoiter->setExpanded(true);
         } else {
             showMessage(tr("Item selected is not a video"));
             continue;
