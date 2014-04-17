@@ -215,5 +215,8 @@ public:
 
     void flip_horizontally();
     void flip_vertically();
+
+signals:
+    void updateValues();
 };
 #endif

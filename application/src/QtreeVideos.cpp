@@ -414,6 +414,8 @@ void QtreeVideos::on_exclude_rectangle()
     QTreeWidgetItem* current = getCurrentItem();
     if (VideoItem* videoIt = dynamic_cast< VideoItem * >(current)){
         videoIt->getVideo()->addDrawable((Drawable*)new RectangleMask());
+        connect(videoIt->getVideo().data(), SIGNAL(updateValues()),
+                this, SLOT(updateValues()));
         showMessage(tr("Select a rectangle to zoneout in the player"));
     } else {
         showMessage(tr("Exclude areas in Videos"));

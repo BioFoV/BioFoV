@@ -354,7 +354,7 @@ void Video::mouseReleaseEvent(cv::Point point){
         activeDrawable->release(point);
         if (activeDrawable->isDone()){
             activeDrawable = NULL;
-//            updateValues();
+            updateValues();
         }
     }
 }
