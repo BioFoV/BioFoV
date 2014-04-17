@@ -25,7 +25,7 @@ void RectangleMask::draw(cv::Mat& frame){
     if(!isVisible())
         return;
 
-    cv::rectangle(frame, p[0], p[1], cv::Scalar( 0, 0, 255));
+    cv::rectangle(frame, p[0], p[1], cv::Scalar( 0, 0, 255), CV_FILLED);
 }
 
 void RectangleMask::move(cv::Point point){
