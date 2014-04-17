@@ -190,6 +190,7 @@ EventPtr Video::convertToEvent(std::string path){
     unsigned int j=0;
     int framecount=0;
 
+    double tmpPos = getFramePos();
     setFramePos(0);
 
     emit startProgress(0, (uint) getLengthFrames());
@@ -207,6 +208,8 @@ EventPtr Video::convertToEvent(std::string path){
         framecount ++;
         j++;
     }
+
+    setFramePos(tmpPos);
 
     return event;
 }
