@@ -72,8 +72,6 @@ public:
     /// \param shot Image of the Frame.
     void setImage(cv::Mat shot);
 
-    cv::Mat getImage();
-
     unsigned int getNumber();
 
     // Capture functions

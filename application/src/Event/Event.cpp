@@ -81,7 +81,7 @@ bool Event::getFrame(cv::Mat &frame){
         catch (const std::out_of_range& oor) {
             return false;
         }
-        frame = tmpFrame->getImage();
+        tmpFrame->getFrame(frame);
     } else if (playMode == PLAY_MASK){
         SnapshotPtr tmpSnap;
         try {

@@ -38,11 +38,13 @@ Snapshot::~Snapshot(){
  ******************************************************************************/
 cv::Mat Snapshot::getMask(){
     cv::Mat mask;
+    cv::Mat a;
     if (!filename.empty()){
-        mask = cv::imread(filename, 0);
+        getFrame(mask);
         return mask;
     } else { //FIXME: Missing application of rectangle mask.
-        cv::Mat a = cv::Mat(image->getImage().rows, image->getImage().cols, CV_8U);
+        image->getFrame(mask);
+        a = cv::Mat(mask.rows, mask.cols, CV_8U);
         a.setTo(0);
         cv::rectangle(a, rect, 255, CV_FILLED);
         return a;
@@ -50,14 +52,17 @@ cv::Mat Snapshot::getMask(){
 }
 
 cv::Mat Snapshot::getMasked(){
+    cv::Mat mask;
     if (!filename.empty()){
-        cv::Mat mask = cv::imread(filename, 0);
-        cv::Mat out;
-        image->getImage().copyTo(out, mask);
+        getFrame(mask);
+        cv::Mat out, f;
+        image->getFrame(f);
+        f.copyTo(out, mask);
 
         return out;
     } else {
-        return (image->getImage())(rect);
+        image->getFrame(mask);
+        return (mask)(rect);
     }
 }
 
@@ -74,7 +79,7 @@ double Snapshot::getFramePos(){
 }
 
 bool Snapshot::getFrame(cv::Mat &frame){
-    getFrame(frame);
+    frame = cv::imread(filename, 0);
     return true;
 }
 

@@ -13,7 +13,9 @@ void Face::findFaces(FramePtr newFrame){
     cv::Mat gray;
     SnapshotPtr newSnap;
 
-    cv::Mat img = newFrame->getImage();
+    cv::Mat img;
+    newFrame->getFrame(img);
+
     cv::cvtColor(img, gray, CV_BGR2GRAY);
     std::vector< cv::Rect_<int> > faces;
     haar_cascade.detectMultiScale(img, faces);

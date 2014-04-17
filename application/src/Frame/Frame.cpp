@@ -39,11 +39,6 @@ void Frame::setImage(cv::Mat shot){
     imwrite( filename, shot);
 }
 
-cv::Mat Frame::getImage(){
-    cv::Mat image = cv::imread(filename);
-    return image;
-}
-
 unsigned int Frame::getNumber(){
     return frameNumber;
 }
@@ -62,7 +57,7 @@ double Frame::getFramePos(){
 }
 
 bool Frame::getFrame(cv::Mat &frame) {
-    frame = getImage();
+    frame = cv::imread(filename);;
     applyDrawables(frame);
     return true;
 }
