@@ -404,7 +404,7 @@ void QtreeVideos::on_height()
         showMessage(tr("There is no loaded player"));
         return;
     }
-    showMessage(tr("Select 4 points in the player"));
+    showMessage(tr("Select 2 points in the player"));
     fitem->getFrameRef()->addDrawable((Drawable*)new DrawHeight());
 }
 
