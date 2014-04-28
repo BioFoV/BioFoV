@@ -105,6 +105,10 @@ private slots:
     void on_posSlider_sliderReleased();
     void on_posSlider_sliderMoved(int position);
     void on_speedSlider_sliderMoved(int position);
+
+    void on_rewindButton_clicked();
+    void on_stepButton_clicked();
+
     void updateFrameNumber();
     void updateSliderPos();
 

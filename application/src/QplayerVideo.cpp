@@ -12,12 +12,8 @@ VideoPlayer::VideoPlayer(QWidget *parent) :
     connect(&timer, SIGNAL(timeout()), this, SLOT(play()));
 
     setControlsEnabled(false);
-    connect(ui->rewindButton, SIGNAL(clicked()),
-            this, SLOT(stepBack()));
     connect(ui->playButton, SIGNAL(clicked()),
             this, SLOT(playOrPause()));
-    connect(ui->stepButton, SIGNAL(clicked()),
-            this, SLOT(stepForward()));
     currentPlayer.clear();
 }
 
@@ -345,4 +341,16 @@ QTreeWidgetItem* VideoPlayer::getCurrentItem(){
 
 FramePtr VideoPlayer::getCurrentFrameRef(){
     return getCurrentPlayer()->getCurrentFrameRef();
+}
+
+void VideoPlayer::on_rewindButton_clicked()
+{
+    pause();
+    stepBack();
+}
+
+void VideoPlayer::on_stepButton_clicked()
+{
+    pause();
+    stepForward();
 }
