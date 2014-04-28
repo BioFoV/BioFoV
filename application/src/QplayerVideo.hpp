@@ -57,6 +57,7 @@ public slots:
     void play();
     void pause();
     void playOrPause();
+    void rewindOrPause();
     bool refresh();
     bool stepBack();
     bool stepForward();
@@ -90,6 +91,8 @@ private:
     float speed;
     int playerType;
 
+    bool dir;
+
     Drawable *drawer;
 
     QTreeWidgetItem* Qitem;
@@ -106,8 +109,8 @@ private slots:
     void on_posSlider_sliderMoved(int position);
     void on_speedSlider_sliderMoved(int position);
 
-    void on_rewindButton_clicked();
-    void on_stepButton_clicked();
+    void on_stepbackButton_clicked();
+    void on_stepforwardButton_clicked();
 
     void updateFrameNumber();
     void updateSliderPos();

@@ -105,9 +105,16 @@
        <number>4</number>
       </property>
       <item>
-       <widget class="QPushButton" name="rewindButton">
+       <widget class="QPushButton" name="stepbackButton">
         <property name="text">
          <string>Step Back</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="rewindButton">
+        <property name="text">
+         <string>Rewind</string>
         </property>
        </widget>
       </item>
@@ -119,7 +126,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="stepButton">
+       <widget class="QPushButton" name="stepforwardButton">
         <property name="text">
          <string>Step Forward</string>
         </property>

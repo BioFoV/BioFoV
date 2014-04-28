@@ -14,6 +14,8 @@ VideoPlayer::VideoPlayer(QWidget *parent) :
     setControlsEnabled(false);
     connect(ui->playButton, SIGNAL(clicked()),
             this, SLOT(playOrPause()));
+    connect(ui->rewindButton, SIGNAL(clicked()),
+            this, SLOT(rewindOrPause()));
     currentPlayer.clear();
 }
 
@@ -28,8 +30,15 @@ VideoPlayer::~VideoPlayer(){
  * Actions
  ******************************************************************************/
 void VideoPlayer::play(){
-    if(!stepForward()){
-        timer.stop();
+    if (dir){
+        if(!stepForward()){
+            timer.stop();
+        }
+    }
+    else {
+        if(!stepBack()){
+            timer.stop();
+        }
     }
 }
 
@@ -41,9 +50,22 @@ void VideoPlayer::pause(){
 void VideoPlayer::playOrPause(){
     if (!isloaded())
         return;
-    if(!isplaying){
+    if(!isplaying || dir != true){
         isplaying = true;
-        //future = QtConcurrent::run(this,&VideoPlayer::play);
+        dir = true;
+        timer.start();
+    } else {
+        isplaying = false;
+        timer.stop();
+    }
+}
+
+void VideoPlayer::rewindOrPause() {
+    if (!isloaded())
+        return;
+    if(!isplaying || dir != false){
+        isplaying = true;
+        dir = false;
         timer.start();
     } else {
         isplaying = false;
@@ -343,13 +365,13 @@ FramePtr VideoPlayer::getCurrentFrameRef(){
     return getCurrentPlayer()->getCurrentFrameRef();
 }
 
-void VideoPlayer::on_rewindButton_clicked()
+void VideoPlayer::on_stepbackButton_clicked()
 {
     pause();
     stepBack();
 }
 
-void VideoPlayer::on_stepButton_clicked()
+void VideoPlayer::on_stepforwardButton_clicked()
 {
     pause();
     stepForward();
