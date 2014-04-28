@@ -34,6 +34,7 @@
 #include "Drawables/drawheight.hpp"
 #include "Drawables/drawwidth.hpp"
 #include "Drawables/drawlength.hpp"
+#include "Drawables/drawangle.hpp"
 #include "Drawables/rectanglemask.hpp"
 #include "Drawables/drawreproj.hpp"
 #include "QdialogCalibration.hpp"
@@ -124,6 +125,8 @@ public slots:
     void on_width();
 
     void on_length();
+
+    void on_angle();
 
     /// \brief Exclude action.
     /// Start excluding a rectangular section of the video.

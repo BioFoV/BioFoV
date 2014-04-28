@@ -431,6 +431,17 @@ void QtreeVideos::on_length() {
     fitem->getFrameRef()->addDrawable((Drawable*)new DrawLength());
 }
 
+void QtreeVideos::on_angle() {
+    pause();
+    FrameItem* fitem = getFrame();
+    if (fitem == NULL){
+        showMessage(tr("There is no loaded player"));
+        return;
+    }
+    showMessage(tr("Select 3 points in the player"));
+    fitem->getFrameRef()->addDrawable((Drawable*)new DrawAngle());
+}
+
 void QtreeVideos::on_exclude_rectangle()
 {
     pause();

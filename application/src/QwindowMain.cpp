@@ -97,6 +97,8 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->videoList, SLOT(on_reproject()));
     connect(ui->actionLength, SIGNAL(triggered()),
             ui->videoList, SLOT(on_length()));
+    connect(ui->actionAngle, SIGNAL(triggered()),
+            ui->videoList, SLOT(on_angle()));
     connect(ui->actionExclude_rectangle, SIGNAL(triggered()),
             ui->videoList, SLOT(on_exclude_rectangle()));
 

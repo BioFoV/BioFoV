@@ -55,7 +55,8 @@ SOURCES += \
     src/player.cpp \
     src/Drawables/drawlength.cpp \
     src/Drawables/drawreproj.cpp \
-    src/Drawables/drawwidth.cpp
+    src/Drawables/drawwidth.cpp \
+    src/Drawables/drawangle.cpp
 
 # UI related source files
 SOURCES += \
@@ -93,7 +94,8 @@ HEADERS += \
     src/Feature/faces.hpp \
     src/Drawables/drawlength.hpp \
     src/Drawables/drawreproj.hpp \
-    src/Drawables/drawwidth.hpp
+    src/Drawables/drawwidth.hpp \
+    src/Drawables/drawangle.hpp
 
 # UI related headers
 HEADERS += \

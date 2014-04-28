@@ -85,8 +85,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>769</width>
-             <height>257</height>
+             <width>98</width>
+             <height>86</height>
             </rect>
            </property>
            <attribute name="label">
@@ -135,8 +135,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>769</width>
-             <height>257</height>
+             <width>98</width>
+             <height>86</height>
             </rect>
            </property>
            <attribute name="label">
@@ -386,6 +386,7 @@
      <addaction name="actionHeight"/>
      <addaction name="actionWidth"/>
      <addaction name="actionLength"/>
+     <addaction name="actionAngle"/>
     </widget>
     <addaction name="actionNewIndividual"/>
     <addaction name="actionDeleteIndividual"/>
@@ -683,6 +684,11 @@
   <action name="actionWidth">
    <property name="text">
     <string>Width</string>
+   </property>
+  </action>
+  <action name="actionAngle">
+   <property name="text">
+    <string>Angle</string>
    </property>
   </action>
  </widget>
