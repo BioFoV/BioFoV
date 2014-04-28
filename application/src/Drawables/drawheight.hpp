@@ -27,16 +27,17 @@ class DrawHeight : public Drawable
 private:
     /// \brief Vector to store the points.
     ///Store the four reference points plus the height point.
-    cv::Point2f points[5];
+    cv::Point2f points[2];
+
+    /// \brief Vector to store the auxiliar points used in the drawing.
+    cv::Point2f auxpoints[2];
+
     /// \brief Number of points inserted so far.
     int npoints;
 
     bool calculated;
     cv::Mat persptransf;
 
-    double referential;
-    double height;
-    double ratio;
 public:
     /// \brief Simple constructor.
     DrawHeight();
@@ -48,10 +49,6 @@ public:
     bool isDone();
 
     std::string getDescription();
-
-    bool isCalculated();
-    void calcUndistort();
-    void undistort(cv::Mat& frame);
 };
 
 #endif // DRAWHEIGHT_HPP
