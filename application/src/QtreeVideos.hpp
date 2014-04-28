@@ -34,6 +34,7 @@
 #include "Drawables/drawheight.hpp"
 #include "Drawables/drawlength.hpp"
 #include "Drawables/rectanglemask.hpp"
+#include "Drawables/drawreproj.hpp"
 #include "QdialogCalibration.hpp"
 #include "QplayerVideo.hpp"
 
@@ -113,6 +114,8 @@ public slots:
     void on_import_camera();
 
     FrameItem* getFrame();
+
+    void on_reproject();
 
     /// \brief Calculates the height of something.
     void on_height();

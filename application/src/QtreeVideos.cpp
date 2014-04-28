@@ -385,6 +385,17 @@ FrameItem* QtreeVideos::getFrame(){
     return fitem;
 }
 
+void QtreeVideos::on_reproject(){
+    pause();
+    FrameItem* fitem = getFrame();
+    if (fitem == NULL) {
+        showMessage(tr("There is no loaded player"));
+        return;
+    }
+    showMessage(tr("Select 4 points in the player"));
+    fitem->getFrameRef()->addDrawable((Drawable*)new DrawReproj());
+}
+
 void QtreeVideos::on_height()
 {
     pause();
