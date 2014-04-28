@@ -408,6 +408,18 @@ void QtreeVideos::on_height()
     fitem->getFrameRef()->addDrawable((Drawable*)new DrawHeight());
 }
 
+void QtreeVideos::on_width()
+{
+    pause();
+    FrameItem* fitem = getFrame();
+    if (fitem == NULL){
+        showMessage(tr("There is no loaded player"));
+        return;
+    }
+    showMessage(tr("Select 2 points in the player"));
+    fitem->getFrameRef()->addDrawable((Drawable*)new DrawWidth());
+}
+
 void QtreeVideos::on_length() {
     pause();
     FrameItem* fitem = getFrame();

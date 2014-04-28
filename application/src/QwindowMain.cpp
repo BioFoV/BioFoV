@@ -91,6 +91,8 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->videoList, SLOT(on_discard_calibration()));
     connect(ui->actionHeight, SIGNAL(triggered()),
             ui->videoList, SLOT(on_height()));
+    connect(ui->actionWidth, SIGNAL(triggered()),
+            ui->videoList, SLOT(on_width()));
     connect(ui->actionReproject, SIGNAL(triggered()),
             ui->videoList, SLOT(on_reproject()));
     connect(ui->actionLength, SIGNAL(triggered()),

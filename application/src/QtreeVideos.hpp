@@ -32,6 +32,7 @@
 
 #include "Drawables/drawable.hpp"
 #include "Drawables/drawheight.hpp"
+#include "Drawables/drawwidth.hpp"
 #include "Drawables/drawlength.hpp"
 #include "Drawables/rectanglemask.hpp"
 #include "Drawables/drawreproj.hpp"
@@ -119,6 +120,8 @@ public slots:
 
     /// \brief Calculates the height of something.
     void on_height();
+
+    void on_width();
 
     void on_length();
 
