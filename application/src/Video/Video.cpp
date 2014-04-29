@@ -368,6 +368,6 @@ uint Video::getCurrentFrameNumber(){
     return getFramePos();
 }
 
-void Video::save(std::string fname){
+void Video::save(std::string /*fname*/){
     //FIXME - not implemented
 }

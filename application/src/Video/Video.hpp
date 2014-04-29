@@ -155,7 +155,7 @@ public:
     void mouseReleaseEvent(cv::Point);
     void mouseMoveEvent(cv::Point);
 
-    void save(std::string fname);
+    void save(std::string /*fname*/);
 
     cv::Size getSize();
     bool isCalibrated();
