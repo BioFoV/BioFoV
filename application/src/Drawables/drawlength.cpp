@@ -58,5 +58,5 @@ std::string DrawLength::getDescription(){
 }
 
 std::string DrawLength::getIcon() {
-    return "";
+    return ":icons/length";
 }
