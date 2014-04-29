@@ -117,6 +117,6 @@ std::string DrawReproj::getDescription(){
 }
 
 std::string DrawReproj::getIcon() {
-    return "";
+    return ":/icons/reproj";
 }
 
