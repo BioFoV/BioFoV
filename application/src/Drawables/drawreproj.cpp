@@ -34,6 +34,11 @@ void DrawReproj::draw(cv::Mat& frame){
     if(!isVisible())
         return;
 
+    if (isDone()){
+        undistort(frame);
+        return;
+    }
+
     switch (npoints) {
     case 3: // last rectangle point
         cv::line(frame, points[3], points[1], cv::Scalar( 0, 255, 0), thick, CV_AA);
@@ -49,10 +54,6 @@ void DrawReproj::draw(cv::Mat& frame){
         cv::circle(frame, points[0], rad, cv::Scalar( 0, 0, 255), -1, CV_AA, 0);
     default:
         break;
-    }
-
-    if (isDone()){
-        undistort(frame);
     }
 }
 
@@ -71,13 +72,13 @@ void DrawReproj::calcUndistort(){
     double c2 = (points[1].x + points[3].x)/2;
     double r1 = (points[0].y + points[1].y)/2;
     double r2 = (points[2].y + points[3].y)/2;
-    cv::Point2f ref[4];
-    ref[0] = cv::Point2f(c1, r1);
-    ref[1] = cv::Point2f(c2, r1);
-    ref[2] = cv::Point2f(c1, r2);
-    ref[3] = cv::Point2f(c2, r2);
 
-    persptransf = cv::getPerspectiveTransform(points, ref);
+    repoints[0] = cv::Point2f(c1, r1);
+    repoints[1] = cv::Point2f(c2, r1);
+    repoints[2] = cv::Point2f(c1, r2);
+    repoints[3] = cv::Point2f(c2, r2);
+
+    persptransf = cv::getPerspectiveTransform(points, repoints);
 
     std::vector<cv::Point2f> a;
     std::vector<cv::Point2f> b;
@@ -87,11 +88,6 @@ void DrawReproj::calcUndistort(){
     }
 
     cv::perspectiveTransform(a, b, persptransf);
-
-    c1 = (b.at(0).x + b.at(2).x)/2;
-    c2 = (b.at(1).x + b.at(3).x)/2;
-    r1 = (b.at(0).y + b.at(1).y)/2;
-    r2 = (b.at(2).y + b.at(3).y)/2;
 
     referential_height = std::abs(double(r2)-double(r1));
     referential_width = std::abs(double(c2)-double(c1));
@@ -106,6 +102,19 @@ void DrawReproj::undistort(cv::Mat& frame){
                         persptransf, // transformation
                         cv::Size(frame.cols, frame.rows)); // size of the output
                                                            //image
+
+    int largest = int(frame.rows<frame.cols?frame.rows:frame.cols);
+    int rad = CIRCLE_RATIO * largest;
+    int thick = LINE_RATIO * largest;
+
+    cv::line(frame, repoints[3], repoints[1], cv::Scalar( 0, 255, 0), thick, CV_AA);
+    cv::circle(frame, repoints[3], rad, cv::Scalar( 0, 0, 255), -1, CV_AA, 0);
+    cv::line(frame, repoints[3], repoints[2], cv::Scalar( 0, 255, 0), thick, CV_AA);
+    cv::circle(frame, repoints[2], rad, cv::Scalar( 0, 0, 255), -1, CV_AA, 0);
+    cv::line(frame, repoints[2], repoints[0], cv::Scalar( 0, 255, 0), thick, CV_AA);
+    cv::circle(frame, repoints[1], rad, cv::Scalar( 0, 0, 255), -1, CV_AA, 0);
+    cv::line(frame, repoints[1], repoints[0], cv::Scalar( 255, 0, 0), thick, CV_AA);
+    cv::circle(frame, repoints[0], rad, cv::Scalar( 0, 0, 255), -1, CV_AA, 0);
 }
 
 bool DrawReproj::isDone(){

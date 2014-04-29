@@ -28,6 +28,8 @@ private:
     /// \brief Vector to store the points.
     ///Store the four reference points plus the height point.
     cv::Point2f points[4];
+
+    cv::Point2f repoints[4];
     /// \brief Number of points inserted so far.
     int npoints;
 
