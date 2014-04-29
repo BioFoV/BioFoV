@@ -46,6 +46,8 @@ public:
     bool isDone();
 
     std::string getDescription();
+
+    std::string getIcon();
 };
 
 #endif // DRAWHEIGHT_HPP

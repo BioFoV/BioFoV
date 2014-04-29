@@ -59,3 +59,7 @@ bool DrawWidth::isDone(){
 std::string DrawWidth::getDescription(){
     return std::string("Width");
 }
+
+std::string DrawWidth::getIcon() {
+    return ":/icons/width";
+}

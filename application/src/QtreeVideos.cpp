@@ -477,6 +477,7 @@ void QtreeVideos::updateValues(){
         newChild = new QitemDrawable(drawBuff);
         newChild->setText(0, QString(drawBuff->getDescription().c_str()));
         newChild->setFlags(newChild->flags() | Qt::ItemIsUserCheckable);
+        newChild->setIcon(0,QIcon(drawBuff->getIcon().c_str()));
         if(drawBuff->isVisible()){
             checkedState = Qt::Checked;
         } else {

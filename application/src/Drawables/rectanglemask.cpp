@@ -39,3 +39,7 @@ bool RectangleMask::isDone(){
 std::string RectangleMask::getDescription(){
     return std::string("mask");
 }
+
+std::string RectangleMask::getIcon() {
+    return "";
+}

@@ -59,3 +59,7 @@ bool DrawHeight::isDone(){
 std::string DrawHeight::getDescription(){
     return std::string("Height");
 }
+
+std::string DrawHeight::getIcon() {
+    return ":/icons/height";
+}

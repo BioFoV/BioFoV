@@ -50,6 +50,8 @@ public:
 
     std::string getDescription();
 
+    std::string getIcon();
+
     bool isCalculated();
     void calcUndistort();
     void undistort(cv::Mat& frame);

@@ -37,6 +37,8 @@ public:
 
     virtual std::string getDescription() = 0;
 
+    virtual std::string getIcon() = 0;
+
     TStrDoubleMap getValues();
 
     bool isVisible();

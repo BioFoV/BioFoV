@@ -115,3 +115,8 @@ bool DrawReproj::isDone(){
 std::string DrawReproj::getDescription(){
     return std::string("Reprojection");
 }
+
+std::string DrawReproj::getIcon() {
+    return "";
+}
+

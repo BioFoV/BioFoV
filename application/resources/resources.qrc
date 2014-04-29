@@ -1,3 +1,6 @@
 <RCC>
-    <qresource prefix="/icons"/>
+    <qresource prefix="/icons">
+        <file alias="height">icons/ico-height-plain.svg</file>
+        <file alias="width">icons/ico-width-plain.svg</file>
+    </qresource>
 </RCC>

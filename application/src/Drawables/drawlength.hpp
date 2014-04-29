@@ -35,6 +35,8 @@ public:
     bool isDone();
 
     std::string getDescription();
+
+    std::string getIcon();
 };
 
 #endif // DRAWLENGTH_HPP

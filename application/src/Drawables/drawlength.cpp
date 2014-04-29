@@ -56,3 +56,7 @@ bool DrawLength::isDone(){
 std::string DrawLength::getDescription(){
     return std::string("Length");
 }
+
+std::string DrawLength::getIcon() {
+    return "";
+}

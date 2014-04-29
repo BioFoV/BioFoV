@@ -69,3 +69,7 @@ bool DrawAngle::isDone(){
 std::string DrawAngle::getDescription(){
     return std::string("Angle");
 }
+
+std::string DrawAngle::getIcon() {
+    return "";
+}
