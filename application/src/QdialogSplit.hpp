@@ -34,8 +34,23 @@ public:
     int getvarThreshold();
     bool getbShadowDetection();
 
+private slots:
+    void on_maxseconds_valueChanged(int arg1);
+
+    void on_minseconds_valueChanged(int arg1);
+
+    void on_maxframes_valueChanged(int arg1);
+
+    void on_minframes_valueChanged(int arg1);
+
+    void on_historyseconds_valueChanged(int arg1);
+
+    void on_historyframes_valueChanged(int arg1);
+
 private:
     Ui::SplitDialog *ui;
+
+    unsigned int fps;
 };
 
 #endif // SPLITDIALOG_HPP
