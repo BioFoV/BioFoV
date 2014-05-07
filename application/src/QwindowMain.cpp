@@ -20,12 +20,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     progressBar->setFormat(QString("%v/%m"));
     setProgressSize(0, 100);
-    disableProgress();
 
     // Cancel button setup
     cancelButton = new QPushButton(this);
     cancelButton->setIcon(QIcon::fromTheme("process-stop"));
     this->statusBar()->addPermanentWidget(cancelButton, 0);
+
+    disableProgress();
 
     // Settings setup
     settings = new QdialogSettings();
@@ -170,6 +171,7 @@ void MainWindow::setProgressSize(unsigned int min, unsigned int max,
 
 void MainWindow::enableProgress(unsigned int min, unsigned int max){
     progressBar->setEnabled(true);
+    cancelButton->setEnabled(true);
     setProgressSize(min, max, min);
 }
 
@@ -179,6 +181,7 @@ void MainWindow::setProgress(uint val){
 
 void MainWindow::disableProgress(){
     progressBar->setEnabled(false);
+    cancelButton->setEnabled(false);
 }
 
 void MainWindow::resetProgress(){

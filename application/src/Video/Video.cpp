@@ -247,7 +247,6 @@ std::deque<EventPtr> Video::autoDetectEvents(double threshold,
         if (toCancel){
             events.clear();
             canceled();
-            std::cout << toCancel << std::endl;
             return events;
         }
         bg->NewFrame(shot);
