@@ -288,8 +288,16 @@ void MainWindow::on_actionDetect_Faces_triggered()
                     // rewind event
                     tmp_player->setFramePos(0);
                     enableProgress(0, tmp_player->getLengthFrames());
+                    toCancel = false;
+                    connect(cancelButton, SIGNAL(clicked()),
+                            this, SLOT(cancel()));
                     i0 = 2;
                     for (;;){
+                        QCoreApplication::processEvents();
+                        if (toCancel){
+                            canceled();
+                            break;
+                        }
                         i1 = tmp_player->getCurrentFrameNumber();
                         if(i0==i1)
                             break;
@@ -303,6 +311,8 @@ void MainWindow::on_actionDetect_Faces_triggered()
                         if(!tmp_player->stepForward())
                             break;
                     }
+                    disconnect(cancelButton, SIGNAL(clicked()),
+                            this, SLOT(cancel()));
                     resetProgress();
                 }
                 if (face->faceNumber() == 0){
@@ -448,4 +458,12 @@ void MainWindow::on_actionSave_Faces_As_Images_triggered()
         showMessage(tr("Action canceled"));
     }
     showMessage(tr("Done saving Event(s)"));
+}
+
+void MainWindow::cancel() {
+    toCancel = true;
+}
+
+void MainWindow::canceled() {
+    toCancel = false;
 }

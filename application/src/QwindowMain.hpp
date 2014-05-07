@@ -101,6 +101,8 @@ public slots:
 
     int getPlayMode();
 
+    void cancel();
+
 private slots:
 
     /// \brief Opens the about window.
@@ -174,6 +176,10 @@ private:
     ///PLAY_MASKED_FRAMES.
     int playMode;
     void keyPressEvent(QKeyEvent *ev);
+
+    bool toCancel;
+
+    void canceled();
 };
 
 #endif // MAINWINDOW_H
