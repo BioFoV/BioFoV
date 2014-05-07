@@ -124,6 +124,9 @@ void QtreeVideos::on_auto_detect_events(){
                     this, SIGNAL(startProgress(uint,uint)));
             connect(videoiter->getVideo().data(), SIGNAL(progressChanged(uint)),
                     this, SIGNAL(progressChanged(uint)));
+            connect(this, SIGNAL(cancel()),
+                    videoiter->getVideo().data(), SLOT(cancel()));
+
             timer.start();
             events = videoiter->getVideo()->autoDetectEvents(split.getThreshold()/10.0,
                                                              split.getMaxFrames(),
@@ -137,6 +140,8 @@ void QtreeVideos::on_auto_detect_events(){
                        this, SIGNAL(startProgress(uint,uint)));
             disconnect(videoiter->getVideo().data(), SIGNAL(progressChanged(uint)),
                        this, SIGNAL(progressChanged(uint)));
+            disconnect(this, SIGNAL(cancel()),
+                    videoiter->getVideo().data(), SLOT(cancel()));
 
             resetProgress();
             for (j = 0; j < events.size(); j++) {

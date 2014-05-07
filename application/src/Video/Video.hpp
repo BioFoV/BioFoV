@@ -53,6 +53,8 @@
 
 #include <QObject>
 
+#include <QCoreApplication>
+
 class Frame;
 class Event;
 typedef QSharedPointer<Event> EventPtr;
@@ -92,6 +94,10 @@ private:
     Camera* cam;
 
     std::string getCacheDir();
+
+    void canceled();
+
+    bool toCancel;
 	
 public:
 	// Atributes
@@ -218,5 +224,8 @@ public:
 
 signals:
     void updateValues();
+
+public slots:
+    void cancel();
 };
 #endif

@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Progress bar setup
     //This is here since it can not be done in the mainwindow.ui file
-    progressBar = new QProgressBar(NULL);
+    progressBar = new QProgressBar(this);
     progressBar->setMaximumHeight(16);
     progressBar->setMaximumWidth(200);
     progressBar->setTextVisible(false);
@@ -21,6 +21,11 @@ MainWindow::MainWindow(QWidget *parent) :
     progressBar->setFormat(QString("%v/%m"));
     setProgressSize(0, 100);
     disableProgress();
+
+    // Cancel button setup
+    cancelButton = new QPushButton(this);
+    cancelButton->setIcon(QIcon::fromTheme("process-stop"));
+    this->statusBar()->addPermanentWidget(cancelButton, 0);
 
     // Settings setup
     settings = new QdialogSettings();
@@ -132,6 +137,9 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->player, SLOT(getCurrentFrameRef()));
     connect(ui->videoList, SIGNAL(getCurrentPlayer()),
             ui->player, SLOT(getCurrentPlayer()));
+
+    connect(cancelButton, SIGNAL(clicked()),
+            ui->videoList, SIGNAL(cancel()));
 }
 
 MainWindow::~MainWindow()

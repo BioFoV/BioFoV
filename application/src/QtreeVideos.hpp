@@ -54,6 +54,9 @@ signals:
     void progressChanged(uint);
     void startProgress(uint, uint);
     void resetProgress();
+
+    void cancel();
+
     void removePlayer(PlayerPtr);
     int getPlayMode();
     void setPlaybackMode(int);

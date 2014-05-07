@@ -167,6 +167,7 @@ private:
     int nEvent;
 
     QProgressBar* progressBar;
+    QPushButton* cancelButton;
 
     /// \brief Playback Mode.
     /// Can be one of the 3 defined in event.hpp: PLAY_FRAMES, PLAY_MASK or

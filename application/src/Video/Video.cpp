@@ -243,6 +243,13 @@ std::deque<EventPtr> Video::autoDetectEvents(double threshold,
     emit startProgress(0, (uint) getLengthFrames());
 
     while(getNextFrame(shot)){
+        QCoreApplication::processEvents();
+        if (toCancel){
+            events.clear();
+            canceled();
+            std::cout << toCancel << std::endl;
+            return events;
+        }
         bg->NewFrame(shot);
         bg->Denoise();
         emit progressChanged(j);
@@ -370,4 +377,12 @@ uint Video::getCurrentFrameNumber(){
 
 void Video::save(std::string /*fname*/){
     //FIXME - not implemented
+}
+
+void Video::cancel() {
+    toCancel = true;
+}
+
+void Video::canceled() {
+    toCancel = false;
 }
