@@ -437,6 +437,8 @@ void MainWindow::on_actionSave_Faces_As_Images_triggered()
     QList<QTreeWidgetItem*> items = ui->faceList->selectedItems();
     SnapshotItem* snapItem;
 
+    int ind = 0;
+
     if(getDirDialog.exec()) {
         fileNames = getDirDialog.selectedFiles();
 
@@ -449,9 +451,11 @@ void MainWindow::on_actionSave_Faces_As_Images_triggered()
                 snapItem = (SnapshotItem*)item;
                 showMessage(tr("Saving %1").arg(snapItem->text(0)));
 
-                snapItem->getSnapshot()->save((fileName + "-"
-                    + QString("%1").arg(snapItem->getSnapshot()->getCurrentFrameNumber())
+                snapItem->getSnapshot()->save((fileName
+                    + QString("-%1").arg(snapItem->getSnapshot()->getCurrentFrameNumber())
+                    + QString("-%1").arg(ind)
                     + ".png").toStdString());
+                ind++;
             }
         }
     } else {
