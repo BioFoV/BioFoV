@@ -202,11 +202,11 @@ bool Camera::write_file(){
     }
     QDateTime date;
     date.date();
+    fs << "calibrationDate" << date.toString("dd-mm-yyyy-hh.mm").toStdString();
     fs << "video resolution" << vid->getSize();
     fs << "number of frames used" << (int) imagePoints.size();
     fs << "number of maximum iterations" << maxIter;
     fs << "reprojection error" << reprojectionError;
-    fs << "calibrationDate" << date.toString("dd-mm-yyyy-hh.mm").toStdString();
     fs << "camera Matrix" << cameraMatrix;
     fs << "transformations" << posCameraMatrix;
     fs << "distance Coefficients" << distCoeffs;
