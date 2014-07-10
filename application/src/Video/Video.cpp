@@ -345,10 +345,14 @@ Camera* Video::getCamera(){
     return cam;
 }
 
-void Video::importCamera(){
+bool Video::importCamera(){
     cam = new Camera(this);
 
-    cam->read_file();
+    if (!cam->read_file()){
+        delete cam;
+        return false;
+    }
+    return true;
 }
 
 void Video::mousePressEvent(cv::Point point){

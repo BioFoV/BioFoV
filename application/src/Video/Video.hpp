@@ -217,7 +217,7 @@ public:
     void deleteCalibration();
 
     Camera* getCamera();
-    void importCamera();
+    bool importCamera();
 
     void flip_horizontally();
     void flip_vertically();

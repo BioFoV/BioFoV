@@ -311,7 +311,9 @@ void QtreeVideos::on_import_camera(){
 
     foreach (QTreeWidgetItem* item, selectedItems()){
         if(VideoItem* videoIt = dynamic_cast< VideoItem * >( item )){
-            videoIt->getVideo()->importCamera();
+            if (!(videoIt->getVideo()->importCamera())){
+                showMessage(tr("Bad calibration file!"));
+            }
             i++;
         } else {
             showMessage(tr("Export camera only implemented for Videos"));

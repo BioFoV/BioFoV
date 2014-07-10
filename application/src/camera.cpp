@@ -202,6 +202,7 @@ bool Camera::write_file(){
     }
     QDateTime date;
     date.date();
+    fs << "video resolution" << vid->getSize();
     fs << "number of frames used" << (int) imagePoints.size();
     fs << "number of maximum iterations" << maxIter;
     fs << "reprojection error" << reprojectionError;
@@ -221,11 +222,18 @@ bool Camera::read_file() {
         return false;
     }
 
+    cv::Size inSize;
+    fs["video resolution"] >> inSize;
     fs["reprojection error"] >> reprojectionError;
     fs["camera Matrix"] >> cameraMatrix;
     fs["transformations"] >> posCameraMatrix;
     fs["distance Coefficients"] >> distCoeffs;
     fs.release();
+
+    if (inSize != vid->getSize()){
+        return false;
+    }
+
     calibrated = true;
     return true;
 }
