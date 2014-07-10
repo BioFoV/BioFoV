@@ -38,5 +38,11 @@ unsigned int CalibrationDialog::getFlags(){
     return CV_CALIB_FIX_PRINCIPAL_POINT * ui->fixPrincipalPoint->isChecked() |
            CV_CALIB_FIX_ASPECT_RATIO * ui->fixAspectRatio->isChecked() |
            CV_CALIB_ZERO_TANGENT_DIST * ui->zeroTangentDist->isChecked() |
-           CV_CALIB_RATIONAL_MODEL * ui->rationalModel->isChecked();
+           CV_CALIB_RATIONAL_MODEL * ui->rationalModel->isChecked() |
+           CV_CALIB_FIX_K1 * ui->k1->isChecked() |
+           CV_CALIB_FIX_K2 * ui->k2->isChecked() |
+           CV_CALIB_FIX_K3 * ui->k3->isChecked() |
+           CV_CALIB_FIX_K4 * ui->k4->isChecked() |
+           CV_CALIB_FIX_K5 * ui->k5->isChecked() |
+           CV_CALIB_FIX_K6 * ui->k6->isChecked();
 }
