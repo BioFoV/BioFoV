@@ -213,7 +213,7 @@ public:
     /// BackgroundSubtractor object.
     /// 1~5 is normally enough.
     void calibrate(int nBoards, int frameStep, int boardW,
-                   int boardH, int iterations);
+                   int boardH, int iterations, unsigned int flags);
     void deleteCalibration();
 
     Camera* getCamera();

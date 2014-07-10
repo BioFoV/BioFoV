@@ -33,3 +33,10 @@ int CalibrationDialog::getHeight(){
 int CalibrationDialog::getIterations(){
     return ui->iterations->value();
 }
+
+unsigned int CalibrationDialog::getFlags(){
+    return CV_CALIB_FIX_PRINCIPAL_POINT * ui->fixPrincipalPoint->isChecked() |
+           CV_CALIB_FIX_ASPECT_RATIO * ui->fixAspectRatio->isChecked() |
+           CV_CALIB_ZERO_TANGENT_DIST * ui->zeroTangentDist->isChecked() |
+           CV_CALIB_RATIONAL_MODEL * ui->rationalModel->isChecked();
+}

@@ -276,7 +276,8 @@ void QtreeVideos::on_calibrate()
                                            calibDiag.getFrameStep(),
                                            calibDiag.getWidth(),
                                            calibDiag.getHeight(),
-                                           calibDiag.getIterations());
+                                           calibDiag.getIterations(),
+                                           calibDiag.getFlags());
             if(videoIt->getVideo()->isCalibrated()){
                 showMessage(tr("Video Calibrated"));
                 playOrPause();

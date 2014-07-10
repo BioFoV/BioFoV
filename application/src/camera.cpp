@@ -155,8 +155,6 @@ double Camera::calibrate(int nBoards, int frameStep, int iterations) {
         return -1;
     }
 
-    set_calib_flags(CV_CALIB_FIX_K4|CV_CALIB_FIX_K5);
-
     maxIter = iterations;
 
     //Output rotations and translations
