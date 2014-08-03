@@ -5,6 +5,10 @@
 # OpenCV Git pull/clone and compilation
 #
 ################################################################################
+
+CPUS="4"
+VERSION="2.4.9"
+
 if [ ! -d opencv ]; then
   mkdir opencv
 fi
@@ -12,7 +16,7 @@ cd opencv
 
 # Get source
 if [ ! -d src ]; then
-  if git clone https://github.com/Itseez/opencv.git -b 2.4 src;then
+  if git clone https://github.com/Itseez/opencv.git src;then
     echo "cloned"
   else
     echo "clone failed"
@@ -29,6 +33,9 @@ else
   fi
 fi
 
+# Checkout the right tag
+git checkout $VERSION
+
 # Build for windows
 if [ ! -d windows-build ]; then
   mkdir windows-build
@@ -39,6 +46,7 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D CMAKE_INSTALL_PREFIX=../windows-install \
       -D CMAKE_TOOLCHAIN_FILE=../../../build-windows/Toolchain-cross-mingw32-linux.cmake \
       -D BUILD_SHARED_LIBS=OFF \
+	  -D WITH_V4L=ON \
       ../src/
 make install
 cd ..
@@ -54,52 +62,6 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D WITH_CUDA=OFF \
       -D BUILD_SHARED_LIBS=OFF \
       ../src/
-make install
+make -j$CPUS install
 cd ../..
-
-################################################################################
-#
-# Qt5 clone and compilation
-#
-################################################################################
-
-if [ ! -d qt ]; then
-  mkdir qt
-fi
-cd qt
-
-# Get source
-if [ ! -d src ]; then
-  if git clone git://gitorious.org/qt/qt5.git src;then
-    echo "cloned"
-  else
-    echo "clone failed"
-    exit
-  fi
-else
-  cd src
-  if git pull; then
-    echo "pulled"
-    cd ..
-  else
-    echo "pull failed"
-    exit
-  fi
-fi
-
-cd src
-./init-repository
-cd ..
-
-# Build for linux
-if [ ! -d linux-build ]; then
-  mkdir linux-build
-fi
-cd linux-build
-
-../src/configure -prefix ../../linux-install/ -opensource -skip qtwebkit -release -nomake tests -nomake examples -confirm-license
-make -j 12
-make install INSTALL_ROOT=../../linux-install
-
-cd ..
 
