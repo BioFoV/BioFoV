@@ -6,8 +6,13 @@
 #
 ################################################################################
 
-CPUS="4"
-VERSION="2.4.9"
+CPUS="8"
+VERSION="2.4.8"
+#VERSION="2.4.9" Fails to build
+SRCFLD="src-win"
+BUILDFLD="windows-build"
+GITURL="https://github.com/Itseez/opencv.git"
+
 
 if [ ! -d opencv ]; then
   mkdir opencv
@@ -15,15 +20,16 @@ fi
 cd opencv
 
 # Get source
-if [ ! -d src ]; then
-  if git clone https://github.com/Itseez/opencv.git src;then
+if [ ! -d $SRCFLD ]; then
+  if git clone --branch $VERSION --depth 1 $GITURL $SRCFLD;then
     echo "cloned"
   else
     echo "clone failed"
     exit
   fi
 else
-  cd src
+  cd $SRCFLD
+  git checkout master
   if git pull; then
     echo "pulled"
     cd ..
@@ -33,42 +39,30 @@ else
   fi
 fi
 
-# Checkout the right tag
-git checkout $VERSION
-
 # Build for windows
-if [ ! -d windows-build ]; then
-  mkdir windows-build
+if [ ! -d $BUILDFLD ]; then
+  mkdir $BUILDFLD
 fi
-cd windows-build
-#cmake ../src/ -DCMAKE_TOOLCHAIN_FILE=../../../build_windows/Toolchain-cross-mingw32-linux.cmake
+cd $BUILDFLD
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D CMAKE_INSTALL_PREFIX=../windows-install \
-      -D CMAKE_TOOLCHAIN_FILE=../../../build-windows/Toolchain-cross-mingw32-linux.cmake \
-      -D BUILD_SHARED_LIBS=OFF \
-	  -D WITH_V4L=ON \
-      ../src/
-make install
-cd ..
-
-# Build for linux
-if [ ! -d linux-build ]; then
-  mkdir linux-build
-fi
-cd linux-build
-#cmake -D WITH_CUDA=OFF ../src
-cmake -D CMAKE_BUILD_TYPE=RELEASE \
-      -D CMAKE_INSTALL_PREFIX=../linux-install \
-      -D WITH_CUDA=OFF \
+      -D CMAKE_TOOLCHAIN_FILE=../../Toolchain-cross-mingw32-linux.cmake \
+	  -D WITH_CUDA=OFF \
       -D BUILD_SHARED_LIBS=OFF \
 	  -D BUILD_opencv_java=OFF \
 	  -D BUILD_opencv_python=OFF \
+	  -D BUILD_opencv_legacy=OFF \
 	  -D BUILD_DOCS=OFF \
 	  -D BUILD_TESTS=OFF \
 	  -D BUILD_PERF_TESTS=OFF \
 	  -D BUILD_FAT_JAVA_LIB=OFF \
-	  -D WITH_TBB=ON \
-      ../src/
+	  -D BUILD_PNG=ON \
+	  -D BUILD_JPEG=ON \
+	  -D BUILD_TIFF=ON \
+	  -D BUILD_JASPER=ON \
+	  -D BUILD_ZLIB=ON \
+	  -D WITH_GSTREAMER=OFF \
+      ../$SRCFLD/
 make -j$CPUS install
 cd ../..
 

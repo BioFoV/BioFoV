@@ -22,10 +22,12 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TRANSLATIONS = resources/project_pt.ts
 
+CONFIG+=static
+
 # Configuration for *ix systems
 unix {
     CONFIG += link_pkgconfig
-    PKGCONFIG += opencv
+    PKGCONFIG += /home/miguel/Documents/IST/Tese/framework/third-party/opencv/linux-install/lib/pkgconfig/opencv.pc
 }
 
 # Configurations for MS Windows
