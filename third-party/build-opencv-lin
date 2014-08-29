@@ -6,7 +6,7 @@
 #
 ################################################################################
 
-CPUS="4"
+CPUS=`nproc`
 VERSION="2.4.9"
 SRCFLD="src-lin"
 GITURL="https://github.com/Itseez/opencv.git"
@@ -49,24 +49,25 @@ cd linux-build
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D CMAKE_INSTALL_PREFIX=../linux-install \
       -D WITH_CUDA=OFF \
+      -D ENABLE_FAST_MATH=ON \
       -D BUILD_SHARED_LIBS=OFF \
-	  -D BUILD_opencv_java=OFF \
-	  -D BUILD_opencv_python=OFF \
-	  -D BUILD_opencv_legacy=OFF \
-	  -D BUILD_DOCS=OFF \
-	  -D BUILD_TESTS=OFF \
-	  -D BUILD_PERF_TESTS=OFF \
-	  -D BUILD_FAT_JAVA_LIB=OFF \
-	  -D BUILD_TBB=ON \
-	  -D BUILD_PNG=ON \
-	  -D BUILD_JPEG=ON \
-	  -D BUILD_TIFF=ON \
-	  -D BUILD_JASPER=ON \
-	  -D BUILD_ZLIB=ON \
-	  -D WITH_TBB=ON \
-	  -D WITH_GSTREAMER=OFF \
-	  -D WITH_V4L=OFF \
-	  -D WITH_LIBV4L=OFF \
+      -D BUILD_opencv_java=OFF \
+      -D BUILD_opencv_python=OFF \
+      -D BUILD_opencv_legacy=OFF \
+      -D BUILD_DOCS=OFF \
+      -D BUILD_TESTS=OFF \
+      -D BUILD_PERF_TESTS=OFF \
+      -D BUILD_FAT_JAVA_LIB=OFF \
+      -D BUILD_TBB=ON \
+      -D BUILD_PNG=ON \
+      -D BUILD_JPEG=ON \
+      -D BUILD_TIFF=ON \
+      -D BUILD_JASPER=ON \
+      -D BUILD_ZLIB=ON \
+      -D WITH_TBB=ON \
+      -D WITH_GSTREAMER=OFF \
+      -D WITH_V4L=OFF \
+      -D WITH_LIBV4L=OFF \
       ../$SRCFLD/
 make -j$CPUS install
 cd ../..
