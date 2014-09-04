@@ -7,6 +7,8 @@
 ################################################################################
 
 CPUS=`nproc`
+SRCFLD="src-lin"
+DESTFLD="linux-build"
 
 if [ ! -d qt ]; then
   mkdir qt
@@ -14,15 +16,15 @@ fi
 cd qt
 
 # Get source
-if [ ! -d src ]; then
-  if git clone git://gitorious.org/qt/qt5.git src;then
+if [ ! -d $SRCFLD ]; then
+  if git clone git://gitorious.org/qt/qt5.git $SRCFLD;then
     echo "cloned"
   else
     echo "clone failed"
     exit
   fi
 else
-  cd src
+  cd $SRCFLD
   if git pull; then
     echo "pulled"
     cd ..
@@ -32,17 +34,33 @@ else
   fi
 fi
 
-cd src
+cd $SRCFLD
 ./init-repository
 cd ..
 
 # Build for linux
-if [ ! -d linux-build ]; then
-  mkdir linux-build
+if [ ! -d $DESTFLD ]; then
+  mkdir $DESTFLD
 fi
-cd linux-build
+cd $DESTFLD
 
-../src/configure -prefix ../../linux-install/ -opensource -skip qtwebkit -release -nomake tests -nomake examples -static -confirm-license
+../$SRCFLD/configure -prefix ../../linux-install/ \
+                     -opensource
+                     -skip qtwebkit \
+                     -release \
+                     -nomake tests \
+                     -nomake examples \
+                     -static \
+                     -confirm-license \
+                     -qt-zlib \
+                     -qt-libpng \
+                     -qt-libjpeg \
+                     -qt-freetype \
+                     -qt-xcb \
+                     -qt-pcre \
+                     -qt-xkbcommon \
+                     -no-accessibility
+
 make -j$CPUS
 make install
 

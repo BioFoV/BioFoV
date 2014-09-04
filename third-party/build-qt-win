@@ -6,7 +6,8 @@
 #
 ################################################################################
 
-CPUS=`nproc`
+#CPUS=`nproc`
+CPUS=1
 SRCFLD="src-win"
 DESTFLD="windows-build"
 
@@ -38,16 +39,34 @@ cd $SRCFLD
 ./init-repository
 cd ..
 
-# Build for linux
+# Build for windows
 if [ ! -d $DESTFLD ]; then
   mkdir $DESTFLD
 fi
 cd $DESTFLD
 
-../$SRCFLD/configure -platform linux-g++ -xplatform win32-g++ \
-                 -prefix ../../windows-install/ -opensource -skip qtwebkit \
-                 -force-pkg-config \
-                 -release -nomake tests -nomake examples -static -confirm-license
+../$SRCFLD/configure -xplatform win32-g++ \
+                     -prefix ../../windows-install/ \
+                     -opensource \
+                     -skip qtwebkit \
+                     -skip activeqt \
+                     -release \
+                     -nomake tests \
+                     -nomake examples \
+                     -static \
+                     -confirm-license \
+                     -opensource \
+                     -qt-zlib \
+                     -qt-libpng \
+                     -qt-libjpeg \
+                     -qt-freetype \
+                     -no-xcb \
+                     -qt-pcre \
+                     -qt-xkbcommon \
+                     -no-accessibility \
+                     -no-opengl \
+                     -device-option CROSS_COMPILE=i686-w64-mingw32- \
+                     -no-pkg-config
 
 make -j$CPUS
 make install

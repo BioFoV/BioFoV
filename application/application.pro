@@ -1,41 +1,54 @@
 INCLUDEPATH += . src
 
-# Just to get all the warnings on compilation.
+# Just to get all the warnings on compilation
 WARNINGS += -Wall
 
+# Optimization flags
 QMAKE_CXXFLAGS_RELEASE *= -O3
 
 TEMPLATE = app
 
-# The following keeps the generated files at least somewhat separate 
-# from the source files.
+# The following keeps the generated files separate from the source files.
 UI_DIR = uics
 MOC_DIR = mocs
 OBJECTS_DIR = objs
 
 # Output binary name
-TARGET = project
+TARGET = BioFoV
 
 # Qt components to be included
-QT += core gui printsupport
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT += core gui
+QT += printsupport
+QT += widgets
 
+# Translations
 TRANSLATIONS = resources/project_pt.ts
 
+# Static link Qt
 CONFIG+=static
 
 # Configuration for *ix systems
 unix {
     CONFIG += link_pkgconfig
-    PKGCONFIG += /home/miguel/Documents/IST/Tese/framework/third-party/opencv/linux-install/lib/pkgconfig/opencv.pc
+    PKGCONFIG += /home/miguel/Tese/Code/framework/third-party/opencv/linux-install/lib/pkgconfig/opencv.pc
 }
 
 # Configurations for MS Windows
+# Order was copied from the linux pkgconfig
 win32 {
-    LIBS += -L C:\opencv-2.4.8.2\build\install\x86\mingw\bin
-    LIBS += -lopencv_core248 -lopencv_highgui248 -lopencv_video248 -lz
-    LIBS += -lopencv_imgproc248 -lopencv_calib3d248 -lopencv_contrib248 -lopencv_objdetect248
-    INCLUDEPATH += C:\opencv-2.4.8.2\build\install\include
+    LIBS += -L /home/miguel/Tese/Code/framework/third-party/opencv/windows-install/x64/mingw/staticlib
+    LIBS += -lopencv_contrib248
+    LIBS += -lopencv_objdetect248
+    LIBS += -lopencv_video248
+    LIBS += -lopencv_calib3d248
+    LIBS += -lopencv_features2d248
+    LIBS += -lopencv_highgui248
+    LIBS += -lIlmImf
+    LIBS += -lopencv_imgproc248
+    LIBS += -lopencv_flann248
+    LIBS += -lopencv_core248
+    LIBS += -lzlib -lvfw32
+    INCLUDEPATH += /home/miguel/Tese/Code/framework/third-party/opencv/windows-install/include
 }
 
 # General purpose source files
@@ -117,7 +130,7 @@ HEADERS += \
     src/QitemPlayer.hpp
 
 # UI forms (XML files)
-FORMS    += $$files(ui/*.ui)
+FORMS += $$files(ui/*.ui)
 
 # Resource files.
 RESOURCES += $$files(resources/*.qrc)
