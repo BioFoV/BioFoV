@@ -1,3 +1,4 @@
 doxygen
 build-application*
 application/application.pro.user
+*.directory
