@@ -1,0 +1,4 @@
+./build-opencv-lin
+./build-opencv-win
+./build-qt-lin
+./build-qt-win

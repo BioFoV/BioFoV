@@ -6,9 +6,9 @@
 #
 ################################################################################
 
-#CPUS=`nproc`
-CPUS=1
-SRCFLD="src-win"
+CPUS=`nproc`
+#CPUS=1
+SRCFLD="src"
 DESTFLD="windows-build"
 
 if [ ! -d qt ]; then
