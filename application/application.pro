@@ -36,18 +36,11 @@ unix {
 # Configurations for MS Windows
 # Order was copied from the linux pkgconfig
 win32 {
+#    CONFIG += link_pkgconfig
+#    PKGCONFIG += /home/miguel/Tese/Code/framework/third-party/opencv/windows-install/opencv.pc
     LIBS += -L /home/miguel/Tese/Code/framework/third-party/opencv/windows-install/x64/mingw/staticlib
-    LIBS += -lopencv_contrib248
-    LIBS += -lopencv_objdetect248
-    LIBS += -lopencv_video248
-    LIBS += -lopencv_calib3d248
-    LIBS += -lopencv_features2d248
-    LIBS += -lopencv_highgui248
-    LIBS += -lIlmImf
-    LIBS += -lopencv_imgproc248
-    LIBS += -lopencv_flann248
-    LIBS += -lopencv_core248
-    LIBS += -lzlib -lvfw32
+    LIBS += -static -lopencv_contrib248 -lopencv_stitching248 -lopencv_nonfree248 -lopencv_superres248 -lopencv_ocl248 -lopencv_objdetect248 -lopencv_ml248 -lopencv_ts248 -lopencv_videostab248 -lopencv_video248 -lopencv_photo248 -lopencv_calib3d248 -lopencv_features2d248 -lopencv_highgui248 -lIlmImf -llibjasper -llibtiff -llibpng -llibjpeg -lopencv_imgproc248 -lopencv_flann248 -lopencv_core248 -lzlib -lmsvfw32 -lwinmm -lavicap32 -lavifil32 -lws2_32 -lsetupapi -lole32 -lgdi32 -lcomctl32 -lstdc++ -lpthread
+    INCLUDEPATH += /home/miguel/Tese/Code/framework/third-party/opencv/windows-install/include/opencv
     INCLUDEPATH += /home/miguel/Tese/Code/framework/third-party/opencv/windows-install/include
 }
 
