@@ -8,7 +8,7 @@
 
 CPUS=`nproc`
 VERSION="2.4.9"
-SRCFLD="src-lin"
+SRCFLD="src-$VERSION"
 GITURL="https://github.com/Itseez/opencv.git"
 
 if [ ! -d opencv ]; then

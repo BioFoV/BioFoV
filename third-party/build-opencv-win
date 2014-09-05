@@ -9,7 +9,7 @@
 CPUS=`nproc`
 VERSION="2.4.8"
 #VERSION="2.4.9" Fails to build
-SRCFLD="src-win"
+SRCFLD="src-$VERSION"
 BUILDFLD="windows-build"
 GITURL="https://github.com/Itseez/opencv.git"
 
