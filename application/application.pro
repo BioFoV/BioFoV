@@ -30,6 +30,14 @@ CONFIG+=static
 # Configuration for *ix systems
 unix {
     CONFIG += link_pkgconfig
+#    PKGCONFIG += /home/miguel/Tese/Code/framework/third-party/linux-install/lib/pkgconfig/libswscale.pc
+#    PKGCONFIG += /home/miguel/Tese/Code/framework/third-party/linux-install/lib/pkgconfig/libavformat.pc
+#    PKGCONFIG += /home/miguel/Tese/Code/framework/third-party/linux-install/lib/pkgconfig/libavutil.pc
+#    PKGCONFIG += /home/miguel/Tese/Code/framework/third-party/linux-install/lib/pkgconfig/libswresample.pc
+#    PKGCONFIG += /home/miguel/Tese/Code/framework/third-party/linux-install/lib/pkgconfig/libavcodec.pc
+#    PKGCONFIG += /home/miguel/Tese/Code/framework/third-party/linux-install/lib/pkgconfig/libpostproc.pc
+#    PKGCONFIG += /home/miguel/Tese/Code/framework/third-party/linux-install/lib/pkgconfig/libavfilter.pc
+#    PKGCONFIG += /home/miguel/Tese/Code/framework/third-party/linux-install/lib/pkgconfig/libavdevice.pc
     PKGCONFIG += /home/miguel/Tese/Code/framework/third-party/opencv/linux-install/lib/pkgconfig/opencv.pc
 }
 

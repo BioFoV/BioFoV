@@ -1,4 +1,8 @@
 # git and compiled third-party stuff
 opencv/
 qt/
-
+ffmpeg/
+linux-install/
+libogg/
+x264/
+xvid/

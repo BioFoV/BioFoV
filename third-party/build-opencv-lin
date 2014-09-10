@@ -6,10 +6,12 @@
 #
 ################################################################################
 
+ROOT=`pwd`
 CPUS=`nproc`
 VERSION="2.4.9"
 SRCFLD="src-$VERSION"
 GITURL="https://github.com/Itseez/opencv.git"
+PKGCONF="../../linux-install/lib/pkgconfig"
 
 if [ ! -d opencv ]; then
   mkdir opencv
@@ -68,7 +70,10 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D WITH_GSTREAMER=OFF \
       -D WITH_V4L=OFF \
       -D WITH_LIBV4L=OFF \
+      -D CMAKE_CXX_FLAGS="-I/home/miguel/Tese/Code/framework/third-party/linux-install/include -L/home/miguel/Tese/Code/framework/third-party/linux-install/lib" \
+      -D CMAKE_C_FLAGS="-I/home/miguel/Tese/Code/framework/third-party/linux-install/include -L/home/miguel/Tese/Code/framework/third-party/linux-install/lib" \
       ../$SRCFLD/
+
 make -j$CPUS install
 cd ../..
 

@@ -1,0 +1,70 @@
+#!/bin/bash
+
+################################################################################
+#
+# OpenCV Git pull/clone and compilation
+#
+################################################################################
+
+ROOT=`pwd`
+CPUS=`nproc`
+SRCFLD="src"
+GITURL="git://source.ffmpeg.org/ffmpeg.git"
+
+if [ ! -d ffmpeg ]; then
+  mkdir ffmpeg
+fi
+cd ffmpeg
+
+# Get source
+if [ ! -d $SRCFLD ]; then
+  if git clone --depth 1 $GITURL $SRCFLD;then
+    echo "cloned"
+  else
+    echo "clone failed"
+    exit
+  fi
+else
+  cd $SRCFLD
+  git checkout master
+  if git pull; then
+    echo "pulled"
+    cd ..
+  else
+    echo "pull failed"
+    exit
+  fi
+fi
+
+# Build for linux
+if [ ! -d linux-build ]; then
+  mkdir linux-build
+fi
+cd linux-build
+
+../src/configure \
+--disable-debug \
+--disable-ffplay \
+--disable-ffserver \
+--enable-static \
+--enable-libx264 \
+--enable-nonfree \
+--enable-gpl \
+--prefix=$ROOT/linux-install \
+--pkg-config=pkg-config
+#--enable-pthreads \
+#--enable-pic \
+#--enable-libxvid \
+#--extra-ldflags="-L$ROOT/linux-install/lib" \
+#--extra-cflags="-I$ROOT/linux-install/include"
+#--enable-libfaac \
+#--enable-libmp3lame \
+#--enable-libvorbis \
+#../src/configure --disable-debug --disable-ffplay --disable-ffserver --enable-static --prefix=/home/miguel/Tese/Code/framework/third-party/linux-install --pkg-config=pkg-config --enable-gpl --enable-libx264 --enable-nonfree
+
+make -j$CPUS
+
+make install
+
+cd ../..
+
