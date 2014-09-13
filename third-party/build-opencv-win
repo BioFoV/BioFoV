@@ -44,6 +44,10 @@ if [ ! -d $BUILDFLD ]; then
   mkdir $BUILDFLD
 fi
 cd $BUILDFLD
+
+../src/configure --prefix=../linux-install
+
+make -j$CPUS
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D CMAKE_INSTALL_PREFIX=../windows-install \
       -D CMAKE_TOOLCHAIN_FILE=../../Toolchain-cross-mingw32-linux.cmake \
@@ -63,7 +67,9 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D BUILD_JASPER=ON \
       -D BUILD_ZLIB=ON \
       -D WITH_GSTREAMER=OFF \
+      -D FFMPEG_INCLUDE_DIR=../../ffmpeg/windows-install/include \
+      -D FFMPEG_LIB_DIR=../../ffmpeg/windows-install/lib \
       ../$SRCFLD/
-make -j$CPUS install
+make install
 cd ../..
 

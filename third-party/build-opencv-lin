@@ -48,6 +48,10 @@ if [ ! -d linux-build ]; then
   mkdir linux-build
 fi
 cd linux-build
+
+PKG_CONFIG_PATH=/home/miguel/Tese/Code/framework/third-party/linux-install/lib/pkgconfig/
+export PKG_CONFIG_PATH
+
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D CMAKE_INSTALL_PREFIX=../linux-install \
       -D WITH_CUDA=OFF \
@@ -69,6 +73,7 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D WITH_TBB=ON \
       -D WITH_GSTREAMER=OFF \
       -D WITH_V4L=OFF \
+      -D WITH_FFMPEG=ON \
       -D WITH_LIBV4L=OFF \
       -D CMAKE_CXX_FLAGS="-I/home/miguel/Tese/Code/framework/third-party/linux-install/include -L/home/miguel/Tese/Code/framework/third-party/linux-install/lib" \
       -D CMAKE_C_FLAGS="-I/home/miguel/Tese/Code/framework/third-party/linux-install/include -L/home/miguel/Tese/Code/framework/third-party/linux-install/lib" \

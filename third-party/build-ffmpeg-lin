@@ -43,24 +43,37 @@ fi
 cd linux-build
 
 ../src/configure \
+--prefix=$ROOT/linux-install \
+--extra-ldflags='-L/home/miguel/Tese/Code/framework/third-party/linux-install/lib -static' \
+--extra-cflags='-I/home/miguel/Tese/Code/framework/third-party/linux-install/include -static' \
 --disable-debug \
 --disable-ffplay \
 --disable-ffserver \
+--disable-doc \
 --enable-static \
+--disable-shared \
 --enable-libx264 \
+--enable-libxvid \
+--enable-pthreads \
+--enable-pic \
 --enable-nonfree \
 --enable-gpl \
---prefix=$ROOT/linux-install \
---pkg-config=pkg-config
-#--enable-pthreads \
-#--enable-pic \
-#--enable-libxvid \
-#--extra-ldflags="-L$ROOT/linux-install/lib" \
-#--extra-cflags="-I$ROOT/linux-install/include"
+--pkg-config=pkg-config \
+--enable-bzlib \
+--enable-zlib \
+--enable-postproc \
+--enable-runtime-cpudetect \
+--enable-libtheora \
+--enable-gray \
+--enable-libopenjpeg \
+--enable-version3 \
+--enable-libvpx
 #--enable-libfaac \
 #--enable-libmp3lame \
 #--enable-libvorbis \
 #../src/configure --disable-debug --disable-ffplay --disable-ffserver --enable-static --prefix=/home/miguel/Tese/Code/framework/third-party/linux-install --pkg-config=pkg-config --enable-gpl --enable-libx264 --enable-nonfree
+
+exit
 
 make -j$CPUS
 
