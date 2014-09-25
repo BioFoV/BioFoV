@@ -10,8 +10,9 @@ CPUS=`nproc`
 VERSION="2.4.8"
 #VERSION="2.4.9" Fails to build
 SRCFLD="src-$VERSION"
-BUILDFLD="windows-build"
 GITURL="https://github.com/Itseez/opencv.git"
+BUILDFLD="windows-build"
+INSTALLFLD="windows-install"
 
 
 if [ ! -d opencv ]; then
@@ -45,11 +46,8 @@ if [ ! -d $BUILDFLD ]; then
 fi
 cd $BUILDFLD
 
-../src/configure --prefix=../linux-install
-
-make -j$CPUS
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
-      -D CMAKE_INSTALL_PREFIX=../windows-install \
+      -D CMAKE_INSTALL_PREFIX=../$INSTALLFLD \
       -D CMAKE_TOOLCHAIN_FILE=../../Toolchain-cross-mingw32-linux.cmake \
       -D WITH_CUDA=OFF \
       -D ENABLE_FAST_MATH=ON \
@@ -66,10 +64,10 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D BUILD_TIFF=ON \
       -D BUILD_JASPER=ON \
       -D BUILD_ZLIB=ON \
+      -D WITH_FFMPEG=ON \
       -D WITH_GSTREAMER=OFF \
-      -D FFMPEG_INCLUDE_DIR=../../ffmpeg/windows-install/include \
-      -D FFMPEG_LIB_DIR=../../ffmpeg/windows-install/lib \
       ../$SRCFLD/
+
 make install
 cd ../..
 

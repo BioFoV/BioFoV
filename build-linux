@@ -1,0 +1,17 @@
+#!/bin/bash
+
+cd third-party
+./build-qt-lin
+./build-opencv-lin
+
+cd ..
+
+if [ ! -d linux ]; then
+	mkdir linux
+fi
+
+cd linux
+
+../third-party/qt/linux-install/bin/qmake ../application/application.pro
+
+make

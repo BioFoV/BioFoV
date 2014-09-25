@@ -1,0 +1,20 @@
+#!/bin/bash
+
+cd third-party
+./build-qt-win
+./build-opencv-win
+
+cd ..
+
+if [ ! -d windows ]; then
+	mkdir windows
+fi
+
+cd windows
+
+../third-party/qt/windows-install/bin/qmake ../application/application.pro
+
+make release
+
+cp ../third-party/opencv/src-2.4.8/3rdparty/ffmpeg/opencv_ffmpeg.dll opencv_ffmpeg248.dll
+zip -j BioFoV.zip ./release/BioFoV.exe opencv_ffmpeg248.dll

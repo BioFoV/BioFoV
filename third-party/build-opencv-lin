@@ -6,12 +6,12 @@
 #
 ################################################################################
 
-ROOT=`pwd`
 CPUS=`nproc`
 VERSION="2.4.9"
 SRCFLD="src-$VERSION"
 GITURL="https://github.com/Itseez/opencv.git"
-PKGCONF="../../linux-install/lib/pkgconfig"
+BUILDFLD="linux-build"
+INSTALLFLD="linux-install"
 
 if [ ! -d opencv ]; then
   mkdir opencv
@@ -44,16 +44,13 @@ git checkout $VERSION
 cd ..
 
 # Build for linux
-if [ ! -d linux-build ]; then
-  mkdir linux-build
+if [ ! -d $BUILDFLD ]; then
+  mkdir $BUILDFLD
 fi
-cd linux-build
-
-PKG_CONFIG_PATH=/home/miguel/Tese/Code/framework/third-party/linux-install/lib/pkgconfig/
-export PKG_CONFIG_PATH
+cd $BUILDFLD
 
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
-      -D CMAKE_INSTALL_PREFIX=../linux-install \
+      -D CMAKE_INSTALL_PREFIX=../$INSTALLFLD \
       -D WITH_CUDA=OFF \
       -D ENABLE_FAST_MATH=ON \
       -D BUILD_SHARED_LIBS=OFF \
@@ -75,8 +72,6 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D WITH_V4L=OFF \
       -D WITH_FFMPEG=ON \
       -D WITH_LIBV4L=OFF \
-      -D CMAKE_CXX_FLAGS="-I/home/miguel/Tese/Code/framework/third-party/linux-install/include -L/home/miguel/Tese/Code/framework/third-party/linux-install/lib" \
-      -D CMAKE_C_FLAGS="-I/home/miguel/Tese/Code/framework/third-party/linux-install/include -L/home/miguel/Tese/Code/framework/third-party/linux-install/lib" \
       ../$SRCFLD/
 
 make -j$CPUS install
