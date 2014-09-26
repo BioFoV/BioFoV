@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# OpenCV and other libs
-cd third-party
-./update
-cd ..
-
