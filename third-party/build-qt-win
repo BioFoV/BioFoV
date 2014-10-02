@@ -55,7 +55,6 @@ cd $DESTFLD
                      -nomake examples \
                      -static \
                      -confirm-license \
-                     -opensource \
                      -qt-zlib \
                      -qt-libpng \
                      -qt-libjpeg \
@@ -68,7 +67,6 @@ cd $DESTFLD
                      -device-option CROSS_COMPILE=i686-w64-mingw32- \
                      -no-pkg-config
 
-make -j$CPUS
-make install
+make -j$CPUS install
 
 cd .. 

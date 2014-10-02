@@ -61,7 +61,6 @@ cd $DESTFLD
                      -qt-xkbcommon \
                      -no-accessibility
 
-make -j$CPUS
-make install
+make -j$CPUS install
 
 cd .. 
