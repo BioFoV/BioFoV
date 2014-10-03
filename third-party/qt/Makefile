@@ -96,7 +96,6 @@ clean-linux-install:
 	rm -rf $(LIN_INSTALL_FLD)
 clean-linux: clean-linux-build clean-linux-install
 
-
 clean-windows-build:
 	rm -rf $(WIN_BUILD_FLD)
 clean-windows-install:

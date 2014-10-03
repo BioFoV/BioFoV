@@ -23,8 +23,6 @@ OPENCV_BUILD_LIN=build-opencv-lin
 # Qt
 QMAKE_WIN=$(THIRD_PARTY_FLD)/qt/windows-install/bin/qmake
 QMAKE_LIN=$(THIRD_PARTY_FLD)/qt/linux-install/bin/qmake
-QT_BUILD_WIN=build-qt-win
-QT_BUILD_LIN=build-qt-lin
 
 ## Windows stuff
 WIN=windows
@@ -85,8 +83,7 @@ build-only-linux:
 build-linux: qt-linux opencv-linux build-only-linux
 
 zip-only-linux:
-	cd $(LIN_BUILD_FLD); \
-	zip -j ../$(LIN_ZIP) $(PRO_NAME)
+	zip -j $(LIN_ZIP) $(LIN_BUILD_FLD)/$(PRO_NAME)
 
 zip-linux: build-linux zip-only-linux
 
@@ -100,6 +97,7 @@ clean-opencv-linux:
 	$(MAKE) -C $(THIRD_PARTY_FLD) clean-opencv-linux
 clean-build-linux:
 	rm -rf linux/*
+	rm -f $(PRO_NAME)-$(LIN)*
 clean-linux: clean-qt-linux clean-opencv-linux clean-build-linux
 
 clean-qt-windows:
@@ -108,6 +106,7 @@ clean-opencv-windows:
 	$(MAKE) -C $(THIRD_PARTY_FLD) clean-opencv-windows
 clean-build-windows:
 	rm -rf windows/*
+	rm -f $(PRO_NAME)-$(WIN)*
 clean-windows: clean-qt-windows clean-opencv-windows clean-build-windows
 
 clean-qt-src:
