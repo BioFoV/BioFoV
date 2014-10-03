@@ -1,6 +1,10 @@
 # git and compiled third-party stuff
-opencv/
-qt/
+opencv/src*
+opencv/windows*
+opencv/linux*
+qt/src*
+qt/windows*
+qt/linux*
 ffmpeg/
 linux-install/
 libogg/

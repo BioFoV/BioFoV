@@ -1,7 +1,0 @@
-#!/bin/bash
-rm -rf \
- linux-install \
- x264 \
- ffmpeg \
- libogg \
- xvid
