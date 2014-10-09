@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>797</width>
+    <height>507</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Video Forensic Analyser</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QSplitter" name="splitter">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="QWidget" name="layoutWidget_2">
+       <layout class="QVBoxLayout" name="verticalLayoutLeft">
+        <item>
+         <widget class="QToolBox" name="itemToolBox">
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="videoPage">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>767</width>
+             <height>283</height>
+            </rect>
+           </property>
+           <attribute name="label">
+            <string>Videos</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <property name="leftMargin">
+             <number>8</number>
+            </property>
+            <property name="topMargin">
+             <number>8</number>
+            </property>
+            <property name="rightMargin">
+             <number>8</number>
+            </property>
+            <property name="bottomMargin">
+             <number>8</number>
+            </property>
+            <item>
+             <widget class="QtreeVideos" name="videoList">
+              <property name="selectionMode">
+               <enum>QAbstractItemView::ExtendedSelection</enum>
+              </property>
+              <property name="sortingEnabled">
+               <bool>true</bool>
+              </property>
+              <property name="expandsOnDoubleClick">
+               <bool>false</bool>
+              </property>
+              <property name="columnCount">
+               <number>2</number>
+              </property>
+              <column>
+               <property name="text">
+                <string>Name</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Type</string>
+               </property>
+              </column>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="facePage">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>767</width>
+             <height>255</height>
+            </rect>
+           </property>
+           <attribute name="label">
+            <string>Faces</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <item>
+             <widget class="QtreeFaces" name="faceList">
+              <property name="dragEnabled">
+               <bool>true</bool>
+              </property>
+              <property name="dragDropMode">
+               <enum>QAbstractItemView::InternalMove</enum>
+              </property>
+              <property name="selectionMode">
+               <enum>QAbstractItemView::ExtendedSelection</enum>
+              </property>
+              <property name="horizontalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
+              <property name="sortingEnabled">
+               <bool>true</bool>
+              </property>
+              <property name="expandsOnDoubleClick">
+               <bool>false</bool>
+              </property>
+              <property name="columnCount">
+               <number>2</number>
+              </property>
+              <column>
+               <property name="text">
+                <string notr="true">Label</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string notr="true">Count</string>
+               </property>
+              </column>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="propertiesForm" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <layout class="QFormLayout" name="formLayout_2">
+           <property name="fieldGrowthPolicy">
+            <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+           </property>
+           <property name="labelAlignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>Selected:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="labelSelected">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>Total Frames:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLabel" name="labelTotalFrames">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>Total Time:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLabel" name="labelTotalTime">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="layoutWidget">
+       <layout class="QVBoxLayout" name="verticalLayoutRight">
+        <property name="spacing">
+         <number>2</number>
+        </property>
+        <item>
+         <widget class="VideoPlayer" name="player" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>797</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <addaction name="actionNew"/>
+    <addaction name="separator"/>
+    <addaction name="actionSave_Project"/>
+    <addaction name="actionSave_Project_As"/>
+    <addaction name="separator"/>
+    <addaction name="actionSave_Current_Player_Image"/>
+    <addaction name="actionPrint"/>
+    <addaction name="separator"/>
+    <addaction name="actionSettings"/>
+    <addaction name="actionSave_Settings"/>
+    <addaction name="actionSave_Settings_as"/>
+    <addaction name="actionLoad_Settings"/>
+    <addaction name="separator"/>
+    <addaction name="actionQuit"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <widget class="QMenu" name="menuVideo">
+    <property name="title">
+     <string>&amp;Video</string>
+    </property>
+    <widget class="QMenu" name="menuTransformations">
+     <property name="title">
+      <string>Transformations</string>
+     </property>
+     <widget class="QMenu" name="menuFlip_2">
+      <property name="title">
+       <string>Flip</string>
+      </property>
+      <addaction name="separator"/>
+      <addaction name="actionHorizontally"/>
+      <addaction name="actionVertically"/>
+     </widget>
+     <widget class="QMenu" name="menuRotate">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="title">
+       <string>Rotate</string>
+      </property>
+      <addaction name="actionClockwise"/>
+      <addaction name="actionCounter_clockwise"/>
+     </widget>
+     <addaction name="menuFlip_2"/>
+     <addaction name="menuRotate"/>
+     <addaction name="actionReproject"/>
+    </widget>
+    <widget class="QMenu" name="menuFilter">
+     <property name="title">
+      <string>Filter</string>
+     </property>
+     <addaction name="actionExclude_rectangle"/>
+    </widget>
+    <widget class="QMenu" name="menuCalibration">
+     <property name="title">
+      <string>Calibration</string>
+     </property>
+     <addaction name="actionCalibrate"/>
+     <addaction name="actionDiscard_Calibration"/>
+     <addaction name="actionImport_camera"/>
+     <addaction name="actionExport_camera"/>
+    </widget>
+    <addaction name="actionAdd_Video_File"/>
+    <addaction name="actionConvert_Video_to_Event"/>
+    <addaction name="action_Remove_From_Project"/>
+    <addaction name="separator"/>
+    <addaction name="menuTransformations"/>
+    <addaction name="menuCalibration"/>
+    <addaction name="menuFilter"/>
+   </widget>
+   <widget class="QMenu" name="menuEvent">
+    <property name="title">
+     <string>&amp;Event</string>
+    </property>
+    <widget class="QMenu" name="menuPlayback_Mode">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="title">
+      <string>Playback Mode</string>
+     </property>
+     <addaction name="actionNormal"/>
+     <addaction name="actionMask"/>
+     <addaction name="actionMasked_Video"/>
+    </widget>
+    <widget class="QMenu" name="menuOperations">
+     <property name="title">
+      <string>&amp;Operations</string>
+     </property>
+     <addaction name="actionMerge"/>
+     <addaction name="actionSplit_at_current_position"/>
+    </widget>
+    <addaction name="actionAuto_Detect_Events"/>
+    <addaction name="separator"/>
+    <addaction name="actionDeleteEvent"/>
+    <addaction name="separator"/>
+    <addaction name="menuPlayback_Mode"/>
+    <addaction name="menuOperations"/>
+    <addaction name="actionExport_Event"/>
+   </widget>
+   <widget class="QMenu" name="menuIndividual">
+    <property name="title">
+     <string>&amp;Individual</string>
+    </property>
+    <widget class="QMenu" name="menuMeasures">
+     <property name="title">
+      <string>Measures</string>
+     </property>
+     <addaction name="actionHeight"/>
+     <addaction name="actionWidth"/>
+     <addaction name="actionLength"/>
+     <addaction name="actionAngle"/>
+    </widget>
+    <addaction name="actionNewIndividual"/>
+    <addaction name="actionDeleteIndividual"/>
+    <addaction name="separator"/>
+    <addaction name="menuMeasures"/>
+   </widget>
+   <widget class="QMenu" name="menuFace">
+    <property name="title">
+     <string>Face</string>
+    </property>
+    <addaction name="actionNew_Face_Group"/>
+    <addaction name="actionDetect_Faces"/>
+    <addaction name="separator"/>
+    <addaction name="actionDeleteFace"/>
+    <addaction name="actionSave_Faces_As_Images"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuVideo"/>
+   <addaction name="menuEvent"/>
+   <addaction name="menuFace"/>
+   <addaction name="menuIndividual"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QToolBar" name="videoBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionAdd_Video_File"/>
+   <addaction name="action_Remove_From_Project"/>
+  </widget>
+  <widget class="QToolBar" name="eventBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionAuto_Detect_Events"/>
+   <addaction name="actionDeleteEvent"/>
+  </widget>
+  <action name="actionNew">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;New Project</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>&amp;Quit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>&amp;About</string>
+   </property>
+  </action>
+  <action name="actionNewEvent">
+   <property name="text">
+    <string>&amp;New</string>
+   </property>
+  </action>
+  <action name="actionDeleteEvent">
+   <property name="text">
+    <string>&amp;Delete Event</string>
+   </property>
+  </action>
+  <action name="actionNewIndividual">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;New</string>
+   </property>
+  </action>
+  <action name="actionDeleteIndividual">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Delete</string>
+   </property>
+  </action>
+  <action name="actionAdd_Video_File">
+   <property name="text">
+    <string>&amp;Add Video File</string>
+   </property>
+  </action>
+  <action name="action_Remove_From_Project">
+   <property name="text">
+    <string>&amp;Remove From Project</string>
+   </property>
+  </action>
+  <action name="actionSave_Project">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Save Project</string>
+   </property>
+  </action>
+  <action name="actionSave_Project_As">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Save Project As</string>
+   </property>
+  </action>
+  <action name="actionAuto_Detect_Events">
+   <property name="text">
+    <string>Detect &amp;Events</string>
+   </property>
+  </action>
+  <action name="actionDetect_Faces">
+   <property name="text">
+    <string>Detect &amp;Faces</string>
+   </property>
+  </action>
+  <action name="actionHorizontally">
+   <property name="text">
+    <string>Horizontally</string>
+   </property>
+  </action>
+  <action name="actionVertically">
+   <property name="text">
+    <string>Vertically</string>
+   </property>
+  </action>
+  <action name="actionClockwise">
+   <property name="text">
+    <string>Clockwise</string>
+   </property>
+  </action>
+  <action name="actionCounter_clockwise">
+   <property name="text">
+    <string>Counter Clockwise</string>
+   </property>
+  </action>
+  <action name="actionCalibrate">
+   <property name="text">
+    <string>Calibrate</string>
+   </property>
+  </action>
+  <action name="actionNormal">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Normal</string>
+   </property>
+  </action>
+  <action name="actionMask">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Mask</string>
+   </property>
+  </action>
+  <action name="actionMasked_Video">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Masked Video</string>
+   </property>
+  </action>
+  <action name="actionExclude_rectangle">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Exclude rectangle</string>
+   </property>
+  </action>
+  <action name="actionHeight">
+   <property name="text">
+    <string>Height</string>
+   </property>
+  </action>
+  <action name="actionMerge">
+   <property name="text">
+    <string>&amp;Merge</string>
+   </property>
+  </action>
+  <action name="actionSplit_at_current_position">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Split at current position</string>
+   </property>
+  </action>
+  <action name="actionPrint">
+   <property name="text">
+    <string>Print</string>
+   </property>
+  </action>
+  <action name="actionDeleteFace">
+   <property name="text">
+    <string>&amp;Delete Face</string>
+   </property>
+  </action>
+  <action name="actionSettings">
+   <property name="text">
+    <string>Settings</string>
+   </property>
+  </action>
+  <action name="actionSave_Settings_as">
+   <property name="text">
+    <string>Save Settings As</string>
+   </property>
+  </action>
+  <action name="actionLoad_Settings">
+   <property name="text">
+    <string>Load Settings</string>
+   </property>
+  </action>
+  <action name="actionSave_Settings">
+   <property name="text">
+    <string>Save Settings</string>
+   </property>
+  </action>
+  <action name="actionNew_Face_Group">
+   <property name="text">
+    <string>New Face Group</string>
+   </property>
+  </action>
+  <action name="actionExport_camera">
+   <property name="text">
+    <string>Export camera</string>
+   </property>
+  </action>
+  <action name="actionImport_camera">
+   <property name="text">
+    <string>Import camera</string>
+   </property>
+  </action>
+  <action name="actionDiscard_Calibration">
+   <property name="text">
+    <string>Discard Calibration</string>
+   </property>
+  </action>
+  <action name="actionLength">
+   <property name="text">
+    <string>Length</string>
+   </property>
+  </action>
+  <action name="actionExport_Event">
+   <property name="text">
+    <string>Export Event</string>
+   </property>
+  </action>
+  <action name="actionConvert_Video_to_Event">
+   <property name="text">
+    <string>Convert Video to Event</string>
+   </property>
+  </action>
+  <action name="actionSave_Current_Player_Image">
+   <property name="text">
+    <string>Save Current Player Image</string>
+   </property>
+  </action>
+  <action name="actionSave_Faces_As_Images">
+   <property name="text">
+    <string>Save Faces As Images</string>
+   </property>
+  </action>
+  <action name="actionReproject">
+   <property name="text">
+    <string>Reproject</string>
+   </property>
+  </action>
+  <action name="actionWidth">
+   <property name="text">
+    <string>Width</string>
+   </property>
+  </action>
+  <action name="actionAngle">
+   <property name="text">
+    <string>Angle</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>VideoPlayer</class>
+   <extends>QWidget</extends>
+   <header>QplayerVideo.hpp</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QtreeFaces</class>
+   <extends>QTreeWidget</extends>
+   <header>QtreeFaces.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>QtreeVideos</class>
+   <extends>QTreeWidget</extends>
+   <header>QtreeVideos.hpp</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>actionQuit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>398</x>
+     <y>253</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

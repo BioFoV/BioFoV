@@ -1,0 +1,13 @@
+# git and compiled third-party stuff
+opencv/src*
+opencv/windows*
+opencv/linux*
+qt/src*
+qt/windows*
+qt/linux*
+ffmpeg/
+linux-install/
+libogg/
+x264/
+xvid/
+libtheora/

@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file alias="height">icons/ico-height-plain.svg</file>
+        <file alias="width">icons/ico-width-plain.svg</file>
+        <file alias="reproj">icons/ico-reproj-plain.svg</file>
+        <file alias="length">icons/ico-length-plain.svg</file>
+    </qresource>
+</RCC>

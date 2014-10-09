@@ -1,0 +1,41 @@
+#!/bin/bash
+
+################################################################################
+#
+# OpenCV Git pull/clone and compilation
+#
+################################################################################
+
+ROOT=`pwd`
+CPUS=`nproc`
+SRCFLD="src"
+
+if [ ! -d libtheora ]; then
+  mkdir libtheora
+fi
+cd libtheora
+
+wget http://downloads.xiph.org/releases/theora/libtheora-1.1.1.tar.bz2
+
+tar -xvf libtheora-1.1.1.tar.bz2
+
+# Build for linux
+if [ ! -d linux-build ]; then
+  mkdir linux-build
+fi
+cd linux-build
+
+# disable-opencl to bypass bug http://its.ffmpeg.org/ticket/3876
+../x264-snapshot*/configure \
+  --enable-static \
+  --enable-pic \
+  --disable-opencl \
+  --prefix=$ROOT/linux-install
+#  --enable-shared \
+
+make -j$CPUS
+
+make install
+
+cd ../..
+

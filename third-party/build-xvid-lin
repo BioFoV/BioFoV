@@ -1,0 +1,36 @@
+#!/bin/bash
+
+################################################################################
+#
+# OpenCV Git pull/clone and compilation
+#
+################################################################################
+
+ROOT=`pwd`
+CPUS=`nproc`
+SRCFLD="src"
+
+if [ ! -d xvid ]; then
+  mkdir xvid
+fi
+cd xvid
+
+wget http://downloads.xvid.org/downloads/xvidcore-1.3.3.tar.gz
+
+tar -xvf xvidcore-1.3.3.tar.gz
+
+cd xvidcore/build/generic
+
+./configure \
+  --disable-assembly \
+  --enable-static \
+  --enable-pic \
+  --prefix=$ROOT/linux-install
+#  --enable-shared \
+
+make -j$CPUS
+
+make install
+
+cd ../..
+
