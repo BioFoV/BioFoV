@@ -124,5 +124,5 @@ clean-src:
 clean-doc:
 	rm -rf doxygen
 
-clean: clean-windows clean-linux clean-src
+clean: clean-windows clean-linux clean-src clean-doc
 
