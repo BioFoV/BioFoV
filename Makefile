@@ -40,7 +40,7 @@ LIN_ZIP=$(PRO_NAME)-$(LIN)-$(DATE).zip
 
 ################################################################################
 
-all: windows linux
+all: windows linux doc
 
 ################################################################################
 
@@ -91,6 +91,11 @@ linux: zip-linux
 
 ################################################################################
 
+doc:
+	doxygen framework.dox
+
+################################################################################
+
 clean-qt-linux:
 	$(MAKE) -C $(THIRD_PARTY_FLD) clean-qt-linux
 clean-opencv-linux:
@@ -115,6 +120,9 @@ clean-opencv-src:
 	$(MAKE) -C $(THIRD_PARTY_FLD) clean-opencv-src
 clean-src:
 	$(MAKE) -C $(THIRD_PARTY_FLD) clean-src
+
+clean-doc:
+	rm -rf doxygen
 
 clean: clean-windows clean-linux clean-src
 
