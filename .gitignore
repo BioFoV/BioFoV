@@ -1,0 +1,16 @@
+# Documentation
+doxygen
+
+# Builds
+windows
+linux
+BioFoV-linux*
+BioFoV-windows*
+
+# Qt Creator Stuff
+build-application*
+application/application.pro.user
+
+# KDE
+*.directory
+

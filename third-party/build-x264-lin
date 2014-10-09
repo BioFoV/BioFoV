@@ -1,0 +1,42 @@
+#!/bin/bash
+
+################################################################################
+#
+# OpenCV Git pull/clone and compilation
+#
+################################################################################
+
+ROOT=`pwd`
+CPUS=`nproc`
+SRCFLD="src"
+
+if [ ! -d x264 ]; then
+  mkdir x264
+fi
+cd x264
+
+wget ftp://ftp.videolan.org/pub/x264/snapshots/last_x264.tar.bz2
+
+tar -xvf last_x264.tar.bz2
+
+
+# Build for linux
+if [ ! -d linux-build ]; then
+  mkdir linux-build
+fi
+cd linux-build
+
+# disable-opencl to bypass bug http://its.ffmpeg.org/ticket/3876
+../x264-snapshot*/configure \
+  --enable-static \
+  --enable-pic \
+  --disable-opencl \
+  --prefix=$ROOT/linux-install
+#  --enable-shared \
+
+make -j$CPUS
+
+make install
+
+cd ../..
+
