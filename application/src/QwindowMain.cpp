@@ -1,6 +1,10 @@
 #include "QwindowMain.hpp"
 #include "ui_mainwindow.h"
 
+/**
+ * @brief MainWindow constructor.
+ * @param parent Parent of the new MainWindow.
+ */
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -143,25 +147,47 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->videoList, SIGNAL(cancel()));
 }
 
+/**
+ * @brief MainWindow destructor.
+ */
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
+/**
+ * @brief Opens the about window.
+ * This was a test for the exec function and opening new windows/dialogs, but
+ * in the end it stayed.
+ */
 void MainWindow::openAbout()
 {
     About about;
     about.exec();
 }
 
+/**
+ * @brief Shows a message in the status bar.
+ * @param text Message as a QString.
+ */
 void MainWindow::showMessage(QString text){
     ui->statusBar->showMessage(text);
 }
 
+/**
+ * @brief Shows a message in the status bar.
+ * @param text Message as a normal C string.
+ */
 void MainWindow::showMessage(const char *text){
     ui->statusBar->showMessage(QString(text));
 }
 
+/**
+ * @brief Changes the limits of progressBar.
+ * @param min Minimum value of progressBar.
+ * @param max Maximum value of progressBar.
+ * @param val Current value to set progressBar to.
+ */
 void MainWindow::setProgressSize(unsigned int min, unsigned int max,
                                  unsigned int val) {
     progressBar->setMinimum(min);
@@ -169,26 +195,46 @@ void MainWindow::setProgressSize(unsigned int min, unsigned int max,
     setProgress(val);
 }
 
+/**
+ * @brief Enable the progress bar.
+ * @param min Minimum value of progressBar.
+ * @param max Maximum value of progressBar.
+ */
 void MainWindow::enableProgress(unsigned int min, unsigned int max){
     progressBar->setEnabled(true);
     cancelButton->setEnabled(true);
     setProgressSize(min, max, min);
 }
 
+/**
+ * @brief Sets progress bar value.
+ * @param val New value for progressBar.
+ */
 void MainWindow::setProgress(uint val){
     progressBar->setValue(val);
 }
 
+/**
+ * @brief Disables the progress bar.
+ */
 void MainWindow::disableProgress(){
     progressBar->setEnabled(false);
     cancelButton->setEnabled(false);
 }
 
+/**
+ * @brief Disables and empties the progress bar.
+ */
 void MainWindow::resetProgress(){
     setProgressSize(0, 100, 0);
     disableProgress();
 }
 
+/**
+ * @brief RGB video playback triggered.
+ * Disables all the other playback options if enabled. If disabled,
+ * re-enable, since at least one playback option should be enabled.
+ */
 void MainWindow::on_actionNormal_triggered()
 {
     if (ui->actionNormal->isChecked()) {
@@ -199,7 +245,11 @@ void MainWindow::on_actionNormal_triggered()
     }
 }
 
-
+/**
+ * @brief Mask playback triggered.
+ * Disables all the other playback options if enabled. If disabled,
+ * return to normal playback mode.
+ */
 void MainWindow::on_actionMask_triggered()
 {
     if (ui->actionMask->isChecked()) {
@@ -210,7 +260,11 @@ void MainWindow::on_actionMask_triggered()
     }
 }
 
-
+/**
+ * @brief Masked video playback triggered.
+ * Disables all the other playback options if enabled. If disabled,
+ * return to normal playback mode.
+ */
 void MainWindow::on_actionMasked_Video_triggered()
 {
     if (ui->actionMasked_Video->isChecked()) {
@@ -221,10 +275,18 @@ void MainWindow::on_actionMasked_Video_triggered()
     }
 }
 
+/**
+ * @brief MainWindow::getPlayMode
+ * @return
+ */
 int MainWindow::getPlayMode(){
     return playMode;
 }
 
+/**
+ * @brief Event playback as RGB video toggled.
+ * @param arg1 Event playback as RGB video?
+ */
 void MainWindow::on_actionNormal_toggled(bool arg1)
 {
     if (arg1) {
@@ -234,7 +296,10 @@ void MainWindow::on_actionNormal_toggled(bool arg1)
     }
 }
 
-
+/**
+ * @brief Event playback of the mask toggled.
+ * @param arg1 Event playback as mask only?
+ */
 void MainWindow::on_actionMask_toggled(bool arg1)
 {
     if (arg1) {
@@ -244,7 +309,10 @@ void MainWindow::on_actionMask_toggled(bool arg1)
     }
 }
 
-
+/**
+ * @brief Event playback of the masked RGB video toggled.
+ * @param arg1 Event playback as masked video?
+ */
 void MainWindow::on_actionMasked_Video_toggled(bool arg1)
 {
     if (arg1) {
@@ -254,6 +322,9 @@ void MainWindow::on_actionMasked_Video_toggled(bool arg1)
     }
 }
 
+/**
+ * @brief MainWindow::on_actionDetect_Faces_triggered
+ */
 void MainWindow::on_actionDetect_Faces_triggered()
 {
     uint i0, i1;
@@ -330,6 +401,10 @@ void MainWindow::on_actionDetect_Faces_triggered()
     }
 }
 
+/**
+ * @brief MainWindow::keyPressEvent
+ * @param ev
+ */
 void MainWindow::keyPressEvent(QKeyEvent *ev){
     // DELETE
     if(ev->key() == Qt::Key_Delete){
@@ -348,10 +423,17 @@ void MainWindow::keyPressEvent(QKeyEvent *ev){
     }
 }
 
+/**
+ * @brief MainWindow::getSettings
+ * @return
+ */
 QdialogSettings* MainWindow::getSettings(){
     return settings;
 }
 
+/**
+ * @brief MainWindow::on_actionExport_Event_triggered
+ */
 void MainWindow::on_actionExport_Event_triggered()
 {
     QFileDialog getDirDialog(this);
@@ -403,6 +485,9 @@ void MainWindow::on_actionExport_Event_triggered()
     showMessage(tr("Done saving Event(s)"));
 }
 
+/**
+ * @brief MainWindow::on_actionSave_Current_Player_Image_triggered
+ */
 void MainWindow::on_actionSave_Current_Player_Image_triggered()
 {
     if (!ui->player->getCurrentPlayer()){
@@ -426,6 +511,9 @@ void MainWindow::on_actionSave_Current_Player_Image_triggered()
     showMessage(tr("Done saving Image"));
 }
 
+/**
+ * @brief MainWindow::on_actionSave_Faces_As_Images_triggered
+ */
 void MainWindow::on_actionSave_Faces_As_Images_triggered()
 {
     QFileDialog getDirDialog(this);
@@ -464,10 +552,16 @@ void MainWindow::on_actionSave_Faces_As_Images_triggered()
     showMessage(tr("Done saving Event(s)"));
 }
 
+/**
+ * @brief MainWindow::cancel
+ */
 void MainWindow::cancel() {
     toCancel = true;
 }
 
+/**
+ * @brief MainWindow::canceled
+ */
 void MainWindow::canceled() {
     toCancel = false;
 }

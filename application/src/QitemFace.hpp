@@ -13,6 +13,9 @@
 #include <Snapshot/Snapshot.hpp>
 #endif
 
+/**
+ * @brief The FaceItem class
+ */
 class FaceItem : public QTreeWidgetItem
 {
 public:
@@ -30,6 +33,9 @@ public:
     void setCounter(uint count);
 
 private:
+    /**
+     * @brief face
+     */
     FacePtr face;
 };
 
@@ -44,6 +50,9 @@ public:
     SnapshotPtr getSnapshot();
 
 private:
+    /**
+     * @brief snap
+     */
     SnapshotPtr snap;
 };
 

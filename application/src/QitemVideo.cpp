@@ -3,12 +3,21 @@
 /*******************************************************************************
  * Constructors
  ******************************************************************************/
+/**
+ * @brief VideoItem::VideoItem
+ * @param parent
+ */
 VideoItem::VideoItem(QTreeWidget *parent) :
     PlayerItem(parent)
 {
 
 }
 
+/**
+ * @brief VideoItem::VideoItem
+ * @param filename
+ * @param parent
+ */
 VideoItem::VideoItem(QString filename, QTreeWidget *parent) :
     PlayerItem(parent)
 {
@@ -20,10 +29,19 @@ VideoItem::VideoItem(QString filename, QTreeWidget *parent) :
 /*******************************************************************************
  * Functions
  ******************************************************************************/
+/**
+ * @brief VideoItem::getVideo
+ * @return
+ */
 VideoPtr VideoItem::getVideo(){
     return vid;
 }
 
+/**
+ * @brief VideoItem::setPlayer
+ * @param inPlayer
+ * @return
+ */
 bool VideoItem::setPlayer(PlayerPtr inPlayer){
     vid = qSharedPointerDynamicCast<Video>(inPlayer);
     if (vid.isNull())
@@ -31,6 +49,10 @@ bool VideoItem::setPlayer(PlayerPtr inPlayer){
     return true;
 }
 
+/**
+ * @brief VideoItem::getPlayer
+ * @return
+ */
 PlayerPtr VideoItem::getPlayer(){
     return qSharedPointerDynamicCast<Player>(vid);
 }

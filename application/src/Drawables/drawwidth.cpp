@@ -1,10 +1,16 @@
 #include "drawwidth.hpp"
 
+/**
+ * @brief Simple constructor.
+ */
 DrawWidth::DrawWidth() {
     npoints = -1;
     calculated = false;
 }
 
+/**
+ * @brief Simple destructor.
+ */
 DrawWidth::~DrawWidth() {
 
 }

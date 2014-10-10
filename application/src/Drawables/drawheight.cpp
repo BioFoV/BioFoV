@@ -1,10 +1,16 @@
 #include "drawheight.hpp"
 
+/**
+ * @brief Simple constructor.
+ */
 DrawHeight::DrawHeight() {
     npoints = -1;
     calculated = false;
 }
 
+/**
+ * @brief Simple destructor.
+ */
 DrawHeight::~DrawHeight() {
 
 }

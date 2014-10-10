@@ -15,6 +15,9 @@
 
 #define TAG_EVENT "Event"
 
+/**
+ * @brief The EventItem class
+ */
 class EventItem : public PlayerItem
 {
 public:
@@ -32,6 +35,9 @@ public:
     bool setPlayer(PlayerPtr inPlayer);
     PlayerPtr getPlayer();
 private:
+    /**
+     * @brief event
+     */
     EventPtr event;
 };
 

@@ -12,9 +12,9 @@ namespace Ui {
 class SplitDialog;
 }
 
-///
-/// \brief Class to control the split settings input menu.
-///
+/**
+ * @brief Class to control the split settings input menu.
+ */
 class SplitDialog : public QDialog
 {
     Q_OBJECT
@@ -48,8 +48,14 @@ private slots:
     void on_historyframes_valueChanged(int arg1);
 
 private:
+    /**
+     * @brief ui
+     */
     Ui::SplitDialog *ui;
 
+    /**
+     * @brief fps
+     */
     unsigned int fps;
 };
 

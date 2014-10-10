@@ -3,6 +3,12 @@
 #include <QLibraryInfo>
 #include <QTranslator>
 
+/**
+ * @brief main
+ * @param argc Number of arguments
+ * @param argv Array of arguments
+ * @return
+ */
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);

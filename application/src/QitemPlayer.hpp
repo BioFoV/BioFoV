@@ -8,6 +8,9 @@
 
 #include <QTreeWidgetItem>
 
+/**
+ * @brief The PlayerItem class
+ */
 class PlayerItem : public QTreeWidgetItem
 {
 public:

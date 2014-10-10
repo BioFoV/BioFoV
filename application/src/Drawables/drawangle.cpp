@@ -1,10 +1,16 @@
 #include "drawangle.hpp"
 
+/**
+ * @brief Simple constructor.
+ */
 DrawAngle::DrawAngle() {
     npoints = -1;
     calculated = false;
 }
 
+/**
+ * @brief Simple destructor
+ */
 DrawAngle::~DrawAngle() {
 
 }

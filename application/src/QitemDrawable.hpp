@@ -8,6 +8,9 @@
 #include <Drawables/drawable.hpp>
 #endif
 
+/**
+ * @brief The QitemDrawable class
+ */
 class QitemDrawable : public QTreeWidgetItem
 {
 public:
@@ -15,6 +18,9 @@ public:
     Drawable* getDrawable();
 
 private:
+    /**
+     * @brief draw
+     */
     Drawable* draw;
 };
 

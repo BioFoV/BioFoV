@@ -28,13 +28,32 @@
 #endif
 
 class Face;
+
+/**
+ * @brief FacePtr
+ */
 typedef QSharedPointer<Face> FacePtr;
 
+/**
+ * @brief The Face class
+ */
 class Face : public Feature {
 private:
+    /**
+     * @brief model
+     */
     cv::Ptr<cv::FaceRecognizer> model;
+
+    /**
+     * @brief haar_cascade
+     */
     cv::CascadeClassifier haar_cascade;
+
+    /**
+     * @brief snapshots
+     */
     std::deque<SnapshotPtr> snapshots;
+
 public:
     Face(std::string haar_filename);
     ~Face();

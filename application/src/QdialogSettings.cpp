@@ -1,6 +1,10 @@
 #include "QdialogSettings.hpp"
 #include "ui_qdialogsettings.h"
 
+/**
+ * @brief QdialogSettings::QdialogSettings
+ * @param parent
+ */
 QdialogSettings::QdialogSettings(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QdialogSettings)
@@ -16,11 +20,17 @@ QdialogSettings::QdialogSettings(QWidget *parent) :
     ui->haarDir->setText(QDir::homePath());
 }
 
+/**
+ * @brief QdialogSettings::~QdialogSettings
+ */
 QdialogSettings::~QdialogSettings()
 {
     delete ui;
 }
 
+/**
+ * @brief QdialogSettings::on_cacheButton_clicked
+ */
 void QdialogSettings::on_cacheButton_clicked()
 {
     QFileDialog getDirDialog(this);
@@ -40,6 +50,9 @@ void QdialogSettings::on_cacheButton_clicked()
     }
 }
 
+/**
+ * @brief QdialogSettings::on_haarButton_clicked
+ */
 void QdialogSettings::on_haarButton_clicked()
 {
     QFileDialog getDirDialog(this);
@@ -59,24 +72,42 @@ void QdialogSettings::on_haarButton_clicked()
     }
 }
 
+/**
+ * @brief QdialogSettings::getHaarDir
+ * @return
+ */
 QString QdialogSettings::getHaarDir(){
     return ui->haarDir->text();
 }
 
+/**
+ * @brief QdialogSettings::getCacheDir
+ * @return
+ */
 QString QdialogSettings::getCacheDir(){
     return ui->cacheDir->text();
 }
 
+/**
+ * @brief QdialogSettings::getUseGPU
+ * @return
+ */
 bool QdialogSettings::getUseGPU(){
     return ui->useGPU->isChecked();
 }
 
+/**
+ * @brief QdialogSettings::justSaveSettings
+ */
 void QdialogSettings::justSaveSettings(){
     settingsFile->setValue("CacheDir",getCacheDir());
     settingsFile->setValue("HaarDir",getHaarDir());
     settingsFile->setValue("UseGPU",getUseGPU());
 }
 
+/**
+ * @brief QdialogSettings::saveSettings
+ */
 void QdialogSettings::saveSettings(){
     if (settingsFile == NULL) {
         saveSettingsAs();
@@ -86,6 +117,9 @@ void QdialogSettings::saveSettings(){
     justSaveSettings();
 }
 
+/**
+ * @brief QdialogSettings::saveSettingsAs
+ */
 void QdialogSettings::saveSettingsAs(){
     QFileDialog getDirDialog(this);
     getDirDialog.setDirectory(QDir::homePath());
@@ -102,6 +136,9 @@ void QdialogSettings::saveSettingsAs(){
     }
 }
 
+/**
+ * @brief QdialogSettings::loadSettings
+ */
 void QdialogSettings::loadSettings(){
     QFileDialog getDirDialog(this);
     getDirDialog.setDirectory(QDir::homePath());

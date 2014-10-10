@@ -3,17 +3,28 @@
 /*******************************************************************************
  * Constructors
  ******************************************************************************/
+/**
+ * @brief Simple constructor.
+ */
 Video::Video(){
 	bg = NULL;
     activeDrawable = NULL;
 }
 
+/**
+ * @brief Constructor providing cv VideoCapture.
+ * @param capture CV capture object.
+ */
 Video::Video(cv::VideoCapture capture){
 	bg = NULL;
 	cap = capture;
     activeDrawable = NULL;
 }
 
+/**
+ * @brief Video constructor providing a file name.
+ * @param name File name.
+ */
 Video::Video(std::string name){
 	bg = NULL;
 	filename = name;
@@ -28,27 +39,46 @@ Video::Video(std::string name){
 /*******************************************************************************
  * Destructors
  ******************************************************************************/
+/**
+ * @brief Simple destructor.
+ */
 Video::~Video(){
     if (bg != NULL){
         delete bg;
     }
 }
 
-/*
+/*******************************************************************************
  * Set and Get
- **/
+ ******************************************************************************/
+/**
+ * @brief Changes the filename to the string provided.
+ * @param name New filename.
+ */
 void Video::setFileName(std::string name){
     filename = name;
 }
 
+/**
+ * @brief Get filename.
+ * @return Filename of the Video if there is one, otherwise returns NULL.
+ */
 std::string Video::getFileName(){
     return filename;
 }
 
+/**
+ * @brief Changes the CV VideoCapture object to a new one.
+ * @param capture New CV VideoCapture object of the Video.
+ */
 void Video::setCapture(cv::VideoCapture capture){
     cap = capture;
 }
 
+/**
+ * @brief Get CV VideoCapture object.
+ * @return CV VideoCapture object of the Video.
+ */
 cv::VideoCapture Video::getCapture(){
     return cap;
 }
@@ -156,10 +186,18 @@ double Video::getLengthFrames(){
     return cap.get(CV_CAP_PROP_FRAME_COUNT);
 }
 
+/**
+ * @brief Video::getSize
+ * @return
+ */
 cv::Size Video::getSize(){
     return resolution;
 }
 
+/**
+ * @brief Check if video is calibrated.
+ * @return true if calibrated, false otherwise.
+ */
 bool Video::isCalibrated(){
     if (cam != NULL){
         return cam->isCalibrated();
@@ -170,10 +208,19 @@ bool Video::isCalibrated(){
 /*******************************************************************************
  * Background Subtraction functions
  ******************************************************************************/
+/**
+ * @brief Initializes the CV background subtractor object.
+ * @param hist
+ * @param varThresh
+ * @param bShadowDet
+ */
 void Video::bgSubInit(int hist, int varThresh, bool bShadowDet){
 	bg = new BackgroundSubtractor(hist,varThresh,bShadowDet);
 }
 
+/**
+ * @brief Purges the CV background subtractor object linked to this Video.
+ */
 void Video::bgSubDelete(){
 	delete bg;
 }
@@ -181,7 +228,11 @@ void Video::bgSubDelete(){
 /*******************************************************************************
  * Event autoDetection
  ******************************************************************************/
-
+/**
+ * @brief Video::convertToEvent
+ * @param path
+ * @return
+ */
 EventPtr Video::convertToEvent(std::string path){
     cv::Mat shot;
     FramePtr frame;
@@ -214,6 +265,18 @@ EventPtr Video::convertToEvent(std::string path){
     return event;
 }
 
+/**
+ * @brief Automatically splits the video into several events provided the
+ * given parameters.
+ * @param threshold
+ * @param maxcount
+ * @param mincount
+ * @param history
+ * @param varThreshold
+ * @param bShadowDetection
+ * @param path
+ * @return
+ */
 std::deque<EventPtr> Video::autoDetectEvents(double threshold,
                                            double maxcount,
                                            double mincount,
@@ -305,6 +368,23 @@ std::deque<EventPtr> Video::autoDetectEvents(double threshold,
     return events;
 }
 
+/**
+ * @brief calibrate Calibrates the camera based on this Video.
+ *
+ * If this Video has enough chessboard pattern frames on it, and they are
+ * described by the arguments given to the function, the function will
+ * calibrate the video and after the call, all other player implemented
+ * functions that ask for a frame will have an undistorted frame.
+ *
+ * @param nBoards Maximum number of boards to be detected.
+ * After this number, it stops. Use frameStep to skip frames if there are a
+ * lot of frames with similar pattern positions.
+ * @param frameStep Steps frames to avoid similar ones.
+ * @param boardW Number of inner corners of the pattern, on width.
+ * @param boardH Number of inner corners of the pattern, on height.
+ * @param iterations Number of iterations to be passed to the BackgroundSubtractor object. 1~5 is normally enough.
+ * @param flags
+ */
 void Video::calibrate(int nBoards, int frameStep, int boardW,
                       int boardH, int iterations, unsigned int flags) {
 
@@ -322,11 +402,17 @@ void Video::calibrate(int nBoards, int frameStep, int boardW,
     setFramePos(0);
 }
 
+/**
+ * @brief Video::deleteCalibration
+ */
 void Video::deleteCalibration() {
     delete cam;
     cam = NULL;
 }
 
+/**
+ * @brief Video::flip_horizontally
+ */
 void Video::flip_horizontally(){
     if (cam == NULL){
         cam = new Camera(this);
@@ -334,6 +420,9 @@ void Video::flip_horizontally(){
     cam->flip_horizontal();
 }
 
+/**
+ * @brief Video::flip_vertically
+ */
 void Video::flip_vertically(){
     if (cam == NULL){
         cam = new Camera(this);
@@ -341,10 +430,18 @@ void Video::flip_vertically(){
     cam->flip_vertical();
 }
 
+/**
+ * @brief Video::getCamera
+ * @return
+ */
 Camera* Video::getCamera(){
     return cam;
 }
 
+/**
+ * @brief Video::importCamera
+ * @return
+ */
 bool Video::importCamera(){
     cam = new Camera(this);
 
@@ -383,10 +480,16 @@ void Video::save(std::string /*fname*/){
     //FIXME - not implemented
 }
 
+/**
+ * @brief Video::cancel
+ */
 void Video::cancel() {
     toCancel = true;
 }
 
+/**
+ * @brief Video::canceled
+ */
 void Video::canceled() {
     toCancel = false;
 }

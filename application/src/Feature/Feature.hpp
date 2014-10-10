@@ -20,44 +20,29 @@ class Individual;
 ///
 class Feature{
 private:
-    /// \brief Pointer to the Individual to which this Feature was attributed.
+    /**
+     * @brief Pointer to the Individual to which this Feature was attributed.
+     */
 	Individual *ind;
-    /// \brief Text describing the Feature.
+
+    /**
+     * @brief Text describing the Feature.
+     */
 	std::string description;
-	
+
 public:
 	// Constructors
-    /// \brief Simple constructor.
-	Feature();
-    /// \brief Constructor specifying the Individual to which this Feature was
-    ///attributed.
-    /// \param owner Individual to which the Feature was attributed.
-	Feature(Individual* owner);
-    /// \brief Constructor specifying the Individual to which this Feature was
-    ///attributed as well as the description of the feature.
-    /// \param owner Individual to which the Feature was attributed.
-    /// \param name Description of the Feature.
-	Feature(Individual* owner, std::string name);
-    /// \brief Constructor providing only the description of the Feature.
-    /// \param name Description of the Feature.
+    Feature();
+    Feature(Individual* owner);
+    Feature(Individual* owner, std::string name);
 	Feature(std::string name);
 	
-	// Description handling functions
-    /// \brief Gets the description of the Feature.
-    /// \return Description of the Feature.
-	std::string describe();
-    /// \brief Sets the description of the Feature.
-    /// \param name Description of the Feature.
+    // Description handling functions
+    std::string describe();
 	void describe(std::string name);
 	
-	// Individual (owner) handling functions
-    /// \brief Gets the parent of the Feature.
-    /// \return A pointer to the Individual to whom the feature is attributed
-    ///to.
-	Individual* parent();
-    /// \brief Sets the parent of the Feature.
-    /// \param owner A pointer to the Individual to whom this Feature is
-    ///attributed to.
+    // Individual (owner) handling functions
+    Individual* parent();
 	void parent(Individual* owner);
 };
 #endif

@@ -47,24 +47,12 @@ private:
     std::string filename;
 	
 public:
-    /// \brief Simple constructor.
 	Snapshot();
-
-    /// \brief Simple destructor.
-    virtual ~Snapshot();
-
-    /// \brief Constructor with a reference to the Frame this Snapshot relates
-    ///to.
-    /// \param img Pointer to the refered Frame.
     Snapshot(FramePtr img);
-
-    /// \brief Constructor with a reference to the Frame this Snapshot relates
-    ///to, and the image mask.
-    /// \param img Pointer to the refered Frame.
-    /// \param inmask Mask that defines where something is.
     Snapshot(FramePtr img, cv::Mat inmask, std::string path);
-
     Snapshot(FramePtr img, cv::Rect inrect);
+
+    virtual ~Snapshot();
 
     // Functions
     cv::Mat getMask();

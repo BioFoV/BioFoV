@@ -4,6 +4,10 @@
 /*******************************************************************************
  * Constructors
  ******************************************************************************/
+/**
+ * @brief VideoPlayer::VideoPlayer
+ * @param parent
+ */
 VideoPlayer::VideoPlayer(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::VideoPlayer)
@@ -22,6 +26,9 @@ VideoPlayer::VideoPlayer(QWidget *parent) :
 /*******************************************************************************
  * Destructor
  ******************************************************************************/
+/**
+ * @brief VideoPlayer::~VideoPlayer
+ */
 VideoPlayer::~VideoPlayer(){
     delete ui;
 }
@@ -29,6 +36,9 @@ VideoPlayer::~VideoPlayer(){
 /*******************************************************************************
  * Actions
  ******************************************************************************/
+/**
+ * @brief VideoPlayer::play
+ */
 void VideoPlayer::play(){
     if (dir){
         if(!stepForward()){
@@ -42,11 +52,17 @@ void VideoPlayer::play(){
     }
 }
 
+/**
+ * @brief VideoPlayer::pause
+ */
 void VideoPlayer::pause(){
     isplaying = false;
     timer.stop();
 }
 
+/**
+ * @brief VideoPlayer::playOrPause
+ */
 void VideoPlayer::playOrPause(){
     if (!isloaded())
         return;
@@ -60,6 +76,9 @@ void VideoPlayer::playOrPause(){
     }
 }
 
+/**
+ * @brief VideoPlayer::rewindOrPause
+ */
 void VideoPlayer::rewindOrPause() {
     if (!isloaded())
         return;
@@ -73,6 +92,10 @@ void VideoPlayer::rewindOrPause() {
     }
 }
 
+/**
+ * @brief VideoPlayer::refresh
+ * @return
+ */
 bool VideoPlayer::refresh(){
     if (!isloaded())
         return false;
@@ -86,6 +109,10 @@ bool VideoPlayer::refresh(){
     }
 }
 
+/**
+ * @brief VideoPlayer::stepBack
+ * @return
+ */
 bool VideoPlayer::stepBack(){
     if (!isloaded())
         return false;
@@ -101,6 +128,10 @@ bool VideoPlayer::stepBack(){
     }
 }
 
+/**
+ * @brief VideoPlayer::stepForward
+ * @return
+ */
 bool VideoPlayer::stepForward(){
     if (!isloaded())
         return false;
@@ -117,6 +148,10 @@ bool VideoPlayer::stepForward(){
     }
 }
 
+/**
+ * @brief VideoPlayer::goTo
+ * @param nthFrame
+ */
 void VideoPlayer::goTo(double nthFrame){
     PlayerPtr tmpPlayer = getCurrentPlayer();
     if (tmpPlayer.isNull()){
@@ -129,6 +164,12 @@ void VideoPlayer::goTo(double nthFrame){
 /*******************************************************************************
  * Video loading functions
  ******************************************************************************/
+/**
+ * @brief VideoPlayer::loadVid
+ * @param nextVid
+ * @param playerT
+ * @param item
+ */
 void VideoPlayer::loadVid(PlayerPtr nextVid, int playerT, QTreeWidgetItem* item){
     pause();
     unload();
@@ -155,12 +196,19 @@ void VideoPlayer::loadVid(PlayerPtr nextVid, int playerT, QTreeWidgetItem* item)
     refresh();
 }
 
+/**
+ * @brief VideoPlayer::unload
+ */
 void VideoPlayer::unload(){
     currentPlayer.clear();
     Qitem = NULL;
     qDebug("unloaded video to player");
 }
 
+/**
+ * @brief VideoPlayer::unload
+ * @param toUnload
+ */
 void VideoPlayer::unload(PlayerPtr toUnload){
     if(getCurrentPlayer() == toUnload){
         pause();
@@ -168,6 +216,10 @@ void VideoPlayer::unload(PlayerPtr toUnload){
     }
 }
 
+/**
+ * @brief VideoPlayer::isloaded
+ * @return
+ */
 bool VideoPlayer::isloaded(){
     return !(currentPlayer == NULL);
 }
@@ -175,6 +227,10 @@ bool VideoPlayer::isloaded(){
 /*******************************************************************************
  * Image show
  ******************************************************************************/
+/**
+ * @brief VideoPlayer::showImage
+ * @param image
+ */
 void VideoPlayer::showImage(const cv::Mat& image){
     // Convert the image to the RGB888 format
     switch (image.type()) {
@@ -196,6 +252,9 @@ void VideoPlayer::showImage(const cv::Mat& image){
     repaint();
 }
 
+/**
+ * @brief VideoPlayer::paintEvent
+ */
 void VideoPlayer::paintEvent(QPaintEvent* /*event*/) {
     // Display the image
     QPainter painter(this);
@@ -213,6 +272,10 @@ void VideoPlayer::paintEvent(QPaintEvent* /*event*/) {
     painter.end();
 }
 
+/**
+ * @brief VideoPlayer::x_origin
+ * @return
+ */
 int VideoPlayer::x_origin(){
     if(_qimage.width() < ui->player->size().width()){
         return (ui->player->width() - _qimage.width())/2;
@@ -220,6 +283,10 @@ int VideoPlayer::x_origin(){
     return 0;
 }
 
+/**
+ * @brief VideoPlayer::y_origin
+ * @return
+ */
 int VideoPlayer::y_origin(){
     if (_qimage.height() < ui->player->size().height()){
         return (ui->player->height() - _qimage.height())/2;
@@ -230,34 +297,54 @@ int VideoPlayer::y_origin(){
 /*******************************************************************************
  * Slider functions
  ******************************************************************************/
+/**
+ * @brief VideoPlayer::on_posSlider_sliderPressed
+ */
 void VideoPlayer::on_posSlider_sliderPressed()
 {
     if(isplaying)
         timer.stop();
 }
 
+/**
+ * @brief VideoPlayer::on_posSlider_sliderReleased
+ */
 void VideoPlayer::on_posSlider_sliderReleased()
 {
     if(isplaying)
         timer.start();
 }
 
+/**
+ * @brief VideoPlayer::on_posSlider_sliderMoved
+ * @param position
+ */
 void VideoPlayer::on_posSlider_sliderMoved(int position)
 {
     goTo(position);
 }
 
+/**
+ * @brief VideoPlayer::on_speedSlider_sliderMoved
+ * @param position
+ */
 void VideoPlayer::on_speedSlider_sliderMoved(int position)
 {
     speed = position/10.0;
     timer.setInterval(frameInt/speed);
 }
 
+/**
+ * @brief VideoPlayer::updateFrameNumber
+ */
 void VideoPlayer::updateFrameNumber()
 {
     ui->frameIndex->setText(QString("%1").arg(currentPlayer->getCurrentFrameNumber()));
 }
 
+/**
+ * @brief VideoPlayer::updateSliderPos
+ */
 void VideoPlayer::updateSliderPos()
 {
     ui->posSlider->setValue(currentPlayer->getFramePos()-1);
@@ -266,10 +353,18 @@ void VideoPlayer::updateSliderPos()
 /*******************************************************************************
  * Player type
  ******************************************************************************/
+/**
+ * @brief VideoPlayer::getPlayerType
+ * @return
+ */
 int VideoPlayer::getPlayerType(){
     return playerType;
 }
 
+/**
+ * @brief VideoPlayer::setPlayMode
+ * @param mode
+ */
 void VideoPlayer::setPlayMode(int mode){
     if (playerType == PLAYER_EV){
         EventPtr tmpEvent = qSharedPointerCast<Event> (currentPlayer);
@@ -280,7 +375,11 @@ void VideoPlayer::setPlayMode(int mode){
 /*******************************************************************************
  * Mouse tracking
  ******************************************************************************/
-
+/**
+ * @brief VideoPlayer::qtPt_To_cvPt
+ * @param in
+ * @return
+ */
 cv::Point VideoPlayer::qtPt_To_cvPt(QPoint in){
     double x_cv = frame.cols;
     double y_cv = frame.rows;
@@ -295,6 +394,10 @@ cv::Point VideoPlayer::qtPt_To_cvPt(QPoint in){
                      y_now*y_cv/y_qt);
 }
 
+/**
+ * @brief VideoPlayer::mousePressEvent
+ * @param event
+ */
 void VideoPlayer::mousePressEvent(QMouseEvent *event){
     QPoint ptTmp = event->pos() - QPoint(x_origin(),y_origin());
     PlayerPtr tmpPlayer = getCurrentPlayer();
@@ -306,6 +409,10 @@ void VideoPlayer::mousePressEvent(QMouseEvent *event){
     showImage(frame);
 }
 
+/**
+ * @brief VideoPlayer::mouseReleaseEvent
+ * @param event
+ */
 void VideoPlayer::mouseReleaseEvent(QMouseEvent *event){
     QPoint ptTmp = event->pos() - QPoint(x_origin(),y_origin());
     PlayerPtr tmpPlayer = getCurrentPlayer();
@@ -317,6 +424,10 @@ void VideoPlayer::mouseReleaseEvent(QMouseEvent *event){
     showImage(frame);
 }
 
+/**
+ * @brief VideoPlayer::mouseMoveEvent
+ * @param event
+ */
 void VideoPlayer::mouseMoveEvent(QMouseEvent *event){
     QPoint ptTmp = event->pos() - QPoint(x_origin(),y_origin());
     PlayerPtr tmpPlayer = getCurrentPlayer();
@@ -328,6 +439,9 @@ void VideoPlayer::mouseMoveEvent(QMouseEvent *event){
     showImage(frame);
 }
 
+/**
+ * @brief VideoPlayer::print
+ */
 void VideoPlayer::print(){
     QPrinter printer;
     QPrintDialog *dlg = new QPrintDialog(&printer,0);
@@ -342,35 +456,61 @@ void VideoPlayer::print(){
     delete dlg;
 }
 
+/**
+ * @brief VideoPlayer::showStillImage
+ * @param image
+ */
 void VideoPlayer::showStillImage(const cv::Mat& image){
     setControlsEnabled(false);
     showImage(image);
 }
 
+/**
+ * @brief VideoPlayer::setControlsEnabled
+ * @param status
+ */
 void VideoPlayer::setControlsEnabled(bool status){
     ui->controls->setEnabled(status);
     ui->posSlider->setEnabled(status);
     ui->speedSlider->setEnabled(status);
 }
 
+/**
+ * @brief VideoPlayer::getCurrentPlayer
+ * @return
+ */
 PlayerPtr VideoPlayer::getCurrentPlayer(){
     return currentPlayer;
 }
 
+/**
+ * @brief VideoPlayer::getCurrentItem
+ * @return
+ */
 QTreeWidgetItem* VideoPlayer::getCurrentItem(){
     return Qitem;
 }
 
+/**
+ * @brief VideoPlayer::getCurrentFrameRef
+ * @return
+ */
 FramePtr VideoPlayer::getCurrentFrameRef(){
     return getCurrentPlayer()->getCurrentFrameRef();
 }
 
+/**
+ * @brief VideoPlayer::on_stepbackButton_clicked
+ */
 void VideoPlayer::on_stepbackButton_clicked()
 {
     pause();
     stepBack();
 }
 
+/**
+ * @brief VideoPlayer::on_stepforwardButton_clicked
+ */
 void VideoPlayer::on_stepforwardButton_clicked()
 {
     pause();

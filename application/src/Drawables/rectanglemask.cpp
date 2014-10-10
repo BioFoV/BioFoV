@@ -1,15 +1,20 @@
 #include "rectanglemask.hpp"
 
+/**
+ * @brief Simple constructor.
+ */
 RectangleMask::RectangleMask()
 {
     finished = false;
 }
 
+/**
+ * @brief Simple destructor.
+ */
 RectangleMask::~RectangleMask()
 {
 }
 
-// Click
 void RectangleMask::press(cv::Point pi1){
     p[0] = pi1;
     p[1] = pi1;
@@ -20,7 +25,6 @@ void RectangleMask::release(cv::Point pi2){
     finished = true;
 }
 
-// Draw
 void RectangleMask::draw(cv::Mat& frame){
     if(!isVisible())
         return;

@@ -18,11 +18,25 @@
 /// Defines the thickness of the lines (independent of image resolution.
 #define LINE_RATIO .002
 
+/**
+ * @brief The DrawLength class
+ */
 class DrawLength : public Drawable
 {
 private:
+    /**
+     * @brief points
+     */
     cv::Point2f points[2];
+
+    /**
+     * @brief npoints
+     */
     int npoints;
+
+    /**
+     * @brief result
+     */
     double result;
 
 public:

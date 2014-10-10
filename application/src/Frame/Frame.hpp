@@ -36,42 +36,39 @@ class Video;
 class Frame;
 typedef QSharedPointer<Frame> FramePtr;
 
-///
-/// \brief Class that represents Frames.
-///
+/**
+ * @brief Class that represents Frames.
+ */
 class Frame : public QObject , public Player {
     Q_OBJECT
 
 private:
-    /// \brief Video object from which this Frame was extracted.
-	Video *vid;
-    /// \brief Frame number in the video.
+    /**
+     * @brief Video object from which this Frame was extracted.
+     */
+    Video *vid;
+
+    /**
+     * @brief Frame number in the video.
+     */
     unsigned int frameNumber;
-    /// \brief Filename of the Frame.
+
+    /**
+     * @brief Filename of the Frame.
+     */
     std::string filename;
 
 //    FramePtr thisPtr;
-	
+
 public:
-	// Constructors
-    /// \brief Simple constructor.
-	Frame();
-    /// \brief Constructor with reference to the Video source from which the
-    ///Frame was taken.
-    /// \param source_vid Video from which the Frame was extracted.
-    /// \param path Folder for holding the png files.
+    // Constructors
+    Frame();
     Frame(Video *source_vid, cv::Mat shot, std::string path);
 
-    // Destructor
-    /// \brief Simple destructor.
     virtual ~Frame();
 
     // Functions
-    /// \brief Sets the image of the Frame.
-    ///Use this if you didn't specify it in the constructor.
-    /// \param shot Image of the Frame.
     void setImage(cv::Mat shot);
-
     unsigned int getNumber();
 
     // Capture functions

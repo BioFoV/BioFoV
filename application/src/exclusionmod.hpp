@@ -3,6 +3,9 @@
 
 #include "modifier.hpp"
 
+/**
+ * @brief The ExclusionMod class
+ */
 class ExclusionMod : public Modifier
 {
 public:

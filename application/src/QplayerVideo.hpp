@@ -45,6 +45,9 @@ namespace Ui {
 class VideoPlayer;
 }
 
+/**
+ * @brief The VideoPlayer class
+ */
 class VideoPlayer : public QWidget
 {
     Q_OBJECT
@@ -79,22 +82,61 @@ public slots:
     FramePtr getCurrentFrameRef();
     QTreeWidgetItem* getCurrentItem();
 private:
+    /**
+     * @brief ui
+     */
     Ui::VideoPlayer *ui;
+    /**
+     * @brief currentPlayer
+     */
     PlayerPtr currentPlayer;
+    /**
+     * @brief _qimage
+     */
     QImage _qimage;
+    /**
+     * @brief _tmp
+     */
     cv::Mat _tmp;
+    /**
+     * @brief frame
+     */
     cv::Mat frame;
-    bool isplaying; // playing or not
-    double frameInt; // interval between frames
-    double FPS; // frames per second
+    /**
+     * @brief Playing or not
+     */
+    bool isplaying;
+    /**
+     * @brief Time interval between frames
+     */
+    double frameInt;
+    /**
+     * @brief Frames per second
+     */
+    double FPS;
+    /**
+     * @brief timer
+     */
     QTimer timer;
+    /**
+     * @brief speed
+     */
     float speed;
+    /**
+     * @brief playerType
+     */
     int playerType;
-
+    /**
+     * @brief dir
+     */
     bool dir;
-
+    /**
+     * @brief drawer
+     */
     Drawable *drawer;
-
+    /**
+     * @brief Qitem
+     */
     QTreeWidgetItem* Qitem;
 
 private slots:

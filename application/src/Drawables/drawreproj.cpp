@@ -1,10 +1,16 @@
 #include "drawreproj.hpp"
 
+/**
+ * @brief Simple constructor.
+ */
 DrawReproj::DrawReproj() {
     npoints = -1;
     calculated = false;
 }
 
+/**
+ * @brief Simple destructor.
+ */
 DrawReproj::~DrawReproj() {
 
 }
@@ -61,10 +67,17 @@ void DrawReproj::move(cv::Point /*point - unused*/){
 
 }
 
+/**
+ * @brief DrawReproj::isCalculated
+ * @return
+ */
 bool DrawReproj::isCalculated(){
     return calculated;
 }
 
+/**
+ * @brief DrawReproj::calcUndistort
+ */
 void DrawReproj::calcUndistort(){
     // average the position of the points to get a good undistortion without the
     //image getting out of the frame.
@@ -95,6 +108,10 @@ void DrawReproj::calcUndistort(){
     calculated = true;
 }
 
+/**
+ * @brief DrawReproj::undistort
+ * @param frame
+ */
 void DrawReproj::undistort(cv::Mat& frame){
     cv::Mat ftmp = frame.clone();
     cv::warpPerspective(ftmp, // input image

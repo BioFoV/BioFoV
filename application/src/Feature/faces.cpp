@@ -1,14 +1,25 @@
 #include "faces.hpp"
 
+/**
+ * @brief Face::Face
+ * @param haar_filename
+ */
 Face::Face(std::string haar_filename){
     model = cv::createLBPHFaceRecognizer();
     haar_cascade.load(haar_filename);
 }
 
+/**
+ * @brief Face::~Face
+ */
 Face::~Face(){
 
 }
 
+/**
+ * @brief Face::findFaces
+ * @param newFrame
+ */
 void Face::findFaces(FramePtr newFrame){
     cv::Mat gray;
     SnapshotPtr newSnap;
@@ -26,10 +37,19 @@ void Face::findFaces(FramePtr newFrame){
     }
 }
 
+/**
+ * @brief Face::faceNumber
+ * @return
+ */
 unsigned int Face::faceNumber(){
     return snapshots.size();
 }
 
+/**
+ * @brief Face::getFaceAt
+ * @param i
+ * @return
+ */
 SnapshotPtr Face::getFaceAt(unsigned int i){
     return snapshots.at(i);
 }

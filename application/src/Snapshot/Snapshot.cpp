@@ -3,14 +3,28 @@
 /*******************************************************************************
  * Constructors
  ******************************************************************************/
+/**
+ * @brief Simple constructor.
+ */
 Snapshot::Snapshot(){
 	
 }
 
+/**
+ * @brief Constructor with a reference to the Frame this Snapshot relates to.
+ * @param img Pointer to the refered Frame.
+ */
 Snapshot::Snapshot(FramePtr img){
     image = img;
 }
 
+/**
+ * @brief Constructor with a reference to the Frame this Snapshot relates to,
+ * and the image mask.
+ * @param img Pointer to the refered Frame.
+ * @param inmask Mask that defines where something is.
+ * @param path Path where to save the snapshot.
+ */
 Snapshot::Snapshot(FramePtr img, cv::Mat inmask, std::string path){
     const void * address = static_cast<const void*>(this);
     std::stringstream ss;
@@ -29,6 +43,9 @@ Snapshot::Snapshot(FramePtr img, cv::Rect inrect){
 /*******************************************************************************
  * Destructor
  ******************************************************************************/
+/**
+ * @brief Simple destructor.
+ */
 Snapshot::~Snapshot(){
     remove(filename.c_str());
 }
@@ -36,6 +53,10 @@ Snapshot::~Snapshot(){
 /*******************************************************************************
  * Functions
  ******************************************************************************/
+/**
+ * @brief Snapshot::getMask
+ * @return
+ */
 cv::Mat Snapshot::getMask(){
     cv::Mat mask;
     cv::Mat a;
@@ -51,6 +72,10 @@ cv::Mat Snapshot::getMask(){
     }
 }
 
+/**
+ * @brief Snapshot::getMasked
+ * @return
+ */
 cv::Mat Snapshot::getMasked(){
     cv::Mat mask;
     if (!filename.empty()){

@@ -3,6 +3,9 @@
 /*******************************************************************************
  * Constructors
  ******************************************************************************/
+/**
+ * @brief Simple constructor
+ */
 BackgroundSubtractor::BackgroundSubtractor(){
     history = 200;
     varThreshold = 32;
@@ -11,6 +14,12 @@ BackgroundSubtractor::BackgroundSubtractor(){
         bShadowDetection );
 }
 
+/**
+ * @brief BackgroundSubtractor::BackgroundSubtractor
+ * @param hist
+ * @param varThresh
+ * @param bShadowDet
+ */
 BackgroundSubtractor::BackgroundSubtractor(int hist, int varThresh,
         bool bShadowDet){
     history = hist;
@@ -24,6 +33,10 @@ BackgroundSubtractor::BackgroundSubtractor(int hist, int varThresh,
 /*******************************************************************************
  * Get foreground, background and contours functions
  ******************************************************************************/
+/**
+ * @brief BackgroundSubtractor::NewFrame
+ * @param img
+ */
 void BackgroundSubtractor::NewFrame(cv::Mat img){
     // copy image to object
     frame = img;
@@ -31,20 +44,35 @@ void BackgroundSubtractor::NewFrame(cv::Mat img){
     bgsub(img,fore);
 }
 
+/**
+ * @brief BackgroundSubtractor::Denoise
+ */
 void BackgroundSubtractor::Denoise(){
     cv::erode(fore,fore,cv::Mat());
     cv::dilate(fore,fore,cv::Mat());
 }
 
+/**
+ * @brief BackgroundSubtractor::Foreground
+ * @return
+ */
 cv::Mat BackgroundSubtractor::Foreground(){
     return fore;
 }
 
+/**
+ * @brief BackgroundSubtractor::Background
+ * @return
+ */
 cv::Mat BackgroundSubtractor::Background(){
     bgsub.getBackgroundImage(back);
     return back;
 }
 
+/**
+ * @brief BackgroundSubtractor::Contours
+ * @return
+ */
 cv::Mat BackgroundSubtractor::Contours(){
     cont = frame.clone();
     cv::Mat aux = fore.clone();

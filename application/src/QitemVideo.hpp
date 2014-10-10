@@ -16,8 +16,14 @@
 
 #define TAG_VIDEO "Video"
 
+/**
+ * @brief VideoPtr
+ */
 typedef QSharedPointer<Video> VideoPtr;
 
+/**
+ * @brief The VideoItem class
+ */
 class VideoItem : public PlayerItem
 {
 public:
@@ -31,6 +37,9 @@ public:
     bool setPlayer(PlayerPtr inPlayer);
     PlayerPtr getPlayer();
 private:
+    /**
+     * @brief vid
+     */
     VideoPtr vid;
 };
 

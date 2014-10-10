@@ -3,6 +3,11 @@
 /*******************************************************************************
  * Constructors
  ******************************************************************************/
+/**
+ * @brief Constructor providing the Video from which the Frames are to be
+ * extracted.
+ * @param iVid
+ */
 Event::Event(Video* iVid){
     position = 0;
     vid = iVid;
@@ -12,6 +17,9 @@ Event::Event(Video* iVid){
 /*******************************************************************************
  * Destructor
  ******************************************************************************/
+/**
+ * @brief Destructor.
+ */
 Event::~Event(){
 //    vid->removeEvent(this);
 }
@@ -19,6 +27,11 @@ Event::~Event(){
 /*******************************************************************************
  * Modifiers
  ******************************************************************************/
+/**
+ * @brief Appends another Event to this one.
+ * @param ev1 Event to be appended to this one.
+ * @return  The reference to the resulting Event.
+ */
 Event& Event::operator +=(const Event& ev1){
     unsigned int i;
     for (i=0; i<ev1.frames.size(); i++){
@@ -39,18 +52,32 @@ Event& Event::operator +=(const Event& ev1){
 /*******************************************************************************
  * Functions
  ******************************************************************************/
+/**
+ * @brief Adds another Frame to this Event.
+ * @param inFrame Frame to be added to this Event.
+ */
 void Event::addFrame(FramePtr inFrame){
     frames.push_back(inFrame);
 }
 
+/**
+ * @brief Adds another Snapshot to this Event.
+ * @param inSnap Snapshot to be added to this Event.
+ */
 void Event::addSnapshot(SnapshotPtr inSnap){
     snapshots.push_back(inSnap);
 }
 
+/**
+ * @brief Pop last Frame.
+ */
 void Event::remLastFrame(){
     frames.pop_back();
 }
 
+/**
+ * @brief Pop last Snapshot.
+ */
 void Event::remLastSnapshot(){
     snapshots.pop_back();
 }
@@ -62,7 +89,7 @@ bool Event::check_cap(){
     return !frames.empty();
 }
 
-//TODO: error conditions
+//FIXME: error conditions
 bool Event::setFramePos(double frameNum){
     position = frameNum;
     return true;
@@ -172,10 +199,20 @@ uint Event::getCurrentFrameNumber(){
 /*******************************************************************************
  * Playback modifier
  ******************************************************************************/
+/**
+ * @brief Event::setPlaybackMode
+ * @param mode
+ */
 void Event::setPlaybackMode(int mode){
     playMode = mode;
 }
 
+/**
+ * @brief Event::saveAsVideo
+ * @param filename
+ * @param encoder
+ * @return
+ */
 bool Event::saveAsVideo(std::string filename, std::string encoder){
     int fourcc = 0;
 
@@ -212,6 +249,10 @@ void Event::save(std::string fname){
     saveAsVideo(fname+".avi", "HFYU");
 }
 
+/**
+ * @brief Event::getVideo
+ * @return
+ */
 Video* Event::getVideo(){
     return vid;
 }

@@ -15,6 +15,9 @@
 
 #include <QTreeWidgetItem>
 
+/**
+ * @brief The FrameItem class
+ */
 class FrameItem : public PlayerItem
 {
 public:
@@ -25,6 +28,9 @@ public:
     bool setPlayer(PlayerPtr inPlayer);
     PlayerPtr getPlayer();
 private:
+    /**
+     * @brief frame
+     */
     FramePtr frame;
 };
 

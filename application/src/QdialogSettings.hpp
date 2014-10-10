@@ -9,6 +9,9 @@ namespace Ui {
 class QdialogSettings;
 }
 
+/**
+ * @brief The QdialogSettings class
+ */
 class QdialogSettings : public QDialog
 {
     Q_OBJECT
@@ -35,7 +38,14 @@ private slots:
     void on_haarButton_clicked();
 
 private:
+    /**
+     * @brief ui
+     */
     Ui::QdialogSettings *ui;
+
+    /**
+     * @brief settingsFile
+     */
     QSettings *settingsFile;
 
     void justSaveSettings();

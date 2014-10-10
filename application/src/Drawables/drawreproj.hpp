@@ -18,32 +18,63 @@
 /// Defines the thickness of the lines (independent of image resolution.
 #define LINE_RATIO .002
 
-///
-/// \brief Calculate the height/width of a certain object/person.
-///Implementation of Drawable class.
-///
+/**
+ * @brief Calculate the height/width of a certain object/person.
+ * Implementation of Drawable class.
+ */
 class DrawReproj : public Drawable
 {
 private:
-    /// \brief Vector to store the points.
-    ///Store the four reference points plus the height point.
+    /**
+     * @brief Vector to store the points.
+     * Store the four reference points plus the height point.
+     */
     cv::Point2f points[4];
 
+    /**
+     * @brief repoints
+     */
     cv::Point2f repoints[4];
-    /// \brief Number of points inserted so far.
+
+    /**
+     * @brief Number of points inserted so far.
+     */
     int npoints;
 
+    /**
+     * @brief calculated
+     */
     bool calculated;
+
+    /**
+     * @brief persptransf
+     */
     cv::Mat persptransf;
 
+    /**
+     * @brief referential_width
+     */
     double referential_width;
+
+    /**
+     * @brief referential_height
+     */
     double referential_height;
+
+    /**
+     * @brief height
+     */
     double height;
+
+    /**
+     * @brief ratio
+     */
     double ratio;
+
 public:
-    /// \brief Simple constructor.
     DrawReproj();
     ~DrawReproj();
+
     void press(cv::Point);
     void release(cv::Point pi2);
     void draw(cv::Mat& frame);
@@ -51,7 +82,6 @@ public:
     bool isDone();
 
     std::string getDescription();
-
     std::string getIcon();
 
     bool isCalculated();

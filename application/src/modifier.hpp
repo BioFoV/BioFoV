@@ -1,9 +1,9 @@
 #ifndef MODIFIER_HPP
 #define MODIFIER_HPP
 
-///
-/// \brief The Modifier class.
-///
+/**
+ * @brief The Modifier class
+ */
 class Modifier
 {
 public:

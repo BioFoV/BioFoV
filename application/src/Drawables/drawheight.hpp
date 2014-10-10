@@ -18,28 +18,40 @@
 /// Defines the thickness of the lines (independent of image resolution.
 #define LINE_RATIO .002
 
-///
-/// \brief Calculate the height/width of a certain object/person.
-///Implementation of Drawable class.
-///
+/**
+ * @brief Calculate the height/width of a certain object/person.
+ * Implementation of Drawable class.
+ */
 class DrawHeight : public Drawable
 {
 private:
-    /// \brief Vector to store the points.
-    ///Store the four reference points plus the height point.
+    /**
+     * @brief Vector to store the points.
+     * Store the four reference points plus the height point.
+     */
     cv::Point2f points[2];
 
-    /// \brief Vector to store the auxiliar points used in the drawing.
+    /**
+     * @brief Vector to store the auxiliar points used in the drawing.
+     */
     cv::Point2f auxpoints[2];
 
-    /// \brief Number of points inserted so far.
+    /**
+     * @brief Number of points inserted so far.
+     */
     int npoints;
 
+    /**
+     * @brief calculated
+     */
     bool calculated;
+
+    /**
+     * @brief persptransf
+     */
     cv::Mat persptransf;
 
 public:
-    /// \brief Simple constructor.
     DrawHeight();
     ~DrawHeight();
     void press(cv::Point);

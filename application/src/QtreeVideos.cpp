@@ -1,5 +1,9 @@
 #include "QtreeVideos.hpp"
 
+/**
+ * @brief QtreeVideos::QtreeVideos
+ * @param parent
+ */
 QtreeVideos::QtreeVideos(QWidget *parent) :
     QTreeWidget(parent)
 {
@@ -13,6 +17,10 @@ QtreeVideos::QtreeVideos(QWidget *parent) :
             this, SLOT(itemChanged(QTreeWidgetItem*,int)));
 }
 
+/**
+ * @brief Add video file.
+ * Add a video file dialog and import wizard.
+ */
 void QtreeVideos::on_add_video_file(){
     VideoItem * last = NULL;
     QFileDialog getFileDialog(this);
@@ -52,6 +60,9 @@ void QtreeVideos::on_add_video_file(){
     return;
 }
 
+/**
+ * @brief Convert video directly to Event.
+ */
 void QtreeVideos::on_video_to_event(){
     EventPtr event;
     EventItem* newEventItem;
@@ -94,6 +105,11 @@ void QtreeVideos::on_video_to_event(){
     }
 }
 
+/**
+ * @brief Auto detect events in video.
+ * For each video in the video list split them into events accordingly with the
+ * given parameters in the split window that is used.
+ */
 void QtreeVideos::on_auto_detect_events(){
     std::deque<EventPtr> events;
     EventItem* newEvent;
@@ -165,6 +181,9 @@ void QtreeVideos::on_auto_detect_events(){
     }
 }
 
+/**
+ * @brief Remove video file from project.
+ */
 void QtreeVideos::on_remove_from_project()
 {
     if(isVisible()){
@@ -180,6 +199,9 @@ void QtreeVideos::on_remove_from_project()
     }
 }
 
+/**
+ * @brief Delete all selected Events.
+ */
 void QtreeVideos::on_delete_event()
 {
     if(isVisible()){
@@ -195,7 +217,12 @@ void QtreeVideos::on_delete_event()
     }
 }
 
-void QtreeVideos::on_item_doubleclicked(QTreeWidgetItem *item, int /*column - unused*/){
+/**
+ * @brief Double click an item on the video/event list.
+ * @param item Pointer to the item which was double clicked.
+ * @param column Index of the clicked column (not used).
+ */
+void QtreeVideos::on_item_doubleclicked(QTreeWidgetItem *item, int column){
     showMessage(tr("Loaded ") + item->text(0));
     if (VideoItem* vItem = dynamic_cast< VideoItem * >( item )){
         loadVid(vItem->getVideo(), PLAYER_VID, vItem);
@@ -213,6 +240,10 @@ void QtreeVideos::on_item_doubleclicked(QTreeWidgetItem *item, int /*column - un
     playOrPause();
 }
 
+/**
+ * @brief Changed selection in the video/event list.
+ * Updates the statistics for the selected events.
+ */
 void QtreeVideos::on_item_selection_changed()
 {
     int selected = 0;
@@ -233,6 +264,9 @@ void QtreeVideos::on_item_selection_changed()
     setTotalTimeText(QString("%1 s").arg(time));
 }
 
+/**
+ * @brief QtreeVideos::flip_horizontally
+ */
 void QtreeVideos::flip_horizontally(){
     foreach (QTreeWidgetItem* item, selectedItems()){
         if (NULL != dynamic_cast< EventItem * >( item )){
@@ -245,6 +279,9 @@ void QtreeVideos::flip_horizontally(){
     refreshPlayer();
 }
 
+/**
+ * @brief QtreeVideos::flip_vertically
+ */
 void QtreeVideos::flip_vertically(){
     foreach (QTreeWidgetItem* item, selectedItems()){
         if (NULL != dynamic_cast< EventItem * >( item )){
@@ -257,6 +294,10 @@ void QtreeVideos::flip_vertically(){
     refreshPlayer();
 }
 
+/**
+ * @brief Calibrate the video.
+ * Call for the calibration function for each video selected.
+ */
 void QtreeVideos::on_calibrate()
 {
     if (selectedItems().size() == 0){
@@ -288,6 +329,9 @@ void QtreeVideos::on_calibrate()
     }
 }
 
+/**
+ * @brief QtreeVideos::on_discard_calibration
+ */
 void QtreeVideos::on_discard_calibration(){
     if (selectedItems().size() == 0){
         showMessage(tr("Select a calibrated Video first"));
@@ -306,6 +350,9 @@ void QtreeVideos::on_discard_calibration(){
     }
 }
 
+/**
+ * @brief QtreeVideos::on_import_camera
+ */
 void QtreeVideos::on_import_camera(){
     int i = 0;
 
@@ -325,6 +372,9 @@ void QtreeVideos::on_import_camera(){
     }
 }
 
+/**
+ * @brief QtreeVideos::on_export_camera
+ */
 void QtreeVideos::on_export_camera(){
     foreach (QTreeWidgetItem* item, selectedItems()){
         if(VideoItem* vidIt = dynamic_cast< VideoItem * >( item )){
@@ -340,6 +390,10 @@ void QtreeVideos::on_export_camera(){
     }
 }
 
+/**
+ * @brief Merge two events into one.
+ * The second selected event is merged after the first one.
+ */
 void QtreeVideos::on_merge()
 {
     unsigned int count = 0;
@@ -375,6 +429,10 @@ void QtreeVideos::on_merge()
     delete(it1);
 }
 
+/**
+ * @brief QtreeVideos::getFrame
+ * @return
+ */
 FrameItem* QtreeVideos::getFrame(){
     FrameItem* fitem ;
     QTreeWidgetItem* qitem = getCurrentItem();
@@ -393,6 +451,9 @@ FrameItem* QtreeVideos::getFrame(){
     return fitem;
 }
 
+/**
+ * @brief QtreeVideos::on_reproject
+ */
 void QtreeVideos::on_reproject(){
     pause();
     FrameItem* fitem = getFrame();
@@ -404,6 +465,9 @@ void QtreeVideos::on_reproject(){
     fitem->getFrameRef()->addDrawable((Drawable*)new DrawReproj());
 }
 
+/**
+ * @brief Calculates the height of something.
+ */
 void QtreeVideos::on_height()
 {
     pause();
@@ -416,6 +480,9 @@ void QtreeVideos::on_height()
     fitem->getFrameRef()->addDrawable((Drawable*)new DrawHeight());
 }
 
+/**
+ * @brief QtreeVideos::on_width
+ */
 void QtreeVideos::on_width()
 {
     pause();
@@ -428,6 +495,9 @@ void QtreeVideos::on_width()
     fitem->getFrameRef()->addDrawable((Drawable*)new DrawWidth());
 }
 
+/**
+ * @brief QtreeVideos::on_length
+ */
 void QtreeVideos::on_length() {
     pause();
     FrameItem* fitem = getFrame();
@@ -439,6 +509,9 @@ void QtreeVideos::on_length() {
     fitem->getFrameRef()->addDrawable((Drawable*)new DrawLength());
 }
 
+/**
+ * @brief QtreeVideos::on_angle
+ */
 void QtreeVideos::on_angle() {
     pause();
     FrameItem* fitem = getFrame();
@@ -450,6 +523,10 @@ void QtreeVideos::on_angle() {
     fitem->getFrameRef()->addDrawable((Drawable*)new DrawAngle());
 }
 
+/**
+ * @brief Exclude action.
+ * Start excluding a rectangular section of the video.
+ */
 void QtreeVideos::on_exclude_rectangle()
 {
     pause();
@@ -465,6 +542,9 @@ void QtreeVideos::on_exclude_rectangle()
     }
 }
 
+/**
+ * @brief QtreeVideos::updateValues
+ */
 void QtreeVideos::updateValues(){
     QitemDrawable* newChild;
     QTreeWidgetItem* newSubChild;
@@ -508,6 +588,10 @@ void QtreeVideos::updateValues(){
     current->setExpanded(true);
 }
 
+/**
+ * @brief QtreeVideos::itemChanged
+ * @param item
+ */
 void QtreeVideos::itemChanged(QTreeWidgetItem *item, int){
     if(QitemDrawable* drawIt = dynamic_cast< QitemDrawable * >(item)){
         if (drawIt->checkState(1) == Qt::Checked)

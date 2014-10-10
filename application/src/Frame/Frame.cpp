@@ -3,11 +3,20 @@
 /*******************************************************************************
  * Constructors
  ******************************************************************************/
+/**
+ * @brief Simple constructor.
+ */
 Frame::Frame(){
 	vid = NULL;
 //    thisPtr = FramePtr(this);
 }
 
+/**
+ * @brief Constructor with reference to the Video source from which the Frame was taken.
+ * @param source_vid Video from which the Frame was extracted.
+ * @param shot
+ * @param path Folder for holding the png files.
+ */
 Frame::Frame(Video *source_vid, cv::Mat shot, std::string path){
     // use image address as filename to ensure there are no clashes
     const void * address = static_cast<const void*>(this);
@@ -28,6 +37,9 @@ Frame::Frame(Video *source_vid, cv::Mat shot, std::string path){
 /*******************************************************************************
  * Destructor
  ******************************************************************************/
+/**
+ * @brief Simple destructor.
+ */
 Frame::~Frame(){
     remove(filename.c_str());
 }
@@ -35,10 +47,19 @@ Frame::~Frame(){
 /*******************************************************************************
  * Functions
  ******************************************************************************/
+/**
+ * @brief Sets the image of the Frame.
+ * Use this if you didn't specify it in the constructor.
+ * @param shot Image of the Frame.
+ */
 void Frame::setImage(cv::Mat shot){
     imwrite( filename, shot);
 }
 
+/**
+ * @brief Frame::getNumber
+ * @return
+ */
 unsigned int Frame::getNumber(){
     return frameNumber;
 }
@@ -133,6 +154,10 @@ void Frame::save(std::string fname){
     cv::imwrite( fname + ".png", buff);
 }
 
+/**
+ * @brief Frame::getValues
+ * @return
+ */
 TStrDoubleMap Frame::getValues(){
     TStrDoubleMap ret;
     TStrDoubleMap temp;

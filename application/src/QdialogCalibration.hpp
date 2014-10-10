@@ -13,6 +13,9 @@ namespace Ui {
 class CalibrationDialog;
 }
 
+/**
+ * @brief The CalibrationDialog class
+ */
 class CalibrationDialog : public QDialog
 {
     Q_OBJECT
@@ -29,6 +32,9 @@ public:
     unsigned int getFlags();
 
 private:
+    /**
+     * @brief ui
+     */
     Ui::CalibrationDialog *ui;
 };
 

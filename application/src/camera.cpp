@@ -1,16 +1,29 @@
 #include "camera.hpp"
 
+/**
+ * @brief Simple Camera constructor.
+ */
 Camera::Camera() : flag(0), maxIter(0)
 {
     calibrated = false;
     vid = NULL;
 }
 
+/**
+ * @brief Camera constructor relative to a Video.
+ * @param iVid Video to which this object relates to.
+ */
 Camera::Camera(Video* iVid){
     calibrated = false;
     vid = iVid;
 }
 
+/**
+ * @brief Camera constructor using the board dimentions and Video reference.
+ * @param iVid Pointer to the Video object.
+ * @param boardW Width of the board (input by the user).
+ * @param boardH Height of the board (input by the user).
+ */
 Camera::Camera(Video* iVid, int boardW, int boardH)
 {
     calibrated = false;
@@ -19,6 +32,11 @@ Camera::Camera(Video* iVid, int boardW, int boardH)
     boardTotal = boardSize.width * boardSize.height;
 }
 
+/**
+ * @brief Open chessboard images and extract corner points.
+ * @param filelist
+ * @return
+ */
 int Camera::addSeveralChessboardPoints(
     const std::vector<std::string>& filelist) {
 
@@ -68,6 +86,11 @@ int Camera::addSeveralChessboardPoints(
     return successes;
 }
 
+/**
+ * @brief Given an image extract corner points.
+ * @param image
+ * @return
+ */
 bool Camera::addChessboardPoints(
     const cv::Mat image) {
 
@@ -117,6 +140,11 @@ bool Camera::addChessboardPoints(
     }
 }
 
+/**
+ * @brief Add scene points and corresponding image points.
+ * @param imageCorners
+ * @param objectCorners
+ */
 void Camera::addPoints(const std::vector<cv::Point2f> &imageCorners,
     const std::vector<cv::Point3f> &objectCorners) {
 
@@ -126,6 +154,13 @@ void Camera::addPoints(const std::vector<cv::Point2f> &imageCorners,
     objectPoints.push_back(objectCorners);
 }
 
+/**
+ * @brief Calibrate the camera.
+ * @param nBoards
+ * @param frameStep
+ * @param iterations
+ * @return re-projection error.
+ */
 double Camera::calibrate(int nBoards, int frameStep, int iterations) {
     int successes = 0;
     int frame = 0;
@@ -178,6 +213,11 @@ double Camera::calibrate(int nBoards, int frameStep, int iterations) {
     return reprojectionError;
 }
 
+/**
+ * @brief Remove distortion in an image (after calibration).
+ * @param image Original image.
+ * @return Remaped image.
+ */
 cv::Mat Camera::undistort(const cv::Mat &image) {
 
     cv::Mat undistorted;
@@ -189,10 +229,18 @@ cv::Mat Camera::undistort(const cv::Mat &image) {
     return undistorted;
 }
 
+/**
+ * @brief Set flags for calibration public method.
+ * @param flags Flags for the calibration.
+ */
 void Camera::set_calib_flags(int flags){
     flag = flags;
 }
 
+/**
+ * @brief Writes relevant calibration data to output file.
+ * @return File write succcessful or not.
+ */
 bool Camera::write_file(){
     QString filename = QFileDialog::getSaveFileName();
 
@@ -214,6 +262,10 @@ bool Camera::write_file(){
     return true;
 }
 
+/**
+ * @brief Imports a camera from a file.
+ * @return Success value.
+ */
 bool Camera::read_file() {
     QString filename = QFileDialog::getOpenFileName();
 
@@ -238,6 +290,9 @@ bool Camera::read_file() {
     return true;
 }
 
+/**
+ * @brief Initialize the camera matrix.
+ */
 void Camera::initCamera(){
     if(cameraMatrix.empty()) {
         cameraMatrix = cv::Mat::eye(3, 3, CV_64FC1);
@@ -252,16 +307,26 @@ void Camera::initCamera(){
     calibrated = true;
 }
 
+/**
+ * @brief Flips the calibration horizontally.
+ */
 void Camera::flip_horizontal(){
     initCamera();
     cameraMatrix.col(0) *= -1.0;
 }
 
+/**
+ * @brief Flips the calibration vertically.
+ */
 void Camera::flip_vertical(){
     initCamera();
     cameraMatrix.col(1) *= -1.0;
 }
 
+/**
+ * @brief Checks if the camera is calibrated.
+ * @return Calibrated or not.
+ */
 bool Camera::isCalibrated(){
     return calibrated;
 }

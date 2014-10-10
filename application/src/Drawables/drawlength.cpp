@@ -1,10 +1,16 @@
 #include "drawlength.hpp"
 
+/**
+ * @brief DrawLength::DrawLength
+ */
 DrawLength::DrawLength()
 {
     npoints = -1;
 }
 
+/**
+ * @brief DrawLength::~DrawLength
+ */
 DrawLength::~DrawLength(){
 
 }

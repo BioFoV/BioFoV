@@ -31,28 +31,31 @@ class Event;
 class Snapshot;
 class Feature;
 
-///
-/// \brief Class that represents an individual.
-///has associated with it the various Events and Snapshots where this same
-///individual shows up. An Individual also has several Features that can be used
-///for later matching.
-///
+/**
+ * @brief Class that represents an individual.
+ * Has associated with it the various Events and Snapshots where this same
+ * individual shows up. An Individual also has several Features that can be used
+ * for later matching.
+ */
 class Individual{
 private:
-    /// \brief List of Event where this individual shows up.
+    /**
+     * @brief List of Event where this individual shows up.
+     */
     std::deque<Event *> events;
 
-    /// \brief List of Snapshots of this individual.
+    /**
+     * @brief List of Snapshots of this individual.
+     */
     std::deque<Snapshot *> snapshots;
 
-    /// \brief List of Features for this individual.
+    /**
+     * @brief List of Features for this individual.
+     */
     std::deque<Feature *> features;
 	
 public:
-    /// \brief Simple constructor.
-	Individual();
-	
-    /// \brief Simple destructor.
+    Individual();
 	~Individual();
 };
 #endif 

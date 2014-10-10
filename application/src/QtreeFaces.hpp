@@ -16,6 +16,9 @@
 
 #include <QTreeWidget>
 
+/**
+ * @brief The QtreeFaces class
+ */
 class QtreeFaces : public QTreeWidget
 {
     Q_OBJECT
