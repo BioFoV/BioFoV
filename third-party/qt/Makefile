@@ -8,7 +8,11 @@
 
 ## System info
 PWD=$(shell pwd)
-CPUS=$(shell nproc)
+ifeq (${TRAVIS}, 1)
+	CPUS=1
+else
+	CPUS=$(shell nproc)
+endif
 
 ## Third party libs
 # Qt
@@ -33,7 +37,7 @@ src:
 	test -d $(SRC_FLD) || git clone $(SRC_GIT) $(SRC_FLD)
 	cd $(SRC_FLD); \
 	git pull; \
-	./init-repository
+	./init-repository --module-subset=qtbase,qttranslations
 linux-src: src
 windows-src: src
 
@@ -58,7 +62,8 @@ linux: linux-src
 		-qt-xcb \
 		-qt-pcre \
 		-qt-xkbcommon \
-		-no-accessibility
+		-no-accessibility \
+		-silent
 	$(MAKE) -C $(LIN_BUILD_FLD) -j$(CPUS) install
 
 windows: windows-src
@@ -85,7 +90,8 @@ windows: windows-src
 		-no-accessibility \
 		-no-opengl \
 		-device-option CROSS_COMPILE=i686-w64-mingw32- \
-		-no-pkg-config
+		-no-pkg-config \
+		-silent
 	$(MAKE) -C $(WIN_BUILD_FLD) -j$(CPUS) install
 
 ################################################################################

@@ -8,7 +8,11 @@
 
 ## System info
 PWD=$(shell pwd)
-CPUS=$(shell nproc)
+ifeq (${TRAVIS}, 1)
+	CPUS=1
+else
+	CPUS=$(shell nproc)
+endif
 
 ## Third party libs
 # Qt
