@@ -9,7 +9,6 @@ before_install:
  - sudo ln -sf /usr/bin/g++-4.8 /usr/bin/g++;
 
 script:
- - make qt-windows
- - make opencv-windows
+ - make travis-ci-windows
  - make build-only-windows
  - make zip-only-windows

@@ -19,6 +19,14 @@ all: linux windows
 linux: qt-linux opencv-linux
 windows: qt-windows opencv-windows
 
+travis-ci-windows:
+	$(MAKE) -C $(OPENCV_FLD) windows-deploy-tbz
+	$(MAKE) -C $(QT_FLD) windows-deploy-tbz
+
+travis-ci-linux:
+	$(MAKE) -C $(OPENCV_FLD) linux-deploy-tbz
+	$(MAKE) -C $(QT_FLD) linux-deploy-tbz
+
 ################################################################################
 
 qt: qt-linux qt-windows

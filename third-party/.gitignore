@@ -2,9 +2,11 @@
 opencv/src*
 opencv/windows*
 opencv/linux*
+opencv/opencv-*
 qt/src*
 qt/windows*
 qt/linux*
+qt/qt-*
 ffmpeg/
 linux-install/
 libogg/
