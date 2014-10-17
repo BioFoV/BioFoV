@@ -12,7 +12,11 @@ PRO_FILE=application/application.pro
 
 ## System info
 PWD=$(shell pwd)
-CPUS=$(shell nproc)
+ifeq (${TRAVIS}, 1)
+	CPUS=1
+else
+	CPUS=$(shell nproc)
+endif
 DATE=$(shell date "+%Y%m%d-%H%M")
 
 ## Third party libs
@@ -28,7 +32,7 @@ QMAKE_LIN=$(THIRD_PARTY_FLD)/qt/linux-install/bin/qmake
 WIN=windows
 WIN_BUILD_FLD=windows
 WIN_BUILD_TYPE=release
-WIN_FFMPEG_WRONG=$(THIRD_PARTY_FLD)/opencv/src-2.4.8/3rdparty/ffmpeg/opencv_ffmpeg.dll
+WIN_FFMPEG_WRONG=$(THIRD_PARTY_FLD)/opencv/windows-install/opencv_ffmpeg.dll
 WIN_FFMPEG_RIGHT=opencv_ffmpeg248.dll
 WIN_ZIP=$(PRO_NAME)-$(WIN)-$(DATE).zip
 
@@ -49,6 +53,9 @@ qt-windows:
 
 opencv-windows:
 	$(MAKE) -C $(THIRD_PARTY_FLD) opencv-windows
+
+travis-ci-windows:
+	$(MAKE) -C $(THIRD_PARTY_FLD) travis-ci-windows
 
 build-only-windows:
 	mkdir -p $(WIN_BUILD_FLD)
@@ -73,6 +80,9 @@ qt-linux:
 
 opencv-linux:
 	$(MAKE) -C $(THIRD_PARTY_FLD) opencv-linux
+
+travis-ci-linux:
+	$(MAKE) -C $(THIRD_PARTY_FLD) travis-ci-linux
 
 build-only-linux:
 	mkdir -p $(LIN_BUILD_FLD)

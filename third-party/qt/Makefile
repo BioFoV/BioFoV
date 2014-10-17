@@ -7,7 +7,7 @@
 ################################################################################
 
 ## System info
-PWD=$(shell pwd)
+QT_DIR=$(shell pwd)
 ifeq (${TRAVIS}, 1)
 	CPUS=1
 else
@@ -19,13 +19,20 @@ endif
 SRC_FLD=src
 SRC_GIT=git://gitorious.org/qt/qt5.git
 
+PLACEHOLDER=PLACEHOLDER
+
 ## Windows stuff
 WIN_BUILD_FLD=windows-build
 WIN_INSTALL_FLD=windows-install
+# WIN_TBZ_URL=
+WIN_TBZ=qt-windows.tbz
+QT_WIN_TBZ_URL=https://www.dropbox.com/s/n8rqjzxeh30yl40/qt-windows.tbz
 
 ## Linux stuff
 LIN_BUILD_FLD=linux-build
 LIN_INSTALL_FLD=linux-install
+# LIN_TBZ_URL=
+LIN_TBZ=qt-linux.tbz
 
 ################################################################################
 
@@ -96,17 +103,43 @@ windows: windows-src
 
 ################################################################################
 
+linux-create-tbz: linux
+	tar -cjf $(LIN_TBZ) $(LIN_INSTALL_FLD)
+
+windows-create-tbz: windows
+	tar -cjf $(WIN_TBZ) $(WIN_INSTALL_FLD)
+
+linux-deploy-tbz:
+	rm -rf $(LIN_INSTALL_FLD)
+	wget --quiet $(QT_LIN_TBZ_URL)
+	tar -xjf $(LIN_TBZ)
+	sed -i "s|$(PLACEHOLDER)|$(QT_DIR)/$(LIN_INSTALL_FLD)|g" qt.conf
+	cp qt.conf $(WIN_INSTALL_FLD)/bin/
+
+windows-deploy-tbz:
+	rm -rf $(WIN_INSTALL_FLD)
+	wget --quiet $(QT_WIN_TBZ_URL)
+	tar -xjf $(WIN_TBZ)
+	sed -i "s|$(PLACEHOLDER)|$(QT_DIR)/$(WIN_INSTALL_FLD)|g" qt.conf
+	cp qt.conf $(WIN_INSTALL_FLD)/bin/
+
+################################################################################
+
 clean-linux-build:
 	rm -rf $(LIN_BUILD_FLD)
 clean-linux-install:
 	rm -rf $(LIN_INSTALL_FLD)
-clean-linux: clean-linux-build clean-linux-install
+clean-linux-tbz:
+	rm -f $(LIN_TBZ)
+clean-linux: clean-linux-build clean-linux-install clean-linux-tbz
 
 clean-windows-build:
 	rm -rf $(WIN_BUILD_FLD)
 clean-windows-install:
 	rm -rf $(WIN_INSTALL_FLD)
-clean-windows: clean-windows-build clean-windows-install
+clean-windows-tbz:
+	rm -f $(WIN_TBZ)
+clean-windows: clean-windows-build clean-windows-install clean-windows-tbz
 
 clean-src:
 	rm -rf $(SRC_FLD)
