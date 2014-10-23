@@ -12,17 +12,17 @@ class About;
  */
 class About : public QDialog
 {
-    Q_OBJECT
-    
+	Q_OBJECT
+
 public:
-    explicit About(QWidget *parent = 0);
-    ~About();
-    
+	explicit About(QWidget *parent = 0);
+	~About();
+
 private:
-    /**
-     * @brief ui
-     */
-    Ui::About *ui;
+	/**
+	 * @brief ui
+	 */
+	Ui::About *ui;
 };
 
 #endif // ABOUT_H

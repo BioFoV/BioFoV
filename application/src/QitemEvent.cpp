@@ -8,7 +8,7 @@
  * @param parent
  */
 EventItem::EventItem(QTreeWidget *parent) :
-    PlayerItem(parent)
+	PlayerItem(parent)
 {
 
 }
@@ -19,10 +19,10 @@ EventItem::EventItem(QTreeWidget *parent) :
  * @param parent
  */
 EventItem::EventItem(QString eventname, QTreeWidget *parent) :
-    PlayerItem(parent)
+	PlayerItem(parent)
 {
-    setText(0, eventname);
-    setText(1, TAG_EVENT );
+	setText(0, eventname);
+	setText(1, TAG_EVENT );
 }
 
 /*******************************************************************************
@@ -43,7 +43,7 @@ EventItem::~EventItem(){
  * @param inevent
  */
 void EventItem::setEvent(EventPtr inevent){
-    event = inevent;
+	event = inevent;
 }
 
 /**
@@ -51,7 +51,7 @@ void EventItem::setEvent(EventPtr inevent){
  * @return
  */
 EventPtr EventItem::getEvent(){
-    return event;
+	return event;
 }
 
 /**
@@ -60,10 +60,10 @@ EventPtr EventItem::getEvent(){
  * @return
  */
 bool EventItem::setPlayer(PlayerPtr inPlayer){
-    event = qSharedPointerDynamicCast<Event>(inPlayer);
-    if (event.isNull())
-        return false;
-    return true;
+	event = qSharedPointerDynamicCast<Event>(inPlayer);
+	if (event.isNull())
+		return false;
+	return true;
 }
 
 /**
@@ -71,5 +71,5 @@ bool EventItem::setPlayer(PlayerPtr inPlayer){
  * @return
  */
 PlayerPtr EventItem::getPlayer(){
-    return qSharedPointerDynamicCast<Player>(event);
+	return qSharedPointerDynamicCast<Player>(event);
 }

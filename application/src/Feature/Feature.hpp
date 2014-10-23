@@ -20,29 +20,29 @@ class Individual;
 ///
 class Feature{
 private:
-    /**
-     * @brief Pointer to the Individual to which this Feature was attributed.
-     */
+	/**
+	 * @brief Pointer to the Individual to which this Feature was attributed.
+	 */
 	Individual *ind;
 
-    /**
-     * @brief Text describing the Feature.
-     */
+	/**
+	 * @brief Text describing the Feature.
+	 */
 	std::string description;
 
 public:
 	// Constructors
-    Feature();
-    Feature(Individual* owner);
-    Feature(Individual* owner, std::string name);
+	Feature();
+	Feature(Individual* owner);
+	Feature(Individual* owner, std::string name);
 	Feature(std::string name);
-	
-    // Description handling functions
-    std::string describe();
+
+	// Description handling functions
+	std::string describe();
 	void describe(std::string name);
-	
-    // Individual (owner) handling functions
-    Individual* parent();
+
+	// Individual (owner) handling functions
+	Individual* parent();
 	void parent(Individual* owner);
 };
 #endif

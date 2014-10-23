@@ -39,23 +39,23 @@ class Feature;
  */
 class Individual{
 private:
-    /**
-     * @brief List of Event where this individual shows up.
-     */
-    std::deque<Event *> events;
+	/**
+	 * @brief List of Event where this individual shows up.
+	 */
+	std::deque<Event *> events;
 
-    /**
-     * @brief List of Snapshots of this individual.
-     */
-    std::deque<Snapshot *> snapshots;
+	/**
+	 * @brief List of Snapshots of this individual.
+	 */
+	std::deque<Snapshot *> snapshots;
 
-    /**
-     * @brief List of Features for this individual.
-     */
-    std::deque<Feature *> features;
-	
+	/**
+	 * @brief List of Features for this individual.
+	 */
+	std::deque<Feature *> features;
+
 public:
-    Individual();
+	Individual();
 	~Individual();
 };
-#endif 
+#endif

@@ -27,20 +27,20 @@ typedef QSharedPointer<Video> VideoPtr;
 class VideoItem : public PlayerItem
 {
 public:
-    // Constructors
-    explicit VideoItem(QTreeWidget *parent = 0);
-    VideoItem(QString filename, QTreeWidget *parent = 0);
+	// Constructors
+	explicit VideoItem(QTreeWidget *parent = 0);
+	VideoItem(QString filename, QTreeWidget *parent = 0);
 
-    // Functions
-    VideoPtr getVideo();
+	// Functions
+	VideoPtr getVideo();
 
-    bool setPlayer(PlayerPtr inPlayer);
-    PlayerPtr getPlayer();
+	bool setPlayer(PlayerPtr inPlayer);
+	PlayerPtr getPlayer();
 private:
-    /**
-     * @brief vid
-     */
-    VideoPtr vid;
+	/**
+	 * @brief vid
+	 */
+	VideoPtr vid;
 };
 
 #endif // VIDEOITEM_HPP

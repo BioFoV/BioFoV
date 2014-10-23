@@ -21,20 +21,20 @@
  */
 class QtreeFaces : public QTreeWidget
 {
-    Q_OBJECT
+	Q_OBJECT
 public:
-    explicit QtreeFaces(QWidget *parent = 0);
-    void on_enter_pressed();
+	explicit QtreeFaces(QWidget *parent = 0);
+	void on_enter_pressed();
 signals:
-    void showStillImage(const cv::Mat& image);
-    void showMessage(QString message);
+	void showStillImage(const cv::Mat& image);
+	void showMessage(QString message);
 public slots:
-    void on_item_delete();
-    void on_item_pressed(QTreeWidgetItem *item, int);
-    void newFaceGroup();
-    void updateCounts();
+	void on_item_delete();
+	void on_item_pressed(QTreeWidgetItem *item, int);
+	void newFaceGroup();
+	void updateCounts();
 
-    void on_item_changed(QTreeWidgetItem *, int);
+	void on_item_changed(QTreeWidgetItem *, int);
 };
 
 #endif // QTREEFACES_HPP

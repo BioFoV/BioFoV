@@ -5,7 +5,7 @@
  * @param parent
  */
 FaceItem::FaceItem(QTreeWidgetItem *parent) :
-    QTreeWidgetItem(parent)
+	QTreeWidgetItem(parent)
 {
 }
 
@@ -15,11 +15,11 @@ FaceItem::FaceItem(QTreeWidgetItem *parent) :
  * @param parent
  */
 FaceItem::FaceItem(QString facename, QTreeWidget *parent) :
-    QTreeWidgetItem(parent)
+	QTreeWidgetItem(parent)
 {
-    setText(0, facename);
-    this->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled |
-                   Qt::ItemIsDropEnabled | Qt::ItemIsEditable);
+	setText(0, facename);
+	this->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled |
+				   Qt::ItemIsDropEnabled | Qt::ItemIsEditable);
 }
 
 /**
@@ -29,19 +29,19 @@ FaceItem::FaceItem(QString facename, QTreeWidget *parent) :
  * @param parent
  */
 FaceItem::FaceItem(QString facename, FacePtr inface, QTreeWidget *parent) :
-    QTreeWidgetItem(parent)
+	QTreeWidgetItem(parent)
 {
-    setText(0, facename);
-    setCounter(inface->faceNumber());
+	setText(0, facename);
+	setCounter(inface->faceNumber());
 
-    for (unsigned int i=0; i<inface->faceNumber(); i++){
-        SnapshotItem * newsnap = new SnapshotItem(inface->getFaceAt(i));
-        newsnap->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable |
-                          Qt::ItemIsDragEnabled | Qt::ItemIsEnabled);
-        this->addChild(newsnap);
-    }
-    this->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled |
-                   Qt::ItemIsDropEnabled | Qt::ItemIsEditable);
+	for (unsigned int i=0; i<inface->faceNumber(); i++){
+		SnapshotItem * newsnap = new SnapshotItem(inface->getFaceAt(i));
+		newsnap->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable |
+						  Qt::ItemIsDragEnabled | Qt::ItemIsEnabled);
+		this->addChild(newsnap);
+	}
+	this->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled |
+				   Qt::ItemIsDropEnabled | Qt::ItemIsEditable);
 }
 
 /**
@@ -55,15 +55,15 @@ FaceItem::~FaceItem(){
  * @return
  */
 FacePtr FaceItem::getFace(){
-    return face;
+	return face;
 }
 
 /**
  * @brief FaceItem::updateCounter
  */
 void FaceItem::updateCounter(){
-    setCounter(childCount());
-    std::cout << childCount() << std::endl;
+	setCounter(childCount());
+	std::cout << childCount() << std::endl;
 }
 
 /**
@@ -71,9 +71,9 @@ void FaceItem::updateCounter(){
  * @param count
  */
 void FaceItem::setCounter(uint count){
-    std::ostringstream ss;
-    ss << count;
-    setText(1, ss.str().c_str());
+	std::ostringstream ss;
+	ss << count;
+	setText(1, ss.str().c_str());
 }
 
 /******************************************************************************/
@@ -83,7 +83,7 @@ void FaceItem::setCounter(uint count){
  * @param parent
  */
 SnapshotItem::SnapshotItem(QTreeWidgetItem *parent) :
-    QTreeWidgetItem(parent)
+	QTreeWidgetItem(parent)
 {
 
 }
@@ -94,10 +94,10 @@ SnapshotItem::SnapshotItem(QTreeWidgetItem *parent) :
  * @param parent
  */
 SnapshotItem::SnapshotItem(SnapshotPtr insnap, QTreeWidget *parent) :
-    QTreeWidgetItem(parent)
+	QTreeWidgetItem(parent)
 {
-    snap = insnap;
-    setText(0, QString("Frame %1").arg(insnap->getCurrentFrameRef()->getNumber(),5,10,QChar('0')));
+	snap = insnap;
+	setText(0, QString("Frame %1").arg(insnap->getCurrentFrameRef()->getNumber(),5,10,QChar('0')));
 }
 
 /**
@@ -111,5 +111,5 @@ SnapshotItem::~SnapshotItem(){
  * @return
  */
 SnapshotPtr SnapshotItem::getSnapshot(){
-    return snap;
+	return snap;
 }

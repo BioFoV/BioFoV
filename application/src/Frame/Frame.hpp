@@ -40,65 +40,65 @@ typedef QSharedPointer<Frame> FramePtr;
  * @brief Class that represents Frames.
  */
 class Frame : public QObject , public Player {
-    Q_OBJECT
+	Q_OBJECT
 
 private:
-    /**
-     * @brief Video object from which this Frame was extracted.
-     */
-    Video *vid;
+	/**
+	 * @brief Video object from which this Frame was extracted.
+	 */
+	Video *vid;
 
-    /**
-     * @brief Frame number in the video.
-     */
-    unsigned int frameNumber;
+	/**
+	 * @brief Frame number in the video.
+	 */
+	unsigned int frameNumber;
 
-    /**
-     * @brief Filename of the Frame.
-     */
-    std::string filename;
+	/**
+	 * @brief Filename of the Frame.
+	 */
+	std::string filename;
 
-//    FramePtr thisPtr;
+//	FramePtr thisPtr;
 
 public:
-    // Constructors
-    Frame();
-    Frame(Video *source_vid, cv::Mat shot, std::string path);
+	// Constructors
+	Frame();
+	Frame(Video *source_vid, cv::Mat shot, std::string path);
 
-    virtual ~Frame();
+	virtual ~Frame();
 
-    // Functions
-    void setImage(cv::Mat shot);
-    unsigned int getNumber();
+	// Functions
+	void setImage(cv::Mat shot);
+	unsigned int getNumber();
 
-    // Capture functions
-    bool check_cap();
-    bool setFramePos(double);
-    double getFramePos();
-    bool getFrame(cv::Mat &frame);
-    bool getPrevFrame(cv::Mat &frame);
-    bool getNextFrame(cv::Mat &frame);
-    FramePtr getCurrentFrameRef();
-    uint getCurrentFrameNumber();
+	// Capture functions
+	bool check_cap();
+	bool setFramePos(double);
+	double getFramePos();
+	bool getFrame(cv::Mat &frame);
+	bool getPrevFrame(cv::Mat &frame);
+	bool getNextFrame(cv::Mat &frame);
+	FramePtr getCurrentFrameRef();
+	uint getCurrentFrameNumber();
 
-    bool stepForward();
-    bool stepBackwards();
+	bool stepForward();
+	bool stepBackwards();
 
-    // Properties
-    double getFrameInt();
-    double getFPS();
-    double getLengthTime();
-    double getLengthFrames();
+	// Properties
+	double getFrameInt();
+	double getFPS();
+	double getLengthTime();
+	double getLengthFrames();
 
-    void mousePressEvent(cv::Point point);
-    void mouseReleaseEvent(cv::Point point);
-    void mouseMoveEvent(cv::Point point);
+	void mousePressEvent(cv::Point point);
+	void mouseReleaseEvent(cv::Point point);
+	void mouseMoveEvent(cv::Point point);
 
-    void save(std::string fname);
+	void save(std::string fname);
 
-    TStrDoubleMap getValues();
+	TStrDoubleMap getValues();
 
 signals:
-    void updateValues();
+	void updateValues();
 };
 #endif

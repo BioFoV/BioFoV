@@ -6,7 +6,7 @@
  */
 QitemDrawable::QitemDrawable(Drawable * inDraw)
 {
-    draw = inDraw;
+	draw = inDraw;
 }
 
 /**
@@ -14,5 +14,5 @@ QitemDrawable::QitemDrawable(Drawable * inDraw)
  * @return
  */
 Drawable* QitemDrawable::getDrawable(){
-    return draw;
+	return draw;
 }

@@ -38,57 +38,57 @@ typedef QSharedPointer<Snapshot> SnapshotPtr;
 ///
 class Snapshot : public Player {
 private:
-    /// \brief External Frame reference.
-    FramePtr image;
+	/// \brief External Frame reference.
+	FramePtr image;
 
-    cv::Rect rect;
+	cv::Rect rect;
 
 	// class data
-    std::string filename;
-	
+	std::string filename;
+
 public:
 	Snapshot();
-    Snapshot(FramePtr img);
-    Snapshot(FramePtr img, cv::Mat inmask, std::string path);
-    Snapshot(FramePtr img, cv::Rect inrect);
+	Snapshot(FramePtr img);
+	Snapshot(FramePtr img, cv::Mat inmask, std::string path);
+	Snapshot(FramePtr img, cv::Rect inrect);
 
-    virtual ~Snapshot();
+	virtual ~Snapshot();
 
-    // Functions
-    cv::Mat getMask();
-    cv::Mat getMasked();
+	// Functions
+	cv::Mat getMask();
+	cv::Mat getMasked();
 
-    bool check_cap();
+	bool check_cap();
 
-    bool setFramePos(double frameNum);
+	bool setFramePos(double frameNum);
 
-    double getFramePos();
+	double getFramePos();
 
-    bool getFrame(cv::Mat &frame);
+	bool getFrame(cv::Mat &frame);
 
-    bool getNextFrame(cv::Mat &frame);
+	bool getNextFrame(cv::Mat &frame);
 
-    bool getPrevFrame(cv::Mat &frame);
+	bool getPrevFrame(cv::Mat &frame);
 
-    bool stepForward();
-    bool stepBackwards();
+	bool stepForward();
+	bool stepBackwards();
 
-    double getFrameInt();
+	double getFrameInt();
 
-    double getFPS();
+	double getFPS();
 
-    double getLengthTime();
+	double getLengthTime();
 
-    double getLengthFrames();
+	double getLengthFrames();
 
-    FramePtr getCurrentFrameRef();
+	FramePtr getCurrentFrameRef();
 
-    unsigned int getCurrentFrameNumber();
+	unsigned int getCurrentFrameNumber();
 
-    void mousePressEvent(cv::Point){}
-    void mouseReleaseEvent(cv::Point){}
-    void mouseMoveEvent(cv::Point){}
+	void mousePressEvent(cv::Point){}
+	void mouseReleaseEvent(cv::Point){}
+	void mouseMoveEvent(cv::Point){}
 
-    void save(std::string fname);
+	void save(std::string fname);
 };
 #endif

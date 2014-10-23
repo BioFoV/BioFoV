@@ -19,41 +19,41 @@
 class FaceItem : public QTreeWidgetItem
 {
 public:
-    explicit FaceItem(QTreeWidgetItem *parent = 0);
-    FaceItem(QString facename, QTreeWidget *parent = 0);
-    FaceItem(QString facename, FacePtr inface, QTreeWidget *parent = 0);
+	explicit FaceItem(QTreeWidgetItem *parent = 0);
+	FaceItem(QString facename, QTreeWidget *parent = 0);
+	FaceItem(QString facename, FacePtr inface, QTreeWidget *parent = 0);
 
-    // Destructors
-    ~FaceItem();
+	// Destructors
+	~FaceItem();
 
-    // Functions
-    FacePtr getFace();
+	// Functions
+	FacePtr getFace();
 
-    void updateCounter();
-    void setCounter(uint count);
+	void updateCounter();
+	void setCounter(uint count);
 
 private:
-    /**
-     * @brief face
-     */
-    FacePtr face;
+	/**
+	 * @brief face
+	 */
+	FacePtr face;
 };
 
 class SnapshotItem : public QTreeWidgetItem
 {
 public:
-    explicit SnapshotItem(QTreeWidgetItem *parent = 0);
-    SnapshotItem(SnapshotPtr insnap, QTreeWidget *parent = 0);
+	explicit SnapshotItem(QTreeWidgetItem *parent = 0);
+	SnapshotItem(SnapshotPtr insnap, QTreeWidget *parent = 0);
 
-    ~SnapshotItem();
+	~SnapshotItem();
 
-    SnapshotPtr getSnapshot();
+	SnapshotPtr getSnapshot();
 
 private:
-    /**
-     * @brief snap
-     */
-    SnapshotPtr snap;
+	/**
+	 * @brief snap
+	 */
+	SnapshotPtr snap;
 };
 
 #endif // FACEITEM_HPP

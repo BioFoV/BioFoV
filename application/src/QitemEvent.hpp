@@ -21,24 +21,24 @@
 class EventItem : public PlayerItem
 {
 public:
-    // Constructors
-    explicit EventItem(QTreeWidget *parent = 0);
-    EventItem(QString eventname, QTreeWidget *parent = 0);
+	// Constructors
+	explicit EventItem(QTreeWidget *parent = 0);
+	EventItem(QString eventname, QTreeWidget *parent = 0);
 
-    // Destructors
-    ~EventItem();
+	// Destructors
+	~EventItem();
 
-    // Functions
-    EventPtr getEvent();
-    void setEvent(EventPtr inevent);
+	// Functions
+	EventPtr getEvent();
+	void setEvent(EventPtr inevent);
 
-    bool setPlayer(PlayerPtr inPlayer);
-    PlayerPtr getPlayer();
+	bool setPlayer(PlayerPtr inPlayer);
+	PlayerPtr getPlayer();
 private:
-    /**
-     * @brief event
-     */
-    EventPtr event;
+	/**
+	 * @brief event
+	 */
+	EventPtr event;
 };
 
 #endif // EVENTITEM_HPP

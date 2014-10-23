@@ -7,8 +7,8 @@
 class Modifier
 {
 public:
-    virtual void apply() = 0;
-    virtual void train() = 0;
+	virtual void apply() = 0;
+	virtual void train() = 0;
 };
 
 #endif // MODIFIER_HPP

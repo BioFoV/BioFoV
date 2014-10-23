@@ -14,41 +14,41 @@ class QdialogSettings;
  */
 class QdialogSettings : public QDialog
 {
-    Q_OBJECT
-    
+	Q_OBJECT
+
 public:
-    explicit QdialogSettings(QWidget *parent = 0);
-    ~QdialogSettings();
+	explicit QdialogSettings(QWidget *parent = 0);
+	~QdialogSettings();
 
-    QString getCacheDir();
-    QString getHaarDir();
-    bool getUseGPU();
+	QString getCacheDir();
+	QString getHaarDir();
+	bool getUseGPU();
 
-    void setHaarDir(QString newHaarDir);
-    void setCacheDir(QString newHaarDir);
+	void setHaarDir(QString newHaarDir);
+	void setCacheDir(QString newHaarDir);
 
 public slots:
-    void saveSettings();
-    void saveSettingsAs();
-    void loadSettings();
-    
-private slots:
-    void on_cacheButton_clicked();
+	void saveSettings();
+	void saveSettingsAs();
+	void loadSettings();
 
-    void on_haarButton_clicked();
+private slots:
+	void on_cacheButton_clicked();
+
+	void on_haarButton_clicked();
 
 private:
-    /**
-     * @brief ui
-     */
-    Ui::QdialogSettings *ui;
+	/**
+	 * @brief ui
+	 */
+	Ui::QdialogSettings *ui;
 
-    /**
-     * @brief settingsFile
-     */
-    QSettings *settingsFile;
+	/**
+	 * @brief settingsFile
+	 */
+	QSettings *settingsFile;
 
-    void justSaveSettings();
+	void justSaveSettings();
 };
 
 #endif // QDIALOGSETTINGS_HPP
