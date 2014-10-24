@@ -25,44 +25,44 @@
 class DrawHeight : public Drawable
 {
 private:
-    /**
-     * @brief Vector to store the points.
-     * Store the four reference points plus the height point.
-     */
-    cv::Point2f points[2];
+	/**
+	 * @brief Vector to store the points.
+	 * Store the four reference points plus the height point.
+	 */
+	cv::Point2f points[2];
 
-    /**
-     * @brief Vector to store the auxiliar points used in the drawing.
-     */
-    cv::Point2f auxpoints[2];
+	/**
+	 * @brief Vector to store the auxiliar points used in the drawing.
+	 */
+	cv::Point2f auxpoints[2];
 
-    /**
-     * @brief Number of points inserted so far.
-     */
-    int npoints;
+	/**
+	 * @brief Number of points inserted so far.
+	 */
+	int npoints;
 
-    /**
-     * @brief calculated
-     */
-    bool calculated;
+	/**
+	 * @brief calculated
+	 */
+	bool calculated;
 
-    /**
-     * @brief persptransf
-     */
-    cv::Mat persptransf;
+	/**
+	 * @brief persptransf
+	 */
+	cv::Mat persptransf;
 
 public:
-    DrawHeight();
-    ~DrawHeight();
-    void press(cv::Point);
-    void release(cv::Point pi2);
-    void draw(cv::Mat& frame);
-    void move(cv::Point);
-    bool isDone();
+	DrawHeight();
+	~DrawHeight();
+	void press(cv::Point);
+	void release(cv::Point pi2);
+	void draw(cv::Mat& frame);
+	void move(cv::Point);
+	bool isDone();
 
-    std::string getDescription();
+	std::string getDescription();
 
-    std::string getIcon();
+	std::string getIcon();
 };
 
 #endif // DRAWHEIGHT_HPP

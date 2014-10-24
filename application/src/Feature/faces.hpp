@@ -39,27 +39,27 @@ typedef QSharedPointer<Face> FacePtr;
  */
 class Face : public Feature {
 private:
-    /**
-     * @brief model
-     */
-    cv::Ptr<cv::FaceRecognizer> model;
+	/**
+	 * @brief model
+	 */
+	cv::Ptr<cv::FaceRecognizer> model;
 
-    /**
-     * @brief haar_cascade
-     */
-    cv::CascadeClassifier haar_cascade;
+	/**
+	 * @brief haar_cascade
+	 */
+	cv::CascadeClassifier haar_cascade;
 
-    /**
-     * @brief snapshots
-     */
-    std::deque<SnapshotPtr> snapshots;
+	/**
+	 * @brief snapshots
+	 */
+	std::deque<SnapshotPtr> snapshots;
 
 public:
-    Face(std::string haar_filename);
-    ~Face();
-    void findFaces(FramePtr newFrame);
-    unsigned int faceNumber();
-    SnapshotPtr getFaceAt(unsigned int i);
+	Face(std::string haar_filename);
+	~Face();
+	void findFaces(FramePtr newFrame);
+	unsigned int faceNumber();
+	SnapshotPtr getFaceAt(unsigned int i);
 };
 
 #endif // FACES_HPP

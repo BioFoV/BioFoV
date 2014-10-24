@@ -53,88 +53,88 @@ typedef QSharedPointer<Event> EventPtr;
  * @brief Class that represents a contiguous set of frames with something interesting on them.
  */
 class Event : public QObject, public Player {
-    Q_OBJECT
+	Q_OBJECT
 
 signals:
-     void frameProcessChanged(unsigned int newFrame);
+	 void frameProcessChanged(unsigned int newFrame);
 
 protected:
-     /**
-     * @brief Video from which the Frames in this Event were extracted.
-     */
-    Video* vid;
+	 /**
+	 * @brief Video from which the Frames in this Event were extracted.
+	 */
+	Video* vid;
 
-    /**
-     * @brief Deque of Frames that define this Event.
-     */
-    std::deque<FramePtr> frames;
+	/**
+	 * @brief Deque of Frames that define this Event.
+	 */
+	std::deque<FramePtr> frames;
 
-    /**
-     * @brief Deque of Individual that show up in this Event.
-     */
-    std::deque<Individual*> individuals;
+	/**
+	 * @brief Deque of Individual that show up in this Event.
+	 */
+	std::deque<Individual*> individuals;
 
-    /**
-     * @brief Deque of Snapshots.
-     */
-    std::deque<SnapshotPtr> snapshots;
+	/**
+	 * @brief Deque of Snapshots.
+	 */
+	std::deque<SnapshotPtr> snapshots;
 
 private:
-    /**
-     * @brief Player position.
-     */
-    double position;
+	/**
+	 * @brief Player position.
+	 */
+	double position;
 
-    /**
-     * @brief Player playback mode.
-     * PLAY_FRAMES -> plays frames,
-     * PLAY_MASK -> plays BW mask,
-     * PLAY_MASKED_FRAMES -> plays frames with the applied mask.
-     */
-    int playMode;
+	/**
+	 * @brief Player playback mode.
+	 * PLAY_FRAMES -> plays frames,
+	 * PLAY_MASK -> plays BW mask,
+	 * PLAY_MASKED_FRAMES -> plays frames with the applied mask.
+	 */
+	int playMode;
 
 public:
-    Event(Video* iVid);
-    virtual ~Event();
+	Event(Video* iVid);
+	virtual ~Event();
 
-    // Modifiers
-    Event& operator +=(const Event& ev1);
+	// Modifiers
+	Event& operator +=(const Event& ev1);
 
-    // Functions
-    void addFrame(FramePtr inFrame);
-    void addSnapshot(SnapshotPtr inSnap);
-    void remLastFrame();
-    void remLastSnapshot();
+	// Functions
+	void addFrame(FramePtr inFrame);
+	void addSnapshot(SnapshotPtr inSnap);
+	void remLastFrame();
+	void remLastSnapshot();
 
-    // Capture functions
-    bool check_cap();
-    bool setFramePos(double frameNum);
-    double getFramePos();
-    bool getFrame(cv::Mat &frame);
-    bool getPrevFrame(cv::Mat &frame);
-    bool getNextFrame(cv::Mat &frame);
-    FramePtr getCurrentFrameRef();
-    uint getCurrentFrameNumber();
+	// Capture functions
+	bool check_cap();
+	bool setFramePos(double frameNum);
+	double getFramePos();
+	bool getFrame(cv::Mat &frame);
+	bool getPrevFrame(cv::Mat &frame);
+	bool getNextFrame(cv::Mat &frame);
+	FramePtr getCurrentFrameRef();
+	uint getCurrentFrameNumber();
 
-    bool stepForward();
-    bool stepBackwards();
+	bool stepForward();
+	bool stepBackwards();
 
-    // Properties
-    double getFrameInt();
-    double getFPS();
-    double getLengthTime();
-    double getLengthFrames();
+	// Properties
+	double getFrameInt();
+	double getFPS();
+	double getLengthTime();
+	double getLengthFrames();
 
-    void mousePressEvent(cv::Point){}
-    void mouseReleaseEvent(cv::Point){}
-    void mouseMoveEvent(cv::Point){}
+	void mousePressEvent(cv::Point){}
+	void mouseReleaseEvent(cv::Point){}
+	void mouseMoveEvent(cv::Point){}
 
-    void save(std::string fname);
+	void save(std::string fname);
 
-    // Playback modifier
-    void setPlaybackMode(int mode);
-    bool saveAsVideo(std::string filename, std::string encoder);
+	// Playback modifier
+	void setPlaybackMode(int mode);
+	bool saveAsVideo(std::string filename, std::string encoder);
 
-    Video* getVideo();
+	Video* getVideo();
 };
-#endif 
+#endif

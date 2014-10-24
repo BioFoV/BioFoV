@@ -17,59 +17,59 @@
 ///
 class BackgroundSubtractor {
 private:
-    /**
-     * @brief contours
-     */
+	/**
+	 * @brief contours
+	 */
 	std::vector<std::vector<cv::Point> > contours;
 
-    /**
-     * @brief history
-     */
+	/**
+	 * @brief history
+	 */
 	int history;
 
-    /**
-     * @brief varThreshold
-     */
+	/**
+	 * @brief varThreshold
+	 */
 	float varThreshold;
 
-    /**
-     * @brief bShadowDetection
-     */
+	/**
+	 * @brief bShadowDetection
+	 */
 	bool bShadowDetection;
 
-    /**
-     * @brief bgsub
-     */
+	/**
+	 * @brief bgsub
+	 */
 	cv::BackgroundSubtractorMOG2 bgsub;
-	
+
 	// images of the different stages
-    /**
-     * @brief Original frame.
-     */
-    cv::Mat frame;
+	/**
+	 * @brief Original frame.
+	 */
+	cv::Mat frame;
 
-    /**
-     * @brief Foreground mask.
-     */
-    cv::Mat fore;
+	/**
+	 * @brief Foreground mask.
+	 */
+	cv::Mat fore;
 
-    /**
-     * @brief Background image.
-     */
-    cv::Mat back;
+	/**
+	 * @brief Background image.
+	 */
+	cv::Mat back;
 
-    /**
-     * @brief Contours after erosion and dilation.
-     */
-    cv::Mat cont;
-	
+	/**
+	 * @brief Contours after erosion and dilation.
+	 */
+	cv::Mat cont;
+
 public:
-    BackgroundSubtractor();
+	BackgroundSubtractor();
 	BackgroundSubtractor(int hist, int varThresh, bool bShadowDet);
-	
+
 	// Get foreground, background and contours functions
-    void NewFrame(cv::Mat img);
-    void Denoise();
+	void NewFrame(cv::Mat img);
+	void Denoise();
 	cv::Mat Foreground();
 	cv::Mat Background();
 	cv::Mat Contours();

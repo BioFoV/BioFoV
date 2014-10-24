@@ -14,14 +14,14 @@
 class QitemDrawable : public QTreeWidgetItem
 {
 public:
-    QitemDrawable(Drawable * inDraw);
-    Drawable* getDrawable();
+	QitemDrawable(Drawable * inDraw);
+	Drawable* getDrawable();
 
 private:
-    /**
-     * @brief draw
-     */
-    Drawable* draw;
+	/**
+	 * @brief draw
+	 */
+	Drawable* draw;
 };
 
 #endif // QITEMDRAWABLE_HPP

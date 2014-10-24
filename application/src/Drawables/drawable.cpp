@@ -4,7 +4,7 @@
  * @brief Constructor
  */
 Drawable::Drawable(){
-    visible = true;
+	visible = true;
 }
 
 /**
@@ -12,7 +12,7 @@ Drawable::Drawable(){
  * @return
  */
 TStrDoubleMap Drawable::getValues(){
-    return values;
+	return values;
 }
 
 /**
@@ -20,7 +20,7 @@ TStrDoubleMap Drawable::getValues(){
  * @return
  */
 bool Drawable::isVisible(){
-    return visible;
+	return visible;
 }
 
 /**
@@ -28,5 +28,5 @@ bool Drawable::isVisible(){
  * @param value
  */
 void Drawable::setVisible(bool value){
-    visible = value;
+	visible = value;
 }

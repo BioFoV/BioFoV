@@ -21,17 +21,17 @@
 class FrameItem : public PlayerItem
 {
 public:
-    FrameItem(FramePtr pframe, QTreeWidget *parent = 0);
+	FrameItem(FramePtr pframe, QTreeWidget *parent = 0);
 
-    FramePtr getFrameRef();
+	FramePtr getFrameRef();
 
-    bool setPlayer(PlayerPtr inPlayer);
-    PlayerPtr getPlayer();
+	bool setPlayer(PlayerPtr inPlayer);
+	PlayerPtr getPlayer();
 private:
-    /**
-     * @brief frame
-     */
-    FramePtr frame;
+	/**
+	 * @brief frame
+	 */
+	FramePtr frame;
 };
 
 #endif // QITEMFRAME_HPP

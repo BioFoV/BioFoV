@@ -25,68 +25,68 @@
 class DrawReproj : public Drawable
 {
 private:
-    /**
-     * @brief Vector to store the points.
-     * Store the four reference points plus the height point.
-     */
-    cv::Point2f points[4];
+	/**
+	 * @brief Vector to store the points.
+	 * Store the four reference points plus the height point.
+	 */
+	cv::Point2f points[4];
 
-    /**
-     * @brief repoints
-     */
-    cv::Point2f repoints[4];
+	/**
+	 * @brief repoints
+	 */
+	cv::Point2f repoints[4];
 
-    /**
-     * @brief Number of points inserted so far.
-     */
-    int npoints;
+	/**
+	 * @brief Number of points inserted so far.
+	 */
+	int npoints;
 
-    /**
-     * @brief calculated
-     */
-    bool calculated;
+	/**
+	 * @brief calculated
+	 */
+	bool calculated;
 
-    /**
-     * @brief persptransf
-     */
-    cv::Mat persptransf;
+	/**
+	 * @brief persptransf
+	 */
+	cv::Mat persptransf;
 
-    /**
-     * @brief referential_width
-     */
-    double referential_width;
+	/**
+	 * @brief referential_width
+	 */
+	double referential_width;
 
-    /**
-     * @brief referential_height
-     */
-    double referential_height;
+	/**
+	 * @brief referential_height
+	 */
+	double referential_height;
 
-    /**
-     * @brief height
-     */
-    double height;
+	/**
+	 * @brief height
+	 */
+	double height;
 
-    /**
-     * @brief ratio
-     */
-    double ratio;
+	/**
+	 * @brief ratio
+	 */
+	double ratio;
 
 public:
-    DrawReproj();
-    ~DrawReproj();
+	DrawReproj();
+	~DrawReproj();
 
-    void press(cv::Point);
-    void release(cv::Point pi2);
-    void draw(cv::Mat& frame);
-    void move(cv::Point);
-    bool isDone();
+	void press(cv::Point);
+	void release(cv::Point pi2);
+	void draw(cv::Mat& frame);
+	void move(cv::Point);
+	bool isDone();
 
-    std::string getDescription();
-    std::string getIcon();
+	std::string getDescription();
+	std::string getIcon();
 
-    bool isCalculated();
-    void calcUndistort();
-    void undistort(cv::Mat& frame);
+	bool isCalculated();
+	void calcUndistort();
+	void undistort(cv::Mat& frame);
 };
 
 #endif // DRAWHEIGHT_HPP

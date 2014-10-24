@@ -24,33 +24,33 @@
 class DrawLength : public Drawable
 {
 private:
-    /**
-     * @brief points
-     */
-    cv::Point2f points[2];
+	/**
+	 * @brief points
+	 */
+	cv::Point2f points[2];
 
-    /**
-     * @brief npoints
-     */
-    int npoints;
+	/**
+	 * @brief npoints
+	 */
+	int npoints;
 
-    /**
-     * @brief result
-     */
-    double result;
+	/**
+	 * @brief result
+	 */
+	double result;
 
 public:
-    DrawLength();
-    ~DrawLength();
-    void press(cv::Point);
-    void release(cv::Point pi2);
-    void draw(cv::Mat& frame);
-    void move(cv::Point);
-    bool isDone();
+	DrawLength();
+	~DrawLength();
+	void press(cv::Point);
+	void release(cv::Point pi2);
+	void draw(cv::Mat& frame);
+	void move(cv::Point);
+	bool isDone();
 
-    std::string getDescription();
+	std::string getDescription();
 
-    std::string getIcon();
+	std::string getIcon();
 };
 
 #endif // DRAWLENGTH_HPP

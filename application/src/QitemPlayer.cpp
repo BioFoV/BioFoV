@@ -5,7 +5,7 @@
  * @param parent
  */
 PlayerItem::PlayerItem(QTreeWidget *parent) :
-    QTreeWidgetItem(parent)
+	QTreeWidgetItem(parent)
 {
 
 }

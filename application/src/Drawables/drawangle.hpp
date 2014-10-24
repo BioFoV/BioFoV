@@ -26,45 +26,45 @@
 class DrawAngle : public Drawable
 {
 private:
-    /**
-     * @brief Vector to store the points.
-     * Store the four reference points plus the height point.
-     */
-    cv::Point2f points[3];
+	/**
+	 * @brief Vector to store the points.
+	 * Store the four reference points plus the height point.
+	 */
+	cv::Point2f points[3];
 
-    /**
-     * @brief Number of points inserted so far.
-     */
-    int npoints;
+	/**
+	 * @brief Number of points inserted so far.
+	 */
+	int npoints;
 
-    /**
-     * @brief calculated
-     */
-    bool calculated;
+	/**
+	 * @brief calculated
+	 */
+	bool calculated;
 
-    /**
-     * @brief persptransf
-     */
-    cv::Mat persptransf;
+	/**
+	 * @brief persptransf
+	 */
+	cv::Mat persptransf;
 
-    /**
-     * @brief angle
-     */
-    double angle;
+	/**
+	 * @brief angle
+	 */
+	double angle;
 
 public:
-    DrawAngle();
-    ~DrawAngle();
+	DrawAngle();
+	~DrawAngle();
 
-    void press(cv::Point);
-    void release(cv::Point pi2);
-    void draw(cv::Mat& frame);
-    void move(cv::Point);
-    bool isDone();
+	void press(cv::Point);
+	void release(cv::Point pi2);
+	void draw(cv::Mat& frame);
+	void move(cv::Point);
+	bool isDone();
 
-    std::string getDescription();
+	std::string getDescription();
 
-    std::string getIcon();
+	std::string getIcon();
 };
 
 #endif // DRAWHEIGHT_HPP

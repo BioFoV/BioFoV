@@ -6,7 +6,7 @@
 #
 ################################################################################
 
-## System info
+################################# System info ##################################
 OPENCV_DIR=$(shell pwd)
 ifeq (${TRAVIS}, 1)
 	CPUS=1
@@ -14,11 +14,10 @@ else
 	CPUS=$(shell nproc)
 endif
 
-## Third party libs
+############################### Third party libs ###############################
 # Qt
 SRC_FLD=src
 SRC_GIT=https://github.com/Itseez/opencv.git
-
 PLACEHOLDER=PLACEHOLDER
 
 ## Windows stuff
@@ -26,23 +25,22 @@ WIN_BUILD_FLD=windows-build
 WIN_INSTALL_FLD=windows-install
 WIN_VERSION=2.4.8
 WIN_SRC_FLD=src-$(WIN_VERSION)
-# WIN_TBZ_URL=
 WIN_TBZ=opencv-windows.tbz
-OPENCV_WIN_TBZ_URL=https://www.dropbox.com/s/z2ausk9ium7wepg/opencv-windows.tbz
+OPENCV_WIN_TBZ_URL=https://www.dropbox.com/s/z2ausk9ium7wepg/$(WIN_TBZ)
 
 ## Linux stuff
 LIN_BUILD_FLD=linux-build
 LIN_INSTALL_FLD=linux-install
 LIN_VERSION=2.4.9
 LIN_SRC_FLD=src-$(LIN_VERSION)
-# LIN_TBZ_URL=
 LIN_TBZ=opencv-linux.tbz
+#OPENCV_LIN_TBZ_URL=
 
 ################################################################################
 
 all: windows linux
 
-################################################################################
+########################## Source Cloning Rules ################################
 
 src: linux-src windows-src
 linux-src:
@@ -54,7 +52,7 @@ windows-src:
 	cd $(WIN_SRC_FLD); \
 	git pull
 
-################################################################################
+############################ Full Build Rules ##################################
 
 linux: linux-src
 	mkdir -p $(LIN_BUILD_FLD); \
@@ -112,7 +110,7 @@ windows: windows-src
 	$(MAKE) -C $(WIN_BUILD_FLD) -j$(CPUS) install
 	cp $(WIN_SRC_FLD)/3rdparty/ffmpeg/opencv_ffmpeg.dll $(WIN_INSTALL_FLD)
 
-################################################################################
+############################ Lazy Deploy Rules #################################
 
 linux-create-tbz: linux
 	tar -cjf $(LIN_TBZ) $(LIN_INSTALL_FLD)
@@ -130,7 +128,7 @@ windows-deploy-tbz:
 	wget --quiet $(OPENCV_WIN_TBZ_URL)
 	tar -xjf $(WIN_TBZ)
 
-################################################################################
+############################## Clean Rules #####################################
 
 clean-linux-build:
 	rm -rf $(LIN_BUILD_FLD)
@@ -139,7 +137,6 @@ clean-linux-install:
 clean-linux-tbz:
 	rm -f $(LIN_TBZ)
 clean-linux: clean-linux-build clean-linux-install clean-linux-tbz
-
 
 clean-windows-build:
 	rm -rf $(WIN_BUILD_FLD)

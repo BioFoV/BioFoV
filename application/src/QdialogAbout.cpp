@@ -9,10 +9,10 @@
  * @param parent
  */
 About::About(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::About)
+	QDialog(parent),
+	ui(new Ui::About)
 {
-    ui->setupUi(this);
+	ui->setupUi(this);
 }
 
 /*******************************************************************************
@@ -23,5 +23,5 @@ About::About(QWidget *parent) :
  */
 About::~About()
 {
-    delete ui;
+	delete ui;
 }

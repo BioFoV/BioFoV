@@ -6,11 +6,11 @@
  * @param parent
  */
 FrameItem::FrameItem(FramePtr pframe, QTreeWidget *parent) :
-    PlayerItem(parent)
+	PlayerItem(parent)
 {
-    frame = pframe;
-    setText(0,QString("%1").arg(frame->getNumber()));
-    setText(1,QString(TAG_FRAME));
+	frame = pframe;
+	setText(0,QString("%1").arg(frame->getNumber()));
+	setText(1,QString(TAG_FRAME));
 }
 
 /**
@@ -18,7 +18,7 @@ FrameItem::FrameItem(FramePtr pframe, QTreeWidget *parent) :
  * @return
  */
 FramePtr FrameItem::getFrameRef(){
-    return frame;
+	return frame;
 }
 
 /**
@@ -27,10 +27,10 @@ FramePtr FrameItem::getFrameRef(){
  * @return
  */
 bool FrameItem::setPlayer(PlayerPtr inPlayer){
-    frame = qSharedPointerDynamicCast<Frame>(inPlayer);
-    if (frame.isNull())
-        return false;
-    return true;
+	frame = qSharedPointerDynamicCast<Frame>(inPlayer);
+	if (frame.isNull())
+		return false;
+	return true;
 }
 
 /**
@@ -38,5 +38,5 @@ bool FrameItem::setPlayer(PlayerPtr inPlayer){
  * @return
  */
 PlayerPtr FrameItem::getPlayer(){
-    return qSharedPointerDynamicCast<Player>(frame);
+	return qSharedPointerDynamicCast<Player>(frame);
 }

@@ -24,15 +24,14 @@ PLACEHOLDER=PLACEHOLDER
 ## Windows stuff
 WIN_BUILD_FLD=windows-build
 WIN_INSTALL_FLD=windows-install
-# WIN_TBZ_URL=
 WIN_TBZ=qt-windows.tbz
-QT_WIN_TBZ_URL=https://www.dropbox.com/s/n8rqjzxeh30yl40/qt-windows.tbz
+QT_WIN_TBZ_URL=https://www.dropbox.com/s/n8rqjzxeh30yl40/$(WIN_TBZ)
 
 ## Linux stuff
 LIN_BUILD_FLD=linux-build
 LIN_INSTALL_FLD=linux-install
-# LIN_TBZ_URL=
 LIN_TBZ=qt-linux.tbz
+#QT_LIN_TBZ_URL=
 
 ################################################################################
 
@@ -113,15 +112,17 @@ linux-deploy-tbz:
 	rm -rf $(LIN_INSTALL_FLD)
 	wget --quiet $(QT_LIN_TBZ_URL)
 	tar -xjf $(LIN_TBZ)
-	sed -i "s|$(PLACEHOLDER)|$(QT_DIR)/$(LIN_INSTALL_FLD)|g" qt.conf
-	cp qt.conf $(WIN_INSTALL_FLD)/bin/
+	cp qt.conf $(LIN_INSTALL_FLD)/bin/
+	sed -i "s|$(PLACEHOLDER)|$(QT_DIR)/$(LIN_INSTALL_FLD)|g" \
+		$(LIN_INSTALL_FLD)/bin/qt.conf
 
 windows-deploy-tbz:
 	rm -rf $(WIN_INSTALL_FLD)
 	wget --quiet $(QT_WIN_TBZ_URL)
 	tar -xjf $(WIN_TBZ)
-	sed -i "s|$(PLACEHOLDER)|$(QT_DIR)/$(WIN_INSTALL_FLD)|g" qt.conf
 	cp qt.conf $(WIN_INSTALL_FLD)/bin/
+	sed -i "s|$(PLACEHOLDER)|$(QT_DIR)/$(WIN_INSTALL_FLD)|g" \
+		$(WIN_INSTALL_FLD)/bin/qt.conf
 
 ################################################################################
 

@@ -18,24 +18,24 @@ class CalibrationDialog;
  */
 class CalibrationDialog : public QDialog
 {
-    Q_OBJECT
-    
-public:
-    explicit CalibrationDialog(QWidget *parent = 0);
-    ~CalibrationDialog();
+	Q_OBJECT
 
-    int getNBoards();
-    int getFrameStep();
-    int getWidth();
-    int getHeight();
-    int getIterations();
-    unsigned int getFlags();
+public:
+	explicit CalibrationDialog(QWidget *parent = 0);
+	~CalibrationDialog();
+
+	int getNBoards();
+	int getFrameStep();
+	int getWidth();
+	int getHeight();
+	int getIterations();
+	unsigned int getFlags();
 
 private:
-    /**
-     * @brief ui
-     */
-    Ui::CalibrationDialog *ui;
+	/**
+	 * @brief ui
+	 */
+	Ui::CalibrationDialog *ui;
 };
 
 #endif // CALIBRATIONDIALOG_HPP

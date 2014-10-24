@@ -9,10 +9,10 @@
 class ExclusionMod : public Modifier
 {
 public:
-    ExclusionMod();
+	ExclusionMod();
 
-    void apply();
-    void train();
+	void apply();
+	void train();
 };
 
 #endif // EXCLUSIONMOD_HPP

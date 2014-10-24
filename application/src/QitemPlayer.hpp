@@ -14,10 +14,10 @@
 class PlayerItem : public QTreeWidgetItem
 {
 public:
-    explicit PlayerItem(QTreeWidget *parent = 0);
+	explicit PlayerItem(QTreeWidget *parent = 0);
 
-    virtual bool setPlayer(PlayerPtr inPlayer) = 0;
-    virtual PlayerPtr getPlayer() = 0;
+	virtual bool setPlayer(PlayerPtr inPlayer) = 0;
+	virtual PlayerPtr getPlayer() = 0;
 signals:
 
 public slots:

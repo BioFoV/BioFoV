@@ -5,8 +5,8 @@
  * @param newDrawable
  */
 void Player::addDrawable(Drawable* newDrawable){
-    activeDrawable = newDrawable;
-    drawers.push_back(newDrawable);
+	activeDrawable = newDrawable;
+	drawers.push_back(newDrawable);
 }
 
 /**
@@ -14,11 +14,11 @@ void Player::addDrawable(Drawable* newDrawable){
  * @param frame
  */
 void Player::applyDrawables(cv::Mat& frame){
-    for (std::deque<Drawable*>::iterator drawIter = drawers.begin();
-            drawIter != drawers.end();
-            drawIter ++) {
-        (*drawIter)->draw(frame);
-    }
+	for (std::deque<Drawable*>::iterator drawIter = drawers.begin();
+			drawIter != drawers.end();
+			drawIter ++) {
+		(*drawIter)->draw(frame);
+	}
 }
 
 /**
@@ -26,7 +26,7 @@ void Player::applyDrawables(cv::Mat& frame){
  * @return
  */
 std::deque<Drawable *> Player::getDrawables(){
-    return drawers;
+	return drawers;
 }
 
 /**
@@ -34,7 +34,7 @@ std::deque<Drawable *> Player::getDrawables(){
  * @param fname
  */
 void Player::saveFrame(std::string fname){
-    cv::Mat ftmp;
-    getFrame(ftmp);
-    cv::imwrite( fname, ftmp );
+	cv::Mat ftmp;
+	getFrame(ftmp);
+	cv::imwrite( fname, ftmp );
 }

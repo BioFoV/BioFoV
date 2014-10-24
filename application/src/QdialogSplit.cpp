@@ -6,10 +6,10 @@
  * @param parent
  */
 SplitDialog::SplitDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::SplitDialog)
+	QDialog(parent),
+	ui(new Ui::SplitDialog)
 {
-    ui->setupUi(this);
+	ui->setupUi(this);
 }
 
 /**
@@ -17,7 +17,7 @@ SplitDialog::SplitDialog(QWidget *parent) :
  */
 SplitDialog::~SplitDialog()
 {
-    delete ui;
+	delete ui;
 }
 
 /**
@@ -25,10 +25,10 @@ SplitDialog::~SplitDialog()
  * @param FPS
  */
 void SplitDialog::setFPS(unsigned int FPS) {
-    fps = FPS;
-    ui->maxframes->setValue(FPS * DEFAULT_MAX_TIME);
-    ui->minframes->setValue(FPS * DEFAULT_MIN_TIME);
-    ui->historyframes->setValue(FPS * DEFAULT_HIST);
+	fps = FPS;
+	ui->maxframes->setValue(FPS * DEFAULT_MAX_TIME);
+	ui->minframes->setValue(FPS * DEFAULT_MIN_TIME);
+	ui->historyframes->setValue(FPS * DEFAULT_HIST);
 }
 
 /**
@@ -36,7 +36,7 @@ void SplitDialog::setFPS(unsigned int FPS) {
  * @return
  */
 int SplitDialog::getThreshold(){
-    return ui->threshSlider->value();
+	return ui->threshSlider->value();
 }
 
 /**
@@ -44,7 +44,7 @@ int SplitDialog::getThreshold(){
  * @return
  */
 int SplitDialog::getMaxFrames(){
-    return ui->maxframes->value();
+	return ui->maxframes->value();
 }
 
 /**
@@ -52,7 +52,7 @@ int SplitDialog::getMaxFrames(){
  * @return
  */
 int SplitDialog::getMinFrames(){
-    return ui->minframes->value();
+	return ui->minframes->value();
 }
 
 /**
@@ -60,7 +60,7 @@ int SplitDialog::getMinFrames(){
  * @return
  */
 int SplitDialog::getHistory(){
-    return ui->historyframes->value();
+	return ui->historyframes->value();
 }
 
 /**
@@ -68,7 +68,7 @@ int SplitDialog::getHistory(){
  * @return
  */
 int SplitDialog::getvarThreshold(){
-    return ui->varThreshold->value();
+	return ui->varThreshold->value();
 }
 
 /**
@@ -76,7 +76,7 @@ int SplitDialog::getvarThreshold(){
  * @return
  */
 bool SplitDialog::getbShadowDetection(){
-    return ui->bShadowDetection->checkState();
+	return ui->bShadowDetection->checkState();
 }
 
 /**
@@ -85,7 +85,7 @@ bool SplitDialog::getbShadowDetection(){
  */
 void SplitDialog::on_maxseconds_valueChanged(int arg1)
 {
-    ui->maxframes->setValue(arg1*fps);
+	ui->maxframes->setValue(arg1*fps);
 }
 
 /**
@@ -94,7 +94,7 @@ void SplitDialog::on_maxseconds_valueChanged(int arg1)
  */
 void SplitDialog::on_minseconds_valueChanged(int arg1)
 {
-    ui->minframes->setValue(arg1*fps);
+	ui->minframes->setValue(arg1*fps);
 }
 
 /**
@@ -103,7 +103,7 @@ void SplitDialog::on_minseconds_valueChanged(int arg1)
  */
 void SplitDialog::on_maxframes_valueChanged(int arg1)
 {
-    ui->maxseconds->setValue(arg1/fps);
+	ui->maxseconds->setValue(arg1/fps);
 }
 
 /**
@@ -112,7 +112,7 @@ void SplitDialog::on_maxframes_valueChanged(int arg1)
  */
 void SplitDialog::on_minframes_valueChanged(int arg1)
 {
-    ui->minseconds->setValue(arg1/fps);
+	ui->minseconds->setValue(arg1/fps);
 }
 
 /**
@@ -121,7 +121,7 @@ void SplitDialog::on_minframes_valueChanged(int arg1)
  */
 void SplitDialog::on_historyseconds_valueChanged(int arg1)
 {
-    ui->historyframes->setValue(arg1*fps);
+	ui->historyframes->setValue(arg1*fps);
 }
 
 /**
@@ -130,5 +130,5 @@ void SplitDialog::on_historyseconds_valueChanged(int arg1)
  */
 void SplitDialog::on_historyframes_valueChanged(int arg1)
 {
-    ui->historyseconds->setValue(arg1/fps);
+	ui->historyseconds->setValue(arg1/fps);
 }

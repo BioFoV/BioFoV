@@ -19,28 +19,28 @@
 class RectangleMask : public Drawable
 {
 private:
-    /**
-     * @brief Points that define the rectangle.
-     */
-    cv::Point p[2];
+	/**
+	 * @brief Points that define the rectangle.
+	 */
+	cv::Point p[2];
 
-    /**
-     * @brief finished
-     */
-    bool finished;
+	/**
+	 * @brief finished
+	 */
+	bool finished;
 
 public:
-    RectangleMask();
-    ~RectangleMask();
+	RectangleMask();
+	~RectangleMask();
 
-    void press(cv::Point pi1);
-    void release(cv::Point pi2);
-    void draw(cv::Mat& frame);
-    void move(cv::Point point);
-    bool isDone();
+	void press(cv::Point pi1);
+	void release(cv::Point pi2);
+	void draw(cv::Mat& frame);
+	void move(cv::Point point);
+	bool isDone();
 
-    std::string getDescription();
-    std::string getIcon();
+	std::string getDescription();
+	std::string getIcon();
 };
 
 #endif // RECTANGLEMASK_HPP

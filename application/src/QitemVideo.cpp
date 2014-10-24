@@ -8,7 +8,7 @@
  * @param parent
  */
 VideoItem::VideoItem(QTreeWidget *parent) :
-    PlayerItem(parent)
+	PlayerItem(parent)
 {
 
 }
@@ -19,11 +19,11 @@ VideoItem::VideoItem(QTreeWidget *parent) :
  * @param parent
  */
 VideoItem::VideoItem(QString filename, QTreeWidget *parent) :
-    PlayerItem(parent)
+	PlayerItem(parent)
 {
-    vid = VideoPtr(new Video(filename.toStdString()));
-    setText(0, filename.split(QDir::separator()).last());
-    setText(1, TAG_VIDEO );
+	vid = VideoPtr(new Video(filename.toStdString()));
+	setText(0, filename.split(QDir::separator()).last());
+	setText(1, TAG_VIDEO );
 }
 
 /*******************************************************************************
@@ -34,7 +34,7 @@ VideoItem::VideoItem(QString filename, QTreeWidget *parent) :
  * @return
  */
 VideoPtr VideoItem::getVideo(){
-    return vid;
+	return vid;
 }
 
 /**
@@ -43,10 +43,10 @@ VideoPtr VideoItem::getVideo(){
  * @return
  */
 bool VideoItem::setPlayer(PlayerPtr inPlayer){
-    vid = qSharedPointerDynamicCast<Video>(inPlayer);
-    if (vid.isNull())
-        return false;
-    return true;
+	vid = qSharedPointerDynamicCast<Video>(inPlayer);
+	if (vid.isNull())
+		return false;
+	return true;
 }
 
 /**
@@ -54,5 +54,5 @@ bool VideoItem::setPlayer(PlayerPtr inPlayer){
  * @return
  */
 PlayerPtr VideoItem::getPlayer(){
-    return qSharedPointerDynamicCast<Player>(vid);
+	return qSharedPointerDynamicCast<Player>(vid);
 }
