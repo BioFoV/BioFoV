@@ -12,7 +12,14 @@ QdialogSettings::QdialogSettings(QWidget *parent) :
 	ui->setupUi(this);
 	settingsFile = NULL;
 
-	QDir cacheFolder(QDir::tempPath() + QDir::separator() + "forensics");
+	// check if Linux/Mac
+	QString uname = qgetenv("USER");
+	if (uname.isEmpty()) // if not then it is windows
+		uname = qgetenv("USERNAME");
+
+	QDir cacheFolder(QDir::tempPath() + QDir::separator() + \
+					 "forensics-" + uname);
+
 	ui->cacheDir->setText(cacheFolder.path());
 	if(!cacheFolder.exists()){
 		cacheFolder.mkpath(".");
