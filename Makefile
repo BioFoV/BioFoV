@@ -61,7 +61,7 @@ build-only-windows:
 	mkdir -p $(WIN_BUILD_FLD)
 	cd $(WIN_BUILD_FLD); \
 	../$(QMAKE_WIN) ../$(PRO_FILE)
-	$(MAKE) -C $(WIN_BUILD_FLD) -j$(CPUS) $(WIN_BUILD_TYPE)
+	$(MAKE) -C $(WIN_BUILD_FLD) -s -j$(CPUS) $(WIN_BUILD_TYPE)
 
 build-windows: qt-windows opencv-windows build-only-windows
 
@@ -88,7 +88,7 @@ build-only-linux:
 	mkdir -p $(LIN_BUILD_FLD)
 	cd $(LIN_BUILD_FLD); \
 	../$(QMAKE_LIN) ../$(PRO_FILE)
-	$(MAKE) -C $(LIN_BUILD_FLD) -j$(CPUS) $(LIN_BUILD_TYPE)
+	$(MAKE) -C $(LIN_BUILD_FLD) -s -j$(CPUS) $(LIN_BUILD_TYPE)
 
 build-linux: qt-linux opencv-linux build-only-linux
 
