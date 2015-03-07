@@ -17,7 +17,7 @@ endif
 ## Third party libs
 # Qt
 SRC_FLD=src
-SRC_GIT=git://gitorious.org/qt/qt5.git
+SRC_GIT=http://gitorious.org/qt/qt5.git
 
 PLACEHOLDER=PLACEHOLDER
 
