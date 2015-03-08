@@ -18,6 +18,7 @@ endif
 # Qt
 SRC_FLD=src
 SRC_GIT=http://gitorious.org/qt/qt5.git
+SRC_VERSION=5.4.1
 
 PLACEHOLDER=PLACEHOLDER
 
@@ -43,6 +44,7 @@ src:
 	test -d $(SRC_FLD) || git clone $(SRC_GIT) $(SRC_FLD)
 	cd $(SRC_FLD); \
 	git pull; \
+	git checkout $(SRC_VERSION); \
 	./init-repository --module-subset=qtbase,qttranslations
 linux-src: src
 windows-src: src
