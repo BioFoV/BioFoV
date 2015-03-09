@@ -55,7 +55,7 @@ windows-src:
 ############################ Full Build Rules ##################################
 
 linux: linux-src
-	export PKG_CONFIG_PATH=$(PWD)/../linux-install/lib/pkgconfig
+	export PKG_CONFIG_PATH=$(PWD)/third-party/linux-install/lib/pkgconfig; \
 	mkdir -p $(LIN_BUILD_FLD); \
 	cd $(LIN_BUILD_FLD); \
 	cmake -D CMAKE_BUILD_TYPE=RELEASE \

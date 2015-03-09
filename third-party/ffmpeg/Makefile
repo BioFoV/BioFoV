@@ -56,7 +56,7 @@ windows-src:
 linux: linux-src
 	cd $(LIN_SRC_FLD); \
 	./configure --enable-pic \
-				--prefix=/home/miguel/Documents/IST/Tese/BioFoV/third-party/$(LIN_INSTALL_FLD) \
+				--prefix=$(PWD)/third-party/$(LIN_INSTALL_FLD) \
 				--disable-debug \
 				--disable-ffplay \
 				--disable-ffserver \

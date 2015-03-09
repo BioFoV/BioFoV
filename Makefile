@@ -32,8 +32,8 @@ QMAKE_LIN=$(THIRD_PARTY_FLD)/linux-install/bin/qmake
 WIN=windows
 WIN_BUILD_FLD=windows
 WIN_BUILD_TYPE=release
-WIN_FFMPEG_WRONG=$(THIRD_PARTY_FLD)/opencv/windows-install/opencv_ffmpeg.dll
-WIN_FFMPEG_RIGHT=opencv_ffmpeg248.dll
+WIN_FFMPEG_WRONG=$(THIRD_PARTY_FLD)/windows-install/opencv_ffmpeg.dll
+WIN_FFMPEG_RIGHT=opencv_ffmpeg2411.dll
 WIN_ZIP=$(PRO_NAME)-$(WIN)-$(DATE).zip
 
 ## Linux stuff
@@ -86,6 +86,7 @@ travis-ci-linux:
 
 build-only-linux:
 	mkdir -p $(LIN_BUILD_FLD)
+	export PKG_CONFIG_PATH=$(PWD)/third-party/linux-install/lib/pkgconfig; \
 	cd $(LIN_BUILD_FLD); \
 	../$(QMAKE_LIN) ../$(PRO_FILE)
 	$(MAKE) -C $(LIN_BUILD_FLD) -s -j$(CPUS) $(LIN_BUILD_TYPE)

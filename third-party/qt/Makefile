@@ -18,7 +18,7 @@ endif
 # Qt
 SRC_FLD=src
 SRC_GIT=http://gitorious.org/qt/qt5.git
-SRC_VERSION=v5.2.1
+SRC_VERSION=v5.4.1
 
 PLACEHOLDER=PLACEHOLDER
 
