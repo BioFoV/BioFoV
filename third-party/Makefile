@@ -11,6 +11,8 @@
 OPENCV_FLD=opencv
 # Qt
 QT_FLD=qt
+# ffmpeg
+FFMPEG_FLD=ffmpeg
 
 all: linux windows
 
@@ -36,14 +38,18 @@ qt-windows:
 	$(MAKE) -C $(QT_FLD) windows
 
 opencv: opencv-linux opencv-windows
-opencv-linux:
+opencv-linux: ffmpeg-linux
 	$(MAKE) -C $(OPENCV_FLD) linux
 opencv-windows:
 	$(MAKE) -C $(OPENCV_FLD) windows
 
+ffmpeg: ffmpeg-linux
+ffmpeg-linux:
+	$(MAKE) -C $(FFMPEG_FLD) linux
+
 ################################################################################
 
-clean: clean-qt clean-opencv
+clean: clean-qt clean-opencv clean-install
 
 clean-windows: clean-qt-windows clean-opencv-windows
 clean-linux: clean-qt-linux clean-opencv-linux
@@ -65,3 +71,9 @@ clean-qt-src:
 	$(MAKE) -C $(QT_FLD) clean-src
 clean-opencv-src:
 	$(MAKE) -C $(OPENCV_FLD) clean-src
+
+clean-install: clean-linux-install clean-windows-install
+clean-linux-install:
+	rm -rf linux-install
+clean-windows-install:
+	rm -rf windows-install

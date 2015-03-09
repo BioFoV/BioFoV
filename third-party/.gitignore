@@ -7,7 +7,6 @@ qt/src*
 qt/windows*
 qt/linux*
 qt/qt-*
-ffmpeg/
 linux-install/
 libogg/
 x264/

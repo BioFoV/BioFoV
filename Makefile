@@ -25,8 +25,8 @@ THIRD_PARTY_FLD=third-party
 OPENCV_BUILD_WIN=build-opencv-win
 OPENCV_BUILD_LIN=build-opencv-lin
 # Qt
-QMAKE_WIN=$(THIRD_PARTY_FLD)/qt/windows-install/bin/qmake
-QMAKE_LIN=$(THIRD_PARTY_FLD)/qt/linux-install/bin/qmake
+QMAKE_WIN=$(THIRD_PARTY_FLD)/windows-install/bin/qmake
+QMAKE_LIN=$(THIRD_PARTY_FLD)/linux-install/bin/qmake
 
 ## Windows stuff
 WIN=windows

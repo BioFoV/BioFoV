@@ -18,7 +18,7 @@ endif
 # Qt
 SRC_FLD=src
 SRC_GIT=http://gitorious.org/qt/qt5.git
-SRC_VERSION=5.4.1
+SRC_VERSION=v5.2.1
 
 PLACEHOLDER=PLACEHOLDER
 
@@ -55,7 +55,7 @@ linux: linux-src
 	mkdir -p $(LIN_BUILD_FLD); \
 	cd $(LIN_BUILD_FLD); \
 	../$(SRC_FLD)/configure \
-		-prefix ../../$(LIN_INSTALL_FLD)/ \
+		-prefix ../../../$(LIN_INSTALL_FLD)/ \
     	-opensource \
     	-skip qtwebkit \
 		-release \
@@ -79,7 +79,7 @@ windows: windows-src
 	cd $(WIN_BUILD_FLD); \
 	../$(SRC_FLD)/configure \
 		-xplatform win32-g++ \
-		-prefix ../../$(WIN_INSTALL_FLD)/ \
+		-prefix ../../../$(WIN_INSTALL_FLD)/ \
 		-opensource \
 		-skip qtwebkit \
 		-skip activeqt \

@@ -30,12 +30,13 @@ CONFIG+=static
 # Configuration for *ix systems
 unix {
 	CONFIG += link_pkgconfig
-	PKGCONFIG += $$PWD/../third-party/opencv/linux-install/lib/pkgconfig/opencv.pc
+	PKGCONFIG += $$PWD/../third-party/linux-install/lib/pkgconfig/opencv.pc
+	PKGCONFIG += $$PWD/../third-party/linux-install/lib/pkgconfig/lib*.pc
 }
 # Configurations for MS Windows
 # Order was copied from the linux pkgconfig
 win32 {
-	LIBS += -L $$PWD/../third-party/opencv/windows-install/x64/mingw/staticlib
+	LIBS += -L $$PWD/../third-party/windows-install/x64/mingw/staticlib
 	LIBS += -static -lopencv_contrib248 -lopencv_stitching248 -lopencv_nonfree248 -lopencv_superres248 -lopencv_ocl248 -lopencv_objdetect248 -lopencv_ml248 -lopencv_ts248 -lopencv_videostab248 -lopencv_video248 -lopencv_photo248 -lopencv_calib3d248 -lopencv_features2d248 -lopencv_highgui248 -lIlmImf -llibjasper -llibtiff -llibpng -llibjpeg -lopencv_imgproc248 -lopencv_flann248 -lopencv_core248 -lzlib -lmsvfw32 -lwinmm -lavicap32 -lavifil32 -lws2_32 -lsetupapi -lole32 -lgdi32 -lcomctl32 -lstdc++ -lpthread
 	INCLUDEPATH += $$PWD/../third-party/opencv/windows-install/include
 }
