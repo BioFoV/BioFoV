@@ -2,7 +2,7 @@ before_install:
  - sudo apt-get update -qq
  - sudo apt-get install -qq doxygen graphviz
  - sudo sed -i 's/precise/trusty/g' /etc/apt/sources.list
- - gpg --keyserver subkeys.pgp.net --recv-keys 3B4FE6ACC0B21F32
+ - gpg --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32
  - gpg --export 3B4FE6ACC0B21F32 | sudo apt-key add -
  - sudo apt-get update -qq
  - sudo apt-get install -qq gcc-mingw-w64-i686 g++-mingw-w64-i686 binutils-mingw-w64-i686 g++-4.8
