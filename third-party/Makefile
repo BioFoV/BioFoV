@@ -21,8 +21,8 @@ LIN_TBZ=linux.tbz
 WIN_INSTALL_FLD=windows-install
 LIN_INSTALL_FLD=linux-install
 
-#WIN_TBZ_URL=
-#LIN_TBZ_URL=
+WIN_TBZ_URL=https://www.dropbox.com/s/p2pc135j08569ef/windows.tbz
+LIN_TBZ_URL=https://www.dropbox.com/s/u0owdgrsn9lxegl/linux.tbz
 PLACEHOLDER=PLACEHOLDER
 
 all: linux windows
