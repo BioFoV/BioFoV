@@ -70,7 +70,7 @@ travis-ci-linux:
 
 travis-ci-windows:
 	rm -rf $(WIN_INSTALL_FLD)
-	wget --quiet $(QT_WIN_TBZ_URL)
+	wget --quiet $(WIN_TBZ_URL)
 	tar -xjf $(WIN_TBZ)
 	cp $(QT_FLD)/qt.conf $(WIN_INSTALL_FLD)/bin/
 	sed -i "s|$(PLACEHOLDER)|$(WIN_INSTALL_FLD)|g" \
