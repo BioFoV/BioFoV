@@ -51,14 +51,13 @@ linux: linux-src
 
 ############################## Clean Rules #####################################
 
+clean-build: clean-linux-build
 clean-linux-build:
 	rm -rf $(LIN_BUILD_FLD)
-clean-linux-install:
-	rm -rf $(LIN_INSTALL_FLD)
-clean-linux: clean-linux-build clean-linux-install
 
 clean-src: clean-linux-src
 clean-linux-src:
 	rm -rf $(LIN_SRC_FLD)
 
-clean: clean-linux clean-src
+clean-linux: clean-linux-build clean-linux-src
+clean: clean-linux

@@ -64,7 +64,7 @@ travis-ci-linux:
 	rm -rf $(LIN_INSTALL_FLD)
 	wget --quiet $(LIN_TBZ_URL)
 	tar -xjf $(LIN_TBZ)
-	cp qt.conf $(LIN_INSTALL_FLD)/bin/
+	cp $(QT_FLD)/qt.conf $(LIN_INSTALL_FLD)/bin/
 	sed -i "s|$(PLACEHOLDER)|$(LIN_INSTALL_FLD)|g" \
 		$(LIN_INSTALL_FLD)/bin/qt.conf
 
@@ -72,13 +72,13 @@ travis-ci-windows:
 	rm -rf $(WIN_INSTALL_FLD)
 	wget --quiet $(QT_WIN_TBZ_URL)
 	tar -xjf $(WIN_TBZ)
-	cp qt.conf $(WIN_INSTALL_FLD)/bin/
+	cp $(QT_FLD)/qt.conf $(WIN_INSTALL_FLD)/bin/
 	sed -i "s|$(PLACEHOLDER)|$(WIN_INSTALL_FLD)|g" \
 		$(WIN_INSTALL_FLD)/bin/qt.conf
 
 ################################################################################
 
-clean: clean-qt clean-opencv clean-install
+clean: clean-qt clean-opencv clean-ffmpeg clean-install clean-tbz
 
 clean-windows: clean-qt-windows clean-opencv-windows
 clean-linux: clean-qt-linux clean-opencv-linux
@@ -95,11 +95,17 @@ clean-opencv-linux:
 clean-opencv-windows:
 	$(MAKE) -C $(OPENCV_FLD) clean-windows
 
-clean-src: clean-qt-src clean-opencv-src
+clean-ffmpeg: clean-ffmpeg-linux
+clean-ffmpeg-linux:
+	$(MAKE) -C $(FFMPEG_FLD) clean-linux
+
+clean-src: clean-qt-src clean-opencv-src clean-ffmpeg-src
 clean-qt-src:
 	$(MAKE) -C $(QT_FLD) clean-src
 clean-opencv-src:
 	$(MAKE) -C $(OPENCV_FLD) clean-src
+clean-ffmpeg-src:
+	$(MAKE) -C $(FFMPEG_FLD) clean-src
 
 clean-install: clean-linux-install clean-windows-install
 clean-linux-install:

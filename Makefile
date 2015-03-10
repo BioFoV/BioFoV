@@ -138,5 +138,5 @@ clean-src:
 clean-doc:
 	rm -rf doxygen
 
-clean: clean-windows clean-linux clean-src clean-doc
-
+clean: clean-build-windows clean-build-linux
+	$(MAKE) -C $(THIRD_PARTY_FLD) clean

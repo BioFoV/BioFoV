@@ -10,7 +10,5 @@ qt/qt-*
 ffmpeg/linux-*
 linux-install/
 windows-install/
-libogg/
-x264/
-xvid/
-libtheora/
+linux.tbz
+windows.tbz
