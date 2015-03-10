@@ -65,7 +65,7 @@ travis-ci-linux:
 	wget --quiet $(LIN_TBZ_URL)
 	tar -xjf $(LIN_TBZ)
 	cp $(QT_FLD)/qt.conf $(LIN_INSTALL_FLD)/bin/
-	sed -i "s|$(PLACEHOLDER)|$(LIN_INSTALL_FLD)|g" \
+	sed -i "s|$(PLACEHOLDER)|$(PWD)/third-party/$(LIN_INSTALL_FLD)|g" \
 		$(LIN_INSTALL_FLD)/bin/qt.conf
 
 travis-ci-windows:
@@ -73,7 +73,7 @@ travis-ci-windows:
 	wget --quiet $(WIN_TBZ_URL)
 	tar -xjf $(WIN_TBZ)
 	cp $(QT_FLD)/qt.conf $(WIN_INSTALL_FLD)/bin/
-	sed -i "s|$(PLACEHOLDER)|$(WIN_INSTALL_FLD)|g" \
+	sed -i "s|$(PLACEHOLDER)|$(PWD)/third-party/$(WIN_INSTALL_FLD)|g" \
 		$(WIN_INSTALL_FLD)/bin/qt.conf
 
 ################################################################################
