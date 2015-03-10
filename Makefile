@@ -46,6 +46,9 @@ LIN_ZIP=$(PRO_NAME)-$(LIN)-$(DATE).zip
 
 all: windows linux doc
 
+wrap-up-installs:
+	$(MAKE) -C $(THIRD_PARTY_FLD) create-tbzs
+
 ################################################################################
 
 qt-windows:

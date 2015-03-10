@@ -14,20 +14,23 @@ QT_FLD=qt
 # ffmpeg
 FFMPEG_FLD=ffmpeg
 
+## Tarballs
+WIN_TBZ=windows.tbz
+LIN_TBZ=linux.tbz
+
+WIN_INSTALL_FLD=windows-install
+LIN_INSTALL_FLD=linux-install
+
+#WIN_TBZ_URL=
+#LIN_TBZ_URL=
+PLACEHOLDER=PLACEHOLDER
+
 all: linux windows
 
 ################################################################################
 
 linux: qt-linux opencv-linux
 windows: qt-windows opencv-windows
-
-travis-ci-windows:
-	$(MAKE) -C $(OPENCV_FLD) windows-deploy-tbz
-	$(MAKE) -C $(QT_FLD) windows-deploy-tbz
-
-travis-ci-linux:
-	$(MAKE) -C $(OPENCV_FLD) linux-deploy-tbz
-	$(MAKE) -C $(QT_FLD) linux-deploy-tbz
 
 ################################################################################
 
@@ -46,6 +49,32 @@ opencv-windows:
 ffmpeg: ffmpeg-linux
 ffmpeg-linux:
 	$(MAKE) -C $(FFMPEG_FLD) linux
+
+############################ Lazy Deploy Rules #################################
+
+create-tbzs: linux-create-tbz windows-create-tbz
+
+linux-create-tbz: linux
+	tar -cjf $(LIN_TBZ) $(LIN_INSTALL_FLD)
+
+windows-create-tbz: windows
+	tar -cjf $(WIN_TBZ) $(WIN_INSTALL_FLD)
+
+travis-ci-linux:
+	rm -rf $(LIN_INSTALL_FLD)
+	wget --quiet $(LIN_TBZ_URL)
+	tar -xjf $(LIN_TBZ)
+	cp qt.conf $(LIN_INSTALL_FLD)/bin/
+	sed -i "s|$(PLACEHOLDER)|$(LIN_INSTALL_FLD)|g" \
+		$(LIN_INSTALL_FLD)/bin/qt.conf
+
+travis-ci-windows:
+	rm -rf $(WIN_INSTALL_FLD)
+	wget --quiet $(QT_WIN_TBZ_URL)
+	tar -xjf $(WIN_TBZ)
+	cp qt.conf $(WIN_INSTALL_FLD)/bin/
+	sed -i "s|$(PLACEHOLDER)|$(WIN_INSTALL_FLD)|g" \
+		$(WIN_INSTALL_FLD)/bin/qt.conf
 
 ################################################################################
 
@@ -77,3 +106,9 @@ clean-linux-install:
 	rm -rf linux-install
 clean-windows-install:
 	rm -rf windows-install
+
+clean-tbz: clean-windows-tbz clean-linux-tbz
+clean-windows-tbz:
+	rm -f $(WIN_TBZ)
+clean-linux-tbz:
+	rm -f $(LIN_TBZ)
