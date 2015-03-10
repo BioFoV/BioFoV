@@ -7,9 +7,8 @@ qt/src*
 qt/windows*
 qt/linux*
 qt/qt-*
-ffmpeg/
+ffmpeg/linux-*
 linux-install/
-libogg/
-x264/
-xvid/
-libtheora/
+windows-install/
+linux.tbz
+windows.tbz

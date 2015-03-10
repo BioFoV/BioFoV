@@ -30,13 +30,20 @@ CONFIG+=static
 # Configuration for *ix systems
 unix {
 	CONFIG += link_pkgconfig
-	PKGCONFIG += $$PWD/../third-party/opencv/linux-install/lib/pkgconfig/opencv.pc
+	PKGCONFIG += $$PWD/../third-party/linux-install/lib/pkgconfig/opencv.pc
+	PKGCONFIG += $$PWD/../third-party/linux-install/lib/pkgconfig/libavutil.pc
+	PKGCONFIG += $$PWD/../third-party/linux-install/lib/pkgconfig/libswresample.pc
+	PKGCONFIG += $$PWD/../third-party/linux-install/lib/pkgconfig/libavcodec.pc
+	PKGCONFIG += $$PWD/../third-party/linux-install/lib/pkgconfig/libavformat.pc
+	PKGCONFIG += $$PWD/../third-party/linux-install/lib/pkgconfig/libavfilter.pc
+	PKGCONFIG += $$PWD/../third-party/linux-install/lib/pkgconfig/libswscale.pc
+	PKGCONFIG += $$PWD/../third-party/linux-install/lib/pkgconfig/libavdevice.pc
 }
 # Configurations for MS Windows
 # Order was copied from the linux pkgconfig
 win32 {
-	LIBS += -L $$PWD/../third-party/opencv/windows-install/x64/mingw/staticlib
-	LIBS += -static -lopencv_contrib248 -lopencv_stitching248 -lopencv_nonfree248 -lopencv_superres248 -lopencv_ocl248 -lopencv_objdetect248 -lopencv_ml248 -lopencv_ts248 -lopencv_videostab248 -lopencv_video248 -lopencv_photo248 -lopencv_calib3d248 -lopencv_features2d248 -lopencv_highgui248 -lIlmImf -llibjasper -llibtiff -llibpng -llibjpeg -lopencv_imgproc248 -lopencv_flann248 -lopencv_core248 -lzlib -lmsvfw32 -lwinmm -lavicap32 -lavifil32 -lws2_32 -lsetupapi -lole32 -lgdi32 -lcomctl32 -lstdc++ -lpthread
+	LIBS += -L $$PWD/../third-party/windows-install/x64/mingw/staticlib
+	LIBS += -static -lopencv_contrib2411 -lopencv_stitching2411 -lopencv_nonfree2411 -lopencv_superres2411 -lopencv_ocl2411 -lopencv_objdetect2411 -lopencv_ml2411 -lopencv_ts2411 -lopencv_videostab2411 -lopencv_video2411 -lopencv_photo2411 -lopencv_calib3d2411 -lopencv_features2d2411 -lopencv_highgui2411 -lIlmImf -llibjasper -llibtiff -llibpng -llibjpeg -lopencv_imgproc2411 -lopencv_flann2411 -lopencv_core2411 -lzlib -lmsvfw32 -lwinmm -lavicap32 -lavifil32 -lws2_32 -lsetupapi -lole32 -lgdi32 -lcomctl32 -lstdc++ -lpthread
 	INCLUDEPATH += $$PWD/../third-party/opencv/windows-install/include
 }
 

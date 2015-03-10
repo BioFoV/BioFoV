@@ -23,18 +23,14 @@ PLACEHOLDER=PLACEHOLDER
 ## Windows stuff
 WIN_BUILD_FLD=windows-build
 WIN_INSTALL_FLD=windows-install
-WIN_VERSION=2.4.8
+WIN_VERSION=2.4.11
 WIN_SRC_FLD=src-$(WIN_VERSION)
-WIN_TBZ=opencv-windows.tbz
-OPENCV_WIN_TBZ_URL=https://www.dropbox.com/s/z2ausk9ium7wepg/$(WIN_TBZ)
 
 ## Linux stuff
 LIN_BUILD_FLD=linux-build
 LIN_INSTALL_FLD=linux-install
-LIN_VERSION=2.4.9
+LIN_VERSION=2.4.11
 LIN_SRC_FLD=src-$(LIN_VERSION)
-LIN_TBZ=opencv-linux.tbz
-#OPENCV_LIN_TBZ_URL=
 
 ################################################################################
 
@@ -55,16 +51,18 @@ windows-src:
 ############################ Full Build Rules ##################################
 
 linux: linux-src
+	export PKG_CONFIG_PATH=$(PWD)/third-party/linux-install/lib/pkgconfig; \
 	mkdir -p $(LIN_BUILD_FLD); \
 	cd $(LIN_BUILD_FLD); \
 	cmake -D CMAKE_BUILD_TYPE=RELEASE \
-      -D CMAKE_INSTALL_PREFIX=../$(LIN_INSTALL_FLD) \
+      -D CMAKE_INSTALL_PREFIX=../../$(LIN_INSTALL_FLD) \
       -D WITH_CUDA=OFF \
       -D ENABLE_FAST_MATH=ON \
       -D BUILD_SHARED_LIBS=OFF \
       -D BUILD_opencv_java=OFF \
       -D BUILD_opencv_python=OFF \
       -D BUILD_opencv_legacy=OFF \
+      -D BUILD_opencv_apps=OFF \
       -D BUILD_DOCS=OFF \
       -D BUILD_TESTS=OFF \
       -D BUILD_PERF_TESTS=OFF \
@@ -87,7 +85,7 @@ windows: windows-src
 	mkdir -p $(WIN_BUILD_FLD); \
 	cd $(WIN_BUILD_FLD); \
 	cmake -D CMAKE_BUILD_TYPE=RELEASE \
-      -D CMAKE_INSTALL_PREFIX=../$(WIN_INSTALL_FLD) \
+      -D CMAKE_INSTALL_PREFIX=../../$(WIN_INSTALL_FLD) \
       -D CMAKE_TOOLCHAIN_FILE=../../Toolchain-cross-mingw32-linux.cmake \
       -D WITH_CUDA=OFF \
       -D ENABLE_FAST_MATH=ON \
@@ -108,25 +106,7 @@ windows: windows-src
       -D WITH_GSTREAMER=OFF \
       ../$(WIN_SRC_FLD)/
 	$(MAKE) -C $(WIN_BUILD_FLD) -j$(CPUS) install
-	cp $(WIN_SRC_FLD)/3rdparty/ffmpeg/opencv_ffmpeg.dll $(WIN_INSTALL_FLD)
-
-############################ Lazy Deploy Rules #################################
-
-linux-create-tbz: linux
-	tar -cjf $(LIN_TBZ) $(LIN_INSTALL_FLD)
-
-windows-create-tbz: windows
-	tar -cjf $(WIN_TBZ) $(WIN_INSTALL_FLD)
-
-linux-deploy-tbz:
-	rm -rf $(LIN_INSTALL_FLD)
-	wget --quiet $(OPENCV_LIN_TBZ_URL)
-	tar -xjf $(LIN_TBZ)
-
-windows-deploy-tbz:
-	rm -rf $(WIN_INSTALL_FLD)
-	wget --quiet $(OPENCV_WIN_TBZ_URL)
-	tar -xjf $(WIN_TBZ)
+	cp $(WIN_SRC_FLD)/3rdparty/ffmpeg/opencv_ffmpeg.dll ../$(WIN_INSTALL_FLD)
 
 ############################## Clean Rules #####################################
 
@@ -134,17 +114,13 @@ clean-linux-build:
 	rm -rf $(LIN_BUILD_FLD)
 clean-linux-install:
 	rm -rf $(LIN_INSTALL_FLD)
-clean-linux-tbz:
-	rm -f $(LIN_TBZ)
-clean-linux: clean-linux-build clean-linux-install clean-linux-tbz
+clean-linux: clean-linux-build clean-linux-install
 
 clean-windows-build:
 	rm -rf $(WIN_BUILD_FLD)
 clean-windows-install:
 	rm -rf $(WIN_INSTALL_FLD)
-clean-windows-tbz:
-	rm -f $(WIN_TBZ)
-clean-windows: clean-windows-build clean-windows-install clean-windows-tbz
+clean-windows: clean-windows-build clean-windows-install
 
 clean-src: clean-linux-src clean-windows-src
 clean-windows-src:

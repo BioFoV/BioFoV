@@ -18,21 +18,15 @@ endif
 # Qt
 SRC_FLD=src
 SRC_GIT=http://gitorious.org/qt/qt5.git
-SRC_VERSION=5.4.1
-
-PLACEHOLDER=PLACEHOLDER
+SRC_VERSION=v5.4.1
 
 ## Windows stuff
 WIN_BUILD_FLD=windows-build
 WIN_INSTALL_FLD=windows-install
-WIN_TBZ=qt-windows.tbz
-QT_WIN_TBZ_URL=https://www.dropbox.com/s/n8rqjzxeh30yl40/$(WIN_TBZ)
 
 ## Linux stuff
 LIN_BUILD_FLD=linux-build
 LIN_INSTALL_FLD=linux-install
-LIN_TBZ=qt-linux.tbz
-#QT_LIN_TBZ_URL=
 
 ################################################################################
 
@@ -55,7 +49,7 @@ linux: linux-src
 	mkdir -p $(LIN_BUILD_FLD); \
 	cd $(LIN_BUILD_FLD); \
 	../$(SRC_FLD)/configure \
-		-prefix ../../$(LIN_INSTALL_FLD)/ \
+		-prefix ../../../$(LIN_INSTALL_FLD)/ \
     	-opensource \
     	-skip qtwebkit \
 		-release \
@@ -79,7 +73,7 @@ windows: windows-src
 	cd $(WIN_BUILD_FLD); \
 	../$(SRC_FLD)/configure \
 		-xplatform win32-g++ \
-		-prefix ../../$(WIN_INSTALL_FLD)/ \
+		-prefix ../../../$(WIN_INSTALL_FLD)/ \
 		-opensource \
 		-skip qtwebkit \
 		-skip activeqt \
@@ -104,45 +98,17 @@ windows: windows-src
 
 ################################################################################
 
-linux-create-tbz: linux
-	tar -cjf $(LIN_TBZ) $(LIN_INSTALL_FLD)
-
-windows-create-tbz: windows
-	tar -cjf $(WIN_TBZ) $(WIN_INSTALL_FLD)
-
-linux-deploy-tbz:
-	rm -rf $(LIN_INSTALL_FLD)
-	wget --quiet $(QT_LIN_TBZ_URL)
-	tar -xjf $(LIN_TBZ)
-	cp qt.conf $(LIN_INSTALL_FLD)/bin/
-	sed -i "s|$(PLACEHOLDER)|$(QT_DIR)/$(LIN_INSTALL_FLD)|g" \
-		$(LIN_INSTALL_FLD)/bin/qt.conf
-
-windows-deploy-tbz:
-	rm -rf $(WIN_INSTALL_FLD)
-	wget --quiet $(QT_WIN_TBZ_URL)
-	tar -xjf $(WIN_TBZ)
-	cp qt.conf $(WIN_INSTALL_FLD)/bin/
-	sed -i "s|$(PLACEHOLDER)|$(QT_DIR)/$(WIN_INSTALL_FLD)|g" \
-		$(WIN_INSTALL_FLD)/bin/qt.conf
-
-################################################################################
-
 clean-linux-build:
 	rm -rf $(LIN_BUILD_FLD)
 clean-linux-install:
 	rm -rf $(LIN_INSTALL_FLD)
-clean-linux-tbz:
-	rm -f $(LIN_TBZ)
-clean-linux: clean-linux-build clean-linux-install clean-linux-tbz
+clean-linux: clean-linux-build clean-linux-install
 
 clean-windows-build:
 	rm -rf $(WIN_BUILD_FLD)
 clean-windows-install:
 	rm -rf $(WIN_INSTALL_FLD)
-clean-windows-tbz:
-	rm -f $(WIN_TBZ)
-clean-windows: clean-windows-build clean-windows-install clean-windows-tbz
+clean-windows: clean-windows-build clean-windows-install
 
 clean-src:
 	rm -rf $(SRC_FLD)

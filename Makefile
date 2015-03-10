@@ -25,15 +25,15 @@ THIRD_PARTY_FLD=third-party
 OPENCV_BUILD_WIN=build-opencv-win
 OPENCV_BUILD_LIN=build-opencv-lin
 # Qt
-QMAKE_WIN=$(THIRD_PARTY_FLD)/qt/windows-install/bin/qmake
-QMAKE_LIN=$(THIRD_PARTY_FLD)/qt/linux-install/bin/qmake
+QMAKE_WIN=$(THIRD_PARTY_FLD)/windows-install/bin/qmake
+QMAKE_LIN=$(THIRD_PARTY_FLD)/linux-install/bin/qmake
 
 ## Windows stuff
 WIN=windows
 WIN_BUILD_FLD=windows
 WIN_BUILD_TYPE=release
-WIN_FFMPEG_WRONG=$(THIRD_PARTY_FLD)/opencv/windows-install/opencv_ffmpeg.dll
-WIN_FFMPEG_RIGHT=opencv_ffmpeg248.dll
+WIN_FFMPEG_WRONG=$(THIRD_PARTY_FLD)/windows-install/opencv_ffmpeg.dll
+WIN_FFMPEG_RIGHT=opencv_ffmpeg2411.dll
 WIN_ZIP=$(PRO_NAME)-$(WIN)-$(DATE).zip
 
 ## Linux stuff
@@ -45,6 +45,9 @@ LIN_ZIP=$(PRO_NAME)-$(LIN)-$(DATE).zip
 ################################################################################
 
 all: windows linux doc
+
+wrap-up-installs:
+	$(MAKE) -C $(THIRD_PARTY_FLD) create-tbzs
 
 ################################################################################
 
@@ -86,6 +89,7 @@ travis-ci-linux:
 
 build-only-linux:
 	mkdir -p $(LIN_BUILD_FLD)
+	export PKG_CONFIG_PATH=$(PWD)/third-party/linux-install/lib/pkgconfig; \
 	cd $(LIN_BUILD_FLD); \
 	../$(QMAKE_LIN) ../$(PRO_FILE)
 	$(MAKE) -C $(LIN_BUILD_FLD) -s -j$(CPUS) $(LIN_BUILD_TYPE)
@@ -134,5 +138,5 @@ clean-src:
 clean-doc:
 	rm -rf doxygen
 
-clean: clean-windows clean-linux clean-src clean-doc
-
+clean: clean-build-windows clean-build-linux
+	$(MAKE) -C $(THIRD_PARTY_FLD) clean
