@@ -10,7 +10,9 @@ before_install:
  - sudo ln -sf /usr/bin/g++-4.8 /usr/bin/g++;
 
 script:
- - make travis-ci-windows
+ - make travis-ci
  - make build-only-windows
  - make zip-only-windows
+ - make build-only-linux
+ - make zip-only-linux
  - make doc

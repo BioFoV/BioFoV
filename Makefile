@@ -49,6 +49,10 @@ all: windows linux doc
 wrap-up-installs:
 	$(MAKE) -C $(THIRD_PARTY_FLD) create-tbzs
 
+travis-ci:
+	$(MAKE) -C $(THIRD_PARTY_FLD) travis-ci-windows
+	$(MAKE) -C $(THIRD_PARTY_FLD) travis-ci-linux
+
 ################################################################################
 
 qt-windows:
