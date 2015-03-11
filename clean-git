@@ -1,9 +1,0 @@
-#!/bin/bash
-
-git clean -dn
-
-read -p "Clean files? [yN] " yn
-case $yn in
-  [Yy]* ) git clean -df; exit;;
-  * ) exit;;
-esac

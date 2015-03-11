@@ -1,5 +1,0 @@
-#!/bin/bash
-echo "# Lines Of Code"
-find application -type f -print0 | wc -l --files0-from=- | tail -n 1
-echo "# Commits"
-git rev-list HEAD --count
