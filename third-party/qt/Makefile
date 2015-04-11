@@ -57,13 +57,6 @@ linux: linux-src
 		-nomake examples \
 		-static \
 		-confirm-license \
-		-qt-zlib \
-		-qt-libpng \
-		-qt-libjpeg \
-		-qt-freetype \
-		-qt-xcb \
-		-qt-pcre \
-		-qt-xkbcommon \
 		-no-accessibility \
 		-silent
 	$(MAKE) -C $(LIN_BUILD_FLD) -j$(CPUS) install
