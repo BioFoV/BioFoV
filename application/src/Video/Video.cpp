@@ -9,6 +9,7 @@
 Video::Video(){
 	bg = NULL;
 	activeDrawable = NULL;
+	toCancel = false;
 }
 
 /**
@@ -19,6 +20,7 @@ Video::Video(cv::VideoCapture capture){
 	bg = NULL;
 	cap = capture;
 	activeDrawable = NULL;
+	toCancel = false;
 }
 
 /**
@@ -34,6 +36,7 @@ Video::Video(std::string name){
 	resolution.height = cap.get(CV_CAP_PROP_FRAME_HEIGHT);
 	cam = NULL;
 	activeDrawable = NULL;
+	toCancel = false;
 }
 
 /*******************************************************************************
