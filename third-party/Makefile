@@ -83,13 +83,13 @@ clean: clean-qt clean-opencv clean-ffmpeg clean-install clean-tbz
 clean-windows: clean-qt-windows clean-opencv-windows
 clean-linux: clean-qt-linux clean-opencv-linux
 
-clean-qt: clean-qt-windows clean-qt-linux
+clean-qt: clean-qt-windows clean-qt-linux clean-qt-src
 clean-qt-linux:
 	$(MAKE) -C $(QT_FLD) clean-linux
 clean-qt-windows:
 	$(MAKE) -C $(QT_FLD) clean-windows
 
-clean-opencv: clean-opencv-windows clean-opencv-linux
+clean-opencv: clean-opencv-windows clean-opencv-linux clean-opencv-src
 clean-opencv-linux:
 	$(MAKE) -C $(OPENCV_FLD) clean-linux
 clean-opencv-windows:
