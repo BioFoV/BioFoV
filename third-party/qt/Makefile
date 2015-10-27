@@ -17,8 +17,8 @@ endif
 ## Third party libs
 # Qt
 SRC_FLD=src
-SRC_GIT=http://gitorious.org/qt/qt5.git
-SRC_VERSION=v5.4.1
+SRC_GIT=http://code.qt.io/qt/qt5.git
+SRC_VERSION=5.4
 
 ## Windows stuff
 WIN_BUILD_FLD=windows-build
